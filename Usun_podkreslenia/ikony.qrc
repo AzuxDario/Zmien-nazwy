@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/ikona">
+        <file alias="ikona">Ikony/Ikona.png</file>
+        <file alias="ikona128x128">Ikony/Ikona128x128.png</file>
+    </qresource>
+    <qresource prefix="/pasek">
+        <file alias="oProgramie">Ikony/O programie.png</file>
+        <file alias="rejestrZmian">Ikony/Rejestr zmian.png</file>
+        <file alias="rozpocznijZmiane">Ikony/Rozpocznij zmianę.png</file>
+        <file alias="wybierzFolder">Ikony/Wybierz folder.png</file>
+        <file alias="wyjscie">Ikony/Wyjście.png</file>
+        <file alias="ustawienia">Ikony/Ustawienia.png</file>
+    </qresource>
+</RCC>
