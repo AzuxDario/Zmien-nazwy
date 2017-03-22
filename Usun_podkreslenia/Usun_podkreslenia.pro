@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     cwykrywaczfolderow.cpp \
     crdzen.cpp \
     widgetustawienia.cpp \
-    custawienia.cpp
+    custawienia.cpp \
+    parametryzmianynazw.cpp
 
 HEADERS  += widget.h \
     widgetoprogramie.h \
@@ -30,7 +31,8 @@ HEADERS  += widget.h \
     cwykrywaczfolderow.h \
     crdzen.h \
     widgetustawienia.h \
-    custawienia.h
+    custawienia.h \
+    parametryzmianynazw.h
 
 FORMS    += widget.ui \
     widgetoprogramie.ui \

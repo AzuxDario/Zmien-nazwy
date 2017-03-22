@@ -72,33 +72,29 @@ void WidgetUstawienia::zmienAktywnoscPrzyciskuKropkiRozszerzenia()
 //----Ustawia przyciski danymi z pliku----//
 void WidgetUstawienia::ustawPrzyciski()
 {
-    przyciskWyboruPodfoldery->setChecked(czytaczUstawien->zwrocCzyZamienicWPodfolderach());
-    przyciskWyboruZastapPodkreslenia->setChecked(czytaczUstawien->zwrocCzyZamienicPodkreslenia());
-    przyciskWyboruZastapPauzy->setChecked(czytaczUstawien->zwrocCzyZamienicPauzy());
-    przyciskWyboruZastapKropki->setChecked(czytaczUstawien->zwrocCzyZamienicKropki());
-    przyciskWyboruUsunKropkeRozszerzenia->setChecked(czytaczUstawien->zwrocCzyZamienicKropkeRozszerzenia());
-    przyciskWyboruUstawPierwszaDuza->setChecked(czytaczUstawien->zwrocCzyPierwszaDuza());
-    przyciskWyboruUstawRozszerzenieMale->setChecked(czytaczUstawien->zwrocCzyRozszerzenieMale());
+    przyciskWyboruPodfoldery->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
+    przyciskWyboruZastapPodkreslenia->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicPodkreslenia());
+    przyciskWyboruZastapPauzy->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicPauzy());
+    przyciskWyboruZastapKropki->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicKropki());
+    przyciskWyboruUsunKropkeRozszerzenia->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia());
+    przyciskWyboruUstawPierwszaDuza->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyPierwszaDuza());
+    przyciskWyboruUstawRozszerzenieMale->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyRozszerzenieMale());
     if(przyciskWyboruZastapKropki->isChecked() == true)
-    {
         przyciskWyboruUsunKropkeRozszerzenia->setEnabled(true);
-    }
     else
-    {
         przyciskWyboruUsunKropkeRozszerzenia->setDisabled(true);
-    }
 }
 
 //----Ustawia czytacz ustawień wartościami checkboxów----//
 void WidgetUstawienia::ustawCzytacz()
 {
-    czytaczUstawien->ustawCzyZamienicWPodfolderach(przyciskWyboruPodfoldery->isChecked());
-    czytaczUstawien->ustawCzyZamienicPodkreslenia(przyciskWyboruZastapPodkreslenia->isChecked());
-    czytaczUstawien->ustawCzyZamienicPauzy(przyciskWyboruZastapPauzy->isChecked());
-    czytaczUstawien->ustawCzyZamienicKropki(przyciskWyboruZastapKropki->isChecked());
-    czytaczUstawien->ustawCzyZamienicKropkeRozszerzenia(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
-    czytaczUstawien->ustawCzyPierwszaDuza(przyciskWyboruUstawPierwszaDuza->isChecked());
-    czytaczUstawien->ustawCzyRozszerzenieMale(przyciskWyboruUstawRozszerzenieMale->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicWPodfolderach(przyciskWyboruPodfoldery->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicPodkreslenia(przyciskWyboruZastapPodkreslenia->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicPauzy(przyciskWyboruZastapPauzy->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicKropki(przyciskWyboruZastapKropki->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyPierwszaDuza(przyciskWyboruUstawPierwszaDuza->isChecked());
+    czytaczUstawien->parametryZmianyNazw.ustawCzyRozszerzenieMale(przyciskWyboruUstawRozszerzenieMale->isChecked());
 }
 
 //----Pokazuje już utworzone okno----//
@@ -107,9 +103,7 @@ void WidgetUstawienia::pokazSie()
     czytaczUstawien->czytajUstawienia();
     ustawPrzyciski();
     if(this->isVisible()) //Jeżeli okno jest widoczne
-    {
         this->activateWindow(); //Niech stanie się aktywne
-    }
     else //Jeżeli okno było stworzone i nie jest widoczne wywołaj je
     {
         this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center()); //Przesunięcie na środek ekranu

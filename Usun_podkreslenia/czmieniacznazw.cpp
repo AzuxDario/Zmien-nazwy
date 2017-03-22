@@ -6,15 +6,9 @@ CZmieniaczNazw::CZmieniaczNazw(QProgressBar *pasekPostepu)
     this->pasekPostepu = pasekPostepu;
 }
 
-void CZmieniaczNazw::inicjujZmianeNazw(bool czyZamienicWPodfolderach, bool czyZamienicPodkreslenia, bool czyZamienicPauzy, bool czyZamienicKropki, bool czyZamienicKropkeRozszerzenia, bool czyPierwszaDuza, bool czyRozszerzenieMale)
+void CZmieniaczNazw::inicjujZmianeNazw(ParametryZmianyNazw parametryZmianyNazw)
 {
-    this->czyZamienicWPodfolderach = czyZamienicWPodfolderach;
-    this->czyZamienicPodkreslenia = czyZamienicPodkreslenia;
-    this->czyZamienicPauzy = czyZamienicPauzy;
-    this->czyZamienicKropki = czyZamienicKropki;
-    this->czyZamienicKropkeRozszerzenia = czyZamienicKropkeRozszerzenia;
-    this->czyPierwszaDuza = czyPierwszaDuza;
-    this->czyRozszerzenieMale = czyRozszerzenieMale;
+    this->parametryZmianyNazw = parametryZmianyNazw;
     rozpocznijZmiane();
 }
 
@@ -23,13 +17,9 @@ bool CZmieniaczNazw::wybierzFolder()
 {
     wybranyFolder = QFileDialog::getExistingDirectory(); //Pobiera adres folderu
     if(wybranyFolder.isNull() == false)
-    {
         return true;
-    }
     else
-    {
         return false;
-    }
 }
 
 //----Zwraca ścieżkę dostępu do folderu----//
@@ -45,9 +35,7 @@ void CZmieniaczNazw::wyswietlBrakKatalogu()
     QMessageBox okienkoInformacyjne("Ostrzeżenie",trescOkienkaOstrzezenie,QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
     wcisnietyPrzycisk = okienkoInformacyjne.exec();
     if(wcisnietyPrzycisk == QMessageBox::Ok) //Zamyka okno po wciśnięciu ok
-    {
         okienkoInformacyjne.close();
-    }
 }
 
 //----Zmienia nazwę pliku zastępując znaki "_" na " "----//
@@ -69,10 +57,8 @@ QString CZmieniaczNazw::usunKropki(QString nazwaPliku)
 {
     int pozycjaKropkiRozszerzenia = nazwaPliku.lastIndexOf(".");
     nazwaPliku.replace("."," ");
-    if((pozycjaKropkiRozszerzenia != -1) && (czyZamienicKropkeRozszerzenia == false))
-    {
+    if(czyPrzywrocicKropkeRozszezenia(pozycjaKropkiRozszerzenia))
         nazwaPliku.replace(pozycjaKropkiRozszerzenia,1,".");
-    }
     return nazwaPliku;
 }
 
@@ -88,38 +74,24 @@ QString CZmieniaczNazw::zmienRozszerzenie(QString nazwaPliku)
 {
     int pozycjaKropkiRozszerzenia = nazwaPliku.lastIndexOf(".");
     if(pozycjaKropkiRozszerzenia != -1)
-    {
         for(int i = pozycjaKropkiRozszerzenia+1; i < nazwaPliku.length(); i++)
-        {
-        nazwaPliku[i] = nazwaPliku[i].toLower();
-        }
-    }
+            nazwaPliku[i] = nazwaPliku[i].toLower();
     return nazwaPliku;
 }
 
 //----Wykonuje operacje zmiany nazwy pliku----//
 QString CZmieniaczNazw::zmienNazwePliku(QString nazwaPliku)
 {
-    if(czyZamienicPodkreslenia == true)
-    {
+    if(parametryZmianyNazw.zwrocCzyZamienicPodkreslenia() == true)
         nazwaPliku = usunPodkreslenia(nazwaPliku);
-    }
-    if(czyZamienicPauzy == true)
-    {
+    if(parametryZmianyNazw.zwrocCzyZamienicPauzy() == true)
         nazwaPliku = usunPauzy(nazwaPliku);
-    }
-    if(czyZamienicKropki == true)
-    {
+    if(parametryZmianyNazw.zwrocCzyZamienicKropki() == true)
         nazwaPliku = usunKropki(nazwaPliku);
-    }
-    if(czyPierwszaDuza == true)
-    {
+    if(parametryZmianyNazw.zwrocCzyPierwszaDuza() == true)
         nazwaPliku = zmienPierwszaDuza(nazwaPliku);
-    }
-    if(czyRozszerzenieMale == true)
-    {
+    if(parametryZmianyNazw.zwrocCzyRozszerzenieMale() == true)
         nazwaPliku = zmienRozszerzenie(nazwaPliku);
-    }
     return nazwaPliku;
 }
 
@@ -127,13 +99,9 @@ QString CZmieniaczNazw::zmienNazwePliku(QString nazwaPliku)
 bool CZmieniaczNazw::czyNazwaIdentyczna(QString nazwaStara, QString nazwaNowa)
 {
     if(nazwaStara == nazwaNowa)
-    {
         return true;
-    }
     else
-    {
         return false;
-    }
 }
 
 //----Ustawia pasek postępu w stan zajętości----//
@@ -161,47 +129,56 @@ void CZmieniaczNazw::zerujPasekPostepu()
 void CZmieniaczNazw::rozpocznijZmiane()
 {
     QDir katalogDoZmiany(wybranyFolder);
-    if(!katalogDoZmiany.exists()) //Sprawdza czy katalog nie istnieje
+    if(!katalogDoZmiany.exists())
     {
-        wyswietlBrakKatalogu(); //Wyświetla komunikat o braku katalogu
-        wybranyFolder = ""; //Ustawia wybrany folder na ""
+        wyswietlBrakKatalogu();
+        wybranyFolder = "";
         return;
     }
     ustawPasekPostepuZajety();
-    CWykrywaczFolderow detektorFolderow(wybranyFolder, czyZamienicWPodfolderach);
+    CWykrywaczFolderow detektorFolderow(wybranyFolder, parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
     int liczbaPlikow = detektorFolderow.zwrocIloscPlikow();
-    inicjujPasekPostepu(liczbaPlikow); //Inicjujemy maksumalną wartość paska postępu
+    inicjujPasekPostepu(liczbaPlikow);
 
     QStringList listaFolderow = detektorFolderow.zwrocListeFolderow();
 
     for(auto iteratorListyFolderow = listaFolderow.begin(); iteratorListyFolderow != listaFolderow.end(); iteratorListyFolderow++)
     {
-        katalogDoZmiany.cd(*iteratorListyFolderow); //Wchodzimy do przetwarzanego folderu
-        //Jeżeli folder nie istnieje lub zniknie idź do kolejnego
+        QString folderWKtorymZmeniamyNazwy = *iteratorListyFolderow;
+        katalogDoZmiany.cd(folderWKtorymZmeniamyNazwy);
         if(!katalogDoZmiany.exists())
-        {
             continue;
-        }
         for(unsigned int i = 0; i < katalogDoZmiany.count(); i++)
         {
-            pasekPostepu->setValue(pasekPostepu->value()+i+1); //Aktualizujemy pasek postępu
-            if(!((katalogDoZmiany[i] == ".") || (katalogDoZmiany[i] == "..") || (detektorFolderow.czyJestFolderem(katalogDoZmiany,katalogDoZmiany[i]) == true))) //Unikamy plików "." - aktualny folder i ".." - folder nadrzędny
+            pasekPostepu->setValue(pasekPostepu->value()+i+1);
+
+            if(czyJestPlikiem(katalogDoZmiany, katalogDoZmiany[i]))
             {
                 QString nazwaPliku = katalogDoZmiany[i];
-                QString nowaNazwaPliku = zmienNazwePliku(nazwaPliku); //Otrzymujemy nową nazwę pliku
-
+                QString nowaNazwaPliku = zmienNazwePliku(nazwaPliku);
                 if(czyNazwaIdentyczna(nazwaPliku,nowaNazwaPliku))
-                {
                     continue;
-                }
                 else
                 {
-                    QFile plik(*iteratorListyFolderow + QDir::separator() + nazwaPliku); //Zmieniamy nazwę pliku tylko wtedy kiedy zaszły w niej zmiany
-                    plik.rename(*iteratorListyFolderow + QDir::separator() + nowaNazwaPliku);
+                    QFile plik(folderWKtorymZmeniamyNazwy + QDir::separator() + nazwaPliku);
+                    plik.rename(folderWKtorymZmeniamyNazwy + QDir::separator() + nowaNazwaPliku);
                 }
             }
         }
     }
     zerujPasekPostepu();
     wybranyFolder = "";
+}
+
+bool CZmieniaczNazw::czyPrzywrocicKropkeRozszezenia(int pozycjaKropkiRozszerzenia)
+{
+    if((pozycjaKropkiRozszerzenia != -1) && (parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia() == false))
+        return true;
+    else
+        return false;
+}
+
+bool CZmieniaczNazw::czyJestPlikiem(QDir sciezkaDostepu, QString nazwaPliku)
+{
+     return !CWykrywaczFolderow::czyJestPodfolderem(sciezkaDostepu, nazwaPliku);
 }

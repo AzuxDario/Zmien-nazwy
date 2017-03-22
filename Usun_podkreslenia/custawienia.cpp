@@ -2,13 +2,6 @@
 
 CUstawienia::CUstawienia()
 {
-    czyZamienicWPodfolderach = false;
-    czyZamienicPodkreslenia = false;
-    czyZamienicPauzy = false;
-    czyZamienicKropki = false;
-    czyZamienicKropkeRozszerzenia = false;
-    czyPierwszaDuza = false;
-    czyRozszerzenieMale = false;
     czytajUstawienia();
 }
 
@@ -17,9 +10,7 @@ bool CUstawienia::czytajUstawienia()
 {
     QFile plikUstawien("ustawienia.ini");
     if(!plikUstawien.exists())
-    {
         odbudujPlik();
-    }
     if(plikUstawien.open(QIODevice::ReadOnly))
     {
         QTextStream zawartoscPliku(&plikUstawien);
@@ -33,9 +24,7 @@ bool CUstawienia::czytajUstawienia()
         return true;
     }
     else
-    {
         return false;
-    }
 }
 
 //----Zapisuje ustawienia do pliku----//
@@ -47,75 +36,45 @@ bool CUstawienia::zapiszUstawienia()
         QTextStream strumien(&plikUstawien);
         strumien << "[Ustawienia]" << endl;
         strumien << "czyZamienicWPodfolderach=";
-        if(czyZamienicWPodfolderach == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyZamienicWPodfolderach() == true)
             strumien << "1" << endl;
-        }
         else
-        {
             strumien << "0" << endl;
-        }
         strumien << "czyZamienicPodkreslenia=";
-        if(czyZamienicPodkreslenia == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyZamienicPodkreslenia() == true)
             strumien << "1" << endl;
-        }
         else
-        {
             strumien << "0" << endl;
-        }
         strumien << "czyZamienicPauzy=";
-        if(czyZamienicPauzy == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyZamienicPauzy() == true)
             strumien << "1" << endl;
-        }
         else
-        {
             strumien << "0" << endl;
-        }
         strumien << "czyZamienicKropki=";
-        if(czyZamienicKropki == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyZamienicKropki() == true)
             strumien << "1" << endl;
-        }
         else
-        {
             strumien << "0" << endl;
-        }
         strumien << "czyZamienicKropkeRozszerzenia=";
-        if(czyZamienicKropkeRozszerzenia == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia() == true)
             strumien << "1" << endl;
-        }
         else
-        {
             strumien << "0" << endl;
-        }
         strumien << "czyPierwszaDuza=";
-        if(czyPierwszaDuza == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyPierwszaDuza() == true)
             strumien << "1" << endl;
-        }
         else
-        {
             strumien << "0" << endl;
-        }
         strumien << "czyRozszerzenieMale=";
-        if(czyRozszerzenieMale == true)
-        {
+        if(parametryZmianyNazw.zwrocCzyRozszerzenieMale() == true)
             strumien << "1";
-        }
         else
-        {
             strumien << "0";
-        }
         plikUstawien.close();
         return true;
     }
     else
-    {
         return false;
-    }
 }
 
 //----Tworzy plik ustawień----//
@@ -137,167 +96,29 @@ bool CUstawienia::odbudujPlik()
         return true;
     }
     else
-    {
         return false;
-    }
 }
 
 //----Zmienia ustawienie, przyjmuje linie z pliku ustawien----//
 void CUstawienia::zmienUstawienie(QString linia)
 {
-    int pozycjaZnakuRownosci = linia.indexOf("=");
-    QString opcja;
-    for(int i = 0; i < pozycjaZnakuRownosci; i++)
+    QString opcja = linia.split("=")[0];
+    if(linia != "[Ustawienia]")
     {
-        opcja.append(linia.at(i));
+        int wartosc = linia.split("=")[1].toInt();
+        if(opcja == "czyZamienicWPodfolderach")
+            parametryZmianyNazw.ustawCzyZamienicWPodfolderach(wartosc);
+        else if(opcja == "czyZamienicPodkreslenia")
+            parametryZmianyNazw.ustawCzyZamienicPodkreslenia(wartosc);
+        else if(opcja == "czyZamienicPauzy")
+            parametryZmianyNazw.ustawCzyZamienicPauzy(wartosc);
+        else if(opcja == "czyZamienicKropki")
+            parametryZmianyNazw.ustawCzyZamienicKropki(wartosc);
+        else if(opcja == "czyZamienicKropkeRozszerzenia")
+            parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(wartosc);
+        else if(opcja == "czyPierwszaDuza")
+            parametryZmianyNazw.ustawCzyPierwszaDuza(wartosc);
+        else if(opcja == "czyRozszerzenieMale")
+            parametryZmianyNazw.ustawCzyRozszerzenieMale(wartosc);
     }
-    QChar wartosc = linia.at(pozycjaZnakuRownosci+1);
-    if(opcja == "czyZamienicWPodfolderach")
-    {
-        if(wartosc == '1')
-        {
-            czyZamienicWPodfolderach = true;
-        }
-        else
-        {
-            czyZamienicWPodfolderach = false;
-        }
-    }
-    else if(opcja == "czyZamienicPodkreslenia")
-    {
-        if(wartosc == '1')
-        {
-            czyZamienicPodkreslenia = true;
-        }
-        else
-        {
-            czyZamienicPodkreslenia = false;
-        }
-    }
-    else if(opcja == "czyZamienicPauzy")
-    {
-        if(wartosc == '1')
-        {
-            czyZamienicPauzy = true;
-        }
-        else
-        {
-            czyZamienicPauzy = false;
-        }
-    }
-    else if(opcja == "czyZamienicKropki")
-    {
-        if(wartosc == '1')
-        {
-            czyZamienicKropki = true;
-        }
-        else
-        {
-            czyZamienicKropki = false;
-        }
-    }
-    else if(opcja == "czyZamienicKropkeRozszerzenia")
-    {
-        if(wartosc == '1')
-        {
-            czyZamienicKropkeRozszerzenia = true;
-        }
-        else
-        {
-            czyZamienicKropkeRozszerzenia = false;
-        }
-    }
-    else if(opcja == "czyPierwszaDuza")
-    {
-        if(wartosc == '1')
-        {
-            czyPierwszaDuza = true;
-        }
-        else
-        {
-            czyPierwszaDuza = false;
-        }
-    }
-    else if(opcja == "czyRozszerzenieMale")
-    {
-        if(wartosc == '1')
-        {
-            czyRozszerzenieMale = true;
-        }
-        else
-        {
-            czyRozszerzenieMale = false;
-        }
-    }
-}
-
-//----Funkcje dostępu do pól prywatnych----//
-void CUstawienia::ustawCzyZamienicWPodfolderach(bool wartosc)
-{
-    czyZamienicWPodfolderach = wartosc;
-}
-
-void CUstawienia::ustawCzyZamienicPodkreslenia(bool wartosc)
-{
-    czyZamienicPodkreslenia = wartosc;
-}
-
-void CUstawienia::ustawCzyZamienicPauzy(bool wartosc)
-{
-    czyZamienicPauzy = wartosc;
-}
-
-void CUstawienia::ustawCzyZamienicKropki(bool wartosc)
-{
-    czyZamienicKropki = wartosc;
-}
-
-void CUstawienia::ustawCzyZamienicKropkeRozszerzenia(bool wartosc)
-{
-    czyZamienicKropkeRozszerzenia = wartosc;
-}
-
-void CUstawienia::ustawCzyPierwszaDuza(bool wartosc)
-{
-    czyPierwszaDuza = wartosc;
-}
-
-void CUstawienia::ustawCzyRozszerzenieMale(bool wartosc)
-{
-    czyRozszerzenieMale = wartosc;
-}
-
-bool CUstawienia::zwrocCzyZamienicWPodfolderach()
-{
-    return czyZamienicWPodfolderach;
-}
-
-bool CUstawienia::zwrocCzyZamienicPodkreslenia()
-{
-    return czyZamienicPodkreslenia;
-}
-
-bool CUstawienia::zwrocCzyZamienicPauzy()
-{
-    return czyZamienicPauzy;
-}
-
-bool CUstawienia::zwrocCzyZamienicKropki()
-{
-    return czyZamienicKropki;
-}
-
-bool CUstawienia::zwrocCzyZamienicKropkeRozszerzenia()
-{
-    return czyZamienicKropkeRozszerzenia;
-}
-
-bool CUstawienia::zwrocCzyPierwszaDuza()
-{
-    return czyPierwszaDuza;
-}
-
-bool CUstawienia::zwrocCzyRozszerzenieMale()
-{
-    return czyRozszerzenieMale;
 }

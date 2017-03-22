@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QStringList>
 #include "cwykrywaczfolderow.h"
+#include "parametryzmianynazw.h"
 
 class CZmieniaczNazw
 {
@@ -15,26 +16,17 @@ public:
     CZmieniaczNazw(QProgressBar *pasekPostepu);
 
 private:
-    //----Zmienne trzymające ustawienia zmiany nazw----//
-    bool czyZamienicWPodfolderach;
-    bool czyZamienicPodkreslenia;
-    bool czyZamienicPauzy;
-    bool czyZamienicKropki;
-    bool czyZamienicKropkeRozszerzenia;
-    bool czyPierwszaDuza;
-    bool czyRozszerzenieMale;
+    ParametryZmianyNazw parametryZmianyNazw;
 
-    //----Pasek Postępu----//
     QProgressBar *pasekPostepu;
 
-    //----Zmienna przechowująca folder----//
     QString wybranyFolder;
 
     //----Zmienne przechuwyjące ciągi znaków----//
     QString trescOkienkaOstrzezenie;
 
 public:
-    void inicjujZmianeNazw(bool czyZamienicWPodfolderach, bool czyZamienicPodkreslenia, bool czyZamienicPauzy, bool czyZamienicKropki, bool czyZamienicKropkeRozszerzenia, bool czyPierwszaDuza, bool czyRozszerzenieMale); //Rozpoczyna procedurę zmiany nazw
+    void inicjujZmianeNazw(ParametryZmianyNazw parametryZmianyNazw); //Rozpoczyna procedurę zmiany nazw
     bool wybierzFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     QString zwrocWybranyFolder(); //Zwraca ścieżkę dostępu do folderu
 
@@ -51,6 +43,8 @@ private:
     void inicjujPasekPostepu(int maksimum); //Inicjuje pasek postępu ustawiając jako wartość maksymalną ilość plików w folderze
     void zerujPasekPostepu(); //Zeruje pasek postępu
     void rozpocznijZmiane(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
+    bool czyPrzywrocicKropkeRozszezenia(int pozycjaKropkiRozszerzenia);
+    bool czyJestPlikiem(QDir sciezkaDostepu, QString nazwaPliku);
 };
 
 #endif // CZMIENIACZNAZW_H

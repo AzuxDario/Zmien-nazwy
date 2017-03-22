@@ -244,23 +244,23 @@ void Widget::wyswietlUstawienia()
 //----Ustawia zaznaczenia przycisków----//
 void Widget::ustawPrzyciski()
 {
-    pasekWyboruPodfoldery->setChecked(rdzenProgramu->zwrocCzyZamienicWPodfolderach());
-    pasekWyboruZastapPodkreslenia->setChecked(rdzenProgramu->zwrocCzyZamienicPodkreslenia());
-    pasekWyboruZastapPauzy->setChecked(rdzenProgramu->zwrocCzyZamienicPauzy());
-    pasekWyboruZastapKropki->setChecked(rdzenProgramu->zwrocCzyZamienicKropki());
-    pasekWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->zwrocCzyZamienicKropkeRozszerzenia());
-    pasekWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->zwrocCzyPierwszaDuza());
-    pasekWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->zwrocCzyRozszerzenieMale());
+    pasekWyboruPodfoldery->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
+    pasekWyboruZastapPodkreslenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPodkreslenia());
+    pasekWyboruZastapPauzy->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPauzy());
+    pasekWyboruZastapKropki->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropki());
+    pasekWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia());
+    pasekWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyPierwszaDuza());
+    pasekWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyRozszerzenieMale());
 
-    przyciskWyboruPodfoldery->setChecked(rdzenProgramu->zwrocCzyZamienicWPodfolderach());
-    przyciskWyboruZastapPodkreslenia->setChecked(rdzenProgramu->zwrocCzyZamienicPodkreslenia());
-    przyciskWyboruZastapPauzy->setChecked(rdzenProgramu->zwrocCzyZamienicPauzy());
-    przyciskWyboruZastapKropki->setChecked(rdzenProgramu->zwrocCzyZamienicKropki());
-    przyciskWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->zwrocCzyZamienicKropkeRozszerzenia());
-    przyciskWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->zwrocCzyPierwszaDuza());
-    przyciskWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->zwrocCzyRozszerzenieMale());
+    przyciskWyboruPodfoldery->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
+    przyciskWyboruZastapPodkreslenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPodkreslenia());
+    przyciskWyboruZastapPauzy->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPauzy());
+    przyciskWyboruZastapKropki->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropki());
+    przyciskWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia());
+    przyciskWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyPierwszaDuza());
+    przyciskWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyRozszerzenieMale());
 
-    if(rdzenProgramu->zwrocCzyZamienicKropki() == true)
+    if(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropki() == true)
     {
         pasekWyboruUsunKropkeRozszerzenia->setEnabled(true);
         przyciskWyboruUsunKropkeRozszerzenia->setEnabled(true);
@@ -272,85 +272,85 @@ void Widget::ustawPrzyciski()
 void Widget::przyciskPodfolderyKliknieto()
 {
     pasekWyboruPodfoldery->setChecked(przyciskWyboruPodfoldery->isChecked());
-    rdzenProgramu->ustawCzyZamienicWPodfolderach(przyciskWyboruPodfoldery->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicWPodfolderach(przyciskWyboruPodfoldery->isChecked());
 }
 
 void Widget::przyciskZastapPodkresleniaKliknieto()
 {
     pasekWyboruZastapPodkreslenia->setChecked(przyciskWyboruZastapPodkreslenia->isChecked());
-    rdzenProgramu->ustawCzyZamienicPodkreslenia(przyciskWyboruZastapPodkreslenia->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPodkreslenia(przyciskWyboruZastapPodkreslenia->isChecked());
 }
 
 void Widget::przyciskZastapPauzyKliknieto()
 {
     pasekWyboruZastapPauzy->setChecked(przyciskWyboruZastapPauzy->isChecked());
-    rdzenProgramu->ustawCzyZamienicPauzy(przyciskWyboruZastapPauzy->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPauzy(przyciskWyboruZastapPauzy->isChecked());
 }
 
 void Widget::przyciskZastapKropkiKliknieto()
 {
     pasekWyboruZastapKropki->setChecked(przyciskWyboruZastapKropki->isChecked());
     zmienAktywnoscPrzyciskuKropkiRozszerzenia();
-    rdzenProgramu->ustawCzyZamienicKropki(przyciskWyboruZastapKropki->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropki(przyciskWyboruZastapKropki->isChecked());
 }
 
 void Widget::przyciskZastapKropkeRozszerzeniaKliknieto()
 {
     pasekWyboruUsunKropkeRozszerzenia->setChecked(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
-    rdzenProgramu->ustawCzyZamienicKropkeRozszerzenia(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
 }
 
 void Widget::przyciskUstawPierwszaDuzaKliknieto()
 {
     pasekWyboruUstawPierwszaDuza->setChecked(przyciskWyboruUstawPierwszaDuza->isChecked());
-    rdzenProgramu->ustawCzyPierwszaDuza(przyciskWyboruUstawPierwszaDuza->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyPierwszaDuza(przyciskWyboruUstawPierwszaDuza->isChecked());
 }
 
 void Widget::przyciskUstawRozszerzenieMaleKliknieto()
 {
     pasekWyboruUstawRozszerzenieMale->setChecked(przyciskWyboruUstawRozszerzenieMale->isChecked());
-    rdzenProgramu->ustawCzyRozszerzenieMale(przyciskWyboruUstawRozszerzenieMale->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyRozszerzenieMale(przyciskWyboruUstawRozszerzenieMale->isChecked());
 }
 
 void Widget::pasekPodfolderyKliknieto()
 {
     przyciskWyboruPodfoldery->setChecked(pasekWyboruPodfoldery->isChecked());
-    rdzenProgramu->ustawCzyZamienicWPodfolderach(pasekWyboruPodfoldery->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicWPodfolderach(pasekWyboruPodfoldery->isChecked());
 }
 
 void Widget::pasekZastapPodkresleniaKliknieto()
 {
     przyciskWyboruZastapPodkreslenia->setChecked(pasekWyboruZastapPodkreslenia->isChecked());
-    rdzenProgramu->ustawCzyZamienicPodkreslenia(pasekWyboruZastapPodkreslenia->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPodkreslenia(pasekWyboruZastapPodkreslenia->isChecked());
 }
 
 void Widget::pasekZastapPauzyKliknieto()
 {
     przyciskWyboruZastapPauzy->setChecked(pasekWyboruZastapPauzy->isChecked());
-    rdzenProgramu->ustawCzyZamienicPauzy(pasekWyboruZastapPauzy->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPauzy(pasekWyboruZastapPauzy->isChecked());
 }
 
 void Widget::pasekZastapKropkiKliknieto()
 {
     przyciskWyboruZastapKropki->setChecked(pasekWyboruZastapKropki->isChecked());
     zmienAktywnoscPrzyciskuKropkiRozszerzenia();
-    rdzenProgramu->ustawCzyZamienicKropki(pasekWyboruZastapKropki->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropki(pasekWyboruZastapKropki->isChecked());
 }
 
 void Widget::pasekZastapKropkeRozszerzeniaKliknieto()
 {
     przyciskWyboruUsunKropkeRozszerzenia->setChecked(pasekWyboruUsunKropkeRozszerzenia->isChecked());
-    rdzenProgramu->ustawCzyZamienicKropkeRozszerzenia(pasekWyboruUsunKropkeRozszerzenia->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(pasekWyboruUsunKropkeRozszerzenia->isChecked());
 }
 
 void Widget::pasekUstawPierwszaDuzaKliknieto()
 {
     przyciskWyboruUstawPierwszaDuza->setChecked(pasekWyboruUstawPierwszaDuza->isChecked());
-    rdzenProgramu->ustawCzyPierwszaDuza(pasekWyboruUstawPierwszaDuza->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyPierwszaDuza(pasekWyboruUstawPierwszaDuza->isChecked());
 }
 
 void Widget::pasekUstawRozszerzenieMaleKliknieto()
 {
     przyciskWyboruUstawRozszerzenieMale->setChecked(pasekWyboruUstawRozszerzenieMale->isChecked());
-    rdzenProgramu->ustawCzyRozszerzenieMale(pasekWyboruUstawRozszerzenieMale->isChecked());
+    rdzenProgramu->parametryZmianyNazw.ustawCzyRozszerzenieMale(pasekWyboruUstawRozszerzenieMale->isChecked());
 }

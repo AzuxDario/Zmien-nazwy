@@ -24,51 +24,53 @@ int CWykrywaczFolderow::zwrocIloscPlikow()
 void CWykrywaczFolderow::wyszukajFoldery()
 {
     QDir obecnyFolder(wybranyFolder);
-    listaFolderow.push_back(wybranyFolder); //Dodaj folder główny do listy folderów
+    listaFolderow.push_back(wybranyFolder);
     if(czySzukacPodfolderow == true)
     {
-        //Pętla przebiegająca po wszystkich folderach w liście
-        for(int iteratorListyFolderow = 0/*auto iteratorListyFolderow = listaFolderow.begin()*/; listaFolderow.begin()+iteratorListyFolderow != listaFolderow.end(); iteratorListyFolderow++)
+        for(int iteratorListyFolderow = 0; listaFolderow.begin()+iteratorListyFolderow != listaFolderow.end(); iteratorListyFolderow++)
         {
             //Należy co pętle pobierać iterator początku, gdyż może dojść do przemieszczenia się vectora w pamięci
             //co spowoduje, że iterator będzie pokazywał na poprzednie już puste miejsce
-            obecnyFolder.cd(*(listaFolderow.begin()+iteratorListyFolderow)); //Wchodzimy do przetwarzanego folderu
-            //Jeżeli folder nie istnieje lub zniknie idź do kolejnego
+            QString folderWKtorymSzukamyPodfolderow = *(listaFolderow.begin()+iteratorListyFolderow);
+            obecnyFolder.cd(folderWKtorymSzukamyPodfolderow);
             if(!obecnyFolder.exists())
-            {
                 continue;
-            }
-            iloscPlikow += obecnyFolder.count(); //Dodajemy to licznika ilość plików w folderze
-            //Pętla szukająca podfolderów w folderze
+            iloscPlikow += obecnyFolder.count();
             for(unsigned int i = 0; i < obecnyFolder.count(); i++)
-            {
-                if(!((obecnyFolder[i] == ".") || (obecnyFolder[i] == ".."))) //Unikamy plików "." - aktualny folder i ".." - folder nadrzędny
-                 {
-                    //Gdy znaleziono folder
-                    if(czyJestFolderem(obecnyFolder, obecnyFolder[i]) == true)
-                       {
-                            listaFolderow.push_back(obecnyFolder.absoluteFilePath(obecnyFolder[i])); //Dodaj go do listy folderów
-                       }
-                 }
-            }
+                if(czyJestPodfolderem(obecnyFolder, obecnyFolder[i]))
+                    listaFolderow.push_back(obecnyFolder.absoluteFilePath(obecnyFolder[i]));
         }
     }
     else
-    {
         iloscPlikow += obecnyFolder.count();
-    }
+}
 
+bool CWykrywaczFolderow::czyJestPodfolderem(QDir sciezkaDostepu, QString nazwaPliku)
+{
+    if(czyToNieJestAktualnyLubNadrzednyFolder(nazwaPliku))
+        if(czyJestFolderem(sciezkaDostepu, nazwaPliku))
+            return true;
+    return false;
+}
+
+bool CWykrywaczFolderow::czyToAktualnyLubNadrzednyFolder(QString nazwaPliku)
+{
+    if((nazwaPliku == ".") || (nazwaPliku == ".."))
+        return true;
+    else
+        return false;
+}
+
+bool CWykrywaczFolderow::czyToNieJestAktualnyLubNadrzednyFolder(QString nazwaPliku)
+{
+    return !czyToAktualnyLubNadrzednyFolder(nazwaPliku);
 }
 
 //----Sprawdza czy element jest folderem----//
 bool CWykrywaczFolderow::czyJestFolderem(QDir sciezkaDostepu, QString nazwaPliku)
 {
     if(sciezkaDostepu.cd(nazwaPliku) == true)
-    {
         return true;
-    }
     else
-    {
         return false;
-    }
 }
