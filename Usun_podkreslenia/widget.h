@@ -18,7 +18,7 @@
 #include "widgetrejestrzmian.h"
 #include "widgetoprogramie.h"
 #include "czmieniacznazw.h"
-#include "crdzen.h"
+#include "core.h"
 
 
 namespace Ui {
@@ -86,7 +86,7 @@ private:
     WidgetOProgramie *oknoOProgramie;
 
     //----Rdzeń----//
-    CRdzen *rdzenProgramu;
+    Core *rdzenProgramu;
 
 
 private slots:

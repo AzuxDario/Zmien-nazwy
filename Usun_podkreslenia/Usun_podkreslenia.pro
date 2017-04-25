@@ -18,21 +18,21 @@ SOURCES += main.cpp\
     widgetoprogramie.cpp \
     widgetrejestrzmian.cpp \
     czmieniacznazw.cpp \
-    cwykrywaczfolderow.cpp \
-    crdzen.cpp \
     widgetustawienia.cpp \
-    custawienia.cpp \
-    parametryzmianynazw.cpp
+    namechangeparameters.cpp \
+    settings.cpp \
+    core.cpp \
+    folderdetector.cpp
 
 HEADERS  += widget.h \
     widgetoprogramie.h \
     widgetrejestrzmian.h \
     czmieniacznazw.h \
-    cwykrywaczfolderow.h \
-    crdzen.h \
     widgetustawienia.h \
-    custawienia.h \
-    parametryzmianynazw.h
+    namechangeparameters.h \
+    settings.h \
+    core.h \
+    folderdetetor.h
 
 FORMS    += widget.ui \
     widgetoprogramie.ui \
@@ -41,3 +41,5 @@ FORMS    += widget.ui \
 
 RESOURCES += \
     ikony.qrc
+
+DISTFILES +=

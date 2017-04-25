@@ -44,7 +44,7 @@ WidgetUstawienia::WidgetUstawienia(QWidget *parent) :
     connect(przyciskWyboruZastapKropki,SIGNAL(clicked()),this,SLOT(zmienAktywnoscPrzyciskuKropkiRozszerzenia()));
 
     //--------Obiekt czytajacy ustawienia--------//
-    czytaczUstawien = new CUstawienia;
+    czytaczUstawien = new Settings;
     ustawPrzyciski();
 
     move(QApplication::desktop()->screen()->rect().center()-this->rect().center()); //Przesunięcie na środek ekranu
@@ -59,7 +59,7 @@ WidgetUstawienia::~WidgetUstawienia()
 void WidgetUstawienia::zamknijOkno()
 {
     ustawCzytacz();
-    czytaczUstawien->zapiszUstawienia();
+    czytaczUstawien->saveSettings();
     this->close();
 }
 
@@ -72,13 +72,13 @@ void WidgetUstawienia::zmienAktywnoscPrzyciskuKropkiRozszerzenia()
 //----Ustawia przyciski danymi z pliku----//
 void WidgetUstawienia::ustawPrzyciski()
 {
-    przyciskWyboruPodfoldery->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
-    przyciskWyboruZastapPodkreslenia->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicPodkreslenia());
-    przyciskWyboruZastapPauzy->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicPauzy());
-    przyciskWyboruZastapKropki->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicKropki());
-    przyciskWyboruUsunKropkeRozszerzenia->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia());
-    przyciskWyboruUstawPierwszaDuza->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyPierwszaDuza());
-    przyciskWyboruUstawRozszerzenieMale->setChecked(czytaczUstawien->parametryZmianyNazw.zwrocCzyRozszerzenieMale());
+    przyciskWyboruPodfoldery->setChecked(czytaczUstawien->nameChangeParameters.getReplaceInSubfolders());
+    przyciskWyboruZastapPodkreslenia->setChecked(czytaczUstawien->nameChangeParameters.getReplaceUnderscores());
+    przyciskWyboruZastapPauzy->setChecked(czytaczUstawien->nameChangeParameters.getReplaceDashes());
+    przyciskWyboruZastapKropki->setChecked(czytaczUstawien->nameChangeParameters.getReplaceDots());
+    przyciskWyboruUsunKropkeRozszerzenia->setChecked(czytaczUstawien->nameChangeParameters.getReplaceExtensionDot());
+    przyciskWyboruUstawPierwszaDuza->setChecked(czytaczUstawien->nameChangeParameters.getChangeFirstLetterToBig());
+    przyciskWyboruUstawRozszerzenieMale->setChecked(czytaczUstawien->nameChangeParameters.getChangeExtensionToSmall());
     if(przyciskWyboruZastapKropki->isChecked() == true)
         przyciskWyboruUsunKropkeRozszerzenia->setEnabled(true);
     else
@@ -88,19 +88,19 @@ void WidgetUstawienia::ustawPrzyciski()
 //----Ustawia czytacz ustawień wartościami checkboxów----//
 void WidgetUstawienia::ustawCzytacz()
 {
-    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicWPodfolderach(przyciskWyboruPodfoldery->isChecked());
-    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicPodkreslenia(przyciskWyboruZastapPodkreslenia->isChecked());
-    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicPauzy(przyciskWyboruZastapPauzy->isChecked());
-    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicKropki(przyciskWyboruZastapKropki->isChecked());
-    czytaczUstawien->parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
-    czytaczUstawien->parametryZmianyNazw.ustawCzyPierwszaDuza(przyciskWyboruUstawPierwszaDuza->isChecked());
-    czytaczUstawien->parametryZmianyNazw.ustawCzyRozszerzenieMale(przyciskWyboruUstawRozszerzenieMale->isChecked());
+    czytaczUstawien->nameChangeParameters.setReplaceInSubfolders(przyciskWyboruPodfoldery->isChecked());
+    czytaczUstawien->nameChangeParameters.setReplaceUnderscores(przyciskWyboruZastapPodkreslenia->isChecked());
+    czytaczUstawien->nameChangeParameters.setReplaceDashes(przyciskWyboruZastapPauzy->isChecked());
+    czytaczUstawien->nameChangeParameters.setReplaceDots(przyciskWyboruZastapKropki->isChecked());
+    czytaczUstawien->nameChangeParameters.setReplaceExtensionDot(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
+    czytaczUstawien->nameChangeParameters.setChangeFirstLetterToBig(przyciskWyboruUstawPierwszaDuza->isChecked());
+    czytaczUstawien->nameChangeParameters.setChangeExtensionToSmall(przyciskWyboruUstawRozszerzenieMale->isChecked());
 }
 
 //----Pokazuje już utworzone okno----//
 void WidgetUstawienia::pokazSie()
 {
-    czytaczUstawien->czytajUstawienia();
+    czytaczUstawien->readSettings();
     ustawPrzyciski();
     if(this->isVisible()) //Jeżeli okno jest widoczne
         this->activateWindow(); //Niech stanie się aktywne

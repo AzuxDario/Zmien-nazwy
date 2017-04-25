@@ -6,7 +6,7 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QDesktopWidget>
-#include "custawienia.h"
+#include "settings.h"
 
 namespace Ui {
 class WidgetUstawienia;
@@ -39,7 +39,7 @@ private:
     QCheckBox *przyciskWyboruUstawRozszerzenieMale;
 
     //----Obiekt czytajacy ustawienia----//
-    CUstawienia *czytaczUstawien;
+    Settings *czytaczUstawien;
 
 private slots:
     void zamknijOkno(); //Zamyka okno

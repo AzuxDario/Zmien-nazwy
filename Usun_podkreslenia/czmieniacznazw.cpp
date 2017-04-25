@@ -6,9 +6,9 @@ CZmieniaczNazw::CZmieniaczNazw(QProgressBar *pasekPostepu)
     this->pasekPostepu = pasekPostepu;
 }
 
-void CZmieniaczNazw::inicjujZmianeNazw(ParametryZmianyNazw parametryZmianyNazw)
+void CZmieniaczNazw::inicjujZmianeNazw(NameChangeParameters nameChangeParameters)
 {
-    this->parametryZmianyNazw = parametryZmianyNazw;
+    this->nameChangeParameters = nameChangeParameters;
     rozpocznijZmiane();
 }
 
@@ -82,15 +82,15 @@ QString CZmieniaczNazw::zmienRozszerzenie(QString nazwaPliku)
 //----Wykonuje operacje zmiany nazwy pliku----//
 QString CZmieniaczNazw::zmienNazwePliku(QString nazwaPliku)
 {
-    if(parametryZmianyNazw.zwrocCzyZamienicPodkreslenia() == true)
+    if(nameChangeParameters.getReplaceUnderscores() == true)
         nazwaPliku = usunPodkreslenia(nazwaPliku);
-    if(parametryZmianyNazw.zwrocCzyZamienicPauzy() == true)
+    if(nameChangeParameters.getReplaceDashes() == true)
         nazwaPliku = usunPauzy(nazwaPliku);
-    if(parametryZmianyNazw.zwrocCzyZamienicKropki() == true)
+    if(nameChangeParameters.getReplaceDots() == true)
         nazwaPliku = usunKropki(nazwaPliku);
-    if(parametryZmianyNazw.zwrocCzyPierwszaDuza() == true)
+    if(nameChangeParameters.getChangeFirstLetterToBig() == true)
         nazwaPliku = zmienPierwszaDuza(nazwaPliku);
-    if(parametryZmianyNazw.zwrocCzyRozszerzenieMale() == true)
+    if(nameChangeParameters.getChangeExtensionToSmall() == true)
         nazwaPliku = zmienRozszerzenie(nazwaPliku);
     return nazwaPliku;
 }
@@ -136,11 +136,11 @@ void CZmieniaczNazw::rozpocznijZmiane()
         return;
     }
     ustawPasekPostepuZajety();
-    CWykrywaczFolderow detektorFolderow(wybranyFolder, parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
-    int liczbaPlikow = detektorFolderow.zwrocIloscPlikow();
+    FolderDetector detektorFolderow(wybranyFolder, nameChangeParameters.getReplaceInSubfolders());
+    int liczbaPlikow = detektorFolderow.getNumberFiles();
     inicjujPasekPostepu(liczbaPlikow);
 
-    QStringList listaFolderow = detektorFolderow.zwrocListeFolderow();
+    QStringList listaFolderow = detektorFolderow.getFolderList();
 
     for(auto iteratorListyFolderow = listaFolderow.begin(); iteratorListyFolderow != listaFolderow.end(); iteratorListyFolderow++)
     {
@@ -172,7 +172,7 @@ void CZmieniaczNazw::rozpocznijZmiane()
 
 bool CZmieniaczNazw::czyPrzywrocicKropkeRozszezenia(int pozycjaKropkiRozszerzenia)
 {
-    if((pozycjaKropkiRozszerzenia != -1) && (parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia() == false))
+    if((pozycjaKropkiRozszerzenia != -1) && (nameChangeParameters.getReplaceExtensionDot() == false))
         return true;
     else
         return false;
@@ -180,5 +180,5 @@ bool CZmieniaczNazw::czyPrzywrocicKropkeRozszezenia(int pozycjaKropkiRozszerzeni
 
 bool CZmieniaczNazw::czyJestPlikiem(QDir sciezkaDostepu, QString nazwaPliku)
 {
-     return !CWykrywaczFolderow::czyJestPodfolderem(sciezkaDostepu, nazwaPliku);
+     return !FolderDetector::isSubfolder(sciezkaDostepu, nazwaPliku);
 }

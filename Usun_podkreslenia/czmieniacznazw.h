@@ -7,8 +7,8 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QStringList>
-#include "cwykrywaczfolderow.h"
-#include "parametryzmianynazw.h"
+#include "folderdetetor.h"
+#include "namechangeparameters.h"
 
 class CZmieniaczNazw
 {
@@ -16,7 +16,7 @@ public:
     CZmieniaczNazw(QProgressBar *pasekPostepu);
 
 private:
-    ParametryZmianyNazw parametryZmianyNazw;
+    NameChangeParameters nameChangeParameters;
 
     QProgressBar *pasekPostepu;
 
@@ -26,7 +26,7 @@ private:
     QString trescOkienkaOstrzezenie;
 
 public:
-    void inicjujZmianeNazw(ParametryZmianyNazw parametryZmianyNazw); //Rozpoczyna procedurę zmiany nazw
+    void inicjujZmianeNazw(NameChangeParameters nameChangeParameters); //Rozpoczyna procedurę zmiany nazw
     bool wybierzFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     QString zwrocWybranyFolder(); //Zwraca ścieżkę dostępu do folderu
 

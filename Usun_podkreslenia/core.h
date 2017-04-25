@@ -1,18 +1,18 @@
-#ifndef CRDZEN_H
-#define CRDZEN_H
+#ifndef CORE_H
+#define CORE_H
 
 #include <QProgressBar>
 #include "widgetoprogramie.h"
 #include "widgetrejestrzmian.h"
 #include "czmieniacznazw.h"
 #include "widgetustawienia.h"
-#include "custawienia.h"
-#include "parametryzmianynazw.h"
+#include "settings.h"
+#include "namechangeparameters.h"
 
-class CRdzen
+class Core
 {
 public:
-    CRdzen(QProgressBar *pasekPostepu);
+    Core(QProgressBar *progressBar);
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
@@ -27,10 +27,10 @@ private:
 
     CZmieniaczNazw *zmieniaczNazw;
 
-    CUstawienia *czytaczUstawien;
+    Settings *czytaczUstawien;
 
 public:
-    ParametryZmianyNazw parametryZmianyNazw;
+    NameChangeParameters nameChangeParameters;
 
 public:
     void zmienNazwy(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
@@ -40,4 +40,4 @@ public:
     void wyswietlUstawienia(); //Wyświetla okno ustawień
 };
 
-#endif // CRDZEN_H
+#endif // CORE_H

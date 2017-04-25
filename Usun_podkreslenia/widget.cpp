@@ -117,7 +117,7 @@ Widget::Widget(QWidget *parent) :
     pasekPostepu->setTextVisible(false);
 
     //----Wskaźnik na rdzeń programu----//
-    rdzenProgramu = new CRdzen(pasekPostepu);
+    rdzenProgramu = new Core(pasekPostepu);
 
     //----Ustawienie stanu CheckBoxów zgodnie ze zmiennymi w rdzeniu----//
     ustawPrzyciski();
@@ -244,23 +244,23 @@ void Widget::wyswietlUstawienia()
 //----Ustawia zaznaczenia przycisków----//
 void Widget::ustawPrzyciski()
 {
-    pasekWyboruPodfoldery->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
-    pasekWyboruZastapPodkreslenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPodkreslenia());
-    pasekWyboruZastapPauzy->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPauzy());
-    pasekWyboruZastapKropki->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropki());
-    pasekWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia());
-    pasekWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyPierwszaDuza());
-    pasekWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyRozszerzenieMale());
+    pasekWyboruPodfoldery->setChecked(rdzenProgramu->nameChangeParameters.getReplaceInSubfolders());
+    pasekWyboruZastapPodkreslenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceUnderscores());
+    pasekWyboruZastapPauzy->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDashes());
+    pasekWyboruZastapKropki->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDots());
+    pasekWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceExtensionDot());
+    pasekWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->nameChangeParameters.getChangeFirstLetterToBig());
+    pasekWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->nameChangeParameters.getChangeExtensionToSmall());
 
-    przyciskWyboruPodfoldery->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicWPodfolderach());
-    przyciskWyboruZastapPodkreslenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPodkreslenia());
-    przyciskWyboruZastapPauzy->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicPauzy());
-    przyciskWyboruZastapKropki->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropki());
-    przyciskWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropkeRozszerzenia());
-    przyciskWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyPierwszaDuza());
-    przyciskWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->parametryZmianyNazw.zwrocCzyRozszerzenieMale());
+    przyciskWyboruPodfoldery->setChecked(rdzenProgramu->nameChangeParameters.getReplaceInSubfolders());
+    przyciskWyboruZastapPodkreslenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceUnderscores());
+    przyciskWyboruZastapPauzy->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDashes());
+    przyciskWyboruZastapKropki->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDots());
+    przyciskWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceExtensionDot());
+    przyciskWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->nameChangeParameters.getChangeFirstLetterToBig());
+    przyciskWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->nameChangeParameters.getChangeExtensionToSmall());
 
-    if(rdzenProgramu->parametryZmianyNazw.zwrocCzyZamienicKropki() == true)
+    if(rdzenProgramu->nameChangeParameters.getReplaceDots() == true)
     {
         pasekWyboruUsunKropkeRozszerzenia->setEnabled(true);
         przyciskWyboruUsunKropkeRozszerzenia->setEnabled(true);
@@ -272,85 +272,85 @@ void Widget::ustawPrzyciski()
 void Widget::przyciskPodfolderyKliknieto()
 {
     pasekWyboruPodfoldery->setChecked(przyciskWyboruPodfoldery->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicWPodfolderach(przyciskWyboruPodfoldery->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceInSubfolders(przyciskWyboruPodfoldery->isChecked());
 }
 
 void Widget::przyciskZastapPodkresleniaKliknieto()
 {
     pasekWyboruZastapPodkreslenia->setChecked(przyciskWyboruZastapPodkreslenia->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPodkreslenia(przyciskWyboruZastapPodkreslenia->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceUnderscores(przyciskWyboruZastapPodkreslenia->isChecked());
 }
 
 void Widget::przyciskZastapPauzyKliknieto()
 {
     pasekWyboruZastapPauzy->setChecked(przyciskWyboruZastapPauzy->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPauzy(przyciskWyboruZastapPauzy->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceDashes(przyciskWyboruZastapPauzy->isChecked());
 }
 
 void Widget::przyciskZastapKropkiKliknieto()
 {
     pasekWyboruZastapKropki->setChecked(przyciskWyboruZastapKropki->isChecked());
     zmienAktywnoscPrzyciskuKropkiRozszerzenia();
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropki(przyciskWyboruZastapKropki->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceDots(przyciskWyboruZastapKropki->isChecked());
 }
 
 void Widget::przyciskZastapKropkeRozszerzeniaKliknieto()
 {
     pasekWyboruUsunKropkeRozszerzenia->setChecked(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceExtensionDot(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
 }
 
 void Widget::przyciskUstawPierwszaDuzaKliknieto()
 {
     pasekWyboruUstawPierwszaDuza->setChecked(przyciskWyboruUstawPierwszaDuza->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyPierwszaDuza(przyciskWyboruUstawPierwszaDuza->isChecked());
+    rdzenProgramu->nameChangeParameters.setChangeFirstLetterToBig(przyciskWyboruUstawPierwszaDuza->isChecked());
 }
 
 void Widget::przyciskUstawRozszerzenieMaleKliknieto()
 {
     pasekWyboruUstawRozszerzenieMale->setChecked(przyciskWyboruUstawRozszerzenieMale->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyRozszerzenieMale(przyciskWyboruUstawRozszerzenieMale->isChecked());
+    rdzenProgramu->nameChangeParameters.setChangeExtensionToSmall(przyciskWyboruUstawRozszerzenieMale->isChecked());
 }
 
 void Widget::pasekPodfolderyKliknieto()
 {
     przyciskWyboruPodfoldery->setChecked(pasekWyboruPodfoldery->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicWPodfolderach(pasekWyboruPodfoldery->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceInSubfolders(pasekWyboruPodfoldery->isChecked());
 }
 
 void Widget::pasekZastapPodkresleniaKliknieto()
 {
     przyciskWyboruZastapPodkreslenia->setChecked(pasekWyboruZastapPodkreslenia->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPodkreslenia(pasekWyboruZastapPodkreslenia->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceUnderscores(pasekWyboruZastapPodkreslenia->isChecked());
 }
 
 void Widget::pasekZastapPauzyKliknieto()
 {
     przyciskWyboruZastapPauzy->setChecked(pasekWyboruZastapPauzy->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicPauzy(pasekWyboruZastapPauzy->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceDashes(pasekWyboruZastapPauzy->isChecked());
 }
 
 void Widget::pasekZastapKropkiKliknieto()
 {
     przyciskWyboruZastapKropki->setChecked(pasekWyboruZastapKropki->isChecked());
     zmienAktywnoscPrzyciskuKropkiRozszerzenia();
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropki(pasekWyboruZastapKropki->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceDots(pasekWyboruZastapKropki->isChecked());
 }
 
 void Widget::pasekZastapKropkeRozszerzeniaKliknieto()
 {
     przyciskWyboruUsunKropkeRozszerzenia->setChecked(pasekWyboruUsunKropkeRozszerzenia->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyZamienicKropkeRozszerzenia(pasekWyboruUsunKropkeRozszerzenia->isChecked());
+    rdzenProgramu->nameChangeParameters.setReplaceExtensionDot(pasekWyboruUsunKropkeRozszerzenia->isChecked());
 }
 
 void Widget::pasekUstawPierwszaDuzaKliknieto()
 {
     przyciskWyboruUstawPierwszaDuza->setChecked(pasekWyboruUstawPierwszaDuza->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyPierwszaDuza(pasekWyboruUstawPierwszaDuza->isChecked());
+    rdzenProgramu->nameChangeParameters.setChangeFirstLetterToBig(pasekWyboruUstawPierwszaDuza->isChecked());
 }
 
 void Widget::pasekUstawRozszerzenieMaleKliknieto()
 {
     przyciskWyboruUstawRozszerzenieMale->setChecked(pasekWyboruUstawRozszerzenieMale->isChecked());
-    rdzenProgramu->parametryZmianyNazw.ustawCzyRozszerzenieMale(pasekWyboruUstawRozszerzenieMale->isChecked());
+    rdzenProgramu->nameChangeParameters.setChangeExtensionToSmall(pasekWyboruUstawRozszerzenieMale->isChecked());
 }
