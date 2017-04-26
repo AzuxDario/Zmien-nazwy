@@ -8,7 +8,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     ui->setupUi(this);
 
     //--------Inicjalizacja okna--------//
-    setWindowTitle(QString::fromUtf8("Rejestr zmian"));
+    setWindowTitle(QString::fromUtf8("Ustawienia"));
     setWindowIcon(QIcon(":/ikona/ikona"));
     setMaximumSize(420,232);
     setMinimumSize(420,232);
