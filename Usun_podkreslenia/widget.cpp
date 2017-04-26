@@ -11,7 +11,6 @@ Widget::Widget(QWidget *parent) :
 
     //--------Zmienne przechowujące ciągi znaków--------//
     aboutApplication = "Program zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) na spację w nazwach plików w wybranym folderze.\nAby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
-    folderNotExistError = "Brak katalogu.\nKatalog mógł zostać usunięty, zmieniono jego nazwę, został przeniesiony\nlub nastąpiła inna czynność uniemożliwiająca znalezienie katalogu";
 
     //----Tworzenie paska menu----//
     menuBar = new QMenuBar(this);
@@ -216,7 +215,7 @@ void Widget::selectFolder()
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
 void Widget::startNameChange()
 {
-    disableButtonsSelectFolder(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wyołać drugi raz funkcji
+    disableButtonsSelectFolder(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wywołać drugi raz funkcji
     disableButtonsStartNameChange();
     programCore->changeName();
     enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy

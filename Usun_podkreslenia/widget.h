@@ -15,8 +15,6 @@
 #include <QCloseEvent>
 #include <QKeySequence>
 #include <QDesktopWidget>
-#include "widgetchangelog.h"
-#include "widgetabout.h"
 #include "namechanger.h"
 #include "core.h"
 
@@ -79,11 +77,6 @@ private:
 
     //----Zmienne przechuwyjące ciągi znaków----//
     QString aboutApplication;
-    QString folderNotExistError; //Do usunięcia
-
-    //----Zmienne okienek----//
-    WidgetChangeLog *oknoRejestrZmian; //Do usunięcia
-    WidgetAbout *oknoOProgramie; //Do usunięcia
 
     //----Rdzeń----//
     Core *programCore;

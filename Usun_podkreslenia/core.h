@@ -16,9 +16,7 @@ public:
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
-    QString aboutApplication; //Do wyrzucenia
     QString widgetAboutText;
-    QString folderNotExist; //Do wyrzucenia
     QString widgetChangeLogText;
 
     WidgetChangeLog *widgetChangeLog;
