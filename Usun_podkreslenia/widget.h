@@ -15,7 +15,7 @@
 #include <QCloseEvent>
 #include <QKeySequence>
 #include <QDesktopWidget>
-#include "widgetrejestrzmian.h"
+#include "widgetchangelog.h"
 #include "widgetabout.h"
 #include "namechanger.h"
 #include "core.h"
@@ -37,87 +37,87 @@ private:
     Ui::Widget *ui;
 
     //----Zmienne od paska menu----//
-    QMenuBar *pasekMenu;
-    QMenu *pasekPlik;
-    QMenu *pasekUstawienia;
-    QMenu *pasekPomoc;
-    QAction *pasekWybierzFolder;
-    QAction *pasekRozpocznijZmiane;
-    QAction *pasekWyjscie;
-    QAction *pasekOpcje;
-    QAction *pasekWyboruPodfoldery;
-    QAction *pasekWyboruZastapPodkreslenia;
-    QAction *pasekWyboruZastapPauzy;
-    QAction *pasekWyboruZastapKropki;
-    QAction *pasekWyboruUsunKropkeRozszerzenia;
-    QAction *pasekWyboruUstawPierwszaDuza;
-    QAction *pasekWyboruUstawRozszerzenieMale;
-    QAction *pasekInformacje;
-    QAction *pasekRejestrZmian;
+    QMenuBar *menuBar;
+    QMenu *menuFile;
+    QMenu *menuSettings;
+    QMenu *menuHelp;
+    QAction *actionSelectFolder;
+    QAction *actionStartNameChange;
+    QAction *actionExit;
+    QAction *actionSettings;
+    QAction *actionReplaceInSubfolders;
+    QAction *actionReplaceUnderscores;
+    QAction *actionReplaceDashes;
+    QAction *actionReplaceDots;
+    QAction *actionReplaceExtensionDot;
+    QAction *actionChangeFirstLetterToBig;
+    QAction *actionChangeExtensionToSmall;
+    QAction *actionAbout;
+    QAction *actionChangeLog;
 
     //----Przyciski----//
-    QPushButton *przyciskWybierzFolder;
-    QPushButton *przyciskRozpocznijZmiane;
+    QPushButton *buttonSelectFolder;
+    QPushButton *buttonStartNameChange;
 
     //----CheckBoxy----//
-    QCheckBox *przyciskWyboruPodfoldery;
-    QCheckBox *przyciskWyboruZastapPodkreslenia;
-    QCheckBox *przyciskWyboruZastapPauzy;
-    QCheckBox *przyciskWyboruZastapKropki;
-    QCheckBox *przyciskWyboruUsunKropkeRozszerzenia;
-    QCheckBox *przyciskWyboruUstawPierwszaDuza;
-    QCheckBox *przyciskWyboruUstawRozszerzenieMale;
+    QCheckBox *checkBoxReplaceInSubfolders;
+    QCheckBox *checkBoxReplaceUnderscores;
+    QCheckBox *checkBoxReplaceDashes;
+    QCheckBox *checkBoxReplaceDots;
+    QCheckBox *checkBoxReplaceExtensionDot;
+    QCheckBox *checkBoxChangeFirstLetterToBig;
+    QCheckBox *checkBoxChangeExtensionToSmall;
 
     //----Okienko z tekstem----//
-    QTextBrowser *okienkoTekst;
+    QTextBrowser *textBrowserAbout;
 
     //----Pasek Postępu----//
-    QProgressBar *pasekPostepu;
+    QProgressBar *progressBar;
 
     //----Zmienna przechowująca folder----//
-    QString wybranyFolder;
+    QString selectedFolder;
 
     //----Zmienne przechuwyjące ciągi znaków----//
-    QString trescOkienkaTekst;
-    QString trescOkienkaOstrzezenie;
+    QString aboutApplication;
+    QString folderNotExistError; //Do usunięcia
 
     //----Zmienne okienek----//
-    WidgetRejestrZmian *oknoRejestrZmian;
-    WidgetAbout *oknoOProgramie;
+    WidgetChangeLog *oknoRejestrZmian; //Do usunięcia
+    WidgetAbout *oknoOProgramie; //Do usunięcia
 
     //----Rdzeń----//
-    Core *rdzenProgramu;
+    Core *programCore;
 
 
 private slots:
     void closeEvent(QCloseEvent *); //Zamyka program po zamknięciu głównego okna
-    void aktywujPrzyciskRozpocznij(); //Funkcja aktywuje przycisk Rozpocznij
-    void deaktywujPrzyciskRozpocznij(); //Funkcja deaktywuje przycisk Rozpocznij
-    void aktywujPrzyciskWybierzFolder(); //Włącza aktywność przycisku Wybierz folder
-    void deaktywujPrzyciskWybierzFolder(); //Wyłącza aktywność przycisków Wybierz folder
-    void zmienAktywnoscPrzyciskuKropkiRozszerzenia(); //Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki
-    void wybierzFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
-    void rozpocznijZmiane(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
-    void wyswietlOProgramie(); //Pokazuje okienko z informacjami o programie
-    void wyswietlRejestrZmian(); //Wyświetla okienko z rejestrem zmian
-    void wyswietlUstawienia(); //Wyświetla okienko ustawienia
-    void ustawPrzyciski(); //Ustawia zaznaczenia przycisków
+    void enableButtonsStartNameChange(); //Funkcja aktywuje przycisk Rozpocznij
+    void disableButtonsStartNameChange(); //Funkcja deaktywuje przycisk Rozpocznij
+    void enableButtonsSelectFolder(); //Włącza aktywność przycisku Wybierz folder
+    void disableButtonsSelectFolder(); //Wyłącza aktywność przycisków Wybierz folder
+    void changeCheckBoxExtensionDotActivity(); //Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki
+    void selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
+    void startNameChange(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
+    void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
+    void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
+    void showWidgetSettings(); //Wyświetla okienko ustawienia
+    void setButtonSelection(); //Ustawia zaznaczenia przycisków
 
     //----Funkcje aktualizujace stany między check boxami a paskiem
-    void przyciskPodfolderyKliknieto();
-    void przyciskZastapPodkresleniaKliknieto();
-    void przyciskZastapPauzyKliknieto();
-    void przyciskZastapKropkiKliknieto();
-    void przyciskZastapKropkeRozszerzeniaKliknieto();
-    void przyciskUstawPierwszaDuzaKliknieto();
-    void przyciskUstawRozszerzenieMaleKliknieto();
-    void pasekPodfolderyKliknieto();
-    void pasekZastapPodkresleniaKliknieto();
-    void pasekZastapPauzyKliknieto();
-    void pasekZastapKropkiKliknieto();
-    void pasekZastapKropkeRozszerzeniaKliknieto();
-    void pasekUstawPierwszaDuzaKliknieto();
-    void pasekUstawRozszerzenieMaleKliknieto();
+    void checkBoxSubfoldersClicked();
+    void checkBoxUnderscoresClicked();
+    void checkBoxDashesClicked();
+    void checkBoxDotsClicked();
+    void checkBoxExtensionDotsClicked();
+    void checkBoxFirstLetterToBigClicked();
+    void checkBoxExtensionToSmallClicked();
+    void actionSubfoldersClicked();
+    void actionUnderscoresClicked();
+    void actionDashesClicked();
+    void actionDotsClicked();
+    void actionExtensionDotsClicked();
+    void actionFirstLetterToBigClicked();
+    void actionExtensionToSmallClicked();
 
 };
 

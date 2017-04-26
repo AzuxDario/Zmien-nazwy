@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WidgetRejestrZmian</class>
- <widget class="QWidget" name="WidgetRejestrZmian">
+ <class>WidgetChangeLog</class>
+ <widget class="QWidget" name="WidgetChangeLog">
   <property name="geometry">
    <rect>
     <x>0</x>

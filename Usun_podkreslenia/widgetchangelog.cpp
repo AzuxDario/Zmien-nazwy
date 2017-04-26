@@ -1,14 +1,14 @@
-#include "widgetrejestrzmian.h"
-#include "ui_widgetrejestrzmian.h"
+#include "widgetchangelog.h"
+#include "ui_widgetchangelog.h"
 
-WidgetRejestrZmian::WidgetRejestrZmian(QString trescOkna, QWidget *parent) :
+WidgetChangeLog::WidgetChangeLog(QString widgetText, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::WidgetRejestrZmian)
+    ui(new Ui::WidgetChangeLog)
 {
     ui->setupUi(this);
     //::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
-    trescOkienkaRejestrZmian = trescOkna;
+    widgetChangeLogText = widgetText;
 
     //--------Inicjalizacja okna--------//
     setWindowTitle(QString::fromUtf8("Rejestr zmian"));
@@ -18,35 +18,35 @@ WidgetRejestrZmian::WidgetRejestrZmian(QString trescOkna, QWidget *parent) :
     //setWindowModality(Qt::ApplicationModal); //Sprawia że po aktywacji okna główne okno staje się nieklikalne
 
     //--------Okno z tekstem--------//
-    okienkoTekst = new QTextBrowser(this);
-    okienkoTekst->setGeometry(10,10,480,300);
-    okienkoTekst->setAlignment(Qt::AlignTop);
-    okienkoTekst->setReadOnly(true);
-    okienkoTekst->setText(trescOkienkaRejestrZmian);
+    textBrowserChangeLog = new QTextBrowser(this);
+    textBrowserChangeLog->setGeometry(10,10,480,300);
+    textBrowserChangeLog->setAlignment(Qt::AlignTop);
+    textBrowserChangeLog->setReadOnly(true);
+    textBrowserChangeLog->setText(widgetChangeLogText);
 
     //--------Przycisk--------//
-    przyciskOk = new QPushButton("Ok",this);
-    przyciskOk->setGeometry(180,320,140,30);
+    buttonOk = new QPushButton("Ok",this);
+    buttonOk->setGeometry(180,320,140,30);
 
     //----Przypisanie przycisków do slotów----//
-    connect(przyciskOk,SIGNAL(clicked()),this,SLOT(zamknijOkno()));
+    connect(buttonOk,SIGNAL(clicked()),this,SLOT(closeWindow()));
 
     move(QApplication::desktop()->screen()->rect().center()-this->rect().center()); //Przesunięcie na środek ekranu
     show(); //Zachowaj na końcu konstruktora
 }
 
-WidgetRejestrZmian::~WidgetRejestrZmian()
+WidgetChangeLog::~WidgetChangeLog()
 {
     delete ui;
 }
 
 //----Zamyka okno----//
-void WidgetRejestrZmian::zamknijOkno()
+void WidgetChangeLog::closeWindow()
 {
     this->close();
 }
 
-void WidgetRejestrZmian::pokazSie()
+void WidgetChangeLog::showWindow()
 {
         if(this->isVisible()) //Jeżeli okno jest widoczne
             this->activateWindow(); //Niech stanie się aktywne

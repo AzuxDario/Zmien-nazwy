@@ -10,144 +10,144 @@ Widget::Widget(QWidget *parent) :
     //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     //--------Zmienne przechowujące ciągi znaków--------//
-    trescOkienkaTekst = "Program zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) na spację w nazwach plików w wybranym folderze.\nAby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
-    trescOkienkaOstrzezenie = "Brak katalogu.\nKatalog mógł zostać usunięty, zmieniono jego nazwę, został przeniesiony\nlub nastąpiła inna czynność uniemożliwiająca znalezienie katalogu";
+    aboutApplication = "Program zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) na spację w nazwach plików w wybranym folderze.\nAby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
+    folderNotExistError = "Brak katalogu.\nKatalog mógł zostać usunięty, zmieniono jego nazwę, został przeniesiony\nlub nastąpiła inna czynność uniemożliwiająca znalezienie katalogu";
 
     //----Tworzenie paska menu----//
-    pasekMenu = new QMenuBar(this);
-    pasekMenu->setGeometry(0,0,420,21);
-    pasekPlik = new QMenu(this);
-    pasekUstawienia = new QMenu(this);
-    pasekPomoc = new QMenu(this);
+    menuBar = new QMenuBar(this);
+    menuBar->setGeometry(0,0,420,21);
+    menuFile = new QMenu(this);
+    menuSettings = new QMenu(this);
+    menuHelp = new QMenu(this);
 
-    pasekPlik = pasekMenu->addMenu(tr("&Plik"));
-    pasekUstawienia = pasekMenu->addMenu(tr("&Ustawienia"));
-    pasekPomoc = pasekMenu->addMenu(tr("P&omoc"));
+    menuFile = menuBar->addMenu(tr("&Plik"));
+    menuSettings = menuBar->addMenu(tr("&Ustawienia"));
+    menuHelp = menuBar->addMenu(tr("P&omoc"));
 
-    pasekWybierzFolder = new QAction(QIcon(":/pasek/wybierzFolder"),"Wybierz &folder",this);
-    pasekWybierzFolder->setShortcut(QKeySequence(tr("Ctrl+W")));
-    pasekRozpocznijZmiane = new QAction(QIcon(":/pasek/rozpocznijZmiane"),"&Rozpocznij zmianę",this);
-    pasekRozpocznijZmiane->setShortcut(QKeySequence(tr("Ctrl+R")));
-    pasekWyjscie = new QAction(QIcon(":/pasek/wyjscie"),"Wyjści&e",this);
-    pasekWyjscie->setShortcut(QKeySequence(tr("Ctrl+Q")));
-    pasekOpcje = new QAction(QIcon(":/pasek/ustawienia"),"&Opcje",this);
-    pasekOpcje->setShortcut(QKeySequence(tr("Ctrl+U")));
-    pasekWyboruPodfoldery = new QAction("Zastosuj do podfolderów",this);
-    pasekWyboruPodfoldery->setShortcut(QKeySequence(tr("Ctrl+1")));
-    pasekWyboruZastapPodkreslenia = new QAction("Zastąp &podkreślenia",this);
-    pasekWyboruZastapPodkreslenia->setShortcut(QKeySequence(tr("Ctrl+2")));
-    pasekWyboruZastapPauzy = new QAction("Zastąp p&auzy",this);
-    pasekWyboruZastapPauzy->setShortcut(QKeySequence(tr("Ctrl+3")));
-    pasekWyboruZastapKropki = new QAction("Zastąp &kropki",this);
-    pasekWyboruZastapKropki->setShortcut(QKeySequence(tr("Ctrl+4")));
-    pasekWyboruUsunKropkeRozszerzenia = new QAction("Zastąp &ostatnią kropkę",this);
-    pasekWyboruUsunKropkeRozszerzenia->setShortcut(QKeySequence(tr("Ctrl+5")));
-    pasekWyboruUstawPierwszaDuza = new QAction("Pierwsza litera &duża",this);
-    pasekWyboruUstawPierwszaDuza->setShortcut(QKeySequence(tr("Ctrl+6")));
-    pasekWyboruUstawRozszerzenieMale = new QAction("&Rozszerzenie małe",this);
-    pasekWyboruUstawRozszerzenieMale->setShortcut(QKeySequence(tr("Ctrl+7")));
-    pasekInformacje = new QAction(QIcon(":/pasek/oProgramie"),"&O programie",this);
-    pasekInformacje->setShortcuts(QKeySequence::HelpContents);
-    pasekRejestrZmian = new QAction(QIcon(":/pasek/rejestrZmian"),"&Rejestr zmian",this);
-    pasekRejestrZmian->setShortcut(QKeySequence(tr("Ctrl+Z")));
+    actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),"Wybierz &folder",this);
+    actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+W")));
+    actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),"&Rozpocznij zmianę",this);
+    actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
+    actionExit = new QAction(QIcon(":/pasek/wyjscie"),"Wyjści&e",this);
+    actionExit->setShortcut(QKeySequence(tr("Ctrl+Q")));
+    actionSettings = new QAction(QIcon(":/pasek/ustawienia"),"&Opcje",this);
+    actionSettings->setShortcut(QKeySequence(tr("Ctrl+U")));
+    actionReplaceInSubfolders = new QAction("Zastosuj do podfolderów",this);
+    actionReplaceInSubfolders->setShortcut(QKeySequence(tr("Ctrl+1")));
+    actionReplaceUnderscores = new QAction("Zastąp &podkreślenia",this);
+    actionReplaceUnderscores->setShortcut(QKeySequence(tr("Ctrl+2")));
+    actionReplaceDashes = new QAction("Zastąp p&auzy",this);
+    actionReplaceDashes->setShortcut(QKeySequence(tr("Ctrl+3")));
+    actionReplaceDots = new QAction("Zastąp &kropki",this);
+    actionReplaceDots->setShortcut(QKeySequence(tr("Ctrl+4")));
+    actionReplaceExtensionDot = new QAction("Zastąp &ostatnią kropkę",this);
+    actionReplaceExtensionDot->setShortcut(QKeySequence(tr("Ctrl+5")));
+    actionChangeFirstLetterToBig = new QAction("Pierwsza litera &duża",this);
+    actionChangeFirstLetterToBig->setShortcut(QKeySequence(tr("Ctrl+6")));
+    actionChangeExtensionToSmall = new QAction("&Rozszerzenie małe",this);
+    actionChangeExtensionToSmall->setShortcut(QKeySequence(tr("Ctrl+7")));
+    actionAbout = new QAction(QIcon(":/pasek/oProgramie"),"&O programie",this);
+    actionAbout->setShortcuts(QKeySequence::HelpContents);
+    actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),"&Rejestr zmian",this);
+    actionChangeLog->setShortcut(QKeySequence(tr("Ctrl+Z")));
 
-    pasekPlik->addAction(pasekWybierzFolder);
-    pasekPlik->addAction(pasekRozpocznijZmiane);
-    pasekPlik->addSeparator();
-    pasekPlik->addAction(pasekWyjscie);
-    pasekUstawienia->addAction(pasekOpcje);
-    pasekUstawienia->addSeparator();
-    pasekUstawienia->addAction(pasekWyboruPodfoldery);
-    pasekUstawienia->addAction(pasekWyboruZastapPodkreslenia);
-    pasekUstawienia->addAction(pasekWyboruZastapPauzy);
-    pasekUstawienia->addAction(pasekWyboruZastapKropki);
-    pasekUstawienia->addAction(pasekWyboruUsunKropkeRozszerzenia);
-    pasekUstawienia->addAction(pasekWyboruUstawPierwszaDuza);
-    pasekUstawienia->addAction(pasekWyboruUstawRozszerzenieMale);
-    pasekPomoc->addAction(pasekInformacje);
-    pasekPomoc->addAction(pasekRejestrZmian);
+    menuFile->addAction(actionSelectFolder);
+    menuFile->addAction(actionStartNameChange);
+    menuFile->addSeparator();
+    menuFile->addAction(actionExit);
+    menuSettings->addAction(actionSettings);
+    menuSettings->addSeparator();
+    menuSettings->addAction(actionReplaceInSubfolders);
+    menuSettings->addAction(actionReplaceUnderscores);
+    menuSettings->addAction(actionReplaceDashes);
+    menuSettings->addAction(actionReplaceDots);
+    menuSettings->addAction(actionReplaceExtensionDot);
+    menuSettings->addAction(actionChangeFirstLetterToBig);
+    menuSettings->addAction(actionChangeExtensionToSmall);
+    menuHelp->addAction(actionAbout);
+    menuHelp->addAction(actionChangeLog);
 
-    pasekRozpocznijZmiane->setDisabled(true);
-    pasekWyboruPodfoldery->setCheckable(true);
-    pasekWyboruZastapPodkreslenia->setCheckable(true);
-    pasekWyboruZastapPauzy->setCheckable(true);
-    pasekWyboruZastapKropki->setCheckable(true);
-    pasekWyboruUsunKropkeRozszerzenia->setCheckable(true);
-    pasekWyboruUsunKropkeRozszerzenia->setDisabled(true);
-    pasekWyboruUstawPierwszaDuza->setCheckable(true);
-    pasekWyboruUstawRozszerzenieMale->setCheckable(true);
+    actionStartNameChange->setDisabled(true);
+    actionReplaceInSubfolders->setCheckable(true);
+    actionReplaceUnderscores->setCheckable(true);
+    actionReplaceDashes->setCheckable(true);
+    actionReplaceDots->setCheckable(true);
+    actionReplaceExtensionDot->setCheckable(true);
+    actionReplaceExtensionDot->setDisabled(true);
+    actionChangeFirstLetterToBig->setCheckable(true);
+    actionChangeExtensionToSmall->setCheckable(true);
 
     //----Tworzenie layoutu okna----//
     //--------Przyciski--------//
-    przyciskWybierzFolder = new QPushButton("Wybierz folder",this);
-    przyciskWybierzFolder->setGeometry(20,31,140,30);
-    przyciskWybierzFolder->setStyleSheet("font-size:11px;");
-    przyciskRozpocznijZmiane = new QPushButton("Rozpocznij zmianę",this);
-    przyciskRozpocznijZmiane->setGeometry(260,31,140,30);
-    przyciskRozpocznijZmiane->setStyleSheet("font-size:11px;");
-    przyciskRozpocznijZmiane->setDisabled(true);
+    buttonSelectFolder = new QPushButton("Wybierz folder",this);
+    buttonSelectFolder->setGeometry(20,31,140,30);
+    buttonSelectFolder->setStyleSheet("font-size:11px;");
+    buttonStartNameChange = new QPushButton("Rozpocznij zmianę",this);
+    buttonStartNameChange->setGeometry(260,31,140,30);
+    buttonStartNameChange->setStyleSheet("font-size:11px;");
+    buttonStartNameChange->setDisabled(true);
 
     //--------Check Boxy--------//
-    przyciskWyboruPodfoldery = new QCheckBox("Zastąp znaki także w podfolderach",this);
-    przyciskWyboruPodfoldery->setGeometry(20,72,380,18);
-    przyciskWyboruZastapPodkreslenia = new QCheckBox("Zastąp podkreślenia",this);
-    przyciskWyboruZastapPodkreslenia->setGeometry(20,101,154,18);
-    przyciskWyboruZastapPauzy = new QCheckBox("Zastąp pauzy",this);
-    przyciskWyboruZastapPauzy->setGeometry(174,101,116,18);
-    przyciskWyboruZastapKropki = new QCheckBox("Zastąp kropki",this);
-    przyciskWyboruZastapKropki->setGeometry(290,101,110,18);
-    przyciskWyboruUsunKropkeRozszerzenia = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń",this);
-    przyciskWyboruUsunKropkeRozszerzenia->setGeometry(20,130,380,18);
-    przyciskWyboruUsunKropkeRozszerzenia->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
-    przyciskWyboruUstawPierwszaDuza = new QCheckBox("Zmień pierwszą literę w nazwie pliku na dużą",this);
-    przyciskWyboruUstawPierwszaDuza->setGeometry(20,159,380,18);
-    przyciskWyboruUstawRozszerzenieMale = new QCheckBox("Zmień rozszerzenie na pisane małymi literami",this);
-    przyciskWyboruUstawRozszerzenieMale->setGeometry(20,188,380,18);
+    checkBoxReplaceInSubfolders = new QCheckBox("Zastąp znaki także w podfolderach",this);
+    checkBoxReplaceInSubfolders->setGeometry(20,72,380,18);
+    checkBoxReplaceUnderscores = new QCheckBox("Zastąp podkreślenia",this);
+    checkBoxReplaceUnderscores->setGeometry(20,101,154,18);
+    checkBoxReplaceDashes = new QCheckBox("Zastąp pauzy",this);
+    checkBoxReplaceDashes->setGeometry(174,101,116,18);
+    checkBoxReplaceDots = new QCheckBox("Zastąp kropki",this);
+    checkBoxReplaceDots->setGeometry(290,101,110,18);
+    checkBoxReplaceExtensionDot = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń",this);
+    checkBoxReplaceExtensionDot->setGeometry(20,130,380,18);
+    checkBoxReplaceExtensionDot->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
+    checkBoxChangeFirstLetterToBig = new QCheckBox("Zmień pierwszą literę w nazwie pliku na dużą",this);
+    checkBoxChangeFirstLetterToBig->setGeometry(20,159,380,18);
+    checkBoxChangeExtensionToSmall = new QCheckBox("Zmień rozszerzenie na pisane małymi literami",this);
+    checkBoxChangeExtensionToSmall->setGeometry(20,188,380,18);
 
     //--------Okno z tekstem--------//
-    okienkoTekst = new QTextBrowser(this);
-    okienkoTekst->setGeometry(20,217,380,120);
-    okienkoTekst->setAlignment(Qt::AlignTop);
-    okienkoTekst->setReadOnly(true);
-    okienkoTekst->setText(trescOkienkaTekst);
+    textBrowserAbout = new QTextBrowser(this);
+    textBrowserAbout->setGeometry(20,217,380,120);
+    textBrowserAbout->setAlignment(Qt::AlignTop);
+    textBrowserAbout->setReadOnly(true);
+    textBrowserAbout->setText(aboutApplication);
 
     //--------Pasek postępu--------//
-    pasekPostepu = new QProgressBar(this);
-    pasekPostepu->setGeometry(20,347,380,30);
-    pasekPostepu->setTextVisible(false);
+    progressBar = new QProgressBar(this);
+    progressBar->setGeometry(20,347,380,30);
+    progressBar->setTextVisible(false);
 
     //----Wskaźnik na rdzeń programu----//
-    rdzenProgramu = new Core(pasekPostepu);
+    programCore = new Core(progressBar);
 
     //----Ustawienie stanu CheckBoxów zgodnie ze zmiennymi w rdzeniu----//
-    ustawPrzyciski();
+    setButtonSelection();
 
     //----Przypisanie przycisków do slotów----//
     //--------Menu--------//
-    connect(pasekWybierzFolder,SIGNAL(triggered()),this,SLOT(wybierzFolder()));
-    connect(pasekRozpocznijZmiane,SIGNAL(triggered()),this,SLOT(rozpocznijZmiane()));
-    connect(pasekOpcje,SIGNAL(triggered()),this,SLOT(wyswietlUstawienia()));
-    connect(pasekWyjscie,SIGNAL(triggered()),qApp,SLOT(quit()));
-    connect(pasekInformacje,SIGNAL(triggered()),this,SLOT(wyswietlOProgramie()));
-    connect(pasekRejestrZmian,SIGNAL(triggered()),this,SLOT(wyswietlRejestrZmian()));
-    connect(pasekWyboruPodfoldery,SIGNAL(triggered()),this,SLOT(pasekPodfolderyKliknieto()));
-    connect(pasekWyboruZastapPodkreslenia,SIGNAL(triggered()),this,SLOT(pasekZastapPodkresleniaKliknieto()));
-    connect(pasekWyboruZastapPauzy,SIGNAL(triggered()),this,SLOT(pasekZastapPauzyKliknieto()));
-    connect(pasekWyboruZastapKropki,SIGNAL(triggered()),this,SLOT(pasekZastapKropkiKliknieto()));
-    connect(pasekWyboruUsunKropkeRozszerzenia,SIGNAL(triggered()),this,SLOT(pasekZastapKropkeRozszerzeniaKliknieto()));
-    connect(pasekWyboruUstawPierwszaDuza,SIGNAL(triggered()),this,SLOT(pasekUstawPierwszaDuzaKliknieto()));
-    connect(pasekWyboruUstawRozszerzenieMale,SIGNAL(triggered()),this,SLOT(pasekUstawRozszerzenieMaleKliknieto()));
+    connect(actionSelectFolder,SIGNAL(triggered()),this,SLOT(selectFolder()));
+    connect(actionStartNameChange,SIGNAL(triggered()),this,SLOT(startNameChange()));
+    connect(actionSettings,SIGNAL(triggered()),this,SLOT(showWidgetSettings()));
+    connect(actionExit,SIGNAL(triggered()),qApp,SLOT(quit()));
+    connect(actionAbout,SIGNAL(triggered()),this,SLOT(showWidgetAbout()));
+    connect(actionChangeLog,SIGNAL(triggered()),this,SLOT(showWidgetChangeLog()));
+    connect(actionReplaceInSubfolders,SIGNAL(triggered()),this,SLOT(actionSubfoldersClicked()));
+    connect(actionReplaceUnderscores,SIGNAL(triggered()),this,SLOT(actionUnderscoresClicked()));
+    connect(actionReplaceDashes,SIGNAL(triggered()),this,SLOT(actionDashesClicked()));
+    connect(actionReplaceDots,SIGNAL(triggered()),this,SLOT(actionDotsClicked()));
+    connect(actionReplaceExtensionDot,SIGNAL(triggered()),this,SLOT(actionExtensionDotsClicked()));
+    connect(actionChangeFirstLetterToBig,SIGNAL(triggered()),this,SLOT(actionFirstLetterToBigClicked()));
+    connect(actionChangeExtensionToSmall,SIGNAL(triggered()),this,SLOT(actionExtensionToSmallClicked()));
 
     //--------Przyciski--------//
-    connect(przyciskWybierzFolder,SIGNAL(clicked()),this,SLOT(wybierzFolder()));
-    connect(przyciskRozpocznijZmiane,SIGNAL(clicked()),this,SLOT(rozpocznijZmiane()));
-    connect(przyciskWyboruPodfoldery,SIGNAL(clicked()),this,SLOT(przyciskPodfolderyKliknieto()));
-    connect(przyciskWyboruZastapPodkreslenia,SIGNAL(clicked()),this,SLOT(przyciskZastapPodkresleniaKliknieto()));
-    connect(przyciskWyboruZastapPauzy,SIGNAL(clicked()),this,SLOT(przyciskZastapPauzyKliknieto()));
-    connect(przyciskWyboruZastapKropki,SIGNAL(clicked()),this,SLOT(przyciskZastapKropkiKliknieto()));
-    connect(przyciskWyboruUsunKropkeRozszerzenia,SIGNAL(clicked()),this,SLOT(przyciskZastapKropkeRozszerzeniaKliknieto()));
-    connect(przyciskWyboruUstawPierwszaDuza,SIGNAL(clicked()),this,SLOT(przyciskUstawPierwszaDuzaKliknieto()));
-    connect(przyciskWyboruUstawRozszerzenieMale,SIGNAL(clicked()),this,SLOT(przyciskUstawRozszerzenieMaleKliknieto()));
+    connect(buttonSelectFolder,SIGNAL(clicked()),this,SLOT(selectFolder()));
+    connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
+    connect(checkBoxReplaceInSubfolders,SIGNAL(clicked()),this,SLOT(checkBoxSubfoldersClicked()));
+    connect(checkBoxReplaceUnderscores,SIGNAL(clicked()),this,SLOT(checkBoxUnderscoresClicked()));
+    connect(checkBoxReplaceDashes,SIGNAL(clicked()),this,SLOT(checkBoxDashesClicked()));
+    connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
+    connect(checkBoxReplaceExtensionDot,SIGNAL(clicked()),this,SLOT(checkBoxExtensionDotsClicked()));
+    connect(checkBoxChangeFirstLetterToBig,SIGNAL(clicked()),this,SLOT(checkBoxFirstLetterToBigClicked()));
+    connect(checkBoxChangeExtensionToSmall,SIGNAL(clicked()),this,SLOT(checkBoxExtensionToSmallClicked()));
 
 }
 
@@ -164,193 +164,193 @@ void Widget::closeEvent(QCloseEvent *)
 }
 
 //----Funkcja aktywuje przycisk Rozpocznij----//
-void Widget::aktywujPrzyciskRozpocznij()
+void Widget::enableButtonsStartNameChange()
 {
-    przyciskRozpocznijZmiane->setEnabled(true);
-    pasekRozpocznijZmiane->setEnabled(true);
+    buttonStartNameChange->setEnabled(true);
+    actionStartNameChange->setEnabled(true);
 }
 
 //----Funkcja deaktywuje przycisk Rozpocznij----//
-void Widget::deaktywujPrzyciskRozpocznij()
+void Widget::disableButtonsStartNameChange()
 {
-    przyciskRozpocznijZmiane->setDisabled(true);
-    pasekRozpocznijZmiane->setDisabled(true);
+    buttonStartNameChange->setDisabled(true);
+    actionStartNameChange->setDisabled(true);
 }
 
 //----Włącza aktywność przycisku Wybierz folder----//
-void Widget::aktywujPrzyciskWybierzFolder()
+void Widget::enableButtonsSelectFolder()
 {
-    przyciskWybierzFolder->setEnabled(true);
-    pasekWybierzFolder->setEnabled(true);
+    buttonSelectFolder->setEnabled(true);
+    actionSelectFolder->setEnabled(true);
 }
 
 //----Wyłącza aktywność przycisków Wybierz folder i Rozpocznij zmianę----//
-void Widget::deaktywujPrzyciskWybierzFolder()
+void Widget::disableButtonsSelectFolder()
 {
-    przyciskWybierzFolder->setDisabled(true);
-    pasekWybierzFolder->setDisabled(true);
+    buttonSelectFolder->setDisabled(true);
+    actionSelectFolder->setDisabled(true);
 }
 
-void Widget::zmienAktywnoscPrzyciskuKropkiRozszerzenia()
+void Widget::changeCheckBoxExtensionDotActivity()
 {
-    przyciskWyboruUsunKropkeRozszerzenia->setEnabled(przyciskWyboruZastapKropki->isChecked());
-    pasekWyboruUsunKropkeRozszerzenia->setEnabled(pasekWyboruZastapKropki->isChecked());
+    checkBoxReplaceExtensionDot->setEnabled(checkBoxReplaceDots->isChecked());
+    actionReplaceExtensionDot->setEnabled(actionReplaceDots->isChecked());
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
-void Widget::wybierzFolder()
+void Widget::selectFolder()
 {
-    wybranyFolder = rdzenProgramu->wybierzFolder(); //Otwiera okno wyboru plik
-    if(wybranyFolder != "")
+    selectedFolder = programCore->selectFolder(); //Otwiera okno wyboru plik
+    if(selectedFolder != "")
     {
-        aktywujPrzyciskRozpocznij();
-        okienkoTekst->setText("Wybrano katalog: <b>" + wybranyFolder + "</b><br />Nazwy plików zawierające wybrane znaki zostaną zmienione.");
+        enableButtonsStartNameChange();
+        textBrowserAbout->setText("Wybrano katalog: <b>" + selectedFolder + "</b><br />Nazwy plików zawierające wybrane znaki zostaną zmienione.");
     }
     else
     {
-        deaktywujPrzyciskRozpocznij();
-        okienkoTekst->setText("Nie wybrano żadnego folderu. Proszę wybrać folder");
+        disableButtonsStartNameChange();
+        textBrowserAbout->setText("Nie wybrano żadnego folderu. Proszę wybrać folder");
     }
 }
 
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
-void Widget::rozpocznijZmiane()
+void Widget::startNameChange()
 {
-    deaktywujPrzyciskWybierzFolder(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wyołać drugi raz funkcji
-    deaktywujPrzyciskRozpocznij();
-    rdzenProgramu->zmienNazwy();
-    aktywujPrzyciskWybierzFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    okienkoTekst->setText("<b>Program zakończył zmianę nazw w wybranym katalogu. Można teraz wybrać kolejny katalog.</b><br />" + trescOkienkaTekst);
+    disableButtonsSelectFolder(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wyołać drugi raz funkcji
+    disableButtonsStartNameChange();
+    programCore->changeName();
+    enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
+    textBrowserAbout->setText("<b>Program zakończył zmianę nazw w wybranym katalogu. Można teraz wybrać kolejny katalog.</b><br />" + aboutApplication);
 }
 
 //----Pokazuje okienko z informacjami o programie----//
-void Widget::wyswietlOProgramie()
+void Widget::showWidgetAbout()
 {
-    rdzenProgramu->wyswietlOProgramie();
+    programCore->showWidgetAbout();
 }
 
 //----Wyświetla okienko z rejestrem zmian----//
-void Widget::wyswietlRejestrZmian()
+void Widget::showWidgetChangeLog()
 {
-    rdzenProgramu->wyswietlRejestrZmian();
+    programCore->showWidgetChangeLog();
 }
 
 //----Wyświetla okienko ustawienia----//
-void Widget::wyswietlUstawienia()
+void Widget::showWidgetSettings()
 {
-    rdzenProgramu->wyswietlUstawienia();
+    programCore->showWidgetSettings();
 }
 
 //----Ustawia zaznaczenia przycisków----//
-void Widget::ustawPrzyciski()
+void Widget::setButtonSelection()
 {
-    pasekWyboruPodfoldery->setChecked(rdzenProgramu->nameChangeParameters.getReplaceInSubfolders());
-    pasekWyboruZastapPodkreslenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceUnderscores());
-    pasekWyboruZastapPauzy->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDashes());
-    pasekWyboruZastapKropki->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDots());
-    pasekWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceExtensionDot());
-    pasekWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->nameChangeParameters.getChangeFirstLetterToBig());
-    pasekWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->nameChangeParameters.getChangeExtensionToSmall());
+    actionReplaceInSubfolders->setChecked(programCore->nameChangeParameters.getReplaceInSubfolders());
+    actionReplaceUnderscores->setChecked(programCore->nameChangeParameters.getReplaceUnderscores());
+    actionReplaceDashes->setChecked(programCore->nameChangeParameters.getReplaceDashes());
+    actionReplaceDots->setChecked(programCore->nameChangeParameters.getReplaceDots());
+    actionReplaceExtensionDot->setChecked(programCore->nameChangeParameters.getReplaceExtensionDot());
+    actionChangeFirstLetterToBig->setChecked(programCore->nameChangeParameters.getChangeFirstLetterToBig());
+    actionChangeExtensionToSmall->setChecked(programCore->nameChangeParameters.getChangeExtensionToSmall());
 
-    przyciskWyboruPodfoldery->setChecked(rdzenProgramu->nameChangeParameters.getReplaceInSubfolders());
-    przyciskWyboruZastapPodkreslenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceUnderscores());
-    przyciskWyboruZastapPauzy->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDashes());
-    przyciskWyboruZastapKropki->setChecked(rdzenProgramu->nameChangeParameters.getReplaceDots());
-    przyciskWyboruUsunKropkeRozszerzenia->setChecked(rdzenProgramu->nameChangeParameters.getReplaceExtensionDot());
-    przyciskWyboruUstawPierwszaDuza->setChecked(rdzenProgramu->nameChangeParameters.getChangeFirstLetterToBig());
-    przyciskWyboruUstawRozszerzenieMale->setChecked(rdzenProgramu->nameChangeParameters.getChangeExtensionToSmall());
+    checkBoxReplaceInSubfolders->setChecked(programCore->nameChangeParameters.getReplaceInSubfolders());
+    checkBoxReplaceUnderscores->setChecked(programCore->nameChangeParameters.getReplaceUnderscores());
+    checkBoxReplaceDashes->setChecked(programCore->nameChangeParameters.getReplaceDashes());
+    checkBoxReplaceDots->setChecked(programCore->nameChangeParameters.getReplaceDots());
+    checkBoxReplaceExtensionDot->setChecked(programCore->nameChangeParameters.getReplaceExtensionDot());
+    checkBoxChangeFirstLetterToBig->setChecked(programCore->nameChangeParameters.getChangeFirstLetterToBig());
+    checkBoxChangeExtensionToSmall->setChecked(programCore->nameChangeParameters.getChangeExtensionToSmall());
 
-    if(rdzenProgramu->nameChangeParameters.getReplaceDots() == true)
+    if(programCore->nameChangeParameters.getReplaceDots() == true)
     {
-        pasekWyboruUsunKropkeRozszerzenia->setEnabled(true);
-        przyciskWyboruUsunKropkeRozszerzenia->setEnabled(true);
+        actionReplaceExtensionDot->setEnabled(true);
+        checkBoxReplaceExtensionDot->setEnabled(true);
     }
 
 }
 
 //----Funkcje aktualizujace stany między check boxami a paskiem----//
-void Widget::przyciskPodfolderyKliknieto()
+void Widget::checkBoxSubfoldersClicked()
 {
-    pasekWyboruPodfoldery->setChecked(przyciskWyboruPodfoldery->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceInSubfolders(przyciskWyboruPodfoldery->isChecked());
+    actionReplaceInSubfolders->setChecked(checkBoxReplaceInSubfolders->isChecked());
+    programCore->nameChangeParameters.setReplaceInSubfolders(checkBoxReplaceInSubfolders->isChecked());
 }
 
-void Widget::przyciskZastapPodkresleniaKliknieto()
+void Widget::checkBoxUnderscoresClicked()
 {
-    pasekWyboruZastapPodkreslenia->setChecked(przyciskWyboruZastapPodkreslenia->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceUnderscores(przyciskWyboruZastapPodkreslenia->isChecked());
+    actionReplaceUnderscores->setChecked(checkBoxReplaceUnderscores->isChecked());
+    programCore->nameChangeParameters.setReplaceUnderscores(checkBoxReplaceUnderscores->isChecked());
 }
 
-void Widget::przyciskZastapPauzyKliknieto()
+void Widget::checkBoxDashesClicked()
 {
-    pasekWyboruZastapPauzy->setChecked(przyciskWyboruZastapPauzy->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceDashes(przyciskWyboruZastapPauzy->isChecked());
+    actionReplaceDashes->setChecked(checkBoxReplaceDashes->isChecked());
+    programCore->nameChangeParameters.setReplaceDashes(checkBoxReplaceDashes->isChecked());
 }
 
-void Widget::przyciskZastapKropkiKliknieto()
+void Widget::checkBoxDotsClicked()
 {
-    pasekWyboruZastapKropki->setChecked(przyciskWyboruZastapKropki->isChecked());
-    zmienAktywnoscPrzyciskuKropkiRozszerzenia();
-    rdzenProgramu->nameChangeParameters.setReplaceDots(przyciskWyboruZastapKropki->isChecked());
+    actionReplaceDots->setChecked(checkBoxReplaceDots->isChecked());
+    changeCheckBoxExtensionDotActivity();
+    programCore->nameChangeParameters.setReplaceDots(checkBoxReplaceDots->isChecked());
 }
 
-void Widget::przyciskZastapKropkeRozszerzeniaKliknieto()
+void Widget::checkBoxExtensionDotsClicked()
 {
-    pasekWyboruUsunKropkeRozszerzenia->setChecked(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceExtensionDot(przyciskWyboruUsunKropkeRozszerzenia->isChecked());
+    actionReplaceExtensionDot->setChecked(checkBoxReplaceExtensionDot->isChecked());
+    programCore->nameChangeParameters.setReplaceExtensionDot(checkBoxReplaceExtensionDot->isChecked());
 }
 
-void Widget::przyciskUstawPierwszaDuzaKliknieto()
+void Widget::checkBoxFirstLetterToBigClicked()
 {
-    pasekWyboruUstawPierwszaDuza->setChecked(przyciskWyboruUstawPierwszaDuza->isChecked());
-    rdzenProgramu->nameChangeParameters.setChangeFirstLetterToBig(przyciskWyboruUstawPierwszaDuza->isChecked());
+    actionChangeFirstLetterToBig->setChecked(checkBoxChangeFirstLetterToBig->isChecked());
+    programCore->nameChangeParameters.setChangeFirstLetterToBig(checkBoxChangeFirstLetterToBig->isChecked());
 }
 
-void Widget::przyciskUstawRozszerzenieMaleKliknieto()
+void Widget::checkBoxExtensionToSmallClicked()
 {
-    pasekWyboruUstawRozszerzenieMale->setChecked(przyciskWyboruUstawRozszerzenieMale->isChecked());
-    rdzenProgramu->nameChangeParameters.setChangeExtensionToSmall(przyciskWyboruUstawRozszerzenieMale->isChecked());
+    actionChangeExtensionToSmall->setChecked(checkBoxChangeExtensionToSmall->isChecked());
+    programCore->nameChangeParameters.setChangeExtensionToSmall(checkBoxChangeExtensionToSmall->isChecked());
 }
 
-void Widget::pasekPodfolderyKliknieto()
+void Widget::actionSubfoldersClicked()
 {
-    przyciskWyboruPodfoldery->setChecked(pasekWyboruPodfoldery->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceInSubfolders(pasekWyboruPodfoldery->isChecked());
+    checkBoxReplaceInSubfolders->setChecked(actionReplaceInSubfolders->isChecked());
+    programCore->nameChangeParameters.setReplaceInSubfolders(actionReplaceInSubfolders->isChecked());
 }
 
-void Widget::pasekZastapPodkresleniaKliknieto()
+void Widget::actionUnderscoresClicked()
 {
-    przyciskWyboruZastapPodkreslenia->setChecked(pasekWyboruZastapPodkreslenia->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceUnderscores(pasekWyboruZastapPodkreslenia->isChecked());
+    checkBoxReplaceUnderscores->setChecked(actionReplaceUnderscores->isChecked());
+    programCore->nameChangeParameters.setReplaceUnderscores(actionReplaceUnderscores->isChecked());
 }
 
-void Widget::pasekZastapPauzyKliknieto()
+void Widget::actionDashesClicked()
 {
-    przyciskWyboruZastapPauzy->setChecked(pasekWyboruZastapPauzy->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceDashes(pasekWyboruZastapPauzy->isChecked());
+    checkBoxReplaceDashes->setChecked(actionReplaceDashes->isChecked());
+    programCore->nameChangeParameters.setReplaceDashes(actionReplaceDashes->isChecked());
 }
 
-void Widget::pasekZastapKropkiKliknieto()
+void Widget::actionDotsClicked()
 {
-    przyciskWyboruZastapKropki->setChecked(pasekWyboruZastapKropki->isChecked());
-    zmienAktywnoscPrzyciskuKropkiRozszerzenia();
-    rdzenProgramu->nameChangeParameters.setReplaceDots(pasekWyboruZastapKropki->isChecked());
+    checkBoxReplaceDots->setChecked(actionReplaceDots->isChecked());
+    changeCheckBoxExtensionDotActivity();
+    programCore->nameChangeParameters.setReplaceDots(actionReplaceDots->isChecked());
 }
 
-void Widget::pasekZastapKropkeRozszerzeniaKliknieto()
+void Widget::actionExtensionDotsClicked()
 {
-    przyciskWyboruUsunKropkeRozszerzenia->setChecked(pasekWyboruUsunKropkeRozszerzenia->isChecked());
-    rdzenProgramu->nameChangeParameters.setReplaceExtensionDot(pasekWyboruUsunKropkeRozszerzenia->isChecked());
+    checkBoxReplaceExtensionDot->setChecked(actionReplaceExtensionDot->isChecked());
+    programCore->nameChangeParameters.setReplaceExtensionDot(actionReplaceExtensionDot->isChecked());
 }
 
-void Widget::pasekUstawPierwszaDuzaKliknieto()
+void Widget::actionFirstLetterToBigClicked()
 {
-    przyciskWyboruUstawPierwszaDuza->setChecked(pasekWyboruUstawPierwszaDuza->isChecked());
-    rdzenProgramu->nameChangeParameters.setChangeFirstLetterToBig(pasekWyboruUstawPierwszaDuza->isChecked());
+    checkBoxChangeFirstLetterToBig->setChecked(actionChangeFirstLetterToBig->isChecked());
+    programCore->nameChangeParameters.setChangeFirstLetterToBig(actionChangeFirstLetterToBig->isChecked());
 }
 
-void Widget::pasekUstawRozszerzenieMaleKliknieto()
+void Widget::actionExtensionToSmallClicked()
 {
-    przyciskWyboruUstawRozszerzenieMale->setChecked(pasekWyboruUstawRozszerzenieMale->isChecked());
-    rdzenProgramu->nameChangeParameters.setChangeExtensionToSmall(pasekWyboruUstawRozszerzenieMale->isChecked());
+    checkBoxChangeExtensionToSmall->setChecked(actionChangeExtensionToSmall->isChecked());
+    programCore->nameChangeParameters.setChangeExtensionToSmall(actionChangeExtensionToSmall->isChecked());
 }

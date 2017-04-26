@@ -3,7 +3,7 @@
 
 #include <QProgressBar>
 #include "widgetabout.h"
-#include "widgetrejestrzmian.h"
+#include "widgetchangelog.h"
 #include "namechanger.h"
 #include "widgetsettings.h"
 #include "settings.h"
@@ -16,28 +16,28 @@ public:
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
-    QString trescOkienkaTekst; //Do wyrzucenia
-    QString trescOkienkaOProgramie;
-    QString trescOkienkaOstrzezenie; //Do wyrzucenia
-    QString trescOkienkaRejestrZmian;
+    QString aboutApplication; //Do wyrzucenia
+    QString widgetAboutText;
+    QString folderNotExist; //Do wyrzucenia
+    QString widgetChangeLogText;
 
-    WidgetRejestrZmian *oknoRejestrZmian;
-    WidgetAbout *oknoOProgramie;
-    WidgetSettings *oknoUstawienia;
+    WidgetChangeLog *widgetChangeLog;
+    WidgetAbout *widgetAbout;
+    WidgetSettings *widgetSettings;
 
-    NameChanger *zmieniaczNazw;
+    NameChanger *nameChanger;
 
-    Settings *czytaczUstawien;
+    Settings *settingsReader;
 
 public:
     NameChangeParameters nameChangeParameters;
 
 public:
-    void zmienNazwy(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
-    QString wybierzFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
-    void wyswietlOProgramie(); //Pokazuje okienko z informacjami o programie
-    void wyswietlRejestrZmian(); //Wyświetla okienko z rejestrem zmian
-    void wyswietlUstawienia(); //Wyświetla okno ustawień
+    void changeName(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
+    QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
+    void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
+    void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
+    void showWidgetSettings(); //Wyświetla okno ustawień
 };
 
 #endif // CORE_H
