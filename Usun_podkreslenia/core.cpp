@@ -10,7 +10,7 @@ Core::Core(QProgressBar *progressBar)
     oknoOProgramie = NULL;
     oknoUstawienia = NULL;
 
-    zmieniaczNazw = new CZmieniaczNazw(progressBar);
+    zmieniaczNazw = new NameChanger(progressBar);
 
     //--------Obiekt czytajacy ustawienia--------//
     czytaczUstawien = new Settings;
@@ -20,16 +20,16 @@ Core::Core(QProgressBar *progressBar)
 
 void Core::zmienNazwy()
 {
-    zmieniaczNazw->inicjujZmianeNazw(nameChangeParameters);
+    zmieniaczNazw->initiateRenameFiles(nameChangeParameters);
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 QString Core::wybierzFolder()
 {
-    bool stanOperacji = zmieniaczNazw->wybierzFolder(); //Otwiera okno wyboru pliku
+    bool stanOperacji = zmieniaczNazw->selectFolder(); //Otwiera okno wyboru pliku
 
     if(stanOperacji == true)
-        return zmieniaczNazw->zwrocWybranyFolder();
+        return zmieniaczNazw->getSelectedFolder();
     else
        return "";
 }
@@ -38,18 +38,18 @@ QString Core::wybierzFolder()
 void Core::wyswietlOProgramie()
 {
     if(oknoOProgramie == NULL) //Jeżli okna nie ma stwórz je
-        oknoOProgramie = new WidgetOProgramie(trescOkienkaOProgramie);
+        oknoOProgramie = new WidgetAbout(trescOkienkaOProgramie);
     else
-        oknoOProgramie->pokazSie();
+        oknoOProgramie->showWindow();
 }
 
 //----Wyświetla okno ustawień----//
 void Core::wyswietlUstawienia()
 {
     if(oknoUstawienia == NULL) //Jeżli okna nie ma stwórz je
-        oknoUstawienia = new WidgetUstawienia();
+        oknoUstawienia = new WidgetSettings();
     else
-        oknoUstawienia->pokazSie();
+        oknoUstawienia->showWindow();
 }
 
 //----Wyświetla okienko z rejestrem zmian----//

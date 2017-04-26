@@ -2,10 +2,10 @@
 #define CORE_H
 
 #include <QProgressBar>
-#include "widgetoprogramie.h"
+#include "widgetabout.h"
 #include "widgetrejestrzmian.h"
-#include "czmieniacznazw.h"
-#include "widgetustawienia.h"
+#include "namechanger.h"
+#include "widgetsettings.h"
 #include "settings.h"
 #include "namechangeparameters.h"
 
@@ -16,16 +16,16 @@ public:
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
-    QString trescOkienkaTekst;
+    QString trescOkienkaTekst; //Do wyrzucenia
     QString trescOkienkaOProgramie;
-    QString trescOkienkaOstrzezenie;
+    QString trescOkienkaOstrzezenie; //Do wyrzucenia
     QString trescOkienkaRejestrZmian;
 
     WidgetRejestrZmian *oknoRejestrZmian;
-    WidgetOProgramie *oknoOProgramie;
-    WidgetUstawienia *oknoUstawienia;
+    WidgetAbout *oknoOProgramie;
+    WidgetSettings *oknoUstawienia;
 
-    CZmieniaczNazw *zmieniaczNazw;
+    NameChanger *zmieniaczNazw;
 
     Settings *czytaczUstawien;
 

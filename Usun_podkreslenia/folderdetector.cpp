@@ -31,8 +31,8 @@ void FolderDetector::searchFolders()
         {
             //Należy co pętle pobierać iterator początku, gdyż może dojść do przemieszczenia się vectora w pamięci
             //co spowoduje, że iterator będzie pokazywał na poprzednie już puste miejsce
-            QString searchFolder = *(folderList.begin()+folderListIterator);
-            currentFolder.cd(searchFolder);
+            QString nextSearchFolder = *(folderList.begin()+folderListIterator);
+            currentFolder.cd(nextSearchFolder);
             if(!currentFolder.exists())
                 continue;
             numberFiles += currentFolder.count();

@@ -15,31 +15,31 @@ win32:RC_ICONS += Ikona.ico# for Qt 5
 
 SOURCES += main.cpp\
         widget.cpp \
-    widgetoprogramie.cpp \
     widgetrejestrzmian.cpp \
-    czmieniacznazw.cpp \
-    widgetustawienia.cpp \
     namechangeparameters.cpp \
     settings.cpp \
     core.cpp \
-    folderdetector.cpp
+    folderdetector.cpp \
+    namechanger.cpp \
+    widgetabout.cpp \
+    widgetsettings.cpp
 
 HEADERS  += widget.h \
-    widgetoprogramie.h \
     widgetrejestrzmian.h \
-    czmieniacznazw.h \
-    widgetustawienia.h \
     namechangeparameters.h \
     settings.h \
     core.h \
-    folderdetetor.h
+    folderdetetor.h \
+    namechanger.h \
+    widgetabout.h \
+    widgetsettings.h
 
 FORMS    += widget.ui \
-    widgetoprogramie.ui \
     widgetrejestrzmian.ui \
-    widgetustawienia.ui
+    widgetabout.ui \
+    widgetsettings.ui
 
 RESOURCES += \
-    ikony.qrc
+    icons.qrc
 
 DISTFILES +=

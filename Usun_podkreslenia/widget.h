@@ -16,8 +16,8 @@
 #include <QKeySequence>
 #include <QDesktopWidget>
 #include "widgetrejestrzmian.h"
-#include "widgetoprogramie.h"
-#include "czmieniacznazw.h"
+#include "widgetabout.h"
+#include "namechanger.h"
 #include "core.h"
 
 
@@ -83,7 +83,7 @@ private:
 
     //----Zmienne okienek----//
     WidgetRejestrZmian *oknoRejestrZmian;
-    WidgetOProgramie *oknoOProgramie;
+    WidgetAbout *oknoOProgramie;
 
     //----Rdzeń----//
     Core *rdzenProgramu;
