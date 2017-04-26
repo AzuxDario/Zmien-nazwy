@@ -6,8 +6,7 @@ WidgetChangeLog::WidgetChangeLog(QString widgetText, QWidget *parent) :
     ui(new Ui::WidgetChangeLog)
 {
     ui->setupUi(this);
-    //::setCodecForTr(QTextCodec::codecForName("UTF-8"));
-    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+
     widgetChangeLogText = widgetText;
 
     //--------Inicjalizacja okna--------//

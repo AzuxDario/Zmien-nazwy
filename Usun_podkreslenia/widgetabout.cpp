@@ -6,8 +6,7 @@ WidgetAbout::WidgetAbout(QString widgetText, QWidget *parent) :
     ui(new Ui::WidgetAbout)
 {
     ui->setupUi(this);
-    //QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
-    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+
     widgetAboutText = widgetText;
 
     //--------Inicjalizacja okna--------//

@@ -8,7 +8,6 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QProgressBar>
-#include <QTextCodec>
 #include <QMenuBar>
 #include <QFile>
 #include <QCheckBox>
