@@ -106,6 +106,7 @@ Widget::Widget(QWidget *parent) :
     textBrowserAbout->setGeometry(20,217,380,120);
     textBrowserAbout->setAlignment(Qt::AlignTop);
     textBrowserAbout->setReadOnly(true);
+    //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
     textBrowserAbout->setText(aboutApplication);
 
     //--------Pasek postępu--------//
