@@ -14,6 +14,9 @@
 #include <QCloseEvent>
 #include <QKeySequence>
 #include <QDesktopWidget>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QGroupBox>
 #include "namechanger.h"
 #include "core.h"
 
@@ -51,6 +54,17 @@ private:
     QAction *actionChangeExtensionToSmall;
     QAction *actionAbout;
     QAction *actionChangeLog;
+
+    //----Layouty----//
+    QVBoxLayout *windowVLayout;
+    QHBoxLayout *mainHLayout;
+    QVBoxLayout *leftVLayout;
+    QVBoxLayout *rightVLayout;
+
+    QVBoxLayout *buttonGroupReplaceLayout;
+    QVBoxLayout *buttonGroupLetterSizeLayout;
+    QGroupBox *buttonGroupReplace;
+    QGroupBox *buttonGroupLetterSize;
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;
