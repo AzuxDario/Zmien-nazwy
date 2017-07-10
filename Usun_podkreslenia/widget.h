@@ -60,11 +60,18 @@ private:
     QHBoxLayout *mainHLayout;
     QVBoxLayout *leftVLayout;
     QVBoxLayout *rightVLayout;
+    QHBoxLayout *buttonHLayout;
 
+    QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
     QVBoxLayout *buttonGroupLetterSizeLayout;
+    QVBoxLayout *buttonGroupExtensionSizeLayout;
+    QVBoxLayout *buttonGroupSpaceLayout;
+    QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
     QGroupBox *buttonGroupLetterSize;
+    QGroupBox *buttonGroupExtensionSize;
+    QGroupBox *buttonGroupSpace;
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;

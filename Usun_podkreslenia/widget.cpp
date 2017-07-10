@@ -11,8 +11,7 @@ Widget::Widget(QWidget *parent) :
     aboutApplication = "Program zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) na spację w nazwach plików w wybranym folderze.\nAby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
 
     //----Tworzenie paska menu----//
-    menuBar = new QMenuBar(this);
-    //menuBar->setGeometry(0,0,420,21);
+    menuBar = new QMenuBar();
     menuFile = new QMenu(this);
     menuSettings = new QMenu(this);
     menuHelp = new QMenu(this);
@@ -75,6 +74,36 @@ Widget::Widget(QWidget *parent) :
     actionChangeExtensionToSmall->setCheckable(true);
 
     //----Tworzenie layoutu okna----//
+
+    //--------Przyciski--------//
+    buttonSelectFolder = new QPushButton("Wybierz folder",this);
+    buttonSelectFolder->setStyleSheet("font-size:11px;");
+    buttonStartNameChange = new QPushButton("Rozpocznij zmianę",this);
+    buttonStartNameChange->setStyleSheet("font-size:11px;");
+    buttonStartNameChange->setDisabled(true);
+
+    //--------Check Boxy--------//
+    checkBoxReplaceInSubfolders = new QCheckBox("Zastąp znaki także w podfolderach");
+    checkBoxReplaceUnderscores = new QCheckBox("Zastąp podkreślenia");
+    checkBoxReplaceDashes = new QCheckBox("Zastąp pauzy");
+    checkBoxReplaceDots = new QCheckBox("Zastąp kropki");
+    checkBoxReplaceExtensionDot = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń");
+    checkBoxReplaceExtensionDot->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
+    checkBoxChangeFirstLetterToBig = new QCheckBox("Zmień pierwszą literę w nazwie pliku na dużą");
+    checkBoxChangeExtensionToSmall = new QCheckBox("Zmień rozszerzenie na pisane małymi literami");
+
+    //--------Okno z tekstem--------//
+    textBrowserAbout = new QTextBrowser(this);
+    textBrowserAbout->setAlignment(Qt::AlignTop);
+    textBrowserAbout->setReadOnly(true);
+    //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
+    textBrowserAbout->setText(aboutApplication);
+
+    //--------Pasek postępu--------//
+    progressBar = new QProgressBar(this);
+    progressBar->setTextVisible(false);
+
+
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
     mainHLayout = new QHBoxLayout();
@@ -85,68 +114,48 @@ Widget::Widget(QWidget *parent) :
     mainHLayout->addLayout(leftVLayout);
     mainHLayout->addLayout(rightVLayout);
 
-    buttonGroupReplace = new QGroupBox("Zastąp znaki");
-    buttonGroupLetterSize = new QGroupBox("Zmień rozmiar liter");
-    leftVLayout->addWidget(buttonGroupReplace);
-    rightVLayout->addWidget(buttonGroupLetterSize);
-
-
-    /*//--------Przyciski--------//
-    buttonSelectFolder = new QPushButton("Wybierz folder",this);
-    buttonSelectFolder->setGeometry(20,31,140,30);
-    buttonSelectFolder->setStyleSheet("font-size:11px;");
-    buttonStartNameChange = new QPushButton("Rozpocznij zmianę",this);
-    buttonStartNameChange->setGeometry(260,31,140,30);
-    buttonStartNameChange->setStyleSheet("font-size:11px;");
-    buttonStartNameChange->setDisabled(true);*/
-
-    //--------Check Boxy--------//
-    //checkBoxReplaceInSubfolders = new QCheckBox("Zastąp znaki także w podfolderach",this);
-    //checkBoxReplaceInSubfolders->setGeometry(20,72,380,18);
-    checkBoxReplaceUnderscores = new QCheckBox("Zastąp podkreślenia");
-    //checkBoxReplaceUnderscores->setGeometry(20,101,154,18);
-    checkBoxReplaceDashes = new QCheckBox("Zastąp pauzy");
-    //checkBoxReplaceDashes->setGeometry(174,101,116,18);
-    checkBoxReplaceDots = new QCheckBox("Zastąp kropki");
-    //checkBoxReplaceDots->setGeometry(290,101,110,18);
-    checkBoxReplaceExtensionDot = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń");
-    //checkBoxReplaceExtensionDot->setGeometry(20,130,380,18);
-    checkBoxReplaceExtensionDot->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
-    checkBoxChangeFirstLetterToBig = new QCheckBox("Zmień pierwszą literę w nazwie pliku na dużą");
-    //checkBoxChangeFirstLetterToBig->setGeometry(20,159,380,18);
-    //checkBoxChangeExtensionToSmall = new QCheckBox("Zmień rozszerzenie na pisane małymi literami",this);
-    //checkBoxChangeExtensionToSmall->setGeometry(20,188,380,18);
-
+    buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
     buttonGroupLetterSizeLayout = new QVBoxLayout;
+    buttonGroupExtensionSizeLayout = new QVBoxLayout;
+    buttonGroupSpaceLayout = new QVBoxLayout;
+    buttonHLayout = new QHBoxLayout;
+    buttonGroupSubfolders = new QGroupBox("Podfoldery");
+    buttonGroupReplace = new QGroupBox("Zastąp znaki");
+    buttonGroupLetterSize = new QGroupBox("Zmień rozmiar liter w nazwie");
+    buttonGroupExtensionSize = new QGroupBox("Zmień rozmiar liter w rozszerzeniu");
+    buttonGroupSpace = new QGroupBox("Spacje");
+    leftVLayout->addWidget(buttonGroupSubfolders);
+    leftVLayout->addWidget(buttonGroupReplace);
+    leftVLayout->addWidget(buttonGroupSpace);
+    leftVLayout->addWidget(textBrowserAbout);
+    leftVLayout->addWidget(progressBar);
+    rightVLayout->addWidget(buttonGroupLetterSize);
+    rightVLayout->addWidget(buttonGroupExtensionSize);
+    rightVLayout->addLayout(buttonHLayout);
+
+    buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDashes);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDots);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceExtensionDot);
     buttonGroupLetterSizeLayout->addWidget(checkBoxChangeFirstLetterToBig);
+    buttonGroupExtensionSizeLayout->addWidget(checkBoxChangeExtensionToSmall);
 
+    buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
     buttonGroupLetterSize->setLayout(buttonGroupLetterSizeLayout);
+    buttonGroupExtensionSize->setLayout(buttonGroupExtensionSizeLayout);
+    buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
-    /*
-    //--------Okno z tekstem--------//
-    textBrowserAbout = new QTextBrowser(this);
-    textBrowserAbout->setGeometry(20,217,380,120);
-    textBrowserAbout->setAlignment(Qt::AlignTop);
-    textBrowserAbout->setReadOnly(true);
-    //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
-    textBrowserAbout->setText(aboutApplication);
-
-    //--------Pasek postępu--------//
-    progressBar = new QProgressBar(this);
-    progressBar->setGeometry(20,347,380,30);
-    progressBar->setTextVisible(false);
+    buttonHLayout->addWidget(buttonSelectFolder);
+    buttonHLayout->addWidget(buttonStartNameChange);
 
     //----Wskaźnik na rdzeń programu----//
     programCore = new Core(progressBar);
 
     //----Ustawienie stanu CheckBoxów zgodnie ze zmiennymi w rdzeniu----//
-    setButtonSelection();*/
+    setButtonSelection();
 
     //----Przypisanie przycisków do slotów----//
     //--------Menu--------//
@@ -165,7 +174,7 @@ Widget::Widget(QWidget *parent) :
     connect(actionChangeExtensionToSmall,SIGNAL(triggered()),this,SLOT(actionExtensionToSmallClicked()));
 
     //--------Przyciski--------//
-    /*connect(buttonSelectFolder,SIGNAL(clicked()),this,SLOT(selectFolder()));
+    connect(buttonSelectFolder,SIGNAL(clicked()),this,SLOT(selectFolder()));
     connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
     connect(checkBoxReplaceInSubfolders,SIGNAL(clicked()),this,SLOT(checkBoxSubfoldersClicked()));
     connect(checkBoxReplaceUnderscores,SIGNAL(clicked()),this,SLOT(checkBoxUnderscoresClicked()));
@@ -174,7 +183,7 @@ Widget::Widget(QWidget *parent) :
     connect(checkBoxReplaceExtensionDot,SIGNAL(clicked()),this,SLOT(checkBoxExtensionDotsClicked()));
     connect(checkBoxChangeFirstLetterToBig,SIGNAL(clicked()),this,SLOT(checkBoxFirstLetterToBigClicked()));
     connect(checkBoxChangeExtensionToSmall,SIGNAL(clicked()),this,SLOT(checkBoxExtensionToSmallClicked()));
-*/
+
 }
 
 
