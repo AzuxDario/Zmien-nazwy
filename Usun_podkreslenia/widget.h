@@ -11,6 +11,7 @@
 #include <QMenuBar>
 #include <QFile>
 #include <QCheckBox>
+#include <QRadioButton>
 #include <QCloseEvent>
 #include <QKeySequence>
 #include <QDesktopWidget>
@@ -83,8 +84,18 @@ private:
     QCheckBox *checkBoxReplaceDashes;
     QCheckBox *checkBoxReplaceDots;
     QCheckBox *checkBoxReplaceExtensionDot;
-    QCheckBox *checkBoxChangeFirstLetterToBig;
-    QCheckBox *checkBoxChangeExtensionToSmall;
+    QCheckBox *checkBoxRemoveMultiplySpaces;
+    QCheckBox *checkBoxRemoveSpacesAtBegin;
+    QCheckBox *checkBoxRemoveSpacesAtEnd;
+    QRadioButton *checkBoxChangeFirstLetterToBig;
+    QRadioButton *checkBoxChangeLettersToBig;
+    QRadioButton *checkBoxChangeLettersToSmall;
+    QRadioButton *checkBoxChangeFirstLettersToBig;
+    QRadioButton *checkBoxDontChangeName;
+    QRadioButton *checkBoxChangeExtensionToSmall;
+    QRadioButton *checkBoxChangeExtensionToBig;
+    QRadioButton *checkBoxChangeExtensionFirstLettersToBig;
+    QRadioButton *checkBoxChangeDontChangeExtension;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;

@@ -89,8 +89,18 @@ Widget::Widget(QWidget *parent) :
     checkBoxReplaceDots = new QCheckBox("Zastąp kropki");
     checkBoxReplaceExtensionDot = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń");
     checkBoxReplaceExtensionDot->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
-    checkBoxChangeFirstLetterToBig = new QCheckBox("Zmień pierwszą literę w nazwie pliku na dużą");
-    checkBoxChangeExtensionToSmall = new QCheckBox("Zmień rozszerzenie na pisane małymi literami");
+    checkBoxRemoveMultiplySpaces = new QCheckBox("Usuń wielokrotne spacje");
+    checkBoxRemoveSpacesAtBegin = new QCheckBox("Usuń spacje na początku nazwy");
+    checkBoxRemoveSpacesAtEnd = new QCheckBox("Usuń spacje na końcu nazwy");
+    checkBoxChangeFirstLetterToBig = new QRadioButton("Zmień pierwszą literę w nazwie pliku na dużą");
+    checkBoxChangeLettersToBig = new QRadioButton("Zmień wszstkie litery na duże");
+    checkBoxChangeLettersToSmall = new QRadioButton("Zmień wszstkie litery na małe");
+    checkBoxChangeFirstLettersToBig = new QRadioButton("Zmień pierwsze litery w słowach na duże");
+    checkBoxDontChangeName = new QRadioButton("Nie rób nic");
+    checkBoxChangeExtensionToBig = new QRadioButton("Zmień rozszerzenie na pisane dużymi literami");
+    checkBoxChangeExtensionToSmall = new QRadioButton("Zmień rozszerzenie na pisane małymi literami");
+    checkBoxChangeExtensionFirstLettersToBig = new QRadioButton("Zmień pierwszą literę rozszerzenia na dużą");
+    checkBoxChangeDontChangeExtension = new QRadioButton("Nie rób nic");
 
     //--------Okno z tekstem--------//
     textBrowserAbout = new QTextBrowser(this);
@@ -132,6 +142,7 @@ Widget::Widget(QWidget *parent) :
     leftVLayout->addWidget(progressBar);
     rightVLayout->addWidget(buttonGroupLetterSize);
     rightVLayout->addWidget(buttonGroupExtensionSize);
+    rightVLayout->addSpacing(50);
     rightVLayout->addLayout(buttonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
@@ -139,8 +150,18 @@ Widget::Widget(QWidget *parent) :
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDashes);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDots);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceExtensionDot);
+    buttonGroupSpaceLayout->addWidget(checkBoxRemoveMultiplySpaces);
+    buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtBegin);
+    buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtEnd);
     buttonGroupLetterSizeLayout->addWidget(checkBoxChangeFirstLetterToBig);
+    buttonGroupLetterSizeLayout->addWidget(checkBoxChangeLettersToBig);
+    buttonGroupLetterSizeLayout->addWidget(checkBoxChangeLettersToSmall);
+    buttonGroupLetterSizeLayout->addWidget(checkBoxChangeFirstLettersToBig);
+    buttonGroupLetterSizeLayout->addWidget(checkBoxDontChangeName);
+    buttonGroupExtensionSizeLayout->addWidget(checkBoxChangeExtensionToBig);
     buttonGroupExtensionSizeLayout->addWidget(checkBoxChangeExtensionToSmall);
+    buttonGroupExtensionSizeLayout->addWidget(checkBoxChangeExtensionFirstLettersToBig);
+    buttonGroupExtensionSizeLayout->addWidget(checkBoxChangeDontChangeExtension);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
