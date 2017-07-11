@@ -77,8 +77,8 @@ void WidgetSettings::setCheckBoxes()
     checkBoxReplaceDashes->setChecked(settingsReader->nameChangeParameters.getReplaceDashes());
     checkBoxReplaceDots->setChecked(settingsReader->nameChangeParameters.getReplaceDots());
     checkBoxReplaceExtensionDot->setChecked(settingsReader->nameChangeParameters.getReplaceExtensionDot());
-    checkBoxChangeFirstLetterToBig->setChecked(settingsReader->nameChangeParameters.getChangeFirstLetterToBig());
-    checkBoxChangeExtensionToSmall->setChecked(settingsReader->nameChangeParameters.getChangeExtensionToSmall());
+    checkBoxChangeFirstLetterToBig->setChecked(settingsReader->nameChangeParameters.getChangeLetters());
+    checkBoxChangeExtensionToSmall->setChecked(settingsReader->nameChangeParameters.getChangeExtension());
     if(checkBoxReplaceDots->isChecked() == true)
         checkBoxReplaceExtensionDot->setEnabled(true);
     else
@@ -93,8 +93,8 @@ void WidgetSettings::setSettingsReader()
     settingsReader->nameChangeParameters.setReplaceDashes(checkBoxReplaceDashes->isChecked());
     settingsReader->nameChangeParameters.setReplaceDots(checkBoxReplaceDots->isChecked());
     settingsReader->nameChangeParameters.setReplaceExtensionDot(checkBoxReplaceExtensionDot->isChecked());
-    settingsReader->nameChangeParameters.setChangeFirstLetterToBig(checkBoxChangeFirstLetterToBig->isChecked());
-    settingsReader->nameChangeParameters.setChangeExtensionToSmall(checkBoxChangeExtensionToSmall->isChecked());
+    settingsReader->nameChangeParameters.setChangeLetters(checkBoxChangeFirstLetterToBig->isChecked());
+    settingsReader->nameChangeParameters.setChangeExtension(checkBoxChangeExtensionToSmall->isChecked());
 }
 
 //----Pokazuje już utworzone okno----//

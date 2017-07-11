@@ -88,9 +88,9 @@ QString NameChanger::changeFileName(QString fileName)
         fileName = replaceDashes(fileName);
     if(nameChangeParameters.getReplaceDots() == true)
         fileName = replaceDots(fileName);
-    if(nameChangeParameters.getChangeFirstLetterToBig() == true)
+    if(nameChangeParameters.getChangeLetters() == true)
         fileName = changeFirstLetterToBig(fileName);
-    if(nameChangeParameters.getChangeExtensionToSmall() == true)
+    if(nameChangeParameters.getChangeExtension() == true)
         fileName = changeExtensionToSmall(fileName);
     return fileName;
 }

@@ -105,6 +105,8 @@ private:
     //----Rdzeń----//
     Core *programCore;
 
+    //----Parametry zmiany nazw----//
+    NameChangeParameters nameChangeParameters;
 
 private slots:
     void closeEvent(QCloseEvent *); //Zamyka program po zamknięciu głównego okna
@@ -121,13 +123,8 @@ private slots:
     void setButtonSelection(); //Ustawia zaznaczenia przycisków
 
     //----Funkcje aktualizujace stany między check boxami a paskiem
-    void checkBoxSubfoldersClicked();
-    void checkBoxUnderscoresClicked();
-    void checkBoxDashesClicked();
     void checkBoxDotsClicked();
-    void checkBoxExtensionDotsClicked();
-    void checkBoxFirstLetterToBigClicked();
-    void checkBoxExtensionToSmallClicked();
+    void setNameChangesParameters();
 
 };
 

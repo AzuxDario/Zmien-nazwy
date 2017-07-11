@@ -27,7 +27,6 @@ private:
 
     Settings *settingsReader;
 
-public:
     NameChangeParameters nameChangeParameters;
 
 public:
@@ -36,6 +35,8 @@ public:
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okno ustawień
+    void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
+    NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
 };
 
 #endif // CORE_H

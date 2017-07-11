@@ -61,12 +61,12 @@ bool Settings::saveSettings()
         else
             stream << "0" << endl;
         stream << "czyPierwszaDuza=";
-        if(nameChangeParameters.getChangeFirstLetterToBig() == true)
+        if(nameChangeParameters.getChangeLetters() == true)
             stream << "1" << endl;
         else
             stream << "0" << endl;
         stream << "czyRozszerzenieMale=";
-        if(nameChangeParameters.getChangeExtensionToSmall() == true)
+        if(nameChangeParameters.getChangeExtension() == true)
             stream << "1";
         else
             stream << "0";
@@ -117,8 +117,8 @@ void Settings::setSetting(QString line)
         else if(option == "czyZamienicKropkeRozszerzenia")
             nameChangeParameters.setReplaceExtensionDot(value);
         else if(option == "czyPierwszaDuza")
-            nameChangeParameters.setChangeFirstLetterToBig(value);
+            nameChangeParameters.setChangeLetters(value);
         else if(option == "czyRozszerzenieMale")
-            nameChangeParameters.setChangeExtensionToSmall(value);
+            nameChangeParameters.setChangeExtension(value);
     }
 }
