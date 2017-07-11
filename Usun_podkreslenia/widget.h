@@ -46,13 +46,6 @@ private:
     QAction *actionStartNameChange;
     QAction *actionExit;
     QAction *actionSettings;
-    QAction *actionReplaceInSubfolders;
-    QAction *actionReplaceUnderscores;
-    QAction *actionReplaceDashes;
-    QAction *actionReplaceDots;
-    QAction *actionReplaceExtensionDot;
-    QAction *actionChangeFirstLetterToBig;
-    QAction *actionChangeExtensionToSmall;
     QAction *actionAbout;
     QAction *actionChangeLog;
 
@@ -135,13 +128,6 @@ private slots:
     void checkBoxExtensionDotsClicked();
     void checkBoxFirstLetterToBigClicked();
     void checkBoxExtensionToSmallClicked();
-    void actionSubfoldersClicked();
-    void actionUnderscoresClicked();
-    void actionDashesClicked();
-    void actionDotsClicked();
-    void actionExtensionDotsClicked();
-    void actionFirstLetterToBigClicked();
-    void actionExtensionToSmallClicked();
 
 };
 
