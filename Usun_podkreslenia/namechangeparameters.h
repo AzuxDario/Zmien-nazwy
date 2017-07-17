@@ -12,6 +12,7 @@ private:
     bool replaceInSubfolders;
     bool replaceUnderscores; //Podkreślenie
     bool replaceDashes; //Pauza
+    bool dontReplaceDashesSurrondedBySpaces;
     bool replaceDots;
     bool replaceExtensionDot;
     bool removeMultiplySpaces;
@@ -25,6 +26,7 @@ public:
     void setReplaceInSubfolders(bool value) noexcept {replaceInSubfolders = value;}
     void setReplaceUnderscores(bool value) noexcept {replaceUnderscores = value;}
     void setReplaceDashes(bool value) noexcept {replaceDashes = value;}
+    void setDontReplaceDashesSurrondedBySpaces(bool value) noexcept {dontReplaceDashesSurrondedBySpaces = value;}
     void setReplaceDots(bool value) noexcept {replaceDots = value;}
     void setReplaceExtensionDot(bool value) noexcept {replaceExtensionDot = value;}
     void setRemoveMultiplySpaces(bool value) {removeMultiplySpaces = value;}
@@ -35,6 +37,7 @@ public:
     bool getReplaceInSubfolders() noexcept {return replaceInSubfolders;}
     bool getReplaceUnderscores() noexcept {return replaceUnderscores;}
     bool getReplaceDashes() noexcept {return replaceDashes;}
+    bool getDontReplaceDashesSurrondedBySpaces() noexcept {return dontReplaceDashesSurrondedBySpaces;}
     bool getReplaceDots() noexcept {return replaceDots;}
     bool getReplaceExtensionDot() noexcept {return replaceExtensionDot;}
     bool getRemoveMultiplySpaces() {return removeMultiplySpaces;}

@@ -5,6 +5,7 @@ NameChangeParameters::NameChangeParameters()
     replaceInSubfolders = false;
     replaceUnderscores = false;
     replaceDashes = false;
+    dontReplaceDashesSurrondedBySpaces = false;
     replaceDots = false;
     replaceExtensionDot = false;
     removeMultiplySpaces = false;

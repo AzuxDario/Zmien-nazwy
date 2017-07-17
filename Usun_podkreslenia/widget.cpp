@@ -54,6 +54,7 @@ Widget::Widget(QWidget *parent) :
     checkBoxReplaceInSubfolders = new QCheckBox("Zastąp znaki także w podfolderach");
     checkBoxReplaceUnderscores = new QCheckBox("Zastąp podkreślenia");
     checkBoxReplaceDashes = new QCheckBox("Zastąp pauzy");
+    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox("Nie zastępuj pauz otoczonych spacjami");
     checkBoxReplaceDots = new QCheckBox("Zastąp kropki");
     checkBoxReplaceExtensionDot = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń");
     checkBoxReplaceExtensionDot->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
@@ -116,6 +117,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDashes);
+    buttonGroupReplaceLayout->addWidget(checkBoxDontReplaceDashesSurrondedBySpaces);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDots);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceExtensionDot);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveMultiplySpaces);
@@ -158,6 +160,7 @@ Widget::Widget(QWidget *parent) :
     //--------Przyciski--------//
     connect(buttonSelectFolder,SIGNAL(clicked()),this,SLOT(selectFolder()));
     connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
+    connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
 
 }
@@ -200,11 +203,6 @@ void Widget::disableButtonsSelectFolder()
 {
     buttonSelectFolder->setDisabled(true);
     actionSelectFolder->setDisabled(true);
-}
-
-void Widget::changeCheckBoxExtensionDotActivity()
-{
-    checkBoxReplaceExtensionDot->setEnabled(checkBoxReplaceDots->isChecked());
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
@@ -261,6 +259,7 @@ void Widget::setButtonSelection()
     checkBoxReplaceInSubfolders->setChecked(parameters.getReplaceInSubfolders());
     checkBoxReplaceUnderscores->setChecked(parameters.getReplaceUnderscores());
     checkBoxReplaceDashes->setChecked(parameters.getReplaceDashes());
+    checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(parameters.getDontReplaceDashesSurrondedBySpaces());
     checkBoxReplaceDots->setChecked(parameters.getReplaceDots());
     checkBoxReplaceExtensionDot->setChecked(parameters.getReplaceExtensionDot());
     checkBoxRemoveMultiplySpaces->setChecked(parameters.getRemoveMultiplySpaces());
@@ -314,7 +313,12 @@ void Widget::setButtonSelection()
 //----Funkcje aktualizujace stany między check boxami a paskiem----//
 void Widget::checkBoxDotsClicked()
 {
-    changeCheckBoxExtensionDotActivity();
+    checkBoxReplaceExtensionDot->setEnabled(checkBoxReplaceDots->isChecked());
+}
+
+void Widget::checkBoxDashesClicked()
+{
+    checkBoxDontReplaceDashesSurrondedBySpaces->setEnabled(checkBoxReplaceDashes->isChecked());
 }
 
 void Widget::setNameChangesParameters()
@@ -322,6 +326,7 @@ void Widget::setNameChangesParameters()
     nameChangeParameters.setReplaceInSubfolders(checkBoxReplaceInSubfolders->isChecked());
     nameChangeParameters.setReplaceUnderscores(checkBoxReplaceUnderscores->isChecked());
     nameChangeParameters.setReplaceDashes(checkBoxReplaceDashes->isChecked());
+    nameChangeParameters.setDontReplaceDashesSurrondedBySpaces(checkBoxDontReplaceDashesSurrondedBySpaces->isChecked());
     nameChangeParameters.setReplaceDots(checkBoxReplaceDots->isChecked());
     nameChangeParameters.setReplaceExtensionDot(checkBoxReplaceExtensionDot->isChecked());
     nameChangeParameters.setRemoveMultiplySpaces(checkBoxRemoveMultiplySpaces->isChecked());

@@ -75,6 +75,7 @@ private:
     QCheckBox *checkBoxReplaceInSubfolders;
     QCheckBox *checkBoxReplaceUnderscores;
     QCheckBox *checkBoxReplaceDashes;
+    QCheckBox *checkBoxDontReplaceDashesSurrondedBySpaces;
     QCheckBox *checkBoxReplaceDots;
     QCheckBox *checkBoxReplaceExtensionDot;
     QCheckBox *checkBoxRemoveMultiplySpaces;
@@ -114,7 +115,6 @@ private slots:
     void disableButtonsStartNameChange(); //Funkcja deaktywuje przycisk Rozpocznij
     void enableButtonsSelectFolder(); //Włącza aktywność przycisku Wybierz folder
     void disableButtonsSelectFolder(); //Wyłącza aktywność przycisków Wybierz folder
-    void changeCheckBoxExtensionDotActivity(); //Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki
     void selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     void startNameChange(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
@@ -124,6 +124,7 @@ private slots:
 
     //----Funkcje aktualizujace stany między check boxami a paskiem
     void checkBoxDotsClicked();
+    void checkBoxDashesClicked();
     void setNameChangesParameters();
 
 };
