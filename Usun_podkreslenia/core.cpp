@@ -18,7 +18,7 @@ Core::Core(QProgressBar *progressBar)
     nameChangeParameters = settingsReader->nameChangeParameters;
 }
 
-void Core::changeName()
+void Core::changeName(NameChangeParameters nameChangeParameters)
 {
     nameChanger->initiateRenameFiles(nameChangeParameters);
 }

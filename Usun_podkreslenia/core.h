@@ -27,16 +27,16 @@ private:
 
     Settings *settingsReader;
 
-    NameChangeParameters nameChangeParameters;
+    //NameChangeParameters nameChangeParameters;
 
 public:
-    void changeName(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
+    void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okno ustawień
-    void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
-    NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
+    //void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
+    //NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
 };
 
 #endif // CORE_H

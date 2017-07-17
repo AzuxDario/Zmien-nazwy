@@ -225,10 +225,9 @@ void Widget::selectFolder()
 void Widget::startNameChange()
 {
     setNameChangesParameters();
-    programCore->setNameChangeParameters(nameChangeParameters);
     disableButtonsSelectFolder(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wywołać drugi raz funkcji
     disableButtonsStartNameChange();
-    programCore->changeName();
+    programCore->changeName(nameChangeParameters);
     enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
     textBrowserAbout->setText("<b>Program zakończył zmianę nazw w wybranym katalogu. Można teraz wybrać kolejny katalog.</b><br />" + aboutApplication);
 }
