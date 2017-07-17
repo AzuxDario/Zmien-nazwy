@@ -13,11 +13,11 @@ bool Settings::readSettings()
         rebuildFile();
     if(settingsFile.open(QIODevice::ReadOnly))
     {
-        QTextStream zawartoscPliku(&settingsFile);
+        QTextStream stream(&settingsFile);
         QString line;
-        while(zawartoscPliku.atEnd() == 0)
+        while(stream.atEnd() == 0)
         {
-            line = zawartoscPliku.readLine();
+            line = stream.readLine();
             setSetting(line);
         }
         settingsFile.close();
@@ -50,6 +50,11 @@ bool Settings::saveSettings()
             stream << "1" << endl;
         else
             stream << "0" << endl;
+        stream << "czyZachowacPauzyPomiedzySpacjami=";
+        if(nameChangeParameters.getDontReplaceDashesSurrondedBySpaces() == true)
+            stream << "1" << endl;
+        else
+            stream << "0" << endl;
         stream << "czyZamienicKropki=";
         if(nameChangeParameters.getReplaceDots() == true)
             stream << "1" << endl;
@@ -60,16 +65,26 @@ bool Settings::saveSettings()
             stream << "1" << endl;
         else
             stream << "0" << endl;
-        stream << "czyPierwszaDuza=";
-        if(nameChangeParameters.getChangeLetters() == true)
+        stream << "usunWielokrotneSpacje=";
+        if(nameChangeParameters.getRemoveMultiplySpaces() == true)
             stream << "1" << endl;
         else
             stream << "0" << endl;
-        stream << "czyRozszerzenieMale=";
-        if(nameChangeParameters.getChangeExtension() == true)
-            stream << "1";
+        stream << "usunSpacjeNaPoczatku=";
+        if(nameChangeParameters.getRemoveSpacesAtBegin() == true)
+            stream << "1" << endl;
         else
-            stream << "0";
+            stream << "0" << endl;
+        stream << "usunSpacjeNaKoncu=";
+        if(nameChangeParameters.getRemoveSpacesAtEnd() == true)
+            stream << "1" << endl;
+        else
+            stream << "0" << endl;
+        stream << "rozmiarLiter=";
+        stream << nameChangeParameters.getChangeLetters() << endl;
+        stream << "rozmiarRozszezenia=";
+        stream << nameChangeParameters.getChangeExtension();
+
         settingsFile.close();
         return true;
     }
@@ -88,10 +103,14 @@ bool Settings::rebuildFile()
         stream << "czyZamienicWPodfolderach=0" << endl;
         stream << "czyZamienicPodkreslenia=0" << endl;
         stream << "czyZamienicPauzy=0" << endl;
+        stream << "czyZachowacPauzyPomiedzySpacjami=0" <<endl;
         stream << "czyZamienicKropki=0" << endl;
         stream << "czyZamienicKropkeRozszerzenia=0" << endl;
-        stream << "czyPierwszaDuza=0" << endl;
-        stream << "czyRozszerzenieMale=0";
+        stream << "usunWielokrotneSpacje=0" << endl;
+        stream << "usunSpacjeNaPoczatku=0" << endl;
+        stream << "usunSpacjeNaKoncu=0" << endl;
+        stream << "rozmiarLiter=0" << endl;
+        stream << "rozmiarRozszezenia=0";
         settingsFile.close();
         return true;
     }
@@ -112,13 +131,21 @@ void Settings::setSetting(QString line)
             nameChangeParameters.setReplaceUnderscores(value);
         else if(option == "czyZamienicPauzy")
             nameChangeParameters.setReplaceDashes(value);
+        else if(option == "czyZachowacPauzyPomiedzySpacjami")
+            nameChangeParameters.setDontReplaceDashesSurrondedBySpaces(value);
         else if(option == "czyZamienicKropki")
             nameChangeParameters.setReplaceDots(value);
         else if(option == "czyZamienicKropkeRozszerzenia")
             nameChangeParameters.setReplaceExtensionDot(value);
-        else if(option == "czyPierwszaDuza")
+        else if(option == "usunWielokrotneSpacje")
+            nameChangeParameters.setRemoveMultiplySpaces(value);
+        else if(option == "usunSpacjeNaPoczatku")
+            nameChangeParameters.setRemoveSpacesAtBegin(value);
+        else if(option == "usunSpacjeNaKoncu")
+            nameChangeParameters.setRemoveSpacesAtEnd(value);
+        else if(option == "rozmiarLiter")
             nameChangeParameters.setChangeLetters(value);
-        else if(option == "czyRozszerzenieMale")
+        else if(option == "rozmiarRozszezenia")
             nameChangeParameters.setChangeExtension(value);
     }
 }
