@@ -306,6 +306,18 @@ void Widget::setButtonSelection()
     {
         checkBoxReplaceExtensionDot->setEnabled(true);
     }
+    else
+    {
+        checkBoxReplaceExtensionDot->setDisabled(true);
+    }
+    if(parameters.getReplaceDashes() = true)
+    {
+        checkBoxDontReplaceDashesSurrondedBySpaces->setEnabled(true);
+    }
+    else
+    {
+        checkBoxDontReplaceDashesSurrondedBySpaces->setDisabled(true);
+    }
 
 }
 
