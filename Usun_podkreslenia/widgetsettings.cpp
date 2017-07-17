@@ -17,6 +17,8 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 
     //--------Przycisk--------//
     buttonOK = new QPushButton("Ok",this);
+    buttonOK->setMinimumHeight(30);
+    buttonOK->setMaximumWidth(120);
 
     //--------Check Boxy--------//
     checkBoxReplaceInSubfolders = new QCheckBox("Zastąp znaki także w podfolderach");

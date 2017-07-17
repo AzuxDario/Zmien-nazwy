@@ -46,8 +46,12 @@ Widget::Widget(QWidget *parent) :
     //--------Przyciski--------//
     buttonSelectFolder = new QPushButton("Wybierz folder",this);
     buttonSelectFolder->setStyleSheet("font-size:11px;");
+    buttonSelectFolder->setMinimumHeight(30);
+    buttonSelectFolder->setMaximumWidth(120);
     buttonStartNameChange = new QPushButton("Rozpocznij zmianę",this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
+    buttonStartNameChange->setMaximumHeight(30);
+    buttonStartNameChange->setMaximumWidth(120);
     buttonStartNameChange->setDisabled(true);
 
     //--------Check Boxy--------//
@@ -81,6 +85,7 @@ Widget::Widget(QWidget *parent) :
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
     progressBar->setTextVisible(false);
+    progressBar->setMinimumHeight(30);
 
 
     //----Layouty----//
