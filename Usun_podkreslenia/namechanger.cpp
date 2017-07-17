@@ -97,7 +97,7 @@ QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::L
         int end = fileName.length();
         for(int i = 1; i < end; i++)
         {
-            if(fileName[i-1] != ' ') fileName[i] = fileName[i].toUpper();
+            if(fileName[i-1] == ' ') fileName[i] = fileName[i].toUpper();
         }
         break;
 
