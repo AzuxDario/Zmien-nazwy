@@ -15,7 +15,7 @@ Core::Core(QProgressBar *progressBar)
     //--------Obiekt czytajacy ustawienia--------//
     settingsReader = new Settings;
 
-    nameChangeParameters = settingsReader->nameChangeParameters;
+    nameChangeParameters = settingsReader->getNameChangeParameters();
 }
 
 void Core::changeName(NameChangeParameters nameChangeParameters)

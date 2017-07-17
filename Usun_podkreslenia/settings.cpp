@@ -81,9 +81,9 @@ bool Settings::saveSettings()
         else
             stream << "0" << endl;
         stream << "rozmiarLiter=";
-        stream << nameChangeParameters.getChangeLetters() << endl;
+        stream << static_cast<int>(nameChangeParameters.getChangeLetters()) << endl;
         stream << "rozmiarRozszezenia=";
-        stream << nameChangeParameters.getChangeExtension();
+        stream << static_cast<int>(nameChangeParameters.getChangeExtension());
 
         settingsFile.close();
         return true;
@@ -109,8 +109,8 @@ bool Settings::rebuildFile()
         stream << "usunWielokrotneSpacje=0" << endl;
         stream << "usunSpacjeNaPoczatku=0" << endl;
         stream << "usunSpacjeNaKoncu=0" << endl;
-        stream << "rozmiarLiter=0" << endl;
-        stream << "rozmiarRozszezenia=0";
+        stream << "rozmiarLiter=4" << endl;
+        stream << "rozmiarRozszezenia=3";
         settingsFile.close();
         return true;
     }
@@ -144,8 +144,8 @@ void Settings::setSetting(QString line)
         else if(option == "usunSpacjeNaKoncu")
             nameChangeParameters.setRemoveSpacesAtEnd(value);
         else if(option == "rozmiarLiter")
-            nameChangeParameters.setChangeLetters(value);
+            nameChangeParameters.setChangeLetters(static_cast<NameChangeParameters::Letters>(value));
         else if(option == "rozmiarRozszezenia")
-            nameChangeParameters.setChangeExtension(value);
+            nameChangeParameters.setChangeExtension(static_cast<NameChangeParameters::Extensions>(value));
     }
 }

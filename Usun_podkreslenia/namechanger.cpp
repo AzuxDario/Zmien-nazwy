@@ -54,12 +54,12 @@ QString NameChanger::replaceDashes(QString fileName, bool dontReplaceDashesSurro
     }
     else
     {
-        if(fileName[0] == "-") fileName[0] = " ";
+        if(fileName[0] == '-') fileName[0] = ' ';
         int end = fileName.length()-1;
-        if(fileName[end] == "-") fileName[end] = " ";
+        if(fileName[end] == '-') fileName[end] = ' ';
         for(int i = 1; i < end; i++)
         {
-            if((fileName[i-1] != " " || fileName[i+1] != " ") && fileName[i] == "-") fileName[i] = " ";
+            if((fileName[i-1] != ' '|| fileName[i+1] != ' ') && fileName[i] == '-') fileName[i] = ' ';
         }
     }
     return fileName;
@@ -80,6 +80,8 @@ QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::L
 {
     switch(changeLetters)
     {
+    case NameChangeParameters::Letters::DoNothing:
+        break;
     case NameChangeParameters::Letters::FirstBig:
         fileName[0] = fileName[0].toUpper();
         break;
@@ -95,12 +97,10 @@ QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::L
         int end = fileName.length();
         for(int i = 1; i < end; i++)
         {
-            if(fileName[i-1] != " ") fileName[i] = fileName[i].toUpper();
+            if(fileName[i-1] != ' ') fileName[i] = fileName[i].toUpper();
         }
         break;
-    case NameChangeParameters::Letters::DoNothing:
-        ;
-        break;
+
     }
     return fileName;
 }
@@ -114,8 +114,8 @@ QString NameChanger::changeExtensionSize(QString fileName, NameChangeParameters:
         switch(changeExtension)
         {
         case NameChangeParameters::Extensions::FirstBig:
-            if(extensionDotPosition+1 < fileName)
-                fileName[i] = fileName[i].toUpper();
+            if(extensionDotPosition+1 < fileName.length())
+                fileName[extensionDotPosition+1] = fileName[extensionDotPosition+1].toUpper();
             break;
         case NameChangeParameters::Extensions::AllBig:
             for(int i = extensionDotPosition+1; i < fileName.length(); i++)
@@ -133,14 +133,15 @@ QString NameChanger::changeExtensionSize(QString fileName, NameChangeParameters:
 }
 
 //----Usuwa spację----//
-QString removeSpaces(QString fileName, bool removeMultiplySpaces, bool removeSpacesAtBegin, bool removeSpacesAtEnd)
+QString NameChanger::removeSpaces(QString fileName, bool removeMultiplySpaces, bool removeSpacesAtBegin, bool removeSpacesAtEnd)
 {
-    if(removeSpacesAtBegin == true && fileName[0] == " ")
+    if(removeSpacesAtBegin == true && fileName[0] == ' ')
         fileName.remove(0,1);
-    if(removeSpacesAtBegin == true && fileName[fileName.length()-1] == " ")
+    if(removeSpacesAtEnd == true && fileName[fileName.length()-1] == ' ')
         fileName.remove(fileName.length()-1,1);
     if(removeMultiplySpaces == true)
         fileName.replace("[ ]+"," ");
+    return fileName;
 }
 
 //----Wykonuje operacje zmiany nazwy pliku----//
@@ -154,9 +155,7 @@ QString NameChanger::changeFileName(QString fileName)
         fileName = replaceDots(fileName, nameChangeParameters.getReplaceExtensionDot());
     fileName = changeLettersSize(fileName, nameChangeParameters.getChangeLetters());
     fileName = changeExtensionSize(fileName, nameChangeParameters.getChangeExtension());
-    checkBoxRemoveMultiplySpaces
-    checkBoxRemoveSpacesAtBegin;
-    checkBoxRemoveSpacesAtEnd;
+    fileName = removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
     return fileName;
 }
 

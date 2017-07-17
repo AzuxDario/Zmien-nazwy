@@ -30,8 +30,8 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     checkBoxRemoveSpacesAtBegin = new QCheckBox("Usuń spacje na początku nazwy");
     checkBoxRemoveSpacesAtEnd = new QCheckBox("Usuń spacje na końcu nazwy");
     checkBoxChangeFirstLetterToBig = new QRadioButton("Zmień pierwszą literę w nazwie pliku na dużą");
-    checkBoxChangeLettersToBig = new QRadioButton("Zmień wszstkie litery na duże");
-    checkBoxChangeLettersToSmall = new QRadioButton("Zmień wszstkie litery na małe");
+    checkBoxChangeLettersToBig = new QRadioButton("Zmień wszystkie litery na duże");
+    checkBoxChangeLettersToSmall = new QRadioButton("Zmień wszystkie litery na małe");
     checkBoxChangeFirstLettersToBig = new QRadioButton("Zmień pierwsze litery w słowach na duże");
     checkBoxDontChangeName = new QRadioButton("Nie rób nic");
     checkBoxChangeExtensionToBig = new QRadioButton("Zmień rozszerzenie na pisane dużymi literami");
@@ -190,7 +190,7 @@ void WidgetSettings::setCheckBoxes()
     {
         checkBoxReplaceExtensionDot->setDisabled(true);
     }
-    if(parameters.getReplaceDashes() = true)
+    if(parameters.getReplaceDashes() == true)
     {
         checkBoxDontReplaceDashesSurrondedBySpaces->setEnabled(true);
     }

@@ -27,7 +27,7 @@ private:
 
     Settings *settingsReader;
 
-    //NameChangeParameters nameChangeParameters;
+    NameChangeParameters nameChangeParameters;
 
 public:
     void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
@@ -35,8 +35,8 @@ public:
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okno ustawień
-    //void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
-    //NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
+    void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
+    NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
 };
 
 #endif // CORE_H
