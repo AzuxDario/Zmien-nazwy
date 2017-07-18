@@ -78,6 +78,7 @@ QString NameChanger::replaceDots(QString fileName, bool replaceExtensionDot)
 //----Zmienia pierwszą literę na dużą----//
 QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::Letters changeLetters)
 {
+    int extensionDotPosition = fileName.lastIndexOf(".");
     switch(changeLetters)
     {
     case NameChangeParameters::Letters::DoNothing:
@@ -85,11 +86,13 @@ QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::L
     case NameChangeParameters::Letters::FirstBig:
         fileName[0] = fileName[0].toUpper();
         break;
-    case NameChangeParameters::Letters::AllBig:
-        fileName = fileName.toUpper();
+    case NameChangeParameters::Letters::AllBig:    
+        for(int i = 0; i<extensionDotPosition; i++)
+            fileName[i] = fileName[i].toUpper();
         break;
     case NameChangeParameters::Letters::AllSmall:
-        fileName = fileName.toLower();
+        for(int i = 0; i<extensionDotPosition; i++)
+            fileName[i] = fileName[i].toLower();
         break;
     case NameChangeParameters::Letters::FirstInWordsBig:
         fileName[0] = fileName[0].toUpper();
@@ -134,9 +137,9 @@ QString NameChanger::changeExtensionSize(QString fileName, NameChangeParameters:
 //----Usuwa spację----//
 QString NameChanger::removeSpaces(QString fileName, bool removeMultiplySpaces, bool removeSpacesAtBegin, bool removeSpacesAtEnd)
 {
-    if(removeSpacesAtBegin == true && fileName[0] == ' ')
+    if(removeSpacesAtBegin == true)
         fileName.replace(QRegExp("^[ ]+"),"");
-    if(removeSpacesAtEnd == true && fileName[fileName.length()-1] == ' ')
+    if(removeSpacesAtEnd == true)
         fileName.replace(QRegExp("[ ]+$"),"");
     if(removeMultiplySpaces == true)
         fileName.replace(QRegExp("[ ]+")," ");
