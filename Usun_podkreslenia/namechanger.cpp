@@ -135,9 +135,9 @@ QString NameChanger::changeExtensionSize(QString fileName, NameChangeParameters:
 QString NameChanger::removeSpaces(QString fileName, bool removeMultiplySpaces, bool removeSpacesAtBegin, bool removeSpacesAtEnd)
 {
     if(removeSpacesAtBegin == true && fileName[0] == ' ')
-        fileName.remove(0,1);
+        fileName.replace(QRegExp("^[ ]+"),"");
     if(removeSpacesAtEnd == true && fileName[fileName.length()-1] == ' ')
-        fileName.remove(fileName.length()-1,1);
+        fileName.replace(QRegExp("[ ]+$"),"");
     if(removeMultiplySpaces == true)
         fileName.replace(QRegExp("[ ]+")," ");
     return fileName;
