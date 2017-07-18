@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QStringList>
+#include <QRegExp>
 #include "folderdetetor.h"
 #include "namechangeparameters.h"
 

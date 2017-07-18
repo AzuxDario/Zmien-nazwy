@@ -8,7 +8,7 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
 
     //--------Zmienne przechowujące ciągi znaków--------//
-    aboutApplication = "Program zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) na spację w nazwach plików w wybranym folderze.\nAby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
+    aboutApplication = "Aby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
 
     //----Tworzenie paska menu----//
     menuBar = new QMenuBar();

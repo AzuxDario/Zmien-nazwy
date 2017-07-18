@@ -92,7 +92,6 @@ QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::L
         fileName = fileName.toLower();
         break;
     case NameChangeParameters::Letters::FirstInWordsBig:
-        fileName = fileName.toLower();
         fileName[0] = fileName[0].toUpper();
         int end = fileName.length();
         for(int i = 1; i < end; i++)
@@ -140,7 +139,7 @@ QString NameChanger::removeSpaces(QString fileName, bool removeMultiplySpaces, b
     if(removeSpacesAtEnd == true && fileName[fileName.length()-1] == ' ')
         fileName.remove(fileName.length()-1,1);
     if(removeMultiplySpaces == true)
-        fileName.replace("[ ]+"," ");
+        fileName.replace(QRegExp("[ ]+")," ");
     return fileName;
 }
 
