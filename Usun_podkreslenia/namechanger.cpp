@@ -1,9 +1,8 @@
 #include "namechanger.h"
 
-NameChanger::NameChanger(QProgressBar *progressBar)
+NameChanger::NameChanger()
 {
     warningMessageBoxText = "Brak katalogu.\nKatalog mógł zostać usunięty, zmieniono jego nazwę, został przeniesiony\nlub nastąpiła inna czynność uniemożliwiająca znalezienie katalogu";
-    this->progressBar = progressBar;
 }
 
 void NameChanger::initiateRenameFiles(NameChangeParameters nameChangeParameters)
@@ -173,22 +172,14 @@ bool NameChanger::isFileNameIdentical(QString oldName, QString newName)
 //----Ustawia pasek postępu w stan zajętości----//
 void NameChanger::setBusyProgressBar()
 {
-    progressBar->setMaximum(0);
-    progressBar->setMinimum(0);
+    emit initializeProgressBar(0,0);
 }
 
 //----Inicjuje pasek postępu ustawiając jako wartość maksymalną ilość plików w folderze----//
 void NameChanger::initiateProgressBar(int max)
 {
-    progressBar->setMinimum(0);
-    progressBar->setMaximum(max);
-    progressBar->setValue(0);
-}
-
-//----Zeruje pasek postępu----//
-void NameChanger::resetProgressBar()
-{
-    progressBar->reset();
+    emit initializeProgressBar(0, max);
+    emit changeProgressBar(0);
 }
 
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
@@ -208,6 +199,7 @@ void NameChanger::renameFiles()
 
     QStringList folderList = folderDetector.getFolderList();
 
+    int numberOfRenamedFiles = 0;
     for(auto folderListIterator = folderList.begin(); folderListIterator != folderList.end(); folderListIterator++)
     {
         QString nextFolder = *folderListIterator;
@@ -216,7 +208,8 @@ void NameChanger::renameFiles()
             continue;
         for(unsigned int i = 0; i < currentFolder.count(); i++)
         {
-            progressBar->setValue(progressBar->value()+i+1);
+            numberOfRenamedFiles++;
+            changeProgressBar(numberOfRenamedFiles);
 
             if(isFile(currentFolder, currentFolder[i]))
             {
@@ -232,7 +225,7 @@ void NameChanger::renameFiles()
             }
         }
     }
-    resetProgressBar();
+    emit resetProgressBar();
     selectedFolder = "";
 }
 

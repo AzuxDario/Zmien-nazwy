@@ -126,6 +126,9 @@ private slots:
     void checkBoxDotsClicked();
     void checkBoxDashesClicked();
     void setNameChangesParameters();
+    void initializeProgressBar(int minValue, int maxValue);
+    void changeProgressBar(int value);
+    void resetProgressBar();
 
 };
 

@@ -148,7 +148,7 @@ Widget::Widget(QWidget *parent) :
     buttonHLayout->addWidget(buttonStartNameChange);
 
     //----Wskaźnik na rdzeń programu----//
-    programCore = new Core(progressBar);
+    programCore = new Core();
 
     //----Ustawienie stanu CheckBoxów zgodnie ze zmiennymi w rdzeniu----//
     setButtonSelection();
@@ -168,6 +168,9 @@ Widget::Widget(QWidget *parent) :
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
 
+    connect(programCore,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBar(int,int)));
+    connect(programCore,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBar(int)));
+    connect(programCore,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBar()));
 }
 
 
@@ -386,4 +389,20 @@ void Widget::setNameChangesParameters()
     {
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::DoNothing);
     }
+}
+
+void Widget::initializeProgressBar(int minValue, int maxValue)
+{
+    progressBar->setMinimum(minValue);
+    progressBar->setMaximum(maxValue);
+}
+
+void Widget::changeProgressBar(int value)
+{
+    progressBar->setValue(value);
+}
+
+void Widget::resetProgressBar()
+{
+    progressBar->reset();
 }
