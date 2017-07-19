@@ -2,7 +2,6 @@
 #define WIDGETCHANGELOG_H
 
 #include <QWidget>
-#include <QTextCodec>
 #include <QTextBrowser>
 #include <QPushButton>
 #include <QDesktopWidget>

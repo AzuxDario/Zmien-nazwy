@@ -2,7 +2,6 @@
 #define WIDGETABOUT_H
 
 #include <QWidget>
-#include <QTextCodec>
 #include <QLabel>
 #include <QPushButton>
 #include <QDesktopWidget>

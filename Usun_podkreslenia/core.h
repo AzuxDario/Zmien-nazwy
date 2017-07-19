@@ -16,9 +16,7 @@ public:
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
-    QString aboutApplication; //Do wyrzucenia
     QString widgetAboutText;
-    QString folderNotExist; //Do wyrzucenia
     QString widgetChangeLogText;
 
     WidgetChangeLog *widgetChangeLog;
@@ -29,15 +27,16 @@ private:
 
     Settings *settingsReader;
 
-public:
     NameChangeParameters nameChangeParameters;
 
 public:
-    void changeName(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
+    void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okno ustawień
+    void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
+    NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
 };
 
 #endif // CORE_H

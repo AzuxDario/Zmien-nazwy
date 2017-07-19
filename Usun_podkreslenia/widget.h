@@ -8,15 +8,16 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QProgressBar>
-#include <QTextCodec>
 #include <QMenuBar>
 #include <QFile>
 #include <QCheckBox>
+#include <QRadioButton>
 #include <QCloseEvent>
 #include <QKeySequence>
 #include <QDesktopWidget>
-#include "widgetchangelog.h"
-#include "widgetabout.h"
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QGroupBox>
 #include "namechanger.h"
 #include "core.h"
 
@@ -45,15 +46,26 @@ private:
     QAction *actionStartNameChange;
     QAction *actionExit;
     QAction *actionSettings;
-    QAction *actionReplaceInSubfolders;
-    QAction *actionReplaceUnderscores;
-    QAction *actionReplaceDashes;
-    QAction *actionReplaceDots;
-    QAction *actionReplaceExtensionDot;
-    QAction *actionChangeFirstLetterToBig;
-    QAction *actionChangeExtensionToSmall;
     QAction *actionAbout;
     QAction *actionChangeLog;
+
+    //----Layouty----//
+    QVBoxLayout *windowVLayout;
+    QHBoxLayout *mainHLayout;
+    QVBoxLayout *leftVLayout;
+    QVBoxLayout *rightVLayout;
+    QHBoxLayout *buttonHLayout;
+
+    QVBoxLayout *buttonGroupSubfoldersLayout;
+    QVBoxLayout *buttonGroupReplaceLayout;
+    QVBoxLayout *buttonGroupLetterSizeLayout;
+    QVBoxLayout *buttonGroupExtensionSizeLayout;
+    QVBoxLayout *buttonGroupSpaceLayout;
+    QGroupBox *buttonGroupSubfolders;
+    QGroupBox *buttonGroupReplace;
+    QGroupBox *buttonGroupLetterSize;
+    QGroupBox *buttonGroupExtensionSize;
+    QGroupBox *buttonGroupSpace;
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;
@@ -63,10 +75,21 @@ private:
     QCheckBox *checkBoxReplaceInSubfolders;
     QCheckBox *checkBoxReplaceUnderscores;
     QCheckBox *checkBoxReplaceDashes;
+    QCheckBox *checkBoxDontReplaceDashesSurrondedBySpaces;
     QCheckBox *checkBoxReplaceDots;
     QCheckBox *checkBoxReplaceExtensionDot;
-    QCheckBox *checkBoxChangeFirstLetterToBig;
-    QCheckBox *checkBoxChangeExtensionToSmall;
+    QCheckBox *checkBoxRemoveMultiplySpaces;
+    QCheckBox *checkBoxRemoveSpacesAtBegin;
+    QCheckBox *checkBoxRemoveSpacesAtEnd;
+    QRadioButton *checkBoxChangeFirstLetterToBig;
+    QRadioButton *checkBoxChangeLettersToBig;
+    QRadioButton *checkBoxChangeLettersToSmall;
+    QRadioButton *checkBoxChangeFirstLettersToBig;
+    QRadioButton *checkBoxDontChangeName;
+    QRadioButton *checkBoxChangeExtensionToSmall;
+    QRadioButton *checkBoxChangeExtensionToBig;
+    QRadioButton *checkBoxChangeExtensionFirstLettersToBig;
+    QRadioButton *checkBoxChangeDontChangeExtension;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
@@ -79,15 +102,12 @@ private:
 
     //----Zmienne przechuwyjące ciągi znaków----//
     QString aboutApplication;
-    QString folderNotExistError; //Do usunięcia
-
-    //----Zmienne okienek----//
-    WidgetChangeLog *oknoRejestrZmian; //Do usunięcia
-    WidgetAbout *oknoOProgramie; //Do usunięcia
 
     //----Rdzeń----//
     Core *programCore;
 
+    //----Parametry zmiany nazw----//
+    NameChangeParameters nameChangeParameters;
 
 private slots:
     void closeEvent(QCloseEvent *); //Zamyka program po zamknięciu głównego okna
@@ -95,7 +115,6 @@ private slots:
     void disableButtonsStartNameChange(); //Funkcja deaktywuje przycisk Rozpocznij
     void enableButtonsSelectFolder(); //Włącza aktywność przycisku Wybierz folder
     void disableButtonsSelectFolder(); //Wyłącza aktywność przycisków Wybierz folder
-    void changeCheckBoxExtensionDotActivity(); //Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki
     void selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     void startNameChange(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
@@ -104,20 +123,9 @@ private slots:
     void setButtonSelection(); //Ustawia zaznaczenia przycisków
 
     //----Funkcje aktualizujace stany między check boxami a paskiem
-    void checkBoxSubfoldersClicked();
-    void checkBoxUnderscoresClicked();
-    void checkBoxDashesClicked();
     void checkBoxDotsClicked();
-    void checkBoxExtensionDotsClicked();
-    void checkBoxFirstLetterToBigClicked();
-    void checkBoxExtensionToSmallClicked();
-    void actionSubfoldersClicked();
-    void actionUnderscoresClicked();
-    void actionDashesClicked();
-    void actionDotsClicked();
-    void actionExtensionDotsClicked();
-    void actionFirstLetterToBigClicked();
-    void actionExtensionToSmallClicked();
+    void checkBoxDashesClicked();
+    void setNameChangesParameters();
 
 };
 
