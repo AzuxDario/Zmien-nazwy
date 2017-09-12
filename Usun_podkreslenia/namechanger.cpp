@@ -211,9 +211,9 @@ void NameChanger::renameFiles()
             numberOfRenamedFiles++;
             changeProgressBar(numberOfRenamedFiles);
 
-            if(isFile(currentFolder, currentFolder[i]))
+            if(isFile(currentFolder, currentFolder[static_cast<int>(i)]))
             {
-                QString fileName = currentFolder[i];
+                QString fileName = currentFolder[static_cast<int>(i)];
                 QString newFileName = changeFileName(fileName);
                 if(isFileNameIdentical(fileName,newFileName))
                     continue;

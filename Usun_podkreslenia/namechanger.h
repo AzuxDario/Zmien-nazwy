@@ -10,9 +10,13 @@
 #include "folderdetetor.h"
 #include "namechangeparameters.h"
 
+class NameChangerTest;
+
 class NameChanger :public QObject
 {
     Q_OBJECT
+
+    friend NameChangerTest;
 
 public:
     NameChanger();

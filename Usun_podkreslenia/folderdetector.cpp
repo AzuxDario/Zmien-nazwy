@@ -37,8 +37,8 @@ void FolderDetector::searchFolders()
                 continue;
             numberFiles += currentFolder.count();
             for(unsigned int i = 0; i < currentFolder.count(); i++)
-                if(isSubfolder(currentFolder, currentFolder[i]))
-                    folderList.push_back(currentFolder.absoluteFilePath(currentFolder[i]));
+                if(isSubfolder(currentFolder, currentFolder[static_cast<int>(i)]))
+                    folderList.push_back(currentFolder.absoluteFilePath(currentFolder[static_cast<int>(i)]));
         }
     }
     else

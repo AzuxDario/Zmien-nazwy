@@ -1,6 +1,11 @@
 #include <QString>
+#include <QFileDialog>
+#include <QFile>
+#include <QMessageBox>
+#include <QStringList>
+#include <QRegExp>
 #include <QtTest>
-//#include "../Usun_podkreslenia/namechanger.h"
+#include "../Usun_podkreslenia/namechanger.h"
 class NameChangerTest : public QObject
 {
     Q_OBJECT
@@ -18,12 +23,12 @@ NameChangerTest::NameChangerTest()
 
 void NameChangerTest::replaceUnderscoresTest()
 {
-    //NameChanger nameChanger;
-    //QString expected = "Nazwa pliku.cpp";
-    //received = nameChanger.replaceUnderscores("Nazwa_pliku.cpp");
-    //QVERIFY2(excepted, received);
+    NameChanger nameChanger;
+    QString expected = "Nazwa pliku.cpp";
+    QString received = nameChanger.replaceUnderscores("Nazwa_pliku.cpp");
+    QCOMPARE(expected, received);
 }
 
-//QTEST_APPLESS_MAIN(NameChangerTest)
+QTEST_APPLESS_MAIN(NameChangerTest)
 
 #include "namechangertest.moc"
