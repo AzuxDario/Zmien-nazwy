@@ -17,9 +17,7 @@ CONFIG   += testcase
 
 TEMPLATE = app
 
-HEADERS += ../Usun_podkreslenia/namechanger.h
+HEADERS +=
 
-SOURCES += tst_usun_podkreslenia_test.cpp \
-    namechangertest.cpp \
-    ../Usun_podkreslenia\namechanger.cpp
+SOURCES += tst_usun_podkreslenia_test.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

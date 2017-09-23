@@ -21,6 +21,6 @@ void Usun_podkreslenia_Test::testCase1()
     QVERIFY2(true, "Failure");
 }
 
-//QTEST_APPLESS_MAIN(Usun_podkreslenia_Test)
+QTEST_APPLESS_MAIN(Usun_podkreslenia_Test)
 
 #include "tst_usun_podkreslenia_test.moc"

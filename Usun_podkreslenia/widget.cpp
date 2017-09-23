@@ -20,17 +20,17 @@ Widget::Widget(QWidget *parent) :
     menuSettings = menuBar->addMenu(tr("&Ustawienia"));
     menuHelp = menuBar->addMenu(tr("P&omoc"));
 
-    actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),"Wybierz &folder",this);
+    actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr("Wybierz &folder"),this);
     actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+W")));
-    actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),"&Rozpocznij zmianę",this);
+    actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr("&Rozpocznij zmianę"),this);
     actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
-    actionExit = new QAction(QIcon(":/pasek/wyjscie"),"Wyjści&e",this);
+    actionExit = new QAction(QIcon(":/pasek/wyjscie"),tr("Wyjści&e"),this);
     actionExit->setShortcut(QKeySequence(tr("Ctrl+Q")));
-    actionSettings = new QAction(QIcon(":/pasek/ustawienia"),"&Opcje",this);
+    actionSettings = new QAction(QIcon(":/pasek/ustawienia"),tr("&Opcje"),this);
     actionSettings->setShortcut(QKeySequence(tr("Ctrl+U")));
-    actionAbout = new QAction(QIcon(":/pasek/oProgramie"),"&O programie",this);
+    actionAbout = new QAction(QIcon(":/pasek/oProgramie"),tr("&O programie"),this);
     actionAbout->setShortcuts(QKeySequence::HelpContents);
-    actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),"&Rejestr zmian",this);
+    actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),tr("&Rejestr zmian"),this);
     actionChangeLog->setShortcut(QKeySequence(tr("Ctrl+Z")));
 
     menuFile->addAction(actionSelectFolder);
@@ -44,36 +44,36 @@ Widget::Widget(QWidget *parent) :
     actionStartNameChange->setDisabled(true);
 
     //--------Przyciski--------//
-    buttonSelectFolder = new QPushButton("Wybierz folder",this);
+    buttonSelectFolder = new QPushButton(tr("Wybierz folder"),this);
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
-    buttonStartNameChange = new QPushButton("Rozpocznij zmianę",this);
+    buttonStartNameChange = new QPushButton(tr("Rozpocznij zmianę"),this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
     buttonStartNameChange->setMaximumHeight(30);
     buttonStartNameChange->setMaximumWidth(120);
     buttonStartNameChange->setDisabled(true);
 
     //--------Check Boxy--------//
-    checkBoxReplaceInSubfolders = new QCheckBox("Zastąp znaki także w podfolderach");
-    checkBoxReplaceUnderscores = new QCheckBox("Zastąp podkreślenia");
-    checkBoxReplaceDashes = new QCheckBox("Zastąp pauzy");
-    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox("Nie zastępuj pauz otoczonych spacjami");
-    checkBoxReplaceDots = new QCheckBox("Zastąp kropki");
-    checkBoxReplaceExtensionDot = new QCheckBox("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń");
+    checkBoxReplaceInSubfolders = new QCheckBox(tr("Zastąp znaki także w podfolderach"));
+    checkBoxReplaceUnderscores = new QCheckBox(tr("Zastąp podkreślenia"));
+    checkBoxReplaceDashes = new QCheckBox(tr("Zastąp pauzy"));
+    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr("Nie zastępuj pauz otoczonych spacjami"));
+    checkBoxReplaceDots = new QCheckBox(tr("Zastąp kropki"));
+    checkBoxReplaceExtensionDot = new QCheckBox(tr("Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń"));
     checkBoxReplaceExtensionDot->setDisabled(true); //Ma być klikalny wtedy gdy wybrano zastępowanie kropek
-    checkBoxRemoveMultiplySpaces = new QCheckBox("Usuń wielokrotne spacje");
-    checkBoxRemoveSpacesAtBegin = new QCheckBox("Usuń spacje na początku nazwy");
-    checkBoxRemoveSpacesAtEnd = new QCheckBox("Usuń spacje na końcu nazwy");
-    checkBoxChangeFirstLetterToBig = new QRadioButton("Zmień pierwszą literę w nazwie pliku na dużą");
-    checkBoxChangeLettersToBig = new QRadioButton("Zmień wszystkie litery na duże");
-    checkBoxChangeLettersToSmall = new QRadioButton("Zmień wszystkie litery na małe");
-    checkBoxChangeFirstLettersToBig = new QRadioButton("Zmień pierwsze litery w słowach na duże");
-    checkBoxDontChangeName = new QRadioButton("Nie rób nic");
-    checkBoxChangeExtensionToBig = new QRadioButton("Zmień rozszerzenie na pisane dużymi literami");
-    checkBoxChangeExtensionToSmall = new QRadioButton("Zmień rozszerzenie na pisane małymi literami");
-    checkBoxChangeExtensionFirstLettersToBig = new QRadioButton("Zmień pierwszą literę rozszerzenia na dużą");
-    checkBoxChangeDontChangeExtension = new QRadioButton("Nie rób nic");
+    checkBoxRemoveMultiplySpaces = new QCheckBox(tr("Usuń wielokrotne spacje"));
+    checkBoxRemoveSpacesAtBegin = new QCheckBox(tr("Usuń spacje na początku nazwy"));
+    checkBoxRemoveSpacesAtEnd = new QCheckBox(tr("Usuń spacje na końcu nazwy"));
+    checkBoxChangeFirstLetterToBig = new QRadioButton(tr("Zmień pierwszą literę w nazwie pliku na dużą"));
+    checkBoxChangeLettersToBig = new QRadioButton(tr("Zmień wszystkie litery na duże"));
+    checkBoxChangeLettersToSmall = new QRadioButton(tr("Zmień wszystkie litery na małe"));
+    checkBoxChangeFirstLettersToBig = new QRadioButton(tr("Zmień pierwsze litery w słowach na duże"));
+    checkBoxDontChangeName = new QRadioButton(tr("Nie rób nic"));
+    checkBoxChangeExtensionToBig = new QRadioButton(tr("Zmień rozszerzenie na pisane dużymi literami"));
+    checkBoxChangeExtensionToSmall = new QRadioButton(tr("Zmień rozszerzenie na pisane małymi literami"));
+    checkBoxChangeExtensionFirstLettersToBig = new QRadioButton(tr("Zmień pierwszą literę rozszerzenia na dużą"));
+    checkBoxChangeDontChangeExtension = new QRadioButton(tr("Nie rób nic"));
 
     //--------Okno z tekstem--------//
     textBrowserAbout = new QTextBrowser(this);
@@ -104,11 +104,11 @@ Widget::Widget(QWidget *parent) :
     buttonGroupExtensionSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox("Podfoldery");
-    buttonGroupReplace = new QGroupBox("Zastąp znaki");
-    buttonGroupLetterSize = new QGroupBox("Zmień rozmiar liter w nazwie");
-    buttonGroupExtensionSize = new QGroupBox("Zmień rozmiar liter w rozszerzeniu");
-    buttonGroupSpace = new QGroupBox("Spacje");
+    buttonGroupSubfolders = new QGroupBox(tr("Podfoldery"));
+    buttonGroupReplace = new QGroupBox(tr("Zastąp znaki"));
+    buttonGroupLetterSize = new QGroupBox(tr("Zmień rozmiar liter w nazwie"));
+    buttonGroupExtensionSize = new QGroupBox(tr("Zmień rozmiar liter w rozszerzeniu"));
+    buttonGroupSpace = new QGroupBox(tr("Spacje"));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
     leftVLayout->addWidget(buttonGroupSpace);
