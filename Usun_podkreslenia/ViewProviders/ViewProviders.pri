@@ -1,6 +1,6 @@
 INCLUDEPATH += ViewProviders
 DEPENDPATH += ViewProviders
 SOURCES += \
-    $$PWD/widgetviewprovider.cpp
+    $$PWD/WidgetViewProvider.cpp
 HEADERS += \
-    $$PWD/widgetviewprovider.h
+    $$PWD/WidgetViewProvider.h

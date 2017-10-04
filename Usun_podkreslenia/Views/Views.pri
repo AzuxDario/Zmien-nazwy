@@ -1,15 +1,18 @@
 INCLUDEPATH += Views
 DEPENDPATH += Views
-SOURCES += Views/widget.cpp \
-	Views/widgetabout.cpp \
-	Views/widgetchangelog.cpp \
-	Views/widgetsettings.cpp
-HEADERS += Views/widget.h \
-	Views/widgetabout.h \
-	Views/widgetchangelog.h \
-	Views/widgetsettings.h
-FORMS += Views/widget.ui \
-	Views/widgetabout.ui \
-	Views/widgetchangelog.ui \
-	Views/widgetsettings.ui
+SOURCES += \
+    $$PWD/Widget.cpp \
+    $$PWD/Widgetabout.cpp \
+    $$PWD/Widgetchangelog.cpp \
+    $$PWD/Widgetsettings.cpp
+HEADERS += \
+    $$PWD/Widget.h \
+    $$PWD/WidgetAbout.h \
+    $$PWD/WidgetChangelog.h \
+    $$PWD/WidgetSettings.h
+FORMS += \
+    $$PWD/Widget.ui \
+    $$PWD/WidgetAbout.ui \
+    $$PWD/WidgetChangelog.ui \
+    $$PWD/WidgetSettings.ui
 	

@@ -1,4 +1,6 @@
 INCLUDEPATH += Models
 DEPENDPATH += Models
-SOURCES += Models/namechangeparameters.cpp
-HEADERS += Models/namechangeparameters.h
+SOURCES += \
+    $$PWD/NameChangeParameters.cpp
+HEADERS += \
+    $$PWD/NameChangeParameters.h

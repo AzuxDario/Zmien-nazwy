@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include "widget.h"
+#include "Widget.h"
 #include <QDesktopWidget>
 
 int main(int argc, char *argv[])
