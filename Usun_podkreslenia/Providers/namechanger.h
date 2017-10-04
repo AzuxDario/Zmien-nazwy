@@ -7,7 +7,7 @@
 #include <QMessageBox>
 #include <QStringList>
 #include <QRegExp>
-#include "folderdetetor.h"
+#include "folderdetector.h"
 #include "namechangeparameters.h"
 
 class NameChangerTest;
