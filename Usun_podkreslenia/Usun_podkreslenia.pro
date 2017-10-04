@@ -10,8 +10,7 @@ QT       += widgets
 TARGET = Usun_podkreslenia
 TEMPLATE = app
 
-#win32:RC_FILE += Ikona.rc
-win32:RC_ICONS += Ikona.ico# for Qt 5
+win32:RC_ICONS += Icons\Ikona.ico
 
 include(Models/Models.pri)
 include(Providers/Providers.pri)
