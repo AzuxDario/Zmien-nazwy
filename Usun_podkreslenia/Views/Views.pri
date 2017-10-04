@@ -2,9 +2,9 @@ INCLUDEPATH += Views
 DEPENDPATH += Views
 SOURCES += \
     $$PWD/Widget.cpp \
-    $$PWD/Widgetabout.cpp \
-    $$PWD/Widgetchangelog.cpp \
-    $$PWD/Widgetsettings.cpp
+    $$PWD/WidgetAbout.cpp \
+    $$PWD/WidgetChangelog.cpp \
+    $$PWD/WidgetSettings.cpp
 HEADERS += \
     $$PWD/Widget.h \
     $$PWD/WidgetAbout.h \

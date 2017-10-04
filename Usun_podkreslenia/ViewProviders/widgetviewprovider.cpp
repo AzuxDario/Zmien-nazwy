@@ -1,6 +1,6 @@
-#include "core.h"
+#include "WidgetViewProvider.h"
 
-Core::Core()
+WidgetViewProvider::WidgetViewProvider()
 {
     widgetAboutText = "Wersja programu: 4.0\nProgram zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) "
             "na spację w nazwach plików w wybranym folderze.\n© Paweł Miękina";
@@ -36,13 +36,13 @@ Core::Core()
     connect(nameChanger,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBarSlot()));
 }
 
-void Core::changeName(NameChangeParameters nameChangeParameters)
+void WidgetViewProvider::changeName(NameChangeParameters nameChangeParameters)
 {
     nameChanger->initiateRenameFiles(nameChangeParameters);
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
-QString Core::selectFolder()
+QString WidgetViewProvider::selectFolder()
 {
     bool stanOperacji = nameChanger->selectFolder(); //Otwiera okno wyboru pliku
 
@@ -53,7 +53,7 @@ QString Core::selectFolder()
 }
 
 //----Pokazuje okienko z informacjami o programie----//
-void Core::showWidgetAbout()
+void WidgetViewProvider::showWidgetAbout()
 {
     if(widgetAbout == NULL) //Jeżli okna nie ma stwórz je
         widgetAbout = new WidgetAbout(widgetAboutText);
@@ -62,7 +62,7 @@ void Core::showWidgetAbout()
 }
 
 //----Wyświetla okno ustawień----//
-void Core::showWidgetSettings()
+void WidgetViewProvider::showWidgetSettings()
 {
     if(widgetSettings == NULL) //Jeżli okna nie ma stwórz je
         widgetSettings = new WidgetSettings();
@@ -71,7 +71,7 @@ void Core::showWidgetSettings()
 }
 
 //----Wyświetla okienko z rejestrem zmian----//
-void Core::showWidgetChangeLog()
+void WidgetViewProvider::showWidgetChangeLog()
 {
     if(widgetChangeLog == NULL) //Jeżli okna nie ma stwórz je
         widgetChangeLog = new WidgetChangeLog(widgetChangeLogText);

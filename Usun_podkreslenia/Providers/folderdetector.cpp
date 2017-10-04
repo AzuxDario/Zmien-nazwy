@@ -1,4 +1,4 @@
-#include "folderdetector.h"
+#include "FolderDetector.h"
 
 FolderDetector::FolderDetector(QString selectedFolder, bool searchInSubfolders)
 {

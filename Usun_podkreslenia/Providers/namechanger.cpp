@@ -1,4 +1,4 @@
-#include "namechanger.h"
+#include "NameChanger.h"
 
 NameChanger::NameChanger()
 {

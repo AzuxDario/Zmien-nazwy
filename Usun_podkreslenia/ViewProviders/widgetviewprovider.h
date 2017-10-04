@@ -1,20 +1,19 @@
-#ifndef CORE_H
-#define CORE_H
+#ifndef WIDGETVIEWPROVIDER_H
+#define WIDGETVIEWPROVIDER_H
 
-#include <QProgressBar>
-#include "widgetabout.h"
-#include "widgetchangelog.h"
-#include "namechanger.h"
-#include "widgetsettings.h"
-#include "settings.h"
-#include "namechangeparameters.h"
+#include "WidgetAbout.h"
+#include "WidgetChangelog.h"
+#include "NameChanger.h"
+#include "WidgetSettings.h"
+#include "Settings.h"
+#include "NameChangeParameters.h"
 
-class Core :public QObject
+class WidgetViewProvider :public QObject
 {
     Q_OBJECT
 
 public:
-    Core();
+    WidgetViewProvider();
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
@@ -51,4 +50,4 @@ private slots:
     void resetProgressBarSlot() {emit resetProgressBar();}
 };
 
-#endif // CORE_H
+#endif // WIDGETVIEWPROVIDER_H

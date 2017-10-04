@@ -1,4 +1,4 @@
-#include "widgetchangelog.h"
+#include "WidgetChangelog.h"
 #include "ui_widgetchangelog.h"
 
 WidgetChangeLog::WidgetChangeLog(QString widgetText, QWidget *parent) :

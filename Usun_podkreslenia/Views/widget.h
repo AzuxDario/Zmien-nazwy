@@ -18,8 +18,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
-#include "namechanger.h"
-#include "widgetviewprovider.h"
+#include "NameChanger.h"
+#include "WidgetViewProvider.h"
 
 
 namespace Ui {

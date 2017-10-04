@@ -1,4 +1,4 @@
-#include "widgetabout.h"
+#include "WidgetAbout.h"
 #include "ui_widgetabout.h"
 
 WidgetAbout::WidgetAbout(QString widgetText, QWidget *parent) :

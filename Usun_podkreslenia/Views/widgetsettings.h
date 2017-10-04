@@ -10,7 +10,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QDesktopWidget>
-#include "settings.h"
+#include "Settings.h"
 
 namespace Ui {
 class WidgetSettings;

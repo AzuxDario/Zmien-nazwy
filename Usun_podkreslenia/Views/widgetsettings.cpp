@@ -1,4 +1,4 @@
-#include "widgetsettings.h"
+#include "WidgetSettings.h"
 #include "ui_widgetsettings.h"
 
 WidgetSettings::WidgetSettings(QWidget *parent) :

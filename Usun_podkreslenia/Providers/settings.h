@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QString>
-#include "namechangeparameters.h"
+#include "NameChangeParameters.h"
 
 class Settings
 {
