@@ -9,10 +9,12 @@
 #include "settings.h"
 #include "namechangeparameters.h"
 
-class Core
+class Core :public QObject
 {
+    Q_OBJECT
+
 public:
-    Core(QProgressBar *progressBar);
+    Core();
 
 private:
     //----Zmienne przechuwyjące ciągi znaków----//
@@ -29,6 +31,11 @@ private:
 
     NameChangeParameters nameChangeParameters;
 
+signals:
+    void initializeProgressBar(int minValue, int maxValue);
+    void changeProgressBar(int value);
+    void resetProgressBar();
+
 public:
     void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
@@ -37,6 +44,11 @@ public:
     void showWidgetSettings(); //Wyświetla okno ustawień
     void setNameChangeParameters(NameChangeParameters parameters) noexcept {nameChangeParameters = parameters;}
     NameChangeParameters getNameChangeParameters() noexcept {return nameChangeParameters;}
+
+private slots:
+    void initializeProgressBarSlot(int minValue, int maxValue) {emit initializeProgressBar(minValue, maxValue);}
+    void changeProgressBarSlot(int value) {emit changeProgressBar(value);}
+    void resetProgressBarSlot() {emit resetProgressBar();}
 };
 
 #endif // CORE_H
