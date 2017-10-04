@@ -148,7 +148,7 @@ Widget::Widget(QWidget *parent) :
     buttonHLayout->addWidget(buttonStartNameChange);
 
     //----Wskaźnik na rdzeń programu----//
-    programCore = new Core();
+    programCore = new WidgetViewProvider();
 
     //----Ustawienie stanu CheckBoxów zgodnie ze zmiennymi w rdzeniu----//
     setButtonSelection();

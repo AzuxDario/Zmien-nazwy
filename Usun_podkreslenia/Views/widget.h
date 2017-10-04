@@ -19,7 +19,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include "namechanger.h"
-#include "core.h"
+#include "widgetviewprovider.h"
 
 
 namespace Ui {
@@ -104,7 +104,7 @@ private:
     QString aboutApplication;
 
     //----Rdzeń----//
-    Core *programCore;
+    WidgetViewProvider *programCore;
 
     //----Parametry zmiany nazw----//
     NameChangeParameters nameChangeParameters;
