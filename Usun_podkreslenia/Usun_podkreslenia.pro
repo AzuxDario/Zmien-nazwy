@@ -16,6 +16,7 @@ include(Models/Models.pri)
 include(Providers/Providers.pri)
 include(Views/Views.pri)
 include(ViewProviders/ViewProviders.pri)
+include(Const/Const.pri)
 
 SOURCES += main.cpp
 
