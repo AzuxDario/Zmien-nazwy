@@ -2,9 +2,11 @@
 
 WidgetViewProvider::WidgetViewProvider()
 {
-    widgetAboutText = "Wersja programu: 4.0\nProgram zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) "
+    widgetAboutText = "Wersja programu: 4.1\nProgram zamienia znaki podkreślenia, pauzy oraz kropki (poza kropką oddzielającą nazwę pliku od rozszerzenia) "
             "na spację w nazwach plików w wybranym folderze.\n© Paweł Miękina";
-    widgetChangeLogText = "Wersja: 4.0 (19.07.2017)\n- dodanie nowych ustawień\n- przebudowa okna\n- usunięcie akcji z menu\n"
+    widgetChangeLogText =
+            "Wersja: 4.1 (18.10.2017)\n-refaktoryzacja"
+            "Wersja: 4.0 (19.07.2017)\n- dodanie nowych ustawień\n- przebudowa okna\n- usunięcie akcji z menu\n"
             "Wersja: 3.4 (08.03.2017)\n- dodanie klasy przechowującej ustawenia zmiany nazw\n- uporządkowanie kodu\n"
             "Wersja: 3.3 (26.10.2016)\n- dodano ustawienia z możliwością zapisu\n- dodano możliwość zmiany nazw plików w podfolderach\n"
             "- program nie zmienia już nazw podfolderom\n- czyszczenie kodu\n- dodanie klasy (rdzenia)\n"
@@ -44,12 +46,15 @@ void WidgetViewProvider::changeName(NameChangeParameters nameChangeParameters)
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 QString WidgetViewProvider::selectFolder()
 {
-    bool stanOperacji = nameChanger->selectFolder(); //Otwiera okno wyboru pliku
+    QString selectedFolder = QFileDialog::getExistingDirectory(); //Pobiera adres folderu
 
-    if(stanOperacji == true)
-        return nameChanger->getSelectedFolder();
+    if(selectedFolder.isNull() == false)
+    {
+        nameChanger->setSelectedFolder(selectedFolder);
+        return selectedFolder;
+    }
     else
-       return "";
+        return "";
 }
 
 //----Pokazuje okienko z informacjami o programie----//

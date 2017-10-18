@@ -11,22 +11,6 @@ void NameChanger::initiateRenameFiles(NameChangeParameters nameChangeParameters)
     renameFiles();
 }
 
-//----Wybiera folder do przeprowadzenia zmiany nazw----//
-bool NameChanger::selectFolder()
-{
-    selectedFolder = QFileDialog::getExistingDirectory(); //Pobiera adres folderu
-    if(selectedFolder.isNull() == false)
-        return true;
-    else
-        return false;
-}
-
-//----Zwraca ścieżkę dostępu do folderu----//
-QString NameChanger::getSelectedFolder()
-{
-    return selectedFolder;
-}
-
 //----Pokazuje okienko z informacjami, że katalog nie istnieje----//
 void NameChanger::showFolderNotExist()
 {
@@ -55,10 +39,7 @@ QString NameChanger::changeFileName(QString fileName)
 //----Porównuje dwie nazwy plików jeśli są identyczne zwraca true----//
 bool NameChanger::isFileNameIdentical(QString oldName, QString newName)
 {
-    if(oldName == newName)
-        return true;
-    else
-        return false;
+    return oldName == newName;
 }
 
 //----Ustawia pasek postępu w stan zajętości----//

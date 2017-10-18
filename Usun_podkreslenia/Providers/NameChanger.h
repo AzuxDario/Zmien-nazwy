@@ -35,9 +35,10 @@ signals:
     void resetProgressBar();
 
 public:
+    QString getSelectedFolder() {return selectedFolder;} //Zwraca ścieżkę dostępu do folderu
+    void setSelectedFolder(QString value) {selectedFolder = value;}
+
     void initiateRenameFiles(NameChangeParameters nameChangeParameters); //Rozpoczyna procedurę zmiany nazw
-    bool selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
-    QString getSelectedFolder(); //Zwraca ścieżkę dostępu do folderu
 
 private:
     void showFolderNotExist(); //Pokazuje okienko z informacjami, że katalog nie istnieje
