@@ -37,126 +37,18 @@ void NameChanger::showFolderNotExist()
         informationMessageBox.close();
 }
 
-//----Zmienia nazwę pliku zastępując znaki "_" na " "----//
-QString NameChanger::replaceUnderscores(QString fileName)
-{
-    fileName.replace("_"," ");
-    return fileName;
-}
-
-//----Zmienia nazwę pliku zastępując znaki "-" na " "----//
-QString NameChanger::replaceDashes(QString fileName, bool dontReplaceDashesSurrondedBySpace)
-{
-    if(dontReplaceDashesSurrondedBySpace == false)
-    {
-        fileName.replace("-"," ");
-    }
-    else
-    {
-        if(fileName[0] == '-') fileName[0] = ' ';
-        int end = fileName.length()-1;
-        if(fileName[end] == '-') fileName[end] = ' ';
-        for(int i = 1; i < end; i++)
-        {
-            if((fileName[i-1] != ' '|| fileName[i+1] != ' ') && fileName[i] == '-') fileName[i] = ' ';
-        }
-    }
-    return fileName;
-}
-
-//----Zmienia nazwę pliku zastępując znaki "." na " "----//
-QString NameChanger::replaceDots(QString fileName, bool replaceExtensionDot)
-{
-    int extensionDotPosition = fileName.lastIndexOf(".");
-    fileName.replace("."," ");
-    if(isExtensionDotNeedBeRestored(replaceExtensionDot, extensionDotPosition))
-        fileName.replace(extensionDotPosition,1,".");
-    return fileName;
-}
-
-//----Zmienia pierwszą literę na dużą----//
-QString NameChanger::changeLettersSize(QString fileName, NameChangeParameters::Letters changeLetters)
-{
-    int extensionDotPosition = fileName.lastIndexOf(".");
-    switch(changeLetters)
-    {
-    case NameChangeParameters::Letters::DoNothing:
-        break;
-    case NameChangeParameters::Letters::FirstBig:
-        fileName[0] = fileName[0].toUpper();
-        break;
-    case NameChangeParameters::Letters::AllBig:    
-        for(int i = 0; i<extensionDotPosition; i++)
-            fileName[i] = fileName[i].toUpper();
-        break;
-    case NameChangeParameters::Letters::AllSmall:
-        for(int i = 0; i<extensionDotPosition; i++)
-            fileName[i] = fileName[i].toLower();
-        break;
-    case NameChangeParameters::Letters::FirstInWordsBig:
-        fileName[0] = fileName[0].toUpper();
-        int end = fileName.length();
-        for(int i = 1; i < end; i++)
-        {
-            if(fileName[i-1] == ' ') fileName[i] = fileName[i].toUpper();
-        }
-        break;
-
-    }
-    return fileName;
-}
-
-//----Ustawia rozszeżenie pliku pisane z małej litery----//
-QString NameChanger::changeExtensionSize(QString fileName, NameChangeParameters::Extensions changeExtension)
-{
-    int extensionDotPosition = fileName.lastIndexOf(".");
-    if(extensionDotPosition != -1)
-    {
-        switch(changeExtension)
-        {
-        case NameChangeParameters::Extensions::FirstBig:
-            if(extensionDotPosition+1 < fileName.length())
-                fileName[extensionDotPosition+1] = fileName[extensionDotPosition+1].toUpper();
-            break;
-        case NameChangeParameters::Extensions::AllBig:
-            for(int i = extensionDotPosition+1; i < fileName.length(); i++)
-                fileName[i] = fileName[i].toUpper();
-            break;
-        case NameChangeParameters::Extensions::AllSmall:
-            for(int i = extensionDotPosition+1; i < fileName.length(); i++)
-                fileName[i] = fileName[i].toLower();
-            break;
-        case NameChangeParameters::Extensions::DoNothing:
-            break;
-        }
-    }
-    return fileName;
-}
-
-//----Usuwa spację----//
-QString NameChanger::removeSpaces(QString fileName, bool removeMultiplySpaces, bool removeSpacesAtBegin, bool removeSpacesAtEnd)
-{
-    if(removeSpacesAtBegin == true)
-        fileName.replace(QRegExp("^[ ]+"),"");
-    if(removeSpacesAtEnd == true)
-        fileName.replace(QRegExp("[ ]+$"),"");
-    if(removeMultiplySpaces == true)
-        fileName.replace(QRegExp("[ ]+")," ");
-    return fileName;
-}
-
 //----Wykonuje operacje zmiany nazwy pliku----//
 QString NameChanger::changeFileName(QString fileName)
 {
     if(nameChangeParameters.getReplaceUnderscores() == true)
-        fileName = replaceUnderscores(fileName);
+        fileName = nameModifier.replaceUnderscores(fileName);
     if(nameChangeParameters.getReplaceDashes() == true)
-        fileName = replaceDashes(fileName, nameChangeParameters.getDontReplaceDashesSurrondedBySpaces());
+        fileName = nameModifier.replaceDashes(fileName, nameChangeParameters.getDontReplaceDashesSurrondedBySpaces());
     if(nameChangeParameters.getReplaceDots() == true)
-        fileName = replaceDots(fileName, nameChangeParameters.getReplaceExtensionDot());
-    fileName = changeLettersSize(fileName, nameChangeParameters.getChangeLetters());
-    fileName = changeExtensionSize(fileName, nameChangeParameters.getChangeExtension());
-    fileName = removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
+        fileName = nameModifier.replaceDots(fileName, nameChangeParameters.getReplaceExtensionDot());
+    fileName = nameModifier.changeLettersSize(fileName, nameChangeParameters.getChangeLetters());
+    fileName = nameModifier.changeExtensionSize(fileName, nameChangeParameters.getChangeExtension());
+    fileName = nameModifier.removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
     return fileName;
 }
 
@@ -211,7 +103,7 @@ void NameChanger::renameFiles()
             numberOfRenamedFiles++;
             changeProgressBar(numberOfRenamedFiles);
 
-            if(isFile(currentFolder, currentFolder[static_cast<int>(i)]))
+            if(FolderDetector::isFile(currentFolder, currentFolder[static_cast<int>(i)]))
             {
                 QString fileName = currentFolder[static_cast<int>(i)];
                 QString newFileName = changeFileName(fileName);
@@ -227,17 +119,4 @@ void NameChanger::renameFiles()
     }
     emit resetProgressBar();
     selectedFolder = "";
-}
-
-bool NameChanger::isExtensionDotNeedBeRestored(bool replaceExtensionDot, int extensionDotPosition)
-{
-    if((extensionDotPosition != -1) && (replaceExtensionDot == false))
-        return true;
-    else
-        return false;
-}
-
-bool NameChanger::isFile(QDir accessPath, QString fileName)
-{
-     return !FolderDetector::isSubfolder(accessPath, fileName);
 }

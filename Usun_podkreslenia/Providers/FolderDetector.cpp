@@ -74,3 +74,8 @@ bool FolderDetector::isFolder(QDir accessPath, QString fileName)
     else
         return false;
 }
+
+bool FolderDetector::isFile(QDir accessPath, QString fileName)
+{
+     return !isSubfolder(accessPath, fileName);
+}
