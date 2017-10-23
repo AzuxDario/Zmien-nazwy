@@ -20,6 +20,7 @@
 #include <QGroupBox>
 #include "NameChanger.h"
 #include "WidgetViewProvider.h"
+#include "Widgets.h"
 
 
 namespace Ui {
