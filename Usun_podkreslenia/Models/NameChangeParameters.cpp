@@ -1,4 +1,4 @@
-#include "namechangeparameters.h"
+#include "NameChangeParameters.h"
 
 NameChangeParameters::NameChangeParameters()
 {

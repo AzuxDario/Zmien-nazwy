@@ -1,16 +1,14 @@
-#include "widgetchangelog.h"
+#include "WidgetChangelog.h"
 #include "ui_widgetchangelog.h"
 
-WidgetChangeLog::WidgetChangeLog(QString widgetText, QWidget *parent) :
+WidgetChangeLog::WidgetChangeLog(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WidgetChangeLog)
 {
     ui->setupUi(this);
 
-    widgetChangeLogText = widgetText;
-
     //--------Inicjalizacja okna--------//
-    setWindowTitle(QString::fromUtf8("Rejestr zmian"));
+    setWindowTitle(QString::fromUtf8(Widgets::widgetChangeLog));
     setWindowIcon(QIcon(":/ikona/ikona"));
     setMaximumSize(500,360);
     setMinimumSize(500,360);
@@ -21,10 +19,10 @@ WidgetChangeLog::WidgetChangeLog(QString widgetText, QWidget *parent) :
     textBrowserChangeLog->setGeometry(10,10,480,300);
     textBrowserChangeLog->setAlignment(Qt::AlignTop);
     textBrowserChangeLog->setReadOnly(true);
-    textBrowserChangeLog->setText(widgetChangeLogText);
+    textBrowserChangeLog->setText(About::changeLog);
 
     //--------Przycisk--------//
-    buttonOk = new QPushButton("Ok",this);
+    buttonOk = new QPushButton(Widgets::buttonOk,this);
     buttonOk->setGeometry(180,320,140,30);
 
     //----Przypisanie przycisków do slotów----//

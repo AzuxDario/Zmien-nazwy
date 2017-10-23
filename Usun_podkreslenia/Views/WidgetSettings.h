@@ -10,7 +10,8 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QDesktopWidget>
-#include "settings.h"
+#include "Settings.h"
+#include "Widgets.h"
 
 namespace Ui {
 class WidgetSettings;
@@ -55,27 +56,29 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *checkBoxChangeFirstLetterToBig;
-    QRadioButton *checkBoxChangeLettersToBig;
-    QRadioButton *checkBoxChangeLettersToSmall;
-    QRadioButton *checkBoxChangeFirstLettersToBig;
-    QRadioButton *checkBoxDontChangeName;
-    QRadioButton *checkBoxChangeExtensionToSmall;
-    QRadioButton *checkBoxChangeExtensionToBig;
-    QRadioButton *checkBoxChangeExtensionFirstLettersToBig;
-    QRadioButton *checkBoxChangeDontChangeExtension;
+    QRadioButton *radioButtonChangeFirstLetterToBig;
+    QRadioButton *radioButtonChangeLettersToBig;
+    QRadioButton *radioButtonChangeLettersToSmall;
+    QRadioButton *radioButtonChangeFirstLettersToBig;
+    QRadioButton *radioButtonDontChangeName;
+    QRadioButton *radioButtonChangeExtensionToSmall;
+    QRadioButton *radioButtonChangeExtensionToBig;
+    QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
+    QRadioButton *radioButtonChangeDontChangeExtension;
 
     //----Etykiety----//
     QLabel *labelDefaultSettings;
 
     //----Przyciski----//
     QPushButton *buttonOK;
+    QPushButton *buttonCancel;
 
     //----Obiekt czytajacy ustawienia----//
     Settings *settingsReader;
 
 private slots:
     void closeWindow(); //Zamyka okno
+    void saveSettings(); //Zapisuje ustawienia
     void checkBoxDotsClicked(); //Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki
     void checkBoxDashesClicked();
     void setCheckBoxes(); //Ustawia przyciski danymi z pliku

@@ -1,4 +1,4 @@
-#include "folderdetector.h"
+#include "FolderDetector.h"
 
 FolderDetector::FolderDetector(QString selectedFolder, bool searchInSubfolders)
 {
@@ -73,4 +73,9 @@ bool FolderDetector::isFolder(QDir accessPath, QString fileName)
         return true;
     else
         return false;
+}
+
+bool FolderDetector::isFile(QDir accessPath, QString fileName)
+{
+     return !isSubfolder(accessPath, fileName);
 }

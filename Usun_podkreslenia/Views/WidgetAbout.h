@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QDesktopWidget>
+#include "About.h"
+#include "Widgets.h"
 
 namespace Ui {
     class WidgetAbout;
@@ -15,7 +17,7 @@ class WidgetAbout : public QWidget
     Q_OBJECT
 
 public:
-    explicit WidgetAbout(QString widgetText, QWidget *parent = 0);
+    explicit WidgetAbout(QWidget *parent = 0);
     ~WidgetAbout();
 
 private:
@@ -29,9 +31,6 @@ private:
 
     //--------Obrazek--------//
     QLabel *labelPicture;
-
-    //----Zmienne przechuwyjące ciągi znaków----//
-    QString widgetAboutText;
 
 private slots:
     void closeWindow(); //Zamyka okno

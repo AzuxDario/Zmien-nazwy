@@ -18,8 +18,9 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
-#include "namechanger.h"
-#include "core.h"
+#include "NameChanger.h"
+#include "WidgetViewProvider.h"
+#include "Widgets.h"
 
 
 namespace Ui {
@@ -45,7 +46,7 @@ private:
     QAction *actionSelectFolder;
     QAction *actionStartNameChange;
     QAction *actionExit;
-    QAction *actionSettings;
+    QAction *actionOptions;
     QAction *actionAbout;
     QAction *actionChangeLog;
 
@@ -81,15 +82,15 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *checkBoxChangeFirstLetterToBig;
-    QRadioButton *checkBoxChangeLettersToBig;
-    QRadioButton *checkBoxChangeLettersToSmall;
-    QRadioButton *checkBoxChangeFirstLettersToBig;
-    QRadioButton *checkBoxDontChangeName;
-    QRadioButton *checkBoxChangeExtensionToSmall;
-    QRadioButton *checkBoxChangeExtensionToBig;
-    QRadioButton *checkBoxChangeExtensionFirstLettersToBig;
-    QRadioButton *checkBoxChangeDontChangeExtension;
+    QRadioButton *radioButtonChangeFirstLetterToBig;
+    QRadioButton *radioButtonChangeLettersToBig;
+    QRadioButton *radioButtonChangeLettersToSmall;
+    QRadioButton *radioButtonChangeFirstLettersToBig;
+    QRadioButton *radioButtonDontChangeName;
+    QRadioButton *radioButtonChangeExtensionToSmall;
+    QRadioButton *radioButtonChangeExtensionToBig;
+    QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
+    QRadioButton *radioButtonChangeDontChangeExtension;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
@@ -100,11 +101,8 @@ private:
     //----Zmienna przechowująca folder----//
     QString selectedFolder;
 
-    //----Zmienne przechuwyjące ciągi znaków----//
-    QString aboutApplication;
-
     //----Rdzeń----//
-    Core *programCore;
+    WidgetViewProvider *programCore;
 
     //----Parametry zmiany nazw----//
     NameChangeParameters nameChangeParameters;
