@@ -9,7 +9,6 @@ WidgetViewProvider::WidgetViewProvider()
 
     nameChanger = new NameChanger();
 
-    //--------Obiekt czytajacy ustawienia--------//
     settingsReader = new Settings;
 
     nameChangeParameters = settingsReader->getNameChangeParameters();

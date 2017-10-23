@@ -1,8 +1,8 @@
 #include "About.h"
 
 const QString About::aboutApp ="Wersja programu: 4.1\nProgram oczyszcza nazwy plików pobranych z internetu.\n"
-        "Zamienia znaki podkreślenia, pauzy oraz kropki na spację, usuwa wielokrotne spacje i zmienia rozmiar liter.\n"
-        "Zmiana obywa się w folderze i opcjonalnie jego podfolderach.\n© Paweł Miękina";
+    "Zamienia znaki podkreślenia, pauzy oraz kropki na spację, usuwa wielokrotne spacje i zmienia rozmiar liter.\n"
+    "Zmiana obywa się w folderze i opcjonalnie jego podfolderach.\n© Paweł Miękina";
 
 const QString About::changeLog =
     "Wersja: 4.1 (18.10.2017)\n- refaktoryzacja\n- zmiana opisu programu\n"
