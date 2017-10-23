@@ -14,6 +14,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 
     //--------Etykiety--------//
     labelDefaultSettings = new QLabel("Ustawienia domyślne podczas uruchamiania programu",this);
+    labelDefaultSettings->setStyleSheet("font-size:15px; margin-bottom:10px;");
 
     //--------Przycisk--------//
     buttonOK = new QPushButton("Ok",this);
@@ -48,7 +49,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     mainHLayout = new QHBoxLayout();
     leftVLayout = new QVBoxLayout();
     rightVLayout = new QVBoxLayout();
-    windowVLayout->addWidget(labelDefaultSettings);
+    windowVLayout->addWidget(labelDefaultSettings,0,Qt::AlignCenter);
     windowVLayout->addLayout(mainHLayout);
     mainHLayout->addLayout(leftVLayout);
     mainHLayout->addLayout(rightVLayout);
