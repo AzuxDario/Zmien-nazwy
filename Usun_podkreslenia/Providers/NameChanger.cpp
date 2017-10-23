@@ -15,7 +15,7 @@ void NameChanger::initiateRenameFiles(NameChangeParameters nameChangeParameters)
 void NameChanger::showFolderNotExist()
 {
     int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym
-    QMessageBox informationMessageBox("Ostrzeżenie",warningMessageBoxText,QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
+    QMessageBox informationMessageBox("Ostrzeżenie",Warnings::folderNotFound,QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
     clickedButton = informationMessageBox.exec();
     if(clickedButton == QMessageBox::Ok) //Zamyka okno po wciśnięciu ok
         informationMessageBox.close();

@@ -10,6 +10,7 @@
 #include "FolderDetector.h"
 #include "NameChangeParameters.h"
 #include "NameModifier.h"
+#include "Warnings.h"
 
 
 class NameChanger :public QObject
