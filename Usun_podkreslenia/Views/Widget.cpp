@@ -6,7 +6,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    setWindowTitle(QString::fromUtf8(Views::widgetMain));
+    setWindowTitle(QString::fromUtf8(Widgets::widgetMain));
 
     //----Tworzenie paska menu----//
     menuBar = new QMenuBar();
@@ -14,21 +14,21 @@ Widget::Widget(QWidget *parent) :
     menuSettings = new QMenu(this);
     menuHelp = new QMenu(this);
 
-    menuFile = menuBar->addMenu(tr(Views::menuFile));
-    menuSettings = menuBar->addMenu(tr(Views::menuSettings));
-    menuHelp = menuBar->addMenu(tr(Views::menuHelp));
+    menuFile = menuBar->addMenu(tr(Widgets::menuFile));
+    menuSettings = menuBar->addMenu(tr(Widgets::menuSettings));
+    menuHelp = menuBar->addMenu(tr(Widgets::menuHelp));
 
-    actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr(Views::actionSelectFolder),this);
+    actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr(Widgets::actionSelectFolder),this);
     actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+W")));
-    actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr(Views::actionStartChange),this);
+    actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr(Widgets::actionStartChange),this);
     actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
-    actionExit = new QAction(QIcon(":/pasek/wyjscie"),tr(Views::actionExit),this);
+    actionExit = new QAction(QIcon(":/pasek/wyjscie"),tr(Widgets::actionExit),this);
     actionExit->setShortcut(QKeySequence(tr("Ctrl+Q")));
-    actionOptions = new QAction(QIcon(":/pasek/ustawienia"),tr(Views::actionOptions),this);
+    actionOptions = new QAction(QIcon(":/pasek/ustawienia"),tr(Widgets::actionOptions),this);
     actionOptions->setShortcut(QKeySequence(tr("Ctrl+U")));
-    actionAbout = new QAction(QIcon(":/pasek/oProgramie"),tr(Views::actionAbout),this);
+    actionAbout = new QAction(QIcon(":/pasek/oProgramie"),tr(Widgets::actionAbout),this);
     actionAbout->setShortcuts(QKeySequence::HelpContents);
-    actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),tr(Views::actionChangeLog),this);
+    actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),tr(Widgets::actionChangeLog),this);
     actionChangeLog->setShortcut(QKeySequence(tr("Ctrl+Z")));
 
     menuFile->addAction(actionSelectFolder);
@@ -42,42 +42,42 @@ Widget::Widget(QWidget *parent) :
     actionStartNameChange->setDisabled(true);
 
     //--------Przyciski--------//
-    buttonSelectFolder = new QPushButton(tr(Views::actionSelectFolder),this);
+    buttonSelectFolder = new QPushButton(tr(Widgets::actionSelectFolder),this);
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
-    buttonStartNameChange = new QPushButton(tr(Views::actionStartChange),this);
+    buttonStartNameChange = new QPushButton(tr(Widgets::actionStartChange),this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
     buttonStartNameChange->setMaximumHeight(30);
     buttonStartNameChange->setMaximumWidth(120);
     buttonStartNameChange->setDisabled(true);
 
     //--------Check Boxy--------//
-    checkBoxReplaceInSubfolders = new QCheckBox(tr(Views::checkBoxReplaceInSubfolders));
-    checkBoxReplaceUnderscores = new QCheckBox(tr(Views::checkBoxReplaceUnderscores));
-    checkBoxReplaceDashes = new QCheckBox(tr(Views::checkBoxReplaceDashes));
-    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Views::checkBoxDontReplaceDashesSurrondedBySpaces));
-    checkBoxReplaceDots = new QCheckBox(tr(Views::checkBoxReplaceDots));
-    checkBoxReplaceExtensionDot = new QCheckBox(tr(Views::checkBoxReplaceExtensionDot));
-    checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Views::checkBoxRemoveMultiplySpaces));
-    checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Views::checkBoxRemoveSpacesAtBegin));
-    checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Views::checkBoxRemoveSpacesAtEnd));
-    radioButtonChangeFirstLetterToBig = new QRadioButton(tr(Views::radioButtonChangeFirstLetterToBig));
-    radioButtonChangeLettersToBig = new QRadioButton(tr(Views::radioButtonChangeLettersToBig));
-    radioButtonChangeLettersToSmall = new QRadioButton(tr(Views::radioButtonChangeLettersToSmall));
-    radioButtonChangeFirstLettersToBig = new QRadioButton(tr(Views::radioButtonChangeFirstLettersToBig));
-    radioButtonDontChangeName = new QRadioButton(tr(Views::radioButtonDontChange));
-    radioButtonChangeExtensionToBig = new QRadioButton(tr(Views::radioButtonChangeExtensionToBig));
-    radioButtonChangeExtensionToSmall = new QRadioButton(tr(Views::radioButtonChangeExtensionToSmall));
-    radioButtonChangeExtensionFirstLettersToBig = new QRadioButton(tr(Views::radioButtonChangeExtensionFirstLettersToBig));
-    radioButtonChangeDontChangeExtension = new QRadioButton(tr(Views::radioButtonDontChange));
+    checkBoxReplaceInSubfolders = new QCheckBox(tr(Widgets::checkBoxReplaceInSubfolders));
+    checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
+    checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
+    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Widgets::checkBoxDontReplaceDashesSurrondedBySpaces));
+    checkBoxReplaceDots = new QCheckBox(tr(Widgets::checkBoxReplaceDots));
+    checkBoxReplaceExtensionDot = new QCheckBox(tr(Widgets::checkBoxReplaceExtensionDot));
+    checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
+    checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
+    checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
+    radioButtonChangeFirstLetterToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLetterToBig));
+    radioButtonChangeLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeLettersToBig));
+    radioButtonChangeLettersToSmall = new QRadioButton(tr(Widgets::radioButtonChangeLettersToSmall));
+    radioButtonChangeFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLettersToBig));
+    radioButtonDontChangeName = new QRadioButton(tr(Widgets::radioButtonDontChange));
+    radioButtonChangeExtensionToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToBig));
+    radioButtonChangeExtensionToSmall = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToSmall));
+    radioButtonChangeExtensionFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
+    radioButtonChangeDontChangeExtension = new QRadioButton(tr(Widgets::radioButtonDontChange));
 
     //--------Okno z tekstem--------//
     textBrowserAbout = new QTextBrowser(this);
     textBrowserAbout->setAlignment(Qt::AlignTop);
     textBrowserAbout->setReadOnly(true);
     //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
-    textBrowserAbout->setText(tr(Views::textToStartSelectFolder));
+    textBrowserAbout->setText(tr(Widgets::textToStartSelectFolder));
 
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
@@ -101,11 +101,11 @@ Widget::Widget(QWidget *parent) :
     buttonGroupExtensionSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox(tr(Views::buttonGroupSubfolders));
-    buttonGroupReplace = new QGroupBox(tr(Views::buttonGroupReplace));
-    buttonGroupLetterSize = new QGroupBox(tr(Views::buttonGroupLetterSize));
-    buttonGroupExtensionSize = new QGroupBox(tr(Views::buttonGroupExtensionSize));
-    buttonGroupSpace = new QGroupBox(tr(Views::buttonGroupSpace));
+    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
+    buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
+    buttonGroupLetterSize = new QGroupBox(tr(Widgets::buttonGroupLetterSize));
+    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::buttonGroupExtensionSize));
+    buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
     leftVLayout->addWidget(buttonGroupSpace);
@@ -217,12 +217,12 @@ void Widget::selectFolder()
     if(selectedFolder != "")
     {
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Views::textSelectedFolder) + selectedFolder + tr(Views::textNamesWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedFolder + tr(Widgets::textNamesWillBeChanged));
     }
     else
     {
         disableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Views::textFolderDoesntSelected));
+        textBrowserAbout->setText(tr(Widgets::textFolderDoesntSelected));
     }
 }
 
@@ -234,7 +234,7 @@ void Widget::startNameChange()
     disableButtonsStartNameChange();
     programCore->changeName(nameChangeParameters);
     enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Views::textNamesChanged) + tr(Views::textToStartSelectFolder));
+    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolder));
 }
 
 //----Pokazuje okienko z informacjami o programie----//

@@ -11,7 +11,7 @@
 #include <QGroupBox>
 #include <QDesktopWidget>
 #include "Settings.h"
-#include "Views.h"
+#include "Widgets.h"
 
 namespace Ui {
 class WidgetSettings;

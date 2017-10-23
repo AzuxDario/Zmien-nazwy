@@ -1,9 +1,9 @@
-#ifndef VIEWS_H
-#define VIEWS_H
+#ifndef WIDGETS_H
+#define WIDGETS_H
 
 #include <QString>
 
-class Views
+class Widgets
 {
 public:
     const static char* applicationName;
@@ -58,7 +58,7 @@ public:
     const static char* textNamesChanged;
     const static char* textDefaultSettings;
 public:
-    Views();
+    Widgets();
 };
 
-#endif // VIEWS_H
+#endif // WIDGETS_H

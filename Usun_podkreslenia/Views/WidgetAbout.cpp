@@ -8,7 +8,7 @@ WidgetAbout::WidgetAbout(QWidget *parent) :
     ui->setupUi(this);
 
     //--------Inicjalizacja okna--------//
-    setWindowTitle(QString::fromUtf8(Views::widgetAbout));
+    setWindowTitle(QString::fromUtf8(Widgets::widgetAbout));
     setWindowIcon(QIcon(":/ikona/ikona"));
     setMaximumSize(500,210);
     setMinimumSize(500,210);
@@ -20,7 +20,7 @@ WidgetAbout::WidgetAbout(QWidget *parent) :
     labelText->setWordWrap(true);
 
     //--------Przycisk--------//
-    buttonOk = new QPushButton(Views::buttonOk,this);
+    buttonOk = new QPushButton(Widgets::buttonOk,this);
     buttonOk->setGeometry(180,170,140,30);
 
     //--------Obrazek--------//

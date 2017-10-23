@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QDesktopWidget>
 #include "About.h"
-#include "Views.h"
+#include "Widgets.h"
 
 namespace Ui {
     class WidgetChangeLog;

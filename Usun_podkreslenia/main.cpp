@@ -1,13 +1,13 @@
 #include <QtWidgets/QApplication>
 #include "Widget.h"
 #include <QDesktopWidget>
-#include "Views.h"
+#include "Widgets.h"
 
 int main(int argc, char *argv[])
 {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); //Dostępne od Qt 5.6
     QApplication a(argc, argv);
-    a.setApplicationName(Views::applicationName);
+    a.setApplicationName(Widgets::applicationName);
     a.setApplicationVersion("3.4");
     Widget w;
     //w.setMinimumSize(420,397);

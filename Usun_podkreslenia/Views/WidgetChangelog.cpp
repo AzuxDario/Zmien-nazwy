@@ -8,7 +8,7 @@ WidgetChangeLog::WidgetChangeLog(QWidget *parent) :
     ui->setupUi(this);
 
     //--------Inicjalizacja okna--------//
-    setWindowTitle(QString::fromUtf8(Views::widgetChangeLog));
+    setWindowTitle(QString::fromUtf8(Widgets::widgetChangeLog));
     setWindowIcon(QIcon(":/ikona/ikona"));
     setMaximumSize(500,360);
     setMinimumSize(500,360);
@@ -22,7 +22,7 @@ WidgetChangeLog::WidgetChangeLog(QWidget *parent) :
     textBrowserChangeLog->setText(About::changeLog);
 
     //--------Przycisk--------//
-    buttonOk = new QPushButton(Views::buttonOk,this);
+    buttonOk = new QPushButton(Widgets::buttonOk,this);
     buttonOk->setGeometry(180,320,140,30);
 
     //----Przypisanie przycisków do slotów----//

@@ -8,41 +8,41 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     ui->setupUi(this);
 
     //--------Inicjalizacja okna--------//
-    setWindowTitle(QString::fromUtf8(Views::widgetSettings));
+    setWindowTitle(QString::fromUtf8(Widgets::widgetSettings));
     setWindowIcon(QIcon(":/ikona/ikona"));
     setWindowModality(Qt::ApplicationModal); //Sprawia że po aktywacji okna główne okno staje się nieklikalne
 
     //--------Etykiety--------//
-    labelDefaultSettings = new QLabel(tr(Views::textDefaultSettings),this);
+    labelDefaultSettings = new QLabel(tr(Widgets::textDefaultSettings),this);
     labelDefaultSettings->setStyleSheet("font-size:15px; margin-bottom:10px;");
 
     //--------Przycisk--------//
-    buttonOK = new QPushButton(tr(Views::buttonOk),this);
+    buttonOK = new QPushButton(tr(Widgets::buttonOk),this);
     buttonOK->setMinimumHeight(30);
     buttonOK->setMaximumWidth(120);
-    buttonCancel = new QPushButton(tr(Views::buttonCancel),this);
+    buttonCancel = new QPushButton(tr(Widgets::buttonCancel),this);
     buttonCancel->setMinimumHeight(30);
     buttonCancel->setMaximumWidth(120);
 
     //--------Check Boxy--------//
-    checkBoxReplaceInSubfolders = new QCheckBox(tr(Views::checkBoxReplaceInSubfolders));
-    checkBoxReplaceUnderscores = new QCheckBox(tr(Views::checkBoxReplaceUnderscores));
-    checkBoxReplaceDashes = new QCheckBox(tr(Views::checkBoxReplaceDashes));
-    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Views::checkBoxDontReplaceDashesSurrondedBySpaces));
-    checkBoxReplaceDots = new QCheckBox(tr(Views::checkBoxReplaceDots));
-    checkBoxReplaceExtensionDot = new QCheckBox(tr(Views::checkBoxReplaceExtensionDot));
-    checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Views::checkBoxRemoveMultiplySpaces));
-    checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Views::checkBoxRemoveSpacesAtBegin));
-    checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Views::checkBoxRemoveSpacesAtEnd));
-    radioButtonChangeFirstLetterToBig = new QRadioButton(tr(Views::radioButtonChangeFirstLetterToBig));
-    radioButtonChangeLettersToBig = new QRadioButton(tr(Views::radioButtonChangeLettersToBig));
-    radioButtonChangeLettersToSmall = new QRadioButton(tr(Views::radioButtonChangeLettersToSmall));
-    radioButtonChangeFirstLettersToBig = new QRadioButton(tr(Views::radioButtonChangeFirstLettersToBig));
-    radioButtonDontChangeName = new QRadioButton(tr(Views::radioButtonDontChange));
-    radioButtonChangeExtensionToBig = new QRadioButton(tr(Views::radioButtonChangeExtensionToBig));
-    radioButtonChangeExtensionToSmall = new QRadioButton(tr(Views::radioButtonChangeExtensionToSmall));
-    radioButtonChangeExtensionFirstLettersToBig = new QRadioButton(tr(Views::radioButtonChangeExtensionFirstLettersToBig));
-    radioButtonChangeDontChangeExtension = new QRadioButton(tr(Views::radioButtonDontChange));
+    checkBoxReplaceInSubfolders = new QCheckBox(tr(Widgets::checkBoxReplaceInSubfolders));
+    checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
+    checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
+    checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Widgets::checkBoxDontReplaceDashesSurrondedBySpaces));
+    checkBoxReplaceDots = new QCheckBox(tr(Widgets::checkBoxReplaceDots));
+    checkBoxReplaceExtensionDot = new QCheckBox(tr(Widgets::checkBoxReplaceExtensionDot));
+    checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
+    checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
+    checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
+    radioButtonChangeFirstLetterToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLetterToBig));
+    radioButtonChangeLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeLettersToBig));
+    radioButtonChangeLettersToSmall = new QRadioButton(tr(Widgets::radioButtonChangeLettersToSmall));
+    radioButtonChangeFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLettersToBig));
+    radioButtonDontChangeName = new QRadioButton(tr(Widgets::radioButtonDontChange));
+    radioButtonChangeExtensionToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToBig));
+    radioButtonChangeExtensionToSmall = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToSmall));
+    radioButtonChangeExtensionFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
+    radioButtonChangeDontChangeExtension = new QRadioButton(tr(Widgets::radioButtonDontChange));
 
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
@@ -60,11 +60,11 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupExtensionSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox(tr(Views::buttonGroupSubfolders));
-    buttonGroupReplace = new QGroupBox(tr(Views::buttonGroupReplace));
-    buttonGroupLetterSize = new QGroupBox(tr(Views::buttonGroupLetterSize));
-    buttonGroupExtensionSize = new QGroupBox(tr(Views::buttonGroupExtensionSize));
-    buttonGroupSpace = new QGroupBox(tr(Views::buttonGroupSpace));
+    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
+    buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
+    buttonGroupLetterSize = new QGroupBox(tr(Widgets::buttonGroupLetterSize));
+    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::buttonGroupExtensionSize));
+    buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
     leftVLayout->addWidget(buttonGroupSpace);
