@@ -5,6 +5,8 @@
 #include <QTextBrowser>
 #include <QPushButton>
 #include <QDesktopWidget>
+#include "About.h"
+#include "Views.h"
 
 namespace Ui {
     class WidgetChangeLog;
@@ -15,7 +17,7 @@ class WidgetChangeLog : public QWidget
     Q_OBJECT
 
 public:
-    explicit WidgetChangeLog(QString widgetText, QWidget *parent = 0);
+    explicit WidgetChangeLog(QWidget *parent = 0);
     ~WidgetChangeLog();
 
 private:
@@ -26,9 +28,6 @@ private:
 
     //--------Pola tekstowe--------//
     QTextBrowser *textBrowserChangeLog;
-
-    //----Zmienne przechuwyjące ciągi znaków----//
-    QString widgetChangeLogText;
 
 private slots:
     void closeWindow(); //Zamyka okno

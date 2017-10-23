@@ -6,6 +6,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    setWindowTitle(QString::fromUtf8(Views::widgetMain));
 
     //----Tworzenie paska menu----//
     menuBar = new QMenuBar();

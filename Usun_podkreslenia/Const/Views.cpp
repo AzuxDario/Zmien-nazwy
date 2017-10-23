@@ -1,4 +1,13 @@
 #include "Views.h"
+const char* Views::applicationName = "Zmień nazwy";
+
+const char* Views::widgetMain = "Zmień nazwy";
+const char* Views::widgetSettings = "Ustawienia";
+const char* Views::widgetChangeLog = "Rejestr zmian";
+const char* Views::widgetAbout = "O programie";
+
+const char* Views::buttonOk = "Ok";
+const char* Views::buttonCancel = "Anuluj";
 
 const char* Views::menuFile = "&Plik";
 const char* Views::menuSettings = "&Ustawienia";
@@ -40,6 +49,7 @@ const char* Views::textSelectedFolder = "Wybrany katalog: <b>";
 const char* Views::textNamesWillBeChanged = "</b><br />Nazwy plików zawierające wybrane znaki zostaną zmienione.";
 const char* Views::textFolderDoesntSelected = "Nie wybrano żadnego folderu. Proszę wybrać folder";
 const char* Views::textNamesChanged = "<b>Program zakończył zmianę nazw w wybranym katalogu. Można teraz wybrać kolejny katalog.</b><br />";
+const char* Views::textDefaultSettings = "Ustawienia domyślne podczas uruchamiania programu";
 
 
 Views::Views()

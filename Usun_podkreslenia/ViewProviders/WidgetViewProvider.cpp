@@ -40,7 +40,7 @@ QString WidgetViewProvider::selectFolder()
 void WidgetViewProvider::showWidgetAbout()
 {
     if(widgetAbout == NULL) //Jeżli okna nie ma stwórz je
-        widgetAbout = new WidgetAbout(About::aboutApp);
+        widgetAbout = new WidgetAbout();
     else
         widgetAbout->showWindow();
 }
@@ -58,7 +58,7 @@ void WidgetViewProvider::showWidgetSettings()
 void WidgetViewProvider::showWidgetChangeLog()
 {
     if(widgetChangeLog == NULL) //Jeżli okna nie ma stwórz je
-        widgetChangeLog = new WidgetChangeLog(About::changeLog);
+        widgetChangeLog = new WidgetChangeLog();
     else
         widgetChangeLog->showWindow();
 }

@@ -8,19 +8,19 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     ui->setupUi(this);
 
     //--------Inicjalizacja okna--------//
-    setWindowTitle(QString::fromUtf8("Ustawienia"));
+    setWindowTitle(QString::fromUtf8(Views::widgetSettings));
     setWindowIcon(QIcon(":/ikona/ikona"));
     setWindowModality(Qt::ApplicationModal); //Sprawia że po aktywacji okna główne okno staje się nieklikalne
 
     //--------Etykiety--------//
-    labelDefaultSettings = new QLabel("Ustawienia domyślne podczas uruchamiania programu",this);
+    labelDefaultSettings = new QLabel(tr(Views::textDefaultSettings),this);
     labelDefaultSettings->setStyleSheet("font-size:15px; margin-bottom:10px;");
 
     //--------Przycisk--------//
-    buttonOK = new QPushButton("Ok",this);
+    buttonOK = new QPushButton(tr(Views::buttonOk),this);
     buttonOK->setMinimumHeight(30);
     buttonOK->setMaximumWidth(120);
-    buttonCancel = new QPushButton("Anuluj",this);
+    buttonCancel = new QPushButton(tr(Views::buttonCancel),this);
     buttonCancel->setMinimumHeight(30);
     buttonCancel->setMaximumWidth(120);
 

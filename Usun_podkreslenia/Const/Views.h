@@ -6,6 +6,16 @@
 class Views
 {
 public:
+    const static char* applicationName;
+
+    const static char* widgetMain;
+    const static char* widgetSettings;
+    const static char* widgetChangeLog;
+    const static char* widgetAbout;
+
+    const static char* buttonOk;
+    const static char* buttonCancel;
+
     const static char* menuFile;
     const static char* menuSettings;
     const static char* menuHelp;
@@ -46,6 +56,7 @@ public:
     const static char* textNamesWillBeChanged;
     const static char* textFolderDoesntSelected;
     const static char* textNamesChanged;
+    const static char* textDefaultSettings;
 public:
     Views();
 };
