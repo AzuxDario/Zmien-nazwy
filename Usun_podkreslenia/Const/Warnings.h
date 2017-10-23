@@ -6,7 +6,9 @@
 class Warnings
 {
 public:
-    const static QString folderNotFound;
+    const static char* warning;
+
+    const static char* folderNotFound;
 public:
     Warnings();
 };
