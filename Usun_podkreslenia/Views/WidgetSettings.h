@@ -71,12 +71,14 @@ private:
 
     //----Przyciski----//
     QPushButton *buttonOK;
+    QPushButton *buttonCancel;
 
     //----Obiekt czytajacy ustawienia----//
     Settings *settingsReader;
 
 private slots:
     void closeWindow(); //Zamyka okno
+    void saveSettings(); //Zapisuje ustawienia
     void checkBoxDotsClicked(); //Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki
     void checkBoxDashesClicked();
     void setCheckBoxes(); //Ustawia przyciski danymi z pliku

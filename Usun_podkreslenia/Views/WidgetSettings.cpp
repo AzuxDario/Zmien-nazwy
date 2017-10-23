@@ -19,6 +19,9 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonOK = new QPushButton("Ok",this);
     buttonOK->setMinimumHeight(30);
     buttonOK->setMaximumWidth(120);
+    buttonCancel = new QPushButton("Anuluj",this);
+    buttonCancel->setMinimumHeight(30);
+    buttonCancel->setMaximumWidth(120);
 
     //--------Check Boxy--------//
     checkBoxReplaceInSubfolders = new QCheckBox(tr(Views::checkBoxReplaceInSubfolders));
@@ -94,9 +97,11 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
     buttonHLayout->addWidget(buttonOK);
+    buttonHLayout->addWidget(buttonCancel);
 
     //----Przypisanie przycisków do slotów----//
-    connect(buttonOK,SIGNAL(clicked()),this,SLOT(closeWindow()));
+    connect(buttonOK,SIGNAL(clicked()),this,SLOT(saveSettings()));
+    connect(buttonCancel,SIGNAL(clicked()),this,SLOT(closeWindow()));
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
 
@@ -112,12 +117,17 @@ WidgetSettings::~WidgetSettings()
 {
     delete ui;
 }
-
+//----Zamyka okno----//
 void WidgetSettings::closeWindow()
+{
+    this->close();
+}
+//----Zapisuje ustawienia----//
+void WidgetSettings::saveSettings()
 {
     setSettingsReader();
     settingsReader->saveSettings();
-    this->close();
+    closeWindow();
 }
 
 //----Ustawia aktywność przycisku usuń kropkę rozszerzenia zależnie od przycisku zastąp kropki----//
