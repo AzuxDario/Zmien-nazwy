@@ -7,6 +7,7 @@
 #include "WidgetSettings.h"
 #include "Settings.h"
 #include "NameChangeParameters.h"
+#include "About.h"
 
 class WidgetViewProvider :public QObject
 {
@@ -16,10 +17,6 @@ public:
     WidgetViewProvider();
 
 private:
-    //----Zmienne przechuwyjące ciągi znaków----//
-    QString widgetAboutText;
-    QString widgetChangeLogText;
-
     WidgetChangeLog *widgetChangeLog;
     WidgetAbout *widgetAbout;
     WidgetSettings *widgetSettings;
