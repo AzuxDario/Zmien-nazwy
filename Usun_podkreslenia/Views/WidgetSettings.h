@@ -11,6 +11,7 @@
 #include <QGroupBox>
 #include <QDesktopWidget>
 #include "Settings.h"
+#include "Views.h"
 
 namespace Ui {
 class WidgetSettings;
@@ -55,15 +56,15 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *checkBoxChangeFirstLetterToBig;
-    QRadioButton *checkBoxChangeLettersToBig;
-    QRadioButton *checkBoxChangeLettersToSmall;
-    QRadioButton *checkBoxChangeFirstLettersToBig;
-    QRadioButton *checkBoxDontChangeName;
-    QRadioButton *checkBoxChangeExtensionToSmall;
-    QRadioButton *checkBoxChangeExtensionToBig;
-    QRadioButton *checkBoxChangeExtensionFirstLettersToBig;
-    QRadioButton *checkBoxChangeDontChangeExtension;
+    QRadioButton *radioButtonChangeFirstLetterToBig;
+    QRadioButton *radioButtonChangeLettersToBig;
+    QRadioButton *radioButtonChangeLettersToSmall;
+    QRadioButton *radioButtonChangeFirstLettersToBig;
+    QRadioButton *radioButtonDontChangeName;
+    QRadioButton *radioButtonChangeExtensionToSmall;
+    QRadioButton *radioButtonChangeExtensionToBig;
+    QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
+    QRadioButton *radioButtonChangeDontChangeExtension;
 
     //----Etykiety----//
     QLabel *labelDefaultSettings;
