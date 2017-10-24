@@ -390,8 +390,7 @@ void Widget::setNameChangesParameters()
 
 void Widget::initializeProgressBar(int minValue, int maxValue)
 {
-    progressBar->setMinimum(minValue);
-    progressBar->setMaximum(maxValue);
+    progressBar->setRange(minValue, maxValue);
 }
 
 void Widget::changeProgressBar(int value)
