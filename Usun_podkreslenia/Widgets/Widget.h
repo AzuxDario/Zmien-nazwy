@@ -18,7 +18,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
-#include "NameChanger.h"
+#include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
 

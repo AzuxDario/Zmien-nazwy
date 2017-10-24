@@ -3,7 +3,7 @@
 
 #include "WidgetAbout.h"
 #include "WidgetChangelog.h"
-#include "NameChanger.h"
+#include "Renamer.h"
 #include "WidgetSettings.h"
 #include "Settings.h"
 #include "NameChangeParameters.h"
@@ -21,7 +21,7 @@ private:
     WidgetAbout *widgetAbout;
     WidgetSettings *widgetSettings;
 
-    NameChanger *nameChanger;
+    Renamer *nameChanger;
 
     Settings *settingsReader;
 

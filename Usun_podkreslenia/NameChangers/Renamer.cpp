@@ -1,18 +1,18 @@
-#include "NameChanger.h"
+#include "Renamer.h"
 
-NameChanger::NameChanger()
+Renamer::Renamer()
 {
-    warningMessageBoxText = "Brak katalogu.\nKatalog mógł zostać usunięty, zmieniono jego nazwę, został przeniesiony\nlub nastąpiła inna czynność uniemożliwiająca znalezienie katalogu";
+
 }
 
-void NameChanger::initiateRenameFiles(NameChangeParameters nameChangeParameters)
+void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters)
 {
     this->nameChangeParameters = nameChangeParameters;
     renameFiles();
 }
 
 //----Pokazuje okienko z informacjami, że katalog nie istnieje----//
-void NameChanger::showFolderNotExist()
+void Renamer::showFolderNotExist()
 {
     int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym
     QMessageBox informationMessageBox(tr(Warnings::warning),tr(Warnings::folderNotFound),QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
@@ -22,7 +22,7 @@ void NameChanger::showFolderNotExist()
 }
 
 //----Wykonuje operacje zmiany nazwy pliku----//
-QString NameChanger::changeFileName(QString fileName)
+QString Renamer::changeFileName(QString fileName)
 {
     if(nameChangeParameters.getReplaceUnderscores() == true)
         fileName = nameModifier.replaceUnderscores(fileName);
@@ -37,26 +37,26 @@ QString NameChanger::changeFileName(QString fileName)
 }
 
 //----Porównuje dwie nazwy plików jeśli są identyczne zwraca true----//
-bool NameChanger::isFileNameIdentical(QString oldName, QString newName)
+bool Renamer::isFileNameIdentical(QString oldName, QString newName)
 {
     return oldName == newName;
 }
 
 //----Ustawia pasek postępu w stan zajętości----//
-void NameChanger::setBusyProgressBar()
+void Renamer::setBusyProgressBar()
 {
     emit initializeProgressBar(0,0);
 }
 
 //----Inicjuje pasek postępu ustawiając jako wartość maksymalną ilość plików w folderze----//
-void NameChanger::initiateProgressBar(int max)
+void Renamer::initiateProgressBar(int max)
 {
     emit initializeProgressBar(0, max);
     emit changeProgressBar(0);
 }
 
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
-void NameChanger::renameFiles()
+void Renamer::renameFiles()
 {
     QDir currentFolder(selectedFolder);
     if(!currentFolder.exists())

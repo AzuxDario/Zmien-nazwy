@@ -1,5 +1,5 @@
-#ifndef NAMECHANGER_H
-#define NAMECHANGER_H
+#ifndef RENAMER_H
+#define RENAMER_H
 
 #include <QString>
 #include <QFileDialog>
@@ -13,19 +13,16 @@
 #include "Warnings.h"
 
 
-class NameChanger :public QObject
+class Renamer :public QObject
 {
     Q_OBJECT
 
 public:
-    NameChanger();
+    Renamer();
 
 private:
     NameChangeParameters nameChangeParameters;
     QString selectedFolder;
-
-    //----Zmienne przechuwyjące ciągi znaków----//
-    QString warningMessageBoxText;
 
     NameModifier nameModifier;
 
@@ -49,4 +46,4 @@ private:
     void renameFiles(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
 };
 
-#endif // NAMECHANGER_H
+#endif // RENAMER_H
