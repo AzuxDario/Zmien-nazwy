@@ -39,3 +39,13 @@ bool DirectoryIdentifier::isFile(QDir accessPath, QString fileName)
 {
      return !isSubfolder(accessPath, fileName);
 }
+
+QString DirectoryIdentifier::getFileExtension(QString fileName)
+{
+    if(fileName.indexOf('.') == -1)
+        return "";
+    else
+    {
+       return fileName.section('.',-1,-1);
+    }
+}

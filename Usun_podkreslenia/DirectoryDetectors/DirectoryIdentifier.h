@@ -14,6 +14,7 @@ public:
     static bool isNotCurrentOrParentFolder(QString fileName);
     static bool isFolder(QDir accessPath, QString fileName); //Sprawdza czy element jest folderem
     static bool isFile(QDir accessPath, QString fileName);
+    static QString getFileExtension(QString fileName);
 };
 
 #endif // DIRECTORYIDENTIFIER_H
