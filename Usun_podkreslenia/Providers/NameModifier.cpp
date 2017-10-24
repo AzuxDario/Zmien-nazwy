@@ -18,15 +18,17 @@ QString NameModifier::replaceDashes(QString fileName, bool dontReplaceDashesSurr
     if(dontReplaceDashesSurrondedBySpace == false)
     {
         fileName.replace("-"," ");
+        fileName.replace("—"," ");
     }
     else
     {
-        if(fileName[0] == '-') fileName[0] = ' ';
+        if(fileName[0] == '-' || fileName[0] == "—") fileName[0] = ' ';
         int end = fileName.length()-1;
-        if(fileName[end] == '-') fileName[end] = ' ';
+        if(fileName[end] == '-' || fileName[end] == "—") fileName[end] = ' ';
         for(int i = 1; i < end; i++)
         {
             if((fileName[i-1] != ' '|| fileName[i+1] != ' ') && fileName[i] == '-') fileName[i] = ' ';
+            if((fileName[i-1] != ' '|| fileName[i+1] != ' ') && fileName[i] == "—") fileName[i] = ' ';
         }
     }
     return fileName;
