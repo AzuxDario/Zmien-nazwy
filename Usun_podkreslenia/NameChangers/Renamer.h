@@ -11,6 +11,7 @@
 #include "NameChangeParameters.h"
 #include "NameModifier.h"
 #include "Warnings.h"
+#include "DirectoryIdentifier.h"
 
 
 class Renamer :public QObject
