@@ -21,10 +21,10 @@ const char* Widgets::actionAbout = "&O programie";
 const char* Widgets::actionChangeLog = "&Rejestr zmian";
 
 const char* Widgets::checkBoxReplaceInSubfolders = "Zastąp znaki także w podfolderach";
-const char* Widgets::checkBoxReplaceUnderscores = "Zastąp podkreślenia";
-const char* Widgets::checkBoxReplaceDashes = "Zastąp pauzy";
+const char* Widgets::checkBoxReplaceUnderscores = "Zastąp podkreślenia [ _ ]";
+const char* Widgets::checkBoxReplaceDashes = "Zastąp pauzy [ - ]";
 const char* Widgets::checkBoxDontReplaceDashesSurrondedBySpaces = "Nie zastępuj pauz otoczonych spacjami";
-const char* Widgets::checkBoxReplaceDots = "Zastąp kropki";
+const char* Widgets::checkBoxReplaceDots = "Zastąp kropki [ . ]";
 const char* Widgets::checkBoxReplaceExtensionDot = "Zastąp ostatnią kropkę. Zaznacz gdy pliki nie posiadają rozszerzeń";
 const char* Widgets::checkBoxRemoveMultiplySpaces = "Usuń wielokrotne spacje";
 const char* Widgets::checkBoxRemoveSpacesAtBegin = "Usuń spacje na początku nazwy";

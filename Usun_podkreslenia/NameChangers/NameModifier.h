@@ -13,6 +13,7 @@ public:
     QString replaceUnderscores(QString fileName); //Zmienia nazwę pliku zastępując znaki "_" na " "
     QString replaceDashes(QString fileName, bool dontReplaceDashesSurrondedBySpace); //Zmienia nazwę pliku zastępując znaki "-" na " "
     QString replaceDots(QString fileName, bool replaceExtensionDot); //Zmienia nazwę pliku zastępując znaki "." na " "
+    QString replacePluses(QString fileName); //Zmienia nazwę pliku zastępując znaki "+" na " "
     QString changeLettersSize(QString fileName, NameChangeParameters::Letters changeLetters); //Zmienia pierwszą literę na dużą
     QString changeExtensionSize(QString fileName, NameChangeParameters::Extensions changeExtension); //Ustawia rozszeżenie pliku pisane z małej litery
     QString removeSpaces(QString fileName, bool removeMultiplySpaces, bool removeSpacesAtBegin, bool removeSpacesAtEnd); //Usuwa spację

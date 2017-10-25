@@ -44,6 +44,13 @@ QString NameModifier::replaceDots(QString fileName, bool replaceExtensionDot)
     return fileName;
 }
 
+//----Zmienia nazwę pliku zastępując znaki "+" na " "----//
+QString NameModifier::replacePluses(QString fileName)
+{
+    fileName.replace("+"," ");
+    return fileName;
+}
+
 //----Zmienia pierwszą literę na dużą----//
 QString NameModifier::changeLettersSize(QString fileName, NameChangeParameters::Letters changeLetters)
 {
