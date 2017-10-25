@@ -33,6 +33,7 @@ public:
     const static char* checkBoxDontReplaceDashesSurrondedBySpaces;
     const static char* checkBoxReplaceDots;
     const static char* checkBoxReplaceExtensionDot;
+    const static char* checkBoxReplacePluses;
     const static char* checkBoxRemoveMultiplySpaces;
     const static char* checkBoxRemoveSpacesAtBegin;
     const static char* checkBoxRemoveSpacesAtEnd;
