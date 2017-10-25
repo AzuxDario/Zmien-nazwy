@@ -29,8 +29,10 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
     checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
     checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Widgets::checkBoxDontReplaceDashesSurrondedBySpaces));
+    checkBoxDontReplaceDashesSurrondedBySpaces->setStyleSheet("margin-left:15px;");
     checkBoxReplaceDots = new QCheckBox(tr(Widgets::checkBoxReplaceDots));
     checkBoxReplaceExtensionDot = new QCheckBox(tr(Widgets::checkBoxReplaceExtensionDot));
+    checkBoxReplaceExtensionDot->setStyleSheet("margin-left:15px;");
     checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
     checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
