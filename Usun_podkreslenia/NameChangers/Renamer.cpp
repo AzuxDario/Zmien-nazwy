@@ -30,6 +30,8 @@ QString Renamer::changeFileName(QString fileName)
         fileName = nameModifier.replaceDashes(fileName, nameChangeParameters.getDontReplaceDashesSurrondedBySpaces());
     if(nameChangeParameters.getReplaceDots() == true)
         fileName = nameModifier.replaceDots(fileName, nameChangeParameters.getReplaceExtensionDot());
+    if(nameChangeParameters.getReplacePluses() == true)
+        fileName = nameModifier.replacePluses(fileName);
     fileName = nameModifier.changeLettersSize(fileName, nameChangeParameters.getChangeLetters());
     fileName = nameModifier.changeExtensionSize(fileName, nameChangeParameters.getChangeExtension());
     fileName = nameModifier.removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
