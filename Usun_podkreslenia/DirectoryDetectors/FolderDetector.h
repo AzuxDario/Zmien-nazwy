@@ -21,7 +21,7 @@ private:
     bool searchInSubfolders;
 
 public:
-    QStringList getFolderList(); //Zwraca listę folderów
+    const QStringList& getFolderList(); //Zwraca listę folderów
     int getNumberFiles(); //Zwraca ilość plików w podfolderach
 
 private:

@@ -9,7 +9,7 @@ FolderDetector::FolderDetector(QString selectedFolder, bool searchInSubfolders)
 }
 
 //----Zwraca listę folderów----//
-QStringList FolderDetector::getFolderList()
+const QStringList& FolderDetector::getFolderList()
 {
     return folderList;
 }
