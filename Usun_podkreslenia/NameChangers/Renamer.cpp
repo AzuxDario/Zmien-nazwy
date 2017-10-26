@@ -32,6 +32,26 @@ void Renamer::renameInFolders()
     selectedFolder = "";
 }
 
+//----Funkcja zmienia nazwę jednego pliku----//
+void Renamer::renameOneFile()
+{
+    QFile currentFile(selectedFolder);
+    if(currentFile.exists())
+    {
+        QString oldName = currentFile.fileName();
+        QString newName = changeFileName(oldName);
+        if(isFileNameIdentical(oldName, newName) == false)
+        {
+            currentFile.rename(newName);
+        }
+    }
+    else
+    {
+
+    }
+    selectedFolder = "";
+}
+
 //----Funkcja zmienia nazwy plików w folderach----//
 void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
 {
@@ -68,6 +88,16 @@ void Renamer::showFolderNotExist()
 {
     int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym
     QMessageBox informationMessageBox(tr(Warnings::warning),tr(Warnings::folderNotFound),QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
+    clickedButton = informationMessageBox.exec();
+    if(clickedButton == QMessageBox::Ok) //Zamyka okno po wciśnięciu ok
+        informationMessageBox.close();
+}
+
+//----Pokazuje okienko z informacjami, że plik nie istnieje----//
+void Renamer::showFileNotExist()
+{
+    int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym
+    QMessageBox informationMessageBox(tr(Warnings::warning),tr(Warnings::fileNotFound),QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
     clickedButton = informationMessageBox.exec();
     if(clickedButton == QMessageBox::Ok) //Zamyka okno po wciśnięciu ok
         informationMessageBox.close();

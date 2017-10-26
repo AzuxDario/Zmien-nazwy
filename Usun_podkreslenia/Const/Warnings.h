@@ -9,6 +9,7 @@ public:
     const static char* warning;
 
     const static char* folderNotFound;
+    const static char* fileNotFound;
 public:
     Warnings();
 };

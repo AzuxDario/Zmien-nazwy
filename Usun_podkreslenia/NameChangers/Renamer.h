@@ -24,6 +24,7 @@ public:
 private:
     NameChangeParameters nameChangeParameters;
     QString selectedFolder;
+
     NameModifier nameModifier;
 
 signals:
@@ -38,6 +39,7 @@ public:
 
 private:
     void renameInFolders(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
+    void renameOneFile(); //Funkcja zmienia nazwę jednego pliku
     void renameFiles(QDir currentFolder, const QStringList& folderList); //Funkcja zmienia nazwy plików w folderach
     void showFolderNotExist(); //Pokazuje okienko z informacjami, że katalog nie istnieje
     QString changeFileName(QString fileName); //Wykonuje operacje zmiany nazwy pliku
