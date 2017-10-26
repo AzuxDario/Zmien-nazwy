@@ -42,6 +42,7 @@ private:
     void renameOneFile(); //Funkcja zmienia nazwę jednego pliku
     void renameFiles(QDir currentFolder, const QStringList& folderList); //Funkcja zmienia nazwy plików w folderach
     void showFolderNotExist(); //Pokazuje okienko z informacjami, że katalog nie istnieje
+    void showFileNotExist(); //Pokazuje okienko z informacjami, że plik nie istnieje
     QString changeFileName(QString fileName); //Wykonuje operacje zmiany nazwy pliku
     bool isFileNameIdentical(QString oldName, QString newName) {return oldName == newName;} //Porównuje dwie nazwy plików jeśli są identyczne zwraca true
     void setBusyProgressBar() {emit initializeProgressBar(0,0);} //Ustawia pasek postępu w stan zajętości

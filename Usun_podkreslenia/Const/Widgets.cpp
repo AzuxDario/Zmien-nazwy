@@ -39,7 +39,7 @@ const char* Widgets::radioButtonChangeExtensionToBig = "Zmień rozszerzenie na p
 const char* Widgets::radioButtonChangeExtensionToSmall = "Zmień rozszerzenie na pisane małymi literami";
 const char* Widgets::radioButtonChangeExtensionFirstLettersToBig = "Zmień pierwszą literę rozszerzenia na dużą";
 
-const char* Widgets::buttonGroupSubfolders = "Podfoldery";
+const char* Widgets::buttonGroupSubfolders = "Podfoldery (dotyczy zmiany w folderach)";
 const char* Widgets::buttonGroupReplace = "Zastąp znaki";
 const char* Widgets::buttonGroupLetterSize = "Zmień rozmiar liter w nazwie";
 const char* Widgets::buttonGroupExtensionSize = "Zmień rozmiar liter w rozszerzeniu";
