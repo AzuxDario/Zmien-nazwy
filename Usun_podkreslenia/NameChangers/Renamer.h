@@ -38,8 +38,7 @@ public:
 
 private:
     void renameInFolders(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
-    bool isFolderExist(QDir directory); //Sprawdza czy folder istnieje
-    void renameFiles(QDir currentFolder, QStringList folderList); //Funkcja zmienia nazwy plików w folderach
+    void renameFiles(QDir currentFolder, const QStringList& folderList); //Funkcja zmienia nazwy plików w folderach
     void showFolderNotExist(); //Pokazuje okienko z informacjami, że katalog nie istnieje
     QString changeFileName(QString fileName); //Wykonuje operacje zmiany nazwy pliku
     bool isFileNameIdentical(QString oldName, QString newName) {return oldName == newName;} //Porównuje dwie nazwy plików jeśli są identyczne zwraca true

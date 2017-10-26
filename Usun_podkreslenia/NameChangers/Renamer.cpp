@@ -15,7 +15,7 @@ void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters)
 void Renamer::renameInFolders()
 {
     QDir currentFolder(selectedFolder);
-    if(isFolderExist(currentFolder))
+    if(currentFolder.exists())
     {
         setBusyProgressBar();
         FolderDetector folderDetector(selectedFolder, nameChangeParameters.getReplaceInSubfolders());
@@ -25,24 +25,15 @@ void Renamer::renameInFolders()
         renameFiles(currentFolder, folderList);
         emit resetProgressBar();
     }
+    else
+    {
+       showFolderNotExist();
+    }
     selectedFolder = "";
 }
 
-//----Sprawdza czy folder istnieje----//
-bool Renamer::isFolderExist(QDir directory)
-{
-    if(directory.exists())
-    {
-        return true;
-    }
-    else
-    {
-        showFolderNotExist();
-        return false;
-    }
-}
 //----Funkcja zmienia nazwy plików w folderach----//
-void Renamer::renameFiles(QDir currentFolder, QStringList folderList)
+void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
 {
     int numberOfRenamedFiles = 0;
     for(auto folderListIterator = folderList.begin(); folderListIterator != folderList.end(); folderListIterator++)
