@@ -47,7 +47,7 @@ void Renamer::renameOneFile()
     }
     else
     {
-
+        showFileNotExist();
     }
     selectedFolder = "";
 }
