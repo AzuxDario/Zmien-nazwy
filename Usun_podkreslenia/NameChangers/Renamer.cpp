@@ -27,7 +27,7 @@ void Renamer::renameInFolders()
     }
     else
     {
-       showFolderNotExist();
+        showError(Warnings::folderNotFound);
     }
     selectedFolder = "";
 }
@@ -47,7 +47,7 @@ void Renamer::renameOneFile()
     }
     else
     {
-        showFileNotExist();
+        showError(Warnings::fileNotFound);
     }
     selectedFolder = "";
 }
@@ -83,21 +83,11 @@ void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
     }
 }
 
-//----Pokazuje okienko z informacjami, że katalog nie istnieje----//
-void Renamer::showFolderNotExist()
+//----Funckcja pokazuje błąd----//
+void Renamer::showError(const char* string)
 {
     int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym
-    QMessageBox informationMessageBox(tr(Warnings::warning),tr(Warnings::folderNotFound),QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
-    clickedButton = informationMessageBox.exec();
-    if(clickedButton == QMessageBox::Ok) //Zamyka okno po wciśnięciu ok
-        informationMessageBox.close();
-}
-
-//----Pokazuje okienko z informacjami, że plik nie istnieje----//
-void Renamer::showFileNotExist()
-{
-    int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym
-    QMessageBox informationMessageBox(tr(Warnings::warning),tr(Warnings::fileNotFound),QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
+    QMessageBox informationMessageBox(tr(Warnings::warning),tr(string),QMessageBox::Warning, QMessageBox::Ok | QMessageBox::Default,0,0);
     clickedButton = informationMessageBox.exec();
     if(clickedButton == QMessageBox::Ok) //Zamyka okno po wciśnięciu ok
         informationMessageBox.close();
