@@ -22,7 +22,7 @@ WidgetChangeLog::WidgetChangeLog(QWidget *parent) :
     textBrowserChangeLog->setText(About::changeLog);
 
     //--------Przycisk--------//
-    buttonOk = new QPushButton(Widgets::buttonOk,this);
+    buttonOk = new QPushButton(tr(Widgets::buttonOk),this);
     buttonOk->setGeometry(180,320,140,30);
 
     //----Przypisanie przycisków do slotów----//
