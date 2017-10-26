@@ -65,6 +65,11 @@ bool Settings::saveSettings()
             stream << "1" << endl;
         else
             stream << "0" << endl;
+        stream << "czyZamienicPlusy=";
+        if(nameChangeParameters.getReplacePluses() == true)
+            stream << "1" << endl;
+        else
+            stream << "0" << endl;
         stream << "usunWielokrotneSpacje=";
         if(nameChangeParameters.getRemoveMultiplySpaces() == true)
             stream << "1" << endl;
@@ -106,6 +111,7 @@ bool Settings::rebuildFile()
         stream << "czyZachowacPauzyPomiedzySpacjami=0" <<endl;
         stream << "czyZamienicKropki=0" << endl;
         stream << "czyZamienicKropkeRozszerzenia=0" << endl;
+        stream << "czyZamienicPlusy=0" << endl;
         stream << "usunWielokrotneSpacje=0" << endl;
         stream << "usunSpacjeNaPoczatku=0" << endl;
         stream << "usunSpacjeNaKoncu=0" << endl;
@@ -137,6 +143,8 @@ void Settings::setSetting(QString line)
             nameChangeParameters.setReplaceDots(value);
         else if(option == "czyZamienicKropkeRozszerzenia")
             nameChangeParameters.setReplaceExtensionDot(value);
+        else if(option == "czyZamienicPlusy")
+            nameChangeParameters.setReplacePluses(value);
         else if(option == "usunWielokrotneSpacje")
             nameChangeParameters.setRemoveMultiplySpaces(value);
         else if(option == "usunSpacjeNaPoczatku")
