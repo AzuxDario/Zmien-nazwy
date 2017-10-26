@@ -8,7 +8,68 @@ Renamer::Renamer()
 void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters)
 {
     this->nameChangeParameters = nameChangeParameters;
-    renameFiles();
+    renameInFolders();
+}
+
+//----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
+void Renamer::renameInFolders()
+{
+    QDir currentFolder(selectedFolder);
+    if(isFolderExist(currentFolder))
+    {
+        setBusyProgressBar();
+        FolderDetector folderDetector(selectedFolder, nameChangeParameters.getReplaceInSubfolders());
+        initiateProgressBar(folderDetector.getNumberFiles());
+        QStringList folderList = folderDetector.getFolderList();
+
+        renameFiles(currentFolder, folderList);
+        emit resetProgressBar();
+    }
+    selectedFolder = "";
+}
+
+//----Sprawdza czy folder istnieje----//
+bool Renamer::isFolderExist(QDir directory)
+{
+    if(directory.exists())
+    {
+        return true;
+    }
+    else
+    {
+        showFolderNotExist();
+        return false;
+    }
+}
+//----Funkcja zmienia nazwy plików w folderach----//
+void Renamer::renameFiles(QDir currentFolder, QStringList folderList)
+{
+    int numberOfRenamedFiles = 0;
+    for(auto folderListIterator = folderList.begin(); folderListIterator != folderList.end(); folderListIterator++)
+    {
+        QString nextFolder = *folderListIterator;
+        currentFolder.cd(nextFolder);
+        if(!currentFolder.exists())
+            continue;
+        for(unsigned int i = 0; i < currentFolder.count(); i++)
+        {
+            numberOfRenamedFiles++;
+            changeProgressBar(numberOfRenamedFiles);
+
+            if(DirectoryIdentifier::isFile(currentFolder, currentFolder[static_cast<int>(i)]))
+            {
+                QString fileName = currentFolder[static_cast<int>(i)];
+                QString newFileName = changeFileName(fileName);
+                if(isFileNameIdentical(fileName,newFileName))
+                    continue;
+                else
+                {
+                    QFile file(nextFolder + QDir::separator() + fileName);
+                    file.rename(nextFolder + QDir::separator() + newFileName);
+                }
+            }
+        }
+    }
 }
 
 //----Pokazuje okienko z informacjami, że katalog nie istnieje----//
@@ -36,70 +97,4 @@ QString Renamer::changeFileName(QString fileName)
     fileName = nameModifier.changeExtensionSize(fileName, nameChangeParameters.getChangeExtension());
     fileName = nameModifier.removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
     return fileName;
-}
-
-//----Porównuje dwie nazwy plików jeśli są identyczne zwraca true----//
-bool Renamer::isFileNameIdentical(QString oldName, QString newName)
-{
-    return oldName == newName;
-}
-
-//----Ustawia pasek postępu w stan zajętości----//
-void Renamer::setBusyProgressBar()
-{
-    emit initializeProgressBar(0,0);
-}
-
-//----Inicjuje pasek postępu ustawiając jako wartość maksymalną ilość plików w folderze----//
-void Renamer::initiateProgressBar(int max)
-{
-    emit initializeProgressBar(0, max);
-    emit changeProgressBar(0);
-}
-
-//----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
-void Renamer::renameFiles()
-{
-    QDir currentFolder(selectedFolder);
-    if(!currentFolder.exists())
-    {
-        showFolderNotExist();
-        selectedFolder = "";
-        return;
-    }
-    setBusyProgressBar();
-    FolderDetector folderDetector(selectedFolder, nameChangeParameters.getReplaceInSubfolders());
-    int numberFiles = folderDetector.getNumberFiles();
-    initiateProgressBar(numberFiles);
-
-    QStringList folderList = folderDetector.getFolderList();
-
-    int numberOfRenamedFiles = 0;
-    for(auto folderListIterator = folderList.begin(); folderListIterator != folderList.end(); folderListIterator++)
-    {
-        QString nextFolder = *folderListIterator;
-        currentFolder.cd(nextFolder);
-        if(!currentFolder.exists())
-            continue;
-        for(unsigned int i = 0; i < currentFolder.count(); i++)
-        {
-            numberOfRenamedFiles++;
-            changeProgressBar(numberOfRenamedFiles);
-
-            if(DirectoryIdentifier::isFile(currentFolder, currentFolder[static_cast<int>(i)]))
-            {
-                QString fileName = currentFolder[static_cast<int>(i)];
-                QString newFileName = changeFileName(fileName);
-                if(isFileNameIdentical(fileName,newFileName))
-                    continue;
-                else
-                {
-                    QFile file(nextFolder + QDir::separator() + fileName);
-                    file.rename(nextFolder + QDir::separator() + newFileName);
-                }
-            }
-        }
-    }
-    emit resetProgressBar();
-    selectedFolder = "";
 }
