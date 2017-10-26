@@ -33,6 +33,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     checkBoxReplaceDots = new QCheckBox(tr(Widgets::checkBoxReplaceDots));
     checkBoxReplaceExtensionDot = new QCheckBox(tr(Widgets::checkBoxReplaceExtensionDot));
     checkBoxReplaceExtensionDot->setStyleSheet("margin-left:15px;");
+    checkBoxReplacePluses = new QCheckBox(tr(Widgets::checkBoxReplacePluses));
     checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
     checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
@@ -80,6 +81,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupReplaceLayout->addWidget(checkBoxDontReplaceDashesSurrondedBySpaces);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDots);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceExtensionDot);
+    buttonGroupReplaceLayout->addWidget(checkBoxReplacePluses);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveMultiplySpaces);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtBegin);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtEnd);
@@ -155,6 +157,7 @@ void WidgetSettings::setCheckBoxes()
     checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(parameters.getDontReplaceDashesSurrondedBySpaces());
     checkBoxReplaceDots->setChecked(parameters.getReplaceDots());
     checkBoxReplaceExtensionDot->setChecked(parameters.getReplaceExtensionDot());
+    checkBoxReplacePluses->setChecked(parameters.getReplacePluses());
     checkBoxRemoveMultiplySpaces->setChecked(parameters.getRemoveMultiplySpaces());
     checkBoxRemoveSpacesAtBegin->setChecked(parameters.getRemoveSpacesAtBegin());
     checkBoxRemoveSpacesAtEnd->setChecked(parameters.getRemoveSpacesAtEnd());
@@ -225,6 +228,7 @@ void WidgetSettings::setSettingsReader()
     nameChangeParameters.setDontReplaceDashesSurrondedBySpaces(checkBoxDontReplaceDashesSurrondedBySpaces->isChecked());
     nameChangeParameters.setReplaceDots(checkBoxReplaceDots->isChecked());
     nameChangeParameters.setReplaceExtensionDot(checkBoxReplaceExtensionDot->isChecked());
+    nameChangeParameters.setReplacePluses(checkBoxReplacePluses->isChecked());
     nameChangeParameters.setRemoveMultiplySpaces(checkBoxRemoveMultiplySpaces->isChecked());
     nameChangeParameters.setRemoveSpacesAtBegin(checkBoxRemoveSpacesAtBegin->isChecked());
     nameChangeParameters.setRemoveSpacesAtEnd(checkBoxRemoveSpacesAtEnd->isChecked());

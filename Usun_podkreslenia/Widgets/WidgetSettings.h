@@ -53,6 +53,7 @@ private:
     QCheckBox *checkBoxDontReplaceDashesSurrondedBySpaces;
     QCheckBox *checkBoxReplaceDots;
     QCheckBox *checkBoxReplaceExtensionDot;
+    QCheckBox *checkBoxReplacePluses;
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
