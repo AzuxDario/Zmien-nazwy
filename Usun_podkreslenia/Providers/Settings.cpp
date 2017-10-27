@@ -115,7 +115,7 @@ bool Settings::rebuildFile()
         stream << "usunWielokrotneSpacje=0" << endl;
         stream << "usunSpacjeNaPoczatku=0" << endl;
         stream << "usunSpacjeNaKoncu=0" << endl;
-        stream << "rozmiarLiter=4" << endl;
+        stream << "rozmiarLiter=5" << endl;
         stream << "rozmiarRozszezenia=3";
         settingsFile.close();
         return true;
