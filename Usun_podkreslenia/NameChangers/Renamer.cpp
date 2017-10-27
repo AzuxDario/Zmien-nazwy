@@ -83,7 +83,7 @@ void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
     }
 }
 
-//----Funckcja pokazuje błąd----//
+//----Funkcja pokazuje błąd----//
 void Renamer::showError(const char* string)
 {
     int clickedButton; //Przechowuje informację o wyborze użytkownika w oknie dialogowym

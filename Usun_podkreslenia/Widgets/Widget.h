@@ -18,6 +18,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
+#include <QComboBox>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
@@ -83,15 +84,11 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *radioButtonChangeFirstLetterToBig;
-    QRadioButton *radioButtonChangeLettersToBig;
-    QRadioButton *radioButtonChangeLettersToSmall;
-    QRadioButton *radioButtonChangeFirstLettersToBig;
-    QRadioButton *radioButtonDontChangeName;
     QRadioButton *radioButtonChangeExtensionToSmall;
     QRadioButton *radioButtonChangeExtensionToBig;
     QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
     QRadioButton *radioButtonChangeDontChangeExtension;
+    QComboBox *comboBoxChangeLettersSize;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
