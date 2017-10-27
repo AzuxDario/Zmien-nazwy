@@ -5,7 +5,7 @@
 class NameChangeParameters
 {
 public:
-    enum class Letters {FirstBig, AllBig, AllSmall, FirstInWordsBig, DoNothing};
+    enum class Letters {FirstBig, FirstBigRestSmall, AllBig, AllSmall, FirstInWordsBig, DoNothing};
     enum class Extensions {FirstBig, AllBig, AllSmall, DoNothing};
 
 private:

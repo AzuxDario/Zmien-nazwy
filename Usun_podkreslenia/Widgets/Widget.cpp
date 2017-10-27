@@ -67,6 +67,7 @@ Widget::Widget(QWidget *parent) :
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
     comboBoxChangeLettersSize = new QComboBox();
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBigRestSmall));
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeLettersToBig));
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeLettersToSmall));
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLettersToBig));
@@ -278,17 +279,20 @@ void Widget::setButtonSelection()
     case NameChangeParameters::Letters::FirstBig:
         comboBoxChangeLettersSize->setCurrentIndex(0);
         break;
-    case NameChangeParameters::Letters::AllBig:
-        comboBoxChangeLettersSize->setCurrentIndex(1);
-        break;
-    case NameChangeParameters::Letters::AllSmall:
+    case NameChangeParameters::Letters::FirstBigRestSmall:
         comboBoxChangeLettersSize->setCurrentIndex(2);
         break;
-    case NameChangeParameters::Letters::FirstInWordsBig:
+    case NameChangeParameters::Letters::AllBig:
+        comboBoxChangeLettersSize->setCurrentIndex(2);
+        break;
+    case NameChangeParameters::Letters::AllSmall:
         comboBoxChangeLettersSize->setCurrentIndex(3);
         break;
-    case NameChangeParameters::Letters::DoNothing:
+    case NameChangeParameters::Letters::FirstInWordsBig:
         comboBoxChangeLettersSize->setCurrentIndex(4);
+        break;
+    case NameChangeParameters::Letters::DoNothing:
+        comboBoxChangeLettersSize->setCurrentIndex(5);
         break;
     }
 
@@ -358,15 +362,18 @@ void Widget::setNameChangesParameters()
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstBig);
         break;
     case 1:
-        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllBig);
+        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstBigRestSmall);
         break;
     case 2:
-        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllSmall);
+        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllBig);
         break;
     case 3:
-        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstInWordsBig);
+        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllSmall);
         break;
     case 4:
+        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstInWordsBig);
+        break;
+    case 5:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::DoNothing);
         break;
     }

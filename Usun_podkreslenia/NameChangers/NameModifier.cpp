@@ -62,6 +62,11 @@ QString NameModifier::changeLettersSize(QString fileName, NameChangeParameters::
     case NameChangeParameters::Letters::FirstBig:
         fileName[0] = fileName[0].toUpper();
         break;
+    case NameChangeParameters::Letters::FirstBigRestSmall:
+        for(int i = 0; i<extensionDotPosition; i++)
+            fileName[i] = fileName[i].toLower();
+        fileName[0] = fileName[0].toUpper();
+        break;
     case NameChangeParameters::Letters::AllBig:
         for(int i = 0; i<extensionDotPosition; i++)
             fileName[i] = fileName[i].toUpper();

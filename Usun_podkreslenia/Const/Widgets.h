@@ -38,6 +38,7 @@ public:
     const static char* checkBoxRemoveSpacesAtBegin;
     const static char* checkBoxRemoveSpacesAtEnd;
     const static char* radioButtonChangeFirstLetterToBig;
+    const static char* radioButtonChangeFirstLetterToBigRestSmall;
     const static char* radioButtonChangeLettersToBig;
     const static char* radioButtonChangeLettersToSmall;
     const static char* radioButtonChangeFirstLettersToBig;

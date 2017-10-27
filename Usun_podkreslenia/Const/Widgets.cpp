@@ -31,6 +31,7 @@ const char* Widgets::checkBoxRemoveMultiplySpaces = "Usuń wielokrotne spacje";
 const char* Widgets::checkBoxRemoveSpacesAtBegin = "Usuń spacje na początku nazwy";
 const char* Widgets::checkBoxRemoveSpacesAtEnd = "Usuń spacje na końcu nazwy";
 const char* Widgets::radioButtonChangeFirstLetterToBig = "Zmień pierwszą literę w nazwie pliku na dużą";
+const char* Widgets::radioButtonChangeFirstLetterToBigRestSmall = "Zmień pierwszą literę w nazwie pliku na dużą resztę na małe";
 const char* Widgets::radioButtonChangeLettersToBig = "Zmień wszystkie litery na duże";
 const char* Widgets::radioButtonChangeLettersToSmall = "Zmień wszystkie litery na małe";
 const char* Widgets::radioButtonChangeFirstLettersToBig = "Zmień pierwsze litery w słowach na duże";
