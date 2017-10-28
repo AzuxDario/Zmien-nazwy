@@ -84,11 +84,8 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *radioButtonChangeExtensionToSmall;
-    QRadioButton *radioButtonChangeExtensionToBig;
-    QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
-    QRadioButton *radioButtonChangeDontChangeExtension;
     QComboBox *comboBoxChangeLettersSize;
+    QComboBox *comboBoxChangeExtensionSize;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
