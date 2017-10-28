@@ -49,9 +49,11 @@ public:
 
     const static char* buttonGroupSubfolders;
     const static char* buttonGroupReplace;
-    const static char* buttonGroupLetterSize;
-    const static char* buttonGroupExtensionSize;
+    const static char* buttonGroupSize;
     const static char* buttonGroupSpace;
+
+    const static char* labelGroupLetterSize;
+    const static char* labelGroupExtensionSize;
 
     const static char* textToStartSelectFolder;
     const static char* textSelectedFolder;

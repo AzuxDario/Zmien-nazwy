@@ -78,6 +78,8 @@ Widget::Widget(QWidget *parent) :
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
 
+    labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
+    labelChangeExtensionSize = new QLabel(tr(Widgets::labelGroupExtensionSize));
     //--------Okno z tekstem--------//
     textBrowserAbout = new QTextBrowser(this);
     textBrowserAbout->setAlignment(Qt::AlignTop);
@@ -103,23 +105,20 @@ Widget::Widget(QWidget *parent) :
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
-    buttonGroupLetterSizeLayout = new QVBoxLayout;
-    buttonGroupExtensionSizeLayout = new QVBoxLayout;
+    buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
-    buttonGroupLetterSize = new QGroupBox(tr(Widgets::buttonGroupLetterSize));
-    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::buttonGroupExtensionSize));
+    buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addWidget(buttonGroupSpace);
     leftVLayout->addWidget(textBrowserAbout);
     leftVLayout->addWidget(progressBar);
-    rightVLayout->addWidget(buttonGroupLetterSize);
-    rightVLayout->addWidget(buttonGroupExtensionSize);
-    rightVLayout->addSpacing(100);
+    rightVLayout->addWidget(buttonGroupSize);
+    rightVLayout->addWidget(buttonGroupSpace);
+    rightVLayout->addSpacing(70);
     rightVLayout->addLayout(buttonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
@@ -132,13 +131,15 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveMultiplySpaces);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtBegin);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtEnd);
-    buttonGroupLetterSizeLayout->addWidget(comboBoxChangeLettersSize);
-    buttonGroupExtensionSizeLayout->addWidget(comboBoxChangeExtensionSize);
+    buttonGroupSizeLayout->addWidget(labelChangeLettersSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeLettersSize);
+    buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
-    buttonGroupLetterSize->setLayout(buttonGroupLetterSizeLayout);
-    buttonGroupExtensionSize->setLayout(buttonGroupExtensionSizeLayout);
+    buttonGroupSize->setLayout(buttonGroupSizeLayout);
+    buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
     buttonHLayout->addWidget(buttonSelectFolder);

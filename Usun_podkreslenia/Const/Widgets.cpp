@@ -42,9 +42,11 @@ const char* Widgets::radioButtonChangeExtensionFirstLettersToBig = "Zmień pierw
 
 const char* Widgets::buttonGroupSubfolders = "Podfoldery (dotyczy zmiany w folderach)";
 const char* Widgets::buttonGroupReplace = "Zastąp znaki";
-const char* Widgets::buttonGroupLetterSize = "Zmień rozmiar liter w nazwie";
-const char* Widgets::buttonGroupExtensionSize = "Zmień rozmiar liter w rozszerzeniu";
+const char* Widgets::buttonGroupSize = "Zmień rozmiar";
 const char* Widgets::buttonGroupSpace = "Spacje";
+
+const char* Widgets::labelGroupLetterSize = "Zmień rozmiar liter w nazwie";
+const char* Widgets::labelGroupExtensionSize = "Zmień rozmiar liter w rozszerzeniu";
 
 const char* Widgets::textToStartSelectFolder = "Aby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
 const char* Widgets::textSelectedFolder = "Wybrany katalog: <b>";

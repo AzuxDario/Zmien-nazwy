@@ -65,8 +65,8 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
-    buttonGroupLetterSize = new QGroupBox(tr(Widgets::buttonGroupLetterSize));
-    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::buttonGroupExtensionSize));
+    buttonGroupLetterSize = new QGroupBox(tr(Widgets::labelGroupLetterSize));
+    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::labelGroupExtensionSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);

@@ -60,13 +60,11 @@ private:
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
-    QVBoxLayout *buttonGroupLetterSizeLayout;
-    QVBoxLayout *buttonGroupExtensionSizeLayout;
+    QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
-    QGroupBox *buttonGroupLetterSize;
-    QGroupBox *buttonGroupExtensionSize;
+    QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
 
     //----Przyciski----//
@@ -86,6 +84,9 @@ private:
     QCheckBox *checkBoxRemoveSpacesAtEnd;
     QComboBox *comboBoxChangeLettersSize;
     QComboBox *comboBoxChangeExtensionSize;
+
+    QLabel *labelChangeLettersSize;
+    QLabel *labelChangeExtensionSize;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
