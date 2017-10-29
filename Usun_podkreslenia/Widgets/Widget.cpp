@@ -78,8 +78,10 @@ Widget::Widget(QWidget *parent) :
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
 
+    //--------Etykiety--------//
     labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
     labelChangeExtensionSize = new QLabel(tr(Widgets::labelGroupExtensionSize));
+
     //--------Okno z tekstem--------//
     textBrowserAbout = new QTextBrowser(this);
     textBrowserAbout->setAlignment(Qt::AlignTop);
@@ -138,7 +140,6 @@ Widget::Widget(QWidget *parent) :
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
-    buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 

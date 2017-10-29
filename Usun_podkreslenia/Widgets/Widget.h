@@ -85,6 +85,7 @@ private:
     QComboBox *comboBoxChangeLettersSize;
     QComboBox *comboBoxChangeExtensionSize;
 
+    //----Etykiety----//
     QLabel *labelChangeLettersSize;
     QLabel *labelChangeExtensionSize;
 
