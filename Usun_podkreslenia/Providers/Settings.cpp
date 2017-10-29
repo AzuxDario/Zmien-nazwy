@@ -35,60 +35,18 @@ bool Settings::saveSettings()
     {
         QTextStream stream(&settingsFile);
         stream << "[Ustawienia]" << endl;
-        stream << "czyZamienicWPodfolderach=";
-        if(nameChangeParameters.getReplaceInSubfolders() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "czyZamienicPodkreslenia=";
-        if(nameChangeParameters.getReplaceUnderscores() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "czyZamienicPauzy=";
-        if(nameChangeParameters.getReplaceDashes() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "czyZachowacPauzyPomiedzySpacjami=";
-        if(nameChangeParameters.getDontReplaceDashesSurrondedBySpaces() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "czyZamienicKropki=";
-        if(nameChangeParameters.getReplaceDots() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "czyZamienicKropkeRozszerzenia=";
-        if(nameChangeParameters.getReplaceExtensionDot() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "czyZamienicPlusy=";
-        if(nameChangeParameters.getReplacePluses() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "usunWielokrotneSpacje=";
-        if(nameChangeParameters.getRemoveMultiplySpaces() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "usunSpacjeNaPoczatku=";
-        if(nameChangeParameters.getRemoveSpacesAtBegin() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "usunSpacjeNaKoncu=";
-        if(nameChangeParameters.getRemoveSpacesAtEnd() == true)
-            stream << "1" << endl;
-        else
-            stream << "0" << endl;
-        stream << "rozmiarLiter=";
-        stream << static_cast<int>(nameChangeParameters.getChangeLetters()) << endl;
-        stream << "rozmiarRozszezenia=";
-        stream << static_cast<int>(nameChangeParameters.getChangeExtension());
+        stream << "czyZamienicWPodfolderach=" << nameChangeParameters.getReplaceInSubfolders() << endl;
+        stream << "czyZamienicPodkreslenia=" << nameChangeParameters.getReplaceUnderscores() << endl;
+        stream << "czyZamienicPauzy=" << nameChangeParameters.getReplaceDashes() << endl;
+        stream << "czyZachowacPauzyPomiedzySpacjami=" << nameChangeParameters.getDontReplaceDashesSurrondedBySpaces() << endl;
+        stream << "czyZamienicKropki=" << nameChangeParameters.getReplaceDots() << endl;
+        stream << "czyZamienicKropkeRozszerzenia=" << nameChangeParameters.getReplaceExtensionDot() << endl;
+        stream << "czyZamienicPlusy=" << nameChangeParameters.getReplacePluses() << endl;
+        stream << "usunWielokrotneSpacje=" << nameChangeParameters.getRemoveMultiplySpaces() << endl;
+        stream << "usunSpacjeNaPoczatku=" << nameChangeParameters.getRemoveSpacesAtBegin() << endl;
+        stream << "usunSpacjeNaKoncu=" << nameChangeParameters.getRemoveSpacesAtEnd() << endl;
+        stream << "rozmiarLiter=" << static_cast<int>(nameChangeParameters.getChangeLetters()) << endl;;
+        stream << "rozmiarRozszezenia=" << static_cast<int>(nameChangeParameters.getChangeExtension());
 
         settingsFile.close();
         return true;
