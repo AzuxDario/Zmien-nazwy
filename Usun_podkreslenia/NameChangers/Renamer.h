@@ -23,7 +23,7 @@ public:
 
 private:
     NameChangeParameters nameChangeParameters;
-    QString selectedFolder;
+    QString selectedFile;
 
     NameModifier nameModifier;
 
@@ -33,9 +33,9 @@ signals:
     void resetProgressBar();
 
 public:
-    QString getSelectedFolder() noexcept {return selectedFolder;} //Zwraca ścieżkę dostępu do folderu
-    void setSelectedFolder(QString value) noexcept {selectedFolder = value;} //Ustawia ścieżkę dostępu do folderu
-    void initiateRenameFiles(NameChangeParameters nameChangeParameters); //Rozpoczyna procedurę zmiany nazw
+    QString getSelectedFile() noexcept {return selectedFile;} //Zwraca ścieżkę dostępu do folderu
+    void setSelectedFile(QString value) noexcept {selectedFile = value;} //Ustawia ścieżkę dostępu do folderu
+    void initiateRenameFiles(NameChangeParameters nameChangeParameters, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
 
 private:
     void renameInFolders(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu

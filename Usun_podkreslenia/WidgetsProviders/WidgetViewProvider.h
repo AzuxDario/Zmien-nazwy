@@ -14,7 +14,7 @@ class WidgetViewProvider :public QObject
     Q_OBJECT
 
 public:
-    enum class DirType {Folder, File};
+
 
     WidgetViewProvider();
 
@@ -29,7 +29,7 @@ private:
 
     NameChangeParameters nameChangeParameters;
 
-    DirType dirType;
+    NameChangeParameters::DirType dirType;
 
 signals:
     void initializeProgressBar(int minValue, int maxValue);

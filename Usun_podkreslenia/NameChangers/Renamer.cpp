@@ -5,20 +5,28 @@ Renamer::Renamer()
 
 }
 
-void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters)
+void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters, NameChangeParameters::DirType dirType)
 {
     this->nameChangeParameters = nameChangeParameters;
-    renameInFolders();
+    switch (dirType) {
+    case NameChangeParameters::DirType::Folder:
+        renameInFolders();
+        break;
+    case NameChangeParameters::DirType::File:
+        renameOneFile();
+        break;
+    }
+
 }
 
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
 void Renamer::renameInFolders()
 {
-    QDir currentFolder(selectedFolder);
+    QDir currentFolder(selectedFile);
     if(currentFolder.exists())
     {
         setBusyProgressBar();
-        FolderDetector folderDetector(selectedFolder, nameChangeParameters.getReplaceInSubfolders());
+        FolderDetector folderDetector(selectedFile, nameChangeParameters.getReplaceInSubfolders());
         initiateProgressBar(folderDetector.getNumberFiles());
         QStringList folderList = folderDetector.getFolderList();
 
@@ -29,13 +37,13 @@ void Renamer::renameInFolders()
     {
         showError(Warnings::folderNotFound);
     }
-    selectedFolder = "";
+    selectedFile = "";
 }
 
 //----Funkcja zmienia nazwę jednego pliku----//
 void Renamer::renameOneFile()
 {
-    QFile currentFile(selectedFolder);
+    QFile currentFile(selectedFile);
     if(currentFile.exists())
     {
         QString oldName = currentFile.fileName();
@@ -49,7 +57,7 @@ void Renamer::renameOneFile()
     {
         showError(Warnings::fileNotFound);
     }
-    selectedFolder = "";
+    selectedFile = "";
 }
 
 //----Funkcja zmienia nazwy plików w folderach----//

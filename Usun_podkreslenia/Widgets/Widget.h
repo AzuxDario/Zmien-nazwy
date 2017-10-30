@@ -106,7 +106,7 @@ private:
     //----Parametry zmiany nazw----//
     NameChangeParameters nameChangeParameters;
 
-    WidgetViewProvider::DirType dirType;
+    NameChangeParameters::DirType dirType;
 
 private slots:
     void closeEvent(QCloseEvent *); //Zamyka program po zamknięciu głównego okna
