@@ -14,6 +14,7 @@ const char* Widgets::menuSettings = "&Ustawienia";
 const char* Widgets::menuHelp = "P&omoc";
 
 const char* Widgets::actionSelectFolder = "Wybierz &folder";
+const char* Widgets::actionSelectFile = "Wybierz &plik";
 const char* Widgets::actionStartChange = "&Rozpocznij zmianę";
 const char* Widgets::actionExit = "Wyjści&e";
 const char* Widgets::actionOptions = "&Opcje";
@@ -48,11 +49,15 @@ const char* Widgets::buttonGroupSpace = "Spacje";
 const char* Widgets::labelGroupLetterSize = "Zmień rozmiar liter w nazwie";
 const char* Widgets::labelGroupExtensionSize = "Zmień rozmiar liter w rozszerzeniu";
 
-const char* Widgets::textToStartSelectFolder = "Aby rozpocząć procedurę zmiany nazw proszę wybrać folder.";
+const char* Widgets::textToStartSelectFolderOrFile = "Aby rozpocząć procedurę zmiany nazw proszę wybrać folder lub plik.";
 const char* Widgets::textSelectedFolder = "Wybrany katalog: <b>";
-const char* Widgets::textNamesWillBeChanged = "</b><br />Nazwy plików zawierające wybrane znaki zostaną zmienione.";
-const char* Widgets::textFolderDoesntSelected = "Nie wybrano żadnego folderu. Proszę wybrać folder";
-const char* Widgets::textNamesChanged = "<b>Program zakończył zmianę nazw w wybranym katalogu. Można teraz wybrać kolejny katalog.</b><br />";
+const char* Widgets::textSelectedFile = "Wybrany plik: <b>";
+const char* Widgets::textNamesWillBeChangedInFolder = "</b><br />Nazwy plików zawierające wybrane znaki zostaną zmienione.";
+const char* Widgets::textFileNameWillBeChanged = "</b><br />Nazwa pliku zostanie zmieniona.";
+const char* Widgets::textFolderDoesntSelected = "Nie wybrano żadnego folderu.";
+const char* Widgets::textFileDoesntSelected = "Nie wybrano żadnego pliku.";
+const char* Widgets::textNamesChangedInFolder = "<b>Program zakończył zmianę nazw w wybranym katalogu.";
+const char* Widgets::textFileNameChanged = "<b>Program zakończył zmianę nazwy pliku.";
 const char* Widgets::textDefaultSettings = "Ustawienia domyślne podczas uruchamiania programu";
 
 

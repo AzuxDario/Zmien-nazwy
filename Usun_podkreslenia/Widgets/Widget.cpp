@@ -19,7 +19,9 @@ Widget::Widget(QWidget *parent) :
     menuHelp = menuBar->addMenu(tr(Widgets::menuHelp));
 
     actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr(Widgets::actionSelectFolder),this);
-    actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+W")));
+    actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+F")));
+    actionSelectFile = new QAction(QIcon(":/pasek/plik"),tr(Widgets::actionSelectFile),this);
+    actionSelectFile->setShortcut(QKeySequence(tr("Ctrl+P")));
     actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr(Widgets::actionStartChange),this);
     actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
     actionExit = new QAction(QIcon(":/pasek/wyjscie"),tr(Widgets::actionExit),this);
@@ -32,6 +34,8 @@ Widget::Widget(QWidget *parent) :
     actionChangeLog->setShortcut(QKeySequence(tr("Ctrl+Z")));
 
     menuFile->addAction(actionSelectFolder);
+    menuFile->addAction(actionSelectFile);
+    menuFile->addSeparator();
     menuFile->addAction(actionStartNameChange);
     menuFile->addSeparator();
     menuFile->addAction(actionExit);
@@ -46,6 +50,10 @@ Widget::Widget(QWidget *parent) :
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
+    buttonSelectFile = new QPushButton(tr(Widgets::actionSelectFile),this);
+    buttonSelectFile->setStyleSheet("font-size:11px;");
+    buttonSelectFile->setMinimumHeight(30);
+    buttonSelectFile->setMaximumWidth(120);
     buttonStartNameChange = new QPushButton(tr(Widgets::actionStartChange),this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
     buttonStartNameChange->setMaximumHeight(30);
@@ -87,7 +95,7 @@ Widget::Widget(QWidget *parent) :
     textBrowserAbout->setAlignment(Qt::AlignTop);
     textBrowserAbout->setReadOnly(true);
     //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
-    textBrowserAbout->setText(tr(Widgets::textToStartSelectFolder));
+    textBrowserAbout->setText(tr(Widgets::textToStartSelectFolderOrFile));
 
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
@@ -144,6 +152,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
     buttonHLayout->addWidget(buttonSelectFolder);
+    buttonHLayout->addWidget(buttonSelectFile);
     buttonHLayout->addWidget(buttonStartNameChange);
 
     //----Wskaźnik na rdzeń programu----//
@@ -215,11 +224,11 @@ void Widget::disableButtonsSelectFolder()
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFolder()
 {
-    selectedFolder = programCore->selectFolder(); //Otwiera okno wyboru plik
-    if(selectedFolder != "")
+    selectedDirectory = programCore->selectFolder(); //Otwiera okno wyboru plik
+    if(selectedDirectory != "")
     {
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedFolder + tr(Widgets::textNamesWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedDirectory + tr(Widgets::textNamesWillBeChangedInFolder));
     }
     else
     {
@@ -236,7 +245,7 @@ void Widget::startNameChange()
     disableButtonsStartNameChange();
     programCore->changeName(nameChangeParameters);
     enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolder));
+    textBrowserAbout->setText(tr(Widgets::textNamesChangedInFolder) + tr(Widgets::textToStartSelectFolderOrFile));
 }
 
 //----Pokazuje okienko z informacjami o programie----//

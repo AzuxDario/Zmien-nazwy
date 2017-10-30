@@ -21,6 +21,7 @@ public:
     const static char* menuHelp;
 
     const static char* actionSelectFolder;
+    const static char* actionSelectFile;
     const static char* actionStartChange;
     const static char* actionExit;
     const static char* actionOptions;
@@ -55,11 +56,15 @@ public:
     const static char* labelGroupLetterSize;
     const static char* labelGroupExtensionSize;
 
-    const static char* textToStartSelectFolder;
+    const static char* textToStartSelectFolderOrFile;
     const static char* textSelectedFolder;
-    const static char* textNamesWillBeChanged;
+    const static char* textSelectedFile;
+    const static char* textNamesWillBeChangedInFolder;
+    const static char* textFileNameWillBeChanged;
     const static char* textFolderDoesntSelected;
-    const static char* textNamesChanged;
+    const static char* textFileDoesntSelected;
+    const static char* textNamesChangedInFolder;
+    const static char* textFileNameChanged;
     const static char* textDefaultSettings;
 public:
     Widgets();

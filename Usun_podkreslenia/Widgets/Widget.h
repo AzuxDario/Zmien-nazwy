@@ -45,6 +45,7 @@ private:
     QMenu *menuSettings;
     QMenu *menuHelp;
     QAction *actionSelectFolder;
+    QAction *actionSelectFile;
     QAction *actionStartNameChange;
     QAction *actionExit;
     QAction *actionOptions;
@@ -69,6 +70,7 @@ private:
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;
+    QPushButton *buttonSelectFile;
     QPushButton *buttonStartNameChange;
 
     //----CheckBoxy----//
@@ -96,7 +98,7 @@ private:
     QProgressBar *progressBar;
 
     //----Zmienna przechowująca folder----//
-    QString selectedFolder;
+    QString selectedDirectory;
 
     //----Rdzeń----//
     WidgetViewProvider *programCore;
