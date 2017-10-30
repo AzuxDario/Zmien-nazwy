@@ -47,11 +47,10 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLettersToBig));
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonDontChange));
     comboBoxChangeExtensionSize = new QComboBox();
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToSmall));
-    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
-
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
     mainHLayout = new QHBoxLayout();
@@ -166,7 +165,7 @@ void WidgetSettings::setCheckBoxes()
         comboBoxChangeLettersSize->setCurrentIndex(0);
         break;
     case NameChangeParameters::Letters::FirstBigRestSmall:
-        comboBoxChangeLettersSize->setCurrentIndex(2);
+        comboBoxChangeLettersSize->setCurrentIndex(1);
         break;
     case NameChangeParameters::Letters::AllBig:
         comboBoxChangeLettersSize->setCurrentIndex(2);

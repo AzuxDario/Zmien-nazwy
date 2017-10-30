@@ -1,6 +1,7 @@
 #ifndef WIDGETVIEWPROVIDER_H
 #define WIDGETVIEWPROVIDER_H
 
+#include <QFileDialog>
 #include "WidgetAbout.h"
 #include "WidgetChangelog.h"
 #include "Renamer.h"

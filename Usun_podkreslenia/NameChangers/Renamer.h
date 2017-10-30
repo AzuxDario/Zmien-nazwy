@@ -2,8 +2,8 @@
 #define RENAMER_H
 
 #include <QString>
-#include <QFileDialog>
 #include <QFile>
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QStringList>
 #include <QRegExp>
@@ -23,7 +23,7 @@ public:
 
 private:
     NameChangeParameters nameChangeParameters;
-    QString selectedFile;
+    QString selectedDir;
 
     NameModifier nameModifier;
 
@@ -33,8 +33,8 @@ signals:
     void resetProgressBar();
 
 public:
-    QString getSelectedFile() noexcept {return selectedFile;} //Zwraca ścieżkę dostępu do folderu
-    void setSelectedFile(QString value) noexcept {selectedFile = value;} //Ustawia ścieżkę dostępu do folderu
+    QString getSelectedDir() noexcept {return selectedDir;} //Zwraca ścieżkę dostępu do folderu
+    void setSelectedDir(QString value) noexcept {selectedDir = value;} //Ustawia ścieżkę dostępu do folderu
     void initiateRenameFiles(NameChangeParameters nameChangeParameters, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
 
 private:

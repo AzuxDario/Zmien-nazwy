@@ -29,7 +29,7 @@ QString WidgetViewProvider::selectFolder()
 
     if(selectedFolder.isNull() == false)
     {
-        renamer->setSelectedFile(selectedFolder);
+        renamer->setSelectedDir(selectedFolder);
         dirType = NameChangeParameters::DirType::Folder;
         return selectedFolder;
     }
@@ -43,7 +43,7 @@ QString WidgetViewProvider::selectFile()
 
     if(selectedFile.isNull() == false)
     {
-        renamer->setSelectedFile(selectedFile);
+        renamer->setSelectedDir(selectedFile);
         dirType = NameChangeParameters::DirType::File;
         return selectedFile;
     }
