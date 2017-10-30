@@ -18,7 +18,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
-#include "NameChanger.h"
+#include <QComboBox>
+#include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
 
@@ -44,6 +45,7 @@ private:
     QMenu *menuSettings;
     QMenu *menuHelp;
     QAction *actionSelectFolder;
+    QAction *actionSelectFile;
     QAction *actionStartNameChange;
     QAction *actionExit;
     QAction *actionOptions;
@@ -59,17 +61,16 @@ private:
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
-    QVBoxLayout *buttonGroupLetterSizeLayout;
-    QVBoxLayout *buttonGroupExtensionSizeLayout;
+    QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
-    QGroupBox *buttonGroupLetterSize;
-    QGroupBox *buttonGroupExtensionSize;
+    QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;
+    QPushButton *buttonSelectFile;
     QPushButton *buttonStartNameChange;
 
     //----CheckBoxy----//
@@ -79,18 +80,16 @@ private:
     QCheckBox *checkBoxDontReplaceDashesSurrondedBySpaces;
     QCheckBox *checkBoxReplaceDots;
     QCheckBox *checkBoxReplaceExtensionDot;
+    QCheckBox *checkBoxReplacePluses;
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *radioButtonChangeFirstLetterToBig;
-    QRadioButton *radioButtonChangeLettersToBig;
-    QRadioButton *radioButtonChangeLettersToSmall;
-    QRadioButton *radioButtonChangeFirstLettersToBig;
-    QRadioButton *radioButtonDontChangeName;
-    QRadioButton *radioButtonChangeExtensionToSmall;
-    QRadioButton *radioButtonChangeExtensionToBig;
-    QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
-    QRadioButton *radioButtonChangeDontChangeExtension;
+    QComboBox *comboBoxChangeLettersSize;
+    QComboBox *comboBoxChangeExtensionSize;
+
+    //----Etykiety----//
+    QLabel *labelChangeLettersSize;
+    QLabel *labelChangeExtensionSize;
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
@@ -99,13 +98,15 @@ private:
     QProgressBar *progressBar;
 
     //----Zmienna przechowująca folder----//
-    QString selectedFolder;
+    QString selectedDirectory;
 
     //----Rdzeń----//
     WidgetViewProvider *programCore;
 
     //----Parametry zmiany nazw----//
     NameChangeParameters nameChangeParameters;
+
+    NameChangeParameters::DirType dirType;
 
 private slots:
     void closeEvent(QCloseEvent *); //Zamyka program po zamknięciu głównego okna
@@ -114,6 +115,7 @@ private slots:
     void enableButtonsSelectFolder(); //Włącza aktywność przycisku Wybierz folder
     void disableButtonsSelectFolder(); //Wyłącza aktywność przycisków Wybierz folder
     void selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
+    void selectFile(); //Wybiera plik do przeprowadzenia zmiany nazw
     void startNameChange(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian

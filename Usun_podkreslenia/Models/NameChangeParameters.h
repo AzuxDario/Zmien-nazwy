@@ -5,8 +5,9 @@
 class NameChangeParameters
 {
 public:
-    enum class Letters {FirstBig, AllBig, AllSmall, FirstInWordsBig, DoNothing};
+    enum class Letters {FirstBig, FirstBigRestSmall, AllBig, AllSmall, FirstInWordsBig, DoNothing};
     enum class Extensions {FirstBig, AllBig, AllSmall, DoNothing};
+    enum class DirType {Folder, File};
 
 private:
     bool replaceInSubfolders;
@@ -15,6 +16,7 @@ private:
     bool dontReplaceDashesSurrondedBySpaces;
     bool replaceDots;
     bool replaceExtensionDot;
+    bool replacePluses;
     bool removeMultiplySpaces;
     bool removeSpacesAtBegin;
     bool removeSpacesAtEnd;
@@ -29,6 +31,7 @@ public:
     void setDontReplaceDashesSurrondedBySpaces(bool value) noexcept {dontReplaceDashesSurrondedBySpaces = value;}
     void setReplaceDots(bool value) noexcept {replaceDots = value;}
     void setReplaceExtensionDot(bool value) noexcept {replaceExtensionDot = value;}
+    void setReplacePluses(bool value) noexcept {replacePluses = value;}
     void setRemoveMultiplySpaces(bool value) {removeMultiplySpaces = value;}
     void setRemoveSpacesAtBegin(bool value) {removeSpacesAtBegin = value;}
     void setRemoveSpacesAtEnd(bool value) {removeSpacesAtEnd = value;}
@@ -40,6 +43,7 @@ public:
     bool getDontReplaceDashesSurrondedBySpaces() noexcept {return dontReplaceDashesSurrondedBySpaces;}
     bool getReplaceDots() noexcept {return replaceDots;}
     bool getReplaceExtensionDot() noexcept {return replaceExtensionDot;}
+    bool getReplacePluses() noexcept {return replacePluses;}
     bool getRemoveMultiplySpaces() {return removeMultiplySpaces;}
     bool getRemoveSpacesAtBegin() {return removeSpacesAtBegin;}
     bool getRemoveSpacesAtEnd() {return removeSpacesAtEnd;}

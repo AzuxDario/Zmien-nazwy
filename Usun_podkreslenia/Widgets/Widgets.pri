@@ -1,5 +1,5 @@
-INCLUDEPATH += Views
-DEPENDPATH += Views
+INCLUDEPATH += Widgets
+DEPENDPATH += Widgets
 SOURCES += \
     $$PWD/Widget.cpp \
     $$PWD/WidgetAbout.cpp \

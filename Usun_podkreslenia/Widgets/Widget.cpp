@@ -19,7 +19,9 @@ Widget::Widget(QWidget *parent) :
     menuHelp = menuBar->addMenu(tr(Widgets::menuHelp));
 
     actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr(Widgets::actionSelectFolder),this);
-    actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+W")));
+    actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+F")));
+    actionSelectFile = new QAction(QIcon(":/pasek/plik"),tr(Widgets::actionSelectFile),this);
+    actionSelectFile->setShortcut(QKeySequence(tr("Ctrl+P")));
     actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr(Widgets::actionStartChange),this);
     actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
     actionExit = new QAction(QIcon(":/pasek/wyjscie"),tr(Widgets::actionExit),this);
@@ -27,11 +29,13 @@ Widget::Widget(QWidget *parent) :
     actionOptions = new QAction(QIcon(":/pasek/ustawienia"),tr(Widgets::actionOptions),this);
     actionOptions->setShortcut(QKeySequence(tr("Ctrl+U")));
     actionAbout = new QAction(QIcon(":/pasek/oProgramie"),tr(Widgets::actionAbout),this);
-    actionAbout->setShortcuts(QKeySequence::HelpContents);
+    actionAbout->setShortcut(QKeySequence(tr("Ctrl+A")));
     actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),tr(Widgets::actionChangeLog),this);
     actionChangeLog->setShortcut(QKeySequence(tr("Ctrl+Z")));
 
     menuFile->addAction(actionSelectFolder);
+    menuFile->addAction(actionSelectFile);
+    menuFile->addSeparator();
     menuFile->addAction(actionStartNameChange);
     menuFile->addSeparator();
     menuFile->addAction(actionExit);
@@ -46,6 +50,10 @@ Widget::Widget(QWidget *parent) :
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
+    buttonSelectFile = new QPushButton(tr(Widgets::actionSelectFile),this);
+    buttonSelectFile->setStyleSheet("font-size:11px;");
+    buttonSelectFile->setMinimumHeight(30);
+    buttonSelectFile->setMaximumWidth(120);
     buttonStartNameChange = new QPushButton(tr(Widgets::actionStartChange),this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
     buttonStartNameChange->setMaximumHeight(30);
@@ -57,27 +65,37 @@ Widget::Widget(QWidget *parent) :
     checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
     checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
     checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Widgets::checkBoxDontReplaceDashesSurrondedBySpaces));
+    checkBoxDontReplaceDashesSurrondedBySpaces->setStyleSheet("margin-left:15px;");
     checkBoxReplaceDots = new QCheckBox(tr(Widgets::checkBoxReplaceDots));
     checkBoxReplaceExtensionDot = new QCheckBox(tr(Widgets::checkBoxReplaceExtensionDot));
+    checkBoxReplaceExtensionDot->setStyleSheet("margin-left:15px;");
+    checkBoxReplacePluses = new QCheckBox(tr(Widgets::checkBoxReplacePluses));
     checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
     checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
-    radioButtonChangeFirstLetterToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLetterToBig));
-    radioButtonChangeLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeLettersToBig));
-    radioButtonChangeLettersToSmall = new QRadioButton(tr(Widgets::radioButtonChangeLettersToSmall));
-    radioButtonChangeFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLettersToBig));
-    radioButtonDontChangeName = new QRadioButton(tr(Widgets::radioButtonDontChange));
-    radioButtonChangeExtensionToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToBig));
-    radioButtonChangeExtensionToSmall = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToSmall));
-    radioButtonChangeExtensionFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
-    radioButtonChangeDontChangeExtension = new QRadioButton(tr(Widgets::radioButtonDontChange));
+    comboBoxChangeLettersSize = new QComboBox();
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBigRestSmall));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeLettersToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeLettersToSmall));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLettersToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonDontChange));
+    comboBoxChangeExtensionSize = new QComboBox();
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToBig));
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToSmall));    
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
+
+    //--------Etykiety--------//
+    labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
+    labelChangeExtensionSize = new QLabel(tr(Widgets::labelGroupExtensionSize));
 
     //--------Okno z tekstem--------//
     textBrowserAbout = new QTextBrowser(this);
     textBrowserAbout->setAlignment(Qt::AlignTop);
     textBrowserAbout->setReadOnly(true);
     //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
-    textBrowserAbout->setText(tr(Widgets::textToStartSelectFolder));
+    textBrowserAbout->setText(tr(Widgets::textToStartSelectFolderOrFile));
 
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
@@ -97,23 +115,20 @@ Widget::Widget(QWidget *parent) :
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
-    buttonGroupLetterSizeLayout = new QVBoxLayout;
-    buttonGroupExtensionSizeLayout = new QVBoxLayout;
+    buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
-    buttonGroupLetterSize = new QGroupBox(tr(Widgets::buttonGroupLetterSize));
-    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::buttonGroupExtensionSize));
+    buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addWidget(buttonGroupSpace);
     leftVLayout->addWidget(textBrowserAbout);
     leftVLayout->addWidget(progressBar);
-    rightVLayout->addWidget(buttonGroupLetterSize);
-    rightVLayout->addWidget(buttonGroupExtensionSize);
-    rightVLayout->addSpacing(100);
+    rightVLayout->addWidget(buttonGroupSize);
+    rightVLayout->addWidget(buttonGroupSpace);
+    rightVLayout->addSpacing(70);
     rightVLayout->addLayout(buttonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
@@ -122,26 +137,22 @@ Widget::Widget(QWidget *parent) :
     buttonGroupReplaceLayout->addWidget(checkBoxDontReplaceDashesSurrondedBySpaces);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDots);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceExtensionDot);
+    buttonGroupReplaceLayout->addWidget(checkBoxReplacePluses);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveMultiplySpaces);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtBegin);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtEnd);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeFirstLetterToBig);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeLettersToBig);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeLettersToSmall);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeFirstLettersToBig);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonDontChangeName);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeExtensionToBig);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeExtensionToSmall);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeExtensionFirstLettersToBig);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeDontChangeExtension);
+    buttonGroupSizeLayout->addWidget(labelChangeLettersSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeLettersSize);
+    buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
-    buttonGroupLetterSize->setLayout(buttonGroupLetterSizeLayout);
-    buttonGroupExtensionSize->setLayout(buttonGroupExtensionSizeLayout);
+    buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
     buttonHLayout->addWidget(buttonSelectFolder);
+    buttonHLayout->addWidget(buttonSelectFile);
     buttonHLayout->addWidget(buttonStartNameChange);
 
     //----Wskaźnik na rdzeń programu----//
@@ -153,6 +164,7 @@ Widget::Widget(QWidget *parent) :
     //----Przypisanie przycisków do slotów----//
     //--------Menu--------//
     connect(actionSelectFolder,SIGNAL(triggered()),this,SLOT(selectFolder()));
+    connect(actionSelectFile,SIGNAL(triggered()),this,SLOT(selectFile()));
     connect(actionStartNameChange,SIGNAL(triggered()),this,SLOT(startNameChange()));
     connect(actionOptions,SIGNAL(triggered()),this,SLOT(showWidgetSettings()));
     connect(actionExit,SIGNAL(triggered()),qApp,SLOT(quit()));
@@ -161,6 +173,7 @@ Widget::Widget(QWidget *parent) :
 
     //--------Przyciski--------//
     connect(buttonSelectFolder,SIGNAL(clicked()),this,SLOT(selectFolder()));
+    connect(buttonSelectFile,SIGNAL(clicked()),this,SLOT(selectFile()));
     connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
@@ -213,16 +226,32 @@ void Widget::disableButtonsSelectFolder()
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFolder()
 {
-    selectedFolder = programCore->selectFolder(); //Otwiera okno wyboru plik
-    if(selectedFolder != "")
+    selectedDirectory = programCore->selectFolder(); //Otwiera okno wyboru folderu
+    if(selectedDirectory != "")
     {
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedFolder + tr(Widgets::textNamesWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedDirectory + tr(Widgets::textNamesWillBeChangedInFolder));
     }
     else
     {
         disableButtonsStartNameChange();
         textBrowserAbout->setText(tr(Widgets::textFolderDoesntSelected));
+    }
+}
+
+//----Wybiera folder do przeprowadzenia zmiany nazw----//
+void Widget::selectFile()
+{
+    selectedDirectory = programCore->selectFile(); //Otwiera okno wyboru pliku
+    if(selectedDirectory != "")
+    {
+        enableButtonsStartNameChange();
+        textBrowserAbout->setText(tr(Widgets::textSelectedFile) + selectedDirectory + tr(Widgets::textFileNameWillBeChanged));
+    }
+    else
+    {
+        disableButtonsStartNameChange();
+        textBrowserAbout->setText(tr(Widgets::textFileDoesntSelected));
     }
 }
 
@@ -234,7 +263,7 @@ void Widget::startNameChange()
     disableButtonsStartNameChange();
     programCore->changeName(nameChangeParameters);
     enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolder));
+    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolderOrFile));
 }
 
 //----Pokazuje okienko z informacjami o programie----//
@@ -266,6 +295,7 @@ void Widget::setButtonSelection()
     checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(parameters.getDontReplaceDashesSurrondedBySpaces());
     checkBoxReplaceDots->setChecked(parameters.getReplaceDots());
     checkBoxReplaceExtensionDot->setChecked(parameters.getReplaceExtensionDot());
+    checkBoxReplacePluses->setChecked(parameters.getReplacePluses());
     checkBoxRemoveMultiplySpaces->setChecked(parameters.getRemoveMultiplySpaces());
     checkBoxRemoveSpacesAtBegin->setChecked(parameters.getRemoveSpacesAtBegin());
     checkBoxRemoveSpacesAtEnd->setChecked(parameters.getRemoveSpacesAtEnd());
@@ -274,19 +304,22 @@ void Widget::setButtonSelection()
     switch(selectionLetters)
     {
     case NameChangeParameters::Letters::FirstBig:
-        radioButtonChangeFirstLetterToBig->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(0);
+        break;
+    case NameChangeParameters::Letters::FirstBigRestSmall:
+        comboBoxChangeLettersSize->setCurrentIndex(1);
         break;
     case NameChangeParameters::Letters::AllBig:
-        radioButtonChangeLettersToBig->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(2);
         break;
     case NameChangeParameters::Letters::AllSmall:
-        radioButtonChangeLettersToSmall->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(3);
         break;
     case NameChangeParameters::Letters::FirstInWordsBig:
-        radioButtonChangeFirstLettersToBig->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(4);
         break;
     case NameChangeParameters::Letters::DoNothing:
-        radioButtonDontChangeName->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(5);
         break;
     }
 
@@ -294,16 +327,16 @@ void Widget::setButtonSelection()
     switch(selectionExtensions)
     {
     case NameChangeParameters::Extensions::FirstBig:
-        radioButtonChangeExtensionFirstLettersToBig->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(0);
         break;
     case NameChangeParameters::Extensions::AllBig:
-        radioButtonChangeExtensionToBig->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(1);
         break;
     case NameChangeParameters::Extensions::AllSmall:
-        radioButtonChangeExtensionToSmall->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(2);
         break;
     case NameChangeParameters::Extensions::DoNothing:
-        radioButtonChangeDontChangeExtension->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(3);
         break;
     }
 
@@ -345,53 +378,53 @@ void Widget::setNameChangesParameters()
     nameChangeParameters.setDontReplaceDashesSurrondedBySpaces(checkBoxDontReplaceDashesSurrondedBySpaces->isChecked());
     nameChangeParameters.setReplaceDots(checkBoxReplaceDots->isChecked());
     nameChangeParameters.setReplaceExtensionDot(checkBoxReplaceExtensionDot->isChecked());
+    nameChangeParameters.setReplacePluses(checkBoxReplacePluses->isChecked());
     nameChangeParameters.setRemoveMultiplySpaces(checkBoxRemoveMultiplySpaces->isChecked());
     nameChangeParameters.setRemoveSpacesAtBegin(checkBoxRemoveSpacesAtBegin->isChecked());
     nameChangeParameters.setRemoveSpacesAtEnd(checkBoxRemoveSpacesAtEnd->isChecked());
 
-    if(radioButtonChangeFirstLetterToBig->isChecked())
+    switch(comboBoxChangeLettersSize->currentIndex())
     {
+    case 0:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstBig);
-    }
-    else if(radioButtonChangeLettersToBig->isChecked())
-    {
+        break;
+    case 1:
+        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstBigRestSmall);
+        break;
+    case 2:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllBig);
-    }
-    else if(radioButtonChangeLettersToSmall->isChecked())
-    {
+        break;
+    case 3:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllSmall);
-    }
-    else if(radioButtonChangeFirstLettersToBig->isChecked())
-    {
+        break;
+    case 4:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstInWordsBig);
-    }
-    else if(radioButtonDontChangeName->isChecked())
-    {
+        break;
+    case 5:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::DoNothing);
+        break;
     }
 
-    if(radioButtonChangeExtensionFirstLettersToBig->isChecked())
+    switch(comboBoxChangeExtensionSize->currentIndex())
     {
+    case 0:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::FirstBig);
-    }
-    else if(radioButtonChangeExtensionToBig->isChecked())
-    {
+        break;
+    case 1:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::AllBig);
-    }
-    else if(radioButtonChangeExtensionToSmall->isChecked())
-    {
+        break;
+    case 2:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::AllSmall);
-    }
-    else if(radioButtonChangeDontChangeExtension->isChecked())
-    {
+        break;
+    case 3:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::DoNothing);
+        break;
     }
 }
 
 void Widget::initializeProgressBar(int minValue, int maxValue)
 {
-    progressBar->setMinimum(minValue);
-    progressBar->setMaximum(maxValue);
+    progressBar->setRange(minValue, maxValue);
 }
 
 void Widget::changeProgressBar(int value)

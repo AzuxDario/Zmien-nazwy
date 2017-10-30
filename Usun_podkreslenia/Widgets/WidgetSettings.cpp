@@ -15,6 +15,8 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     //--------Etykiety--------//
     labelDefaultSettings = new QLabel(tr(Widgets::textDefaultSettings),this);
     labelDefaultSettings->setStyleSheet("font-size:15px; margin-bottom:10px;");
+    labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
+    labelChangeExtensionSize = new QLabel(tr(Widgets::labelGroupExtensionSize));
 
     //--------Przycisk--------//
     buttonOK = new QPushButton(tr(Widgets::buttonOk),this);
@@ -29,21 +31,26 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
     checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
     checkBoxDontReplaceDashesSurrondedBySpaces = new QCheckBox(tr(Widgets::checkBoxDontReplaceDashesSurrondedBySpaces));
+    checkBoxDontReplaceDashesSurrondedBySpaces->setStyleSheet("margin-left:15px;");
     checkBoxReplaceDots = new QCheckBox(tr(Widgets::checkBoxReplaceDots));
     checkBoxReplaceExtensionDot = new QCheckBox(tr(Widgets::checkBoxReplaceExtensionDot));
+    checkBoxReplaceExtensionDot->setStyleSheet("margin-left:15px;");
+    checkBoxReplacePluses = new QCheckBox(tr(Widgets::checkBoxReplacePluses));
     checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
     checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
-    radioButtonChangeFirstLetterToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLetterToBig));
-    radioButtonChangeLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeLettersToBig));
-    radioButtonChangeLettersToSmall = new QRadioButton(tr(Widgets::radioButtonChangeLettersToSmall));
-    radioButtonChangeFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeFirstLettersToBig));
-    radioButtonDontChangeName = new QRadioButton(tr(Widgets::radioButtonDontChange));
-    radioButtonChangeExtensionToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToBig));
-    radioButtonChangeExtensionToSmall = new QRadioButton(tr(Widgets::radioButtonChangeExtensionToSmall));
-    radioButtonChangeExtensionFirstLettersToBig = new QRadioButton(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
-    radioButtonChangeDontChangeExtension = new QRadioButton(tr(Widgets::radioButtonDontChange));
-
+    comboBoxChangeLettersSize = new QComboBox();
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBigRestSmall));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeLettersToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeLettersToSmall));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLettersToBig));
+    comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonDontChange));
+    comboBoxChangeExtensionSize = new QComboBox();
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionFirstLettersToBig));
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToBig));
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToSmall));
+    comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
     mainHLayout = new QHBoxLayout();
@@ -56,20 +63,18 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
-    buttonGroupLetterSizeLayout = new QVBoxLayout;
-    buttonGroupExtensionSizeLayout = new QVBoxLayout;
+    buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
-    buttonGroupLetterSize = new QGroupBox(tr(Widgets::buttonGroupLetterSize));
-    buttonGroupExtensionSize = new QGroupBox(tr(Widgets::buttonGroupExtensionSize));
+    buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addWidget(buttonGroupSpace);
-    rightVLayout->addWidget(buttonGroupLetterSize);
-    rightVLayout->addWidget(buttonGroupExtensionSize);
+    leftVLayout->addSpacing(40);
+    rightVLayout->addWidget(buttonGroupSize);
+    rightVLayout->addWidget(buttonGroupSpace);
     rightVLayout->addLayout(buttonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
@@ -78,23 +83,18 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupReplaceLayout->addWidget(checkBoxDontReplaceDashesSurrondedBySpaces);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceDots);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceExtensionDot);
+    buttonGroupReplaceLayout->addWidget(checkBoxReplacePluses);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveMultiplySpaces);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtBegin);
     buttonGroupSpaceLayout->addWidget(checkBoxRemoveSpacesAtEnd);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeFirstLetterToBig);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeLettersToBig);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeLettersToSmall);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonChangeFirstLettersToBig);
-    buttonGroupLetterSizeLayout->addWidget(radioButtonDontChangeName);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeExtensionToBig);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeExtensionToSmall);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeExtensionFirstLettersToBig);
-    buttonGroupExtensionSizeLayout->addWidget(radioButtonChangeDontChangeExtension);
+    buttonGroupSizeLayout->addWidget(labelChangeLettersSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeLettersSize);
+    buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
-    buttonGroupLetterSize->setLayout(buttonGroupLetterSizeLayout);
-    buttonGroupExtensionSize->setLayout(buttonGroupExtensionSizeLayout);
+    buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
     buttonHLayout->addWidget(buttonOK);
@@ -153,6 +153,7 @@ void WidgetSettings::setCheckBoxes()
     checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(parameters.getDontReplaceDashesSurrondedBySpaces());
     checkBoxReplaceDots->setChecked(parameters.getReplaceDots());
     checkBoxReplaceExtensionDot->setChecked(parameters.getReplaceExtensionDot());
+    checkBoxReplacePluses->setChecked(parameters.getReplacePluses());
     checkBoxRemoveMultiplySpaces->setChecked(parameters.getRemoveMultiplySpaces());
     checkBoxRemoveSpacesAtBegin->setChecked(parameters.getRemoveSpacesAtBegin());
     checkBoxRemoveSpacesAtEnd->setChecked(parameters.getRemoveSpacesAtEnd());
@@ -161,19 +162,22 @@ void WidgetSettings::setCheckBoxes()
     switch(selectionLetters)
     {
     case NameChangeParameters::Letters::FirstBig:
-        radioButtonChangeFirstLetterToBig->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(0);
+        break;
+    case NameChangeParameters::Letters::FirstBigRestSmall:
+        comboBoxChangeLettersSize->setCurrentIndex(1);
         break;
     case NameChangeParameters::Letters::AllBig:
-        radioButtonChangeLettersToBig->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(2);
         break;
     case NameChangeParameters::Letters::AllSmall:
-        radioButtonChangeLettersToSmall->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(3);
         break;
     case NameChangeParameters::Letters::FirstInWordsBig:
-        radioButtonChangeFirstLettersToBig->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(4);
         break;
     case NameChangeParameters::Letters::DoNothing:
-        radioButtonDontChangeName->setChecked(true);
+        comboBoxChangeLettersSize->setCurrentIndex(5);
         break;
     }
 
@@ -181,16 +185,16 @@ void WidgetSettings::setCheckBoxes()
     switch(selectionExtensions)
     {
     case NameChangeParameters::Extensions::FirstBig:
-        radioButtonChangeExtensionFirstLettersToBig->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(0);
         break;
     case NameChangeParameters::Extensions::AllBig:
-        radioButtonChangeExtensionToBig->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(1);
         break;
     case NameChangeParameters::Extensions::AllSmall:
-        radioButtonChangeExtensionToSmall->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(2);
         break;
     case NameChangeParameters::Extensions::DoNothing:
-        radioButtonChangeDontChangeExtension->setChecked(true);
+        comboBoxChangeExtensionSize->setCurrentIndex(3);
         break;
     }
 
@@ -223,46 +227,47 @@ void WidgetSettings::setSettingsReader()
     nameChangeParameters.setDontReplaceDashesSurrondedBySpaces(checkBoxDontReplaceDashesSurrondedBySpaces->isChecked());
     nameChangeParameters.setReplaceDots(checkBoxReplaceDots->isChecked());
     nameChangeParameters.setReplaceExtensionDot(checkBoxReplaceExtensionDot->isChecked());
+    nameChangeParameters.setReplacePluses(checkBoxReplacePluses->isChecked());
     nameChangeParameters.setRemoveMultiplySpaces(checkBoxRemoveMultiplySpaces->isChecked());
     nameChangeParameters.setRemoveSpacesAtBegin(checkBoxRemoveSpacesAtBegin->isChecked());
     nameChangeParameters.setRemoveSpacesAtEnd(checkBoxRemoveSpacesAtEnd->isChecked());
 
-    if(radioButtonChangeFirstLetterToBig->isChecked())
+    switch(comboBoxChangeLettersSize->currentIndex())
     {
+    case 0:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstBig);
-    }
-    else if(radioButtonChangeLettersToBig->isChecked())
-    {
+        break;
+    case 1:
+        nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstBigRestSmall);
+        break;
+    case 2:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllBig);
-    }
-    else if(radioButtonChangeLettersToSmall->isChecked())
-    {
+        break;
+    case 3:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::AllSmall);
-    }
-    else if(radioButtonChangeFirstLettersToBig->isChecked())
-    {
+        break;
+    case 4:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::FirstInWordsBig);
-    }
-    else if(radioButtonDontChangeName->isChecked())
-    {
+        break;
+    case 5:
         nameChangeParameters.setChangeLetters(NameChangeParameters::Letters::DoNothing);
+        break;
     }
 
-    if(radioButtonChangeExtensionFirstLettersToBig->isChecked())
+    switch(comboBoxChangeExtensionSize->currentIndex())
     {
+    case 0:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::FirstBig);
-    }
-    else if(radioButtonChangeExtensionToBig->isChecked())
-    {
+        break;
+    case 1:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::AllBig);
-    }
-    else if(radioButtonChangeExtensionToSmall->isChecked())
-    {
+        break;
+    case 2:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::AllSmall);
-    }
-    else if(radioButtonChangeDontChangeExtension->isChecked())
-    {
+        break;
+    case 3:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::DoNothing);
+        break;
     }
     settingsReader->setNameChangeParameters(nameChangeParameters);
 }

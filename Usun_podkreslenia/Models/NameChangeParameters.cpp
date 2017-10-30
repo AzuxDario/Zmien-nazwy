@@ -8,6 +8,7 @@ NameChangeParameters::NameChangeParameters()
     dontReplaceDashesSurrondedBySpaces = false;
     replaceDots = false;
     replaceExtensionDot = false;
+    replacePluses = false;
     removeMultiplySpaces = false;
     removeSpacesAtBegin = false;
     removeSpacesAtEnd = false;

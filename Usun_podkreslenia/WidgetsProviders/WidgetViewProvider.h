@@ -1,9 +1,10 @@
 #ifndef WIDGETVIEWPROVIDER_H
 #define WIDGETVIEWPROVIDER_H
 
+#include <QFileDialog>
 #include "WidgetAbout.h"
 #include "WidgetChangelog.h"
-#include "NameChanger.h"
+#include "Renamer.h"
 #include "WidgetSettings.h"
 #include "Settings.h"
 #include "NameChangeParameters.h"
@@ -14,6 +15,8 @@ class WidgetViewProvider :public QObject
     Q_OBJECT
 
 public:
+
+
     WidgetViewProvider();
 
 private:
@@ -21,11 +24,13 @@ private:
     WidgetAbout *widgetAbout;
     WidgetSettings *widgetSettings;
 
-    NameChanger *nameChanger;
+    Renamer *renamer;
 
     Settings *settingsReader;
 
     NameChangeParameters nameChangeParameters;
+
+    NameChangeParameters::DirType dirType;
 
 signals:
     void initializeProgressBar(int minValue, int maxValue);
@@ -35,6 +40,7 @@ signals:
 public:
     void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
+    QString selectFile(); //Wybiera plik do przeprowadzenia zmiany nazw
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okno ustawień

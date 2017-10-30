@@ -9,6 +9,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
+#include <QComboBox>
 #include <QDesktopWidget>
 #include "Settings.h"
 #include "Widgets.h"
@@ -37,13 +38,11 @@ private:
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
-    QVBoxLayout *buttonGroupLetterSizeLayout;
-    QVBoxLayout *buttonGroupExtensionSizeLayout;
+    QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
-    QGroupBox *buttonGroupLetterSize;
-    QGroupBox *buttonGroupExtensionSize;
+    QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
 
     //----CheckBoxy----//
@@ -53,21 +52,17 @@ private:
     QCheckBox *checkBoxDontReplaceDashesSurrondedBySpaces;
     QCheckBox *checkBoxReplaceDots;
     QCheckBox *checkBoxReplaceExtensionDot;
+    QCheckBox *checkBoxReplacePluses;
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
-    QRadioButton *radioButtonChangeFirstLetterToBig;
-    QRadioButton *radioButtonChangeLettersToBig;
-    QRadioButton *radioButtonChangeLettersToSmall;
-    QRadioButton *radioButtonChangeFirstLettersToBig;
-    QRadioButton *radioButtonDontChangeName;
-    QRadioButton *radioButtonChangeExtensionToSmall;
-    QRadioButton *radioButtonChangeExtensionToBig;
-    QRadioButton *radioButtonChangeExtensionFirstLettersToBig;
-    QRadioButton *radioButtonChangeDontChangeExtension;
+    QComboBox *comboBoxChangeLettersSize;
+    QComboBox *comboBoxChangeExtensionSize;
 
     //----Etykiety----//
     QLabel *labelDefaultSettings;
+    QLabel *labelChangeLettersSize;
+    QLabel *labelChangeExtensionSize;
 
     //----Przyciski----//
     QPushButton *buttonOK;

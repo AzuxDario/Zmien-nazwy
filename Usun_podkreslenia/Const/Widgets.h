@@ -21,6 +21,7 @@ public:
     const static char* menuHelp;
 
     const static char* actionSelectFolder;
+    const static char* actionSelectFile;
     const static char* actionStartChange;
     const static char* actionExit;
     const static char* actionOptions;
@@ -33,10 +34,12 @@ public:
     const static char* checkBoxDontReplaceDashesSurrondedBySpaces;
     const static char* checkBoxReplaceDots;
     const static char* checkBoxReplaceExtensionDot;
+    const static char* checkBoxReplacePluses;
     const static char* checkBoxRemoveMultiplySpaces;
     const static char* checkBoxRemoveSpacesAtBegin;
     const static char* checkBoxRemoveSpacesAtEnd;
     const static char* radioButtonChangeFirstLetterToBig;
+    const static char* radioButtonChangeFirstLetterToBigRestSmall;
     const static char* radioButtonChangeLettersToBig;
     const static char* radioButtonChangeLettersToSmall;
     const static char* radioButtonChangeFirstLettersToBig;
@@ -47,14 +50,19 @@ public:
 
     const static char* buttonGroupSubfolders;
     const static char* buttonGroupReplace;
-    const static char* buttonGroupLetterSize;
-    const static char* buttonGroupExtensionSize;
+    const static char* buttonGroupSize;
     const static char* buttonGroupSpace;
 
-    const static char* textToStartSelectFolder;
+    const static char* labelGroupLetterSize;
+    const static char* labelGroupExtensionSize;
+
+    const static char* textToStartSelectFolderOrFile;
     const static char* textSelectedFolder;
-    const static char* textNamesWillBeChanged;
+    const static char* textSelectedFile;
+    const static char* textNamesWillBeChangedInFolder;
+    const static char* textFileNameWillBeChanged;
     const static char* textFolderDoesntSelected;
+    const static char* textFileDoesntSelected;
     const static char* textNamesChanged;
     const static char* textDefaultSettings;
 public:

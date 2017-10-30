@@ -10,5 +10,6 @@
         <file alias="wybierzFolder">Icons/Wybierz folder.png</file>
         <file alias="wyjscie">Icons/Wyjście.png</file>
         <file alias="ustawienia">Icons/Ustawienia.png</file>
+        <file alias="plik">Icons/Plik.png</file>
     </qresource>
 </RCC>

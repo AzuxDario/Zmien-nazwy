@@ -14,8 +14,10 @@ win32:RC_ICONS += Icons\Ikona.ico
 
 include(Models/Models.pri)
 include(Providers/Providers.pri)
-include(Views/Views.pri)
-include(ViewProviders/ViewProviders.pri)
+include(NameChangers/NameChangers.pri)
+include(DirectoryDetectors/DirectoryDetectors.pri)
+include(Widgets/Widgets.pri)
+include(WidgetsProviders/WidgetsProviders.pri)
 include(Const/Const.pri)
 
 SOURCES += main.cpp
