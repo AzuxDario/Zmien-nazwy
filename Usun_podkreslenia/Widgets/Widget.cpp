@@ -29,7 +29,7 @@ Widget::Widget(QWidget *parent) :
     actionOptions = new QAction(QIcon(":/pasek/ustawienia"),tr(Widgets::actionOptions),this);
     actionOptions->setShortcut(QKeySequence(tr("Ctrl+U")));
     actionAbout = new QAction(QIcon(":/pasek/oProgramie"),tr(Widgets::actionAbout),this);
-    actionAbout->setShortcuts(QKeySequence::HelpContents);
+    actionAbout->setShortcut(QKeySequence(tr("Ctrl+A")));
     actionChangeLog = new QAction(QIcon(":/pasek/rejestrZmian"),tr(Widgets::actionChangeLog),this);
     actionChangeLog->setShortcut(QKeySequence(tr("Ctrl+Z")));
 
@@ -164,6 +164,7 @@ Widget::Widget(QWidget *parent) :
     //----Przypisanie przycisków do slotów----//
     //--------Menu--------//
     connect(actionSelectFolder,SIGNAL(triggered()),this,SLOT(selectFolder()));
+    connect(actionSelectFile,SIGNAL(triggered()),this,SLOT(selectFile()));
     connect(actionStartNameChange,SIGNAL(triggered()),this,SLOT(startNameChange()));
     connect(actionOptions,SIGNAL(triggered()),this,SLOT(showWidgetSettings()));
     connect(actionExit,SIGNAL(triggered()),qApp,SLOT(quit()));
@@ -172,6 +173,7 @@ Widget::Widget(QWidget *parent) :
 
     //--------Przyciski--------//
     connect(buttonSelectFolder,SIGNAL(clicked()),this,SLOT(selectFolder()));
+    connect(buttonSelectFile,SIGNAL(clicked()),this,SLOT(selectFile()));
     connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
@@ -224,7 +226,7 @@ void Widget::disableButtonsSelectFolder()
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFolder()
 {
-    selectedDirectory = programCore->selectFolder(); //Otwiera okno wyboru plik
+    selectedDirectory = programCore->selectFolder(); //Otwiera okno wyboru folderu
     if(selectedDirectory != "")
     {
         enableButtonsStartNameChange();
@@ -237,6 +239,22 @@ void Widget::selectFolder()
     }
 }
 
+//----Wybiera folder do przeprowadzenia zmiany nazw----//
+void Widget::selectFile()
+{
+    selectedDirectory = programCore->selectFile(); //Otwiera okno wyboru pliku
+    if(selectedDirectory != "")
+    {
+        enableButtonsStartNameChange();
+        textBrowserAbout->setText(tr(Widgets::textSelectedFile) + selectedDirectory + tr(Widgets::textFileNameWillBeChanged));
+    }
+    else
+    {
+        disableButtonsStartNameChange();
+        textBrowserAbout->setText(tr(Widgets::textFileDoesntSelected));
+    }
+}
+
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//
 void Widget::startNameChange()
 {
@@ -245,7 +263,7 @@ void Widget::startNameChange()
     disableButtonsStartNameChange();
     programCore->changeName(nameChangeParameters);
     enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Widgets::textNamesChangedInFolder) + tr(Widgets::textToStartSelectFolderOrFile));
+    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolderOrFile));
 }
 
 //----Pokazuje okienko z informacjami o programie----//

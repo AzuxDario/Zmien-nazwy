@@ -56,8 +56,7 @@ const char* Widgets::textNamesWillBeChangedInFolder = "</b><br />Nazwy plików z
 const char* Widgets::textFileNameWillBeChanged = "</b><br />Nazwa pliku zostanie zmieniona.";
 const char* Widgets::textFolderDoesntSelected = "Nie wybrano żadnego folderu.";
 const char* Widgets::textFileDoesntSelected = "Nie wybrano żadnego pliku.";
-const char* Widgets::textNamesChangedInFolder = "<b>Program zakończył zmianę nazw w wybranym katalogu.";
-const char* Widgets::textFileNameChanged = "<b>Program zakończył zmianę nazwy pliku.";
+const char* Widgets::textNamesChanged = "<b>Program zakończył zmianę nazw.</b><br />";
 const char* Widgets::textDefaultSettings = "Ustawienia domyślne podczas uruchamiania programu";
 
 

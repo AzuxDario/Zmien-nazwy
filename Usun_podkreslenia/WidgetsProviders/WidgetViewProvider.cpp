@@ -7,19 +7,23 @@ WidgetViewProvider::WidgetViewProvider()
     widgetAbout = NULL;
     widgetSettings = NULL;
 
-    nameChanger = new Renamer();
+    renamer = new Renamer();
 
     settingsReader = new Settings;
 
     nameChangeParameters = settingsReader->getNameChangeParameters();
-    connect(nameChanger,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBarSlot(int,int)));
-    connect(nameChanger,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBarSlot(int)));
-    connect(nameChanger,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBarSlot()));
+    connect(renamer,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBarSlot(int,int)));
+    connect(renamer,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBarSlot(int)));
+    connect(renamer,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBarSlot()));
 }
 
 void WidgetViewProvider::changeName(NameChangeParameters nameChangeParameters)
 {
-    nameChanger->initiateRenameFiles(nameChangeParameters);
+    if(dirType == DirType::Folder)
+        renamer->initiateRenameFiles(nameChangeParameters);
+    else
+        //TODO dodaj funkcję zmieniająca nazwę pliku
+        return;
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
@@ -29,8 +33,23 @@ QString WidgetViewProvider::selectFolder()
 
     if(selectedFolder.isNull() == false)
     {
-        nameChanger->setSelectedFolder(selectedFolder);
+        renamer->setSelectedFolder(selectedFolder);
+        dirType = DirType::Folder;
         return selectedFolder;
+    }
+    else
+        return "";
+}
+//----Wybiera plik do przeprowadzenia zmiany nazw----//
+QString WidgetViewProvider::selectFile()
+{
+    QString selectedFile = QFileDialog::getOpenFileName(); //Pobiera adres folderu
+
+    if(selectedFile.isNull() == false)
+    {
+        renamer->setSelectedFolder(selectedFile);
+        dirType = DirType::File;
+        return selectedFile;
     }
     else
         return "";

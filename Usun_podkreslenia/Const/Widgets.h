@@ -63,8 +63,7 @@ public:
     const static char* textFileNameWillBeChanged;
     const static char* textFolderDoesntSelected;
     const static char* textFileDoesntSelected;
-    const static char* textNamesChangedInFolder;
-    const static char* textFileNameChanged;
+    const static char* textNamesChanged;
     const static char* textDefaultSettings;
 public:
     Widgets();
