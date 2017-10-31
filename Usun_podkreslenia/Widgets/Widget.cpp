@@ -226,6 +226,7 @@ void Widget::disableButtonsSelectFolder()
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFolder()
 {
+    progressBar->reset();
     selectedDirectory = programCore->selectFolder(); //Otwiera okno wyboru folderu
     if(selectedDirectory != "")
     {
@@ -242,6 +243,7 @@ void Widget::selectFolder()
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFile()
 {
+    progressBar->reset();
     selectedDirectory = programCore->selectFile(); //Otwiera okno wyboru pliku
     if(selectedDirectory != "")
     {

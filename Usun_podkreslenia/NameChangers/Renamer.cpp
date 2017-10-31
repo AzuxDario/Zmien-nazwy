@@ -31,7 +31,6 @@ void Renamer::renameInFolders()
         QStringList folderList = folderDetector.getFolderList();
 
         renameFiles(currentFolder, folderList);
-        emit resetProgressBar();
     }
     else
     {
@@ -49,6 +48,7 @@ void Renamer::renameOneFile()
     path.truncate(posOfLastSlash + 1);
     if(currentFile.exists())
     {
+        initiateProgressBar(1);
         QString oldName = currentFile.fileName().split("/").last();
         QString newName = changeFileName(oldName);
         if(isFileNameIdentical(oldName, newName) == false)
@@ -56,6 +56,8 @@ void Renamer::renameOneFile()
             QString string = path + QDir::separator() + newName;
             currentFile.rename(path + newName);
         }
+        changeProgressBar(1);
+
     }
     else
     {

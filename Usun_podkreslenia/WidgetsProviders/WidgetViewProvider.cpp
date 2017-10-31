@@ -7,7 +7,7 @@ WidgetViewProvider::WidgetViewProvider()
     widgetAbout = NULL;
     widgetSettings = NULL;
 
-    renamer = new Renamer();
+    renamer = new Renamer;
 
     settingsReader = new Settings;
 
