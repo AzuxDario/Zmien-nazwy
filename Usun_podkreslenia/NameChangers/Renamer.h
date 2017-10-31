@@ -35,7 +35,7 @@ signals:
 public:
     QString getSelectedDir() noexcept {return selectedDir;} //Zwraca ścieżkę dostępu do folderu
     void setSelectedDir(QString value) noexcept {selectedDir = value;} //Ustawia ścieżkę dostępu do folderu
-    void initiateRenameFiles(NameChangeParameters nameChangeParameters, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
+    void initiateRenameFiles(NameChangeParameters nameChangeParameters, QString selectedDir, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
 
 private:
     void renameInFolders(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu

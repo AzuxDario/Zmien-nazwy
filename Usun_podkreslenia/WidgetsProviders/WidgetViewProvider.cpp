@@ -19,7 +19,7 @@ WidgetViewProvider::WidgetViewProvider()
 
 void WidgetViewProvider::changeName(NameChangeParameters nameChangeParameters)
 {
-        renamer->initiateRenameFiles(nameChangeParameters, dirType);
+        renamer->initiateRenameFiles(nameChangeParameters, selectedDir, dirType);
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
@@ -29,7 +29,7 @@ QString WidgetViewProvider::selectFolder()
 
     if(selectedFolder.isNull() == false)
     {
-        renamer->setSelectedDir(selectedFolder);
+        selectedDir = selectedFolder;
         dirType = NameChangeParameters::DirType::Folder;
         return selectedFolder;
     }
@@ -43,7 +43,7 @@ QString WidgetViewProvider::selectFile()
 
     if(selectedFile.isNull() == false)
     {
-        renamer->setSelectedDir(selectedFile);
+        selectedDir = selectedFile;
         dirType = NameChangeParameters::DirType::File;
         return selectedFile;
     }

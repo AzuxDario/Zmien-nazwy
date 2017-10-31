@@ -5,9 +5,10 @@ Renamer::Renamer()
 
 }
 
-void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters, NameChangeParameters::DirType dirType)
+void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters, QString selectedDir, NameChangeParameters::DirType dirType)
 {
     this->nameChangeParameters = nameChangeParameters;
+    this->selectedDir = selectedDir;
     switch (dirType) {
     case NameChangeParameters::DirType::Folder:
         renameInFolders();

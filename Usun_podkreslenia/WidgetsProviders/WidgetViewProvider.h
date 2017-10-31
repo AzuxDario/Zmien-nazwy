@@ -2,6 +2,7 @@
 #define WIDGETVIEWPROVIDER_H
 
 #include <QFileDialog>
+#include <QString>
 #include "WidgetAbout.h"
 #include "WidgetChangelog.h"
 #include "Renamer.h"
@@ -24,6 +25,8 @@ private:
     WidgetAbout *widgetAbout;
     WidgetSettings *widgetSettings;
 
+    QString selectedDir;
+
     Renamer *renamer;
 
     Settings *settingsReader;
@@ -38,6 +41,9 @@ signals:
     void resetProgressBar();
 
 public:
+    void setSelectedDir(QString value) noexcept {selectedDir = value;}
+    QString getSelectedDir() noexcept {return selectedDir;}
+
     void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     QString selectFile(); //Wybiera plik do przeprowadzenia zmiany nazw
