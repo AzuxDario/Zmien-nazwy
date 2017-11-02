@@ -5,7 +5,7 @@ const QString About::aboutApp ="Wersja programu: 4.2\nProgram oczyszcza nazwy pl
     "Zmiana obywa się w folderze i opcjonalnie jego podfolderach.\n© Paweł Miękina";
 
 const QString About::changeLog =
-    "Wersja: 4.2 (30.10.2017)\n"
+    "Wersja: 4.2 (02.11.2017)\n- wielowątkowość (przetwarzanie nazw na osobnym wątku)\n"
     "Wersja: 4.1 (30.10.2017)\n- refaktoryzacja\n- zmiana opisu programu\n- dodano przycisk anuluj do ustawień\n- dodano opcję usuwania plusów\n- dodano opcję zmiany jednej nazwy pliku\n"
     "Wersja: 4.0 (19.07.2017)\n- dodanie nowych ustawień\n- przebudowa okna\n- usunięcie akcji z menu\n"
     "Wersja: 3.4 (08.03.2017)\n- dodanie klasy przechowującej ustawenia zmiany nazw\n- uporządkowanie kodu\n"
