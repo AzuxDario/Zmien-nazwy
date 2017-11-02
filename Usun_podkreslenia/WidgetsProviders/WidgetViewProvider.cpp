@@ -7,19 +7,20 @@ WidgetViewProvider::WidgetViewProvider()
     widgetAbout = NULL;
     widgetSettings = NULL;
 
-    renamer = new Renamer;
+    renamerController = new RenamerController;
 
     settingsReader = new Settings;
 
     nameChangeParameters = settingsReader->getNameChangeParameters();
-    connect(renamer,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBarSlot(int,int)));
-    connect(renamer,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBarSlot(int)));
-    connect(renamer,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBarSlot()));
+    connect(renamerController,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBarSlot(int,int)));
+    connect(renamerController,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBarSlot(int)));
+    connect(renamerController,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBarSlot()));
+    connect(renamerController,SIGNAL(doneWork()),this, SLOT(handleResults()));
 }
 
 void WidgetViewProvider::changeName(NameChangeParameters nameChangeParameters)
 {
-        renamer->initiateRenameFiles(nameChangeParameters, selectedDir, dirType);
+        renamerController->initiateRenameFiles(nameChangeParameters, selectedDir, dirType);
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//

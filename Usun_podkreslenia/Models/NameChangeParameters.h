@@ -1,6 +1,7 @@
 #ifndef NAMECHANGEPARAMETERS_H
 #define NAMECHANGEPARAMETERS_H
 
+#include <QMetaType>
 #include <QStringList>
 
 class NameChangeParameters
@@ -54,5 +55,8 @@ public:
     Extensions getChangeExtension() noexcept { return changeExtension;}
     QStringList& getExtensions() noexcept {return extensions;}
 };
+
+Q_DECLARE_METATYPE(NameChangeParameters);
+Q_DECLARE_METATYPE(NameChangeParameters::DirType);
 
 #endif // NAMECHANGEPARAMETERS_H

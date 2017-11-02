@@ -112,8 +112,8 @@ private slots:
     void closeEvent(QCloseEvent *); //Zamyka program po zamknięciu głównego okna
     void enableButtonsStartNameChange(); //Funkcja aktywuje przycisk Rozpocznij
     void disableButtonsStartNameChange(); //Funkcja deaktywuje przycisk Rozpocznij
-    void enableButtonsSelectFolder(); //Włącza aktywność przycisku Wybierz folder
-    void disableButtonsSelectFolder(); //Wyłącza aktywność przycisków Wybierz folder
+    void enableButtonsSelect(); //Włącza aktywność przycisku Wybierz folder
+    void disableButtonsSelect(); //Wyłącza aktywność przycisków Wybierz folder
     void selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
     void selectFile(); //Wybiera plik do przeprowadzenia zmiany nazw
     void startNameChange(); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
@@ -129,6 +129,7 @@ private slots:
     void initializeProgressBar(int minValue, int maxValue);
     void changeProgressBar(int value);
     void resetProgressBar();
+    void handleResults();
 
 };
 

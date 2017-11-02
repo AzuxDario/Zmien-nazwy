@@ -17,7 +17,7 @@ void Renamer::initiateRenameFiles(NameChangeParameters nameChangeParameters, QSt
         renameOneFile();
         break;
     }
-
+    emit doneWork();
 }
 
 //----Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu----//

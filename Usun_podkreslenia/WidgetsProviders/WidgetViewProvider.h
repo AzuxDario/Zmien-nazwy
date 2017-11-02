@@ -5,7 +5,7 @@
 #include <QString>
 #include "WidgetAbout.h"
 #include "WidgetChangelog.h"
-#include "Renamer.h"
+#include "RenamerController.h"
 #include "WidgetSettings.h"
 #include "Settings.h"
 #include "NameChangeParameters.h"
@@ -27,7 +27,7 @@ private:
 
     QString selectedDir;
 
-    Renamer *renamer;
+    RenamerController *renamerController;
 
     Settings *settingsReader;
 
@@ -39,6 +39,7 @@ signals:
     void initializeProgressBar(int minValue, int maxValue);
     void changeProgressBar(int value);
     void resetProgressBar();
+    void doneWork();
 
 public:
     void setSelectedDir(QString value) noexcept {selectedDir = value;}
@@ -57,6 +58,7 @@ private slots:
     void initializeProgressBarSlot(int minValue, int maxValue) {emit initializeProgressBar(minValue, maxValue);}
     void changeProgressBarSlot(int value) {emit changeProgressBar(value);}
     void resetProgressBarSlot() {emit resetProgressBar();}
+    void handleResults() {emit doneWork();}
 };
 
 #endif // WIDGETVIEWPROVIDER_H
