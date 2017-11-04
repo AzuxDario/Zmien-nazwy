@@ -22,7 +22,8 @@ signals:
     void initializeProgressBar(int minValue, int maxValue);
     void changeProgressBar(int value);
     void resetProgressBar();
-    void doWork(NameChangeParameters, QString selectedDir, NameChangeParameters::DirType dirType);
+    void doWorkChangeInFolder(NameChangeParameters, QString selectedFolder);
+    void doWorkChangeFile(NameChangeParameters, QString seledtedFile);
     void doneWork();
 
 public:

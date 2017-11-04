@@ -35,7 +35,8 @@ signals:
     void doneWork();
 
 public slots:
-    void initiateRenameFiles(NameChangeParameters nameChangeParameters, QString selectedDir, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
+    void initiateRenameFilesInFolder(NameChangeParameters nameChangeParameters, QString selectedFolder); //Rozpoczyna procedurę zmiany nazw
+    void initiateRenameFile(NameChangeParameters nameChangeParameters, QString selectedFile); //Rozpoczyna procedurę zmiany nazw
 
 public:
     QString getSelectedDir() noexcept {return selectedDir;} //Zwraca ścieżkę dostępu do folderu

@@ -57,6 +57,5 @@ public:
 };
 
 Q_DECLARE_METATYPE(NameChangeParameters);
-Q_DECLARE_METATYPE(NameChangeParameters::DirType);
 
 #endif // NAMECHANGEPARAMETERS_H
