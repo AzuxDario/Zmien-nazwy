@@ -9,6 +9,7 @@ class NameChangeParameters
 public:
     enum class Letters {FirstBig, FirstBigRestSmall, AllBig, AllSmall, FirstInWordsBig, DoNothing};
     enum class Extensions {FirstBig, AllBig, AllSmall, DoNothing};
+    enum class ExtensionFilter {OnlyThis, AllExceptThis, DoNothing};
     enum class DirType {Folder, File};
 
 private:
@@ -24,6 +25,7 @@ private:
     bool removeSpacesAtEnd;
     Letters changeLetters;
     Extensions changeExtension;
+    ExtensionFilter extensionFilter;
     QStringList extensions;
 
 public:
@@ -40,6 +42,7 @@ public:
     void setRemoveSpacesAtEnd(const bool value) {removeSpacesAtEnd = value;}
     void setChangeLetters(const Letters value) noexcept {changeLetters = value;}
     void setChangeExtension(const Extensions value) noexcept {changeExtension = value;}
+    void setExtensionFilter(const ExtensionFilter value) noexcept {extensionFilter = value;}
     void setExtensions(const QStringList& value) noexcept {extensions = value;}
     bool getReplaceInSubfolders() noexcept {return replaceInSubfolders;}
     bool getReplaceUnderscores() noexcept {return replaceUnderscores;}
@@ -52,7 +55,8 @@ public:
     bool getRemoveSpacesAtBegin() {return removeSpacesAtBegin;}
     bool getRemoveSpacesAtEnd() {return removeSpacesAtEnd;}    
     Letters getChangeLetters() noexcept {return changeLetters;}
-    Extensions getChangeExtension() noexcept { return changeExtension;}
+    Extensions getChangeExtension() noexcept {return changeExtension;}
+    ExtensionFilter getExtensionFilter() noexcept {return extensionFilter;}
     QStringList& getExtensions() noexcept {return extensions;}
 };
 
