@@ -181,6 +181,7 @@ Widget::Widget(QWidget *parent) :
     connect(programCore,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBar(int,int)));
     connect(programCore,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBar(int)));
     connect(programCore,SIGNAL(resetProgressBar()), this, SLOT(resetProgressBar()));
+    connect(programCore,SIGNAL(doneWork()),this, SLOT(handleResults()));
 }
 
 
@@ -210,22 +211,27 @@ void Widget::disableButtonsStartNameChange()
 }
 
 //----Włącza aktywność przycisku Wybierz folder----//
-void Widget::enableButtonsSelectFolder()
+void Widget::enableButtonsSelect()
 {
     buttonSelectFolder->setEnabled(true);
     actionSelectFolder->setEnabled(true);
+    buttonSelectFile->setEnabled(true);
+    actionSelectFile->setEnabled(true);
 }
 
 //----Wyłącza aktywność przycisków Wybierz folder i Rozpocznij zmianę----//
-void Widget::disableButtonsSelectFolder()
+void Widget::disableButtonsSelect()
 {
     buttonSelectFolder->setDisabled(true);
     actionSelectFolder->setDisabled(true);
+    buttonSelectFile->setDisabled(true);
+    actionSelectFile->setDisabled(true);
 }
 
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFolder()
 {
+    progressBar->reset();
     selectedDirectory = programCore->selectFolder(); //Otwiera okno wyboru folderu
     if(selectedDirectory != "")
     {
@@ -242,6 +248,7 @@ void Widget::selectFolder()
 //----Wybiera folder do przeprowadzenia zmiany nazw----//
 void Widget::selectFile()
 {
+    progressBar->reset();
     selectedDirectory = programCore->selectFile(); //Otwiera okno wyboru pliku
     if(selectedDirectory != "")
     {
@@ -259,11 +266,9 @@ void Widget::selectFile()
 void Widget::startNameChange()
 {
     setNameChangesParameters();
-    disableButtonsSelectFolder(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wywołać drugi raz funkcji
+    disableButtonsSelect(); //Deaktywacja przycisków na czas zmiany nazwy aby użytkownik nie mógł wywołać drugi raz funkcji
     disableButtonsStartNameChange();
     programCore->changeName(nameChangeParameters);
-    enableButtonsSelectFolder(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolderOrFile));
 }
 
 //----Pokazuje okienko z informacjami o programie----//
@@ -435,4 +440,10 @@ void Widget::changeProgressBar(int value)
 void Widget::resetProgressBar()
 {
     progressBar->reset();
+}
+
+void Widget::handleResults()
+{
+    enableButtonsSelect(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
+    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolderOrFile));
 }
