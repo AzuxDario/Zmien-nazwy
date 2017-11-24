@@ -2,7 +2,8 @@
 
 const QString About::aboutApp ="Wersja programu: 4.2\nProgram oczyszcza nazwy plików pobranych z internetu.\n"
     "Zamienia znaki podkreślenia, pauzy oraz kropki na spację, usuwa wielokrotne spacje i zmienia rozmiar liter.\n"
-    "Zmiana obywa się w folderze i opcjonalnie jego podfolderach.\n© Paweł Miękina";
+    "Zmiana obywa się w folderze i opcjonalnie jego podfolderach.\n© Paweł Miękina\n\n"
+    "Aplikacja korzysta z bibliotek Qt.";
 
 const QString About::changeLog =
     "Wersja: 4.2 (02.11.2017)\n- refaktoryzacja\n- wielowątkowość (przetwarzanie nazw na osobnym wątku)\n"
