@@ -1,11 +1,12 @@
 #include "About.h"
 
-const QString About::aboutApp ="Wersja programu: 4.2\nProgram oczyszcza nazwy plików pobranych z internetu.\n"
+const QString About::aboutApp ="Wersja programu: 4.3\nProgram oczyszcza nazwy plików pobranych z internetu.\n"
     "Zamienia znaki podkreślenia, pauzy oraz kropki na spację, usuwa wielokrotne spacje i zmienia rozmiar liter.\n"
     "Zmiana obywa się w folderze i opcjonalnie jego podfolderach.\n© Paweł Miękina\n\n"
     "Aplikacja korzysta z bibliotek Qt.";
 
 const QString About::changeLog =
+    "Wersja: 4.3 (w trakcie)\n- możliwość zmiany nazw więcej niż jednego pliku\n"
     "Wersja: 4.2 (02.11.2017)\n- refaktoryzacja\n- wielowątkowość (przetwarzanie nazw na osobnym wątku)\n"
     "Wersja: 4.1 (30.10.2017)\n- refaktoryzacja\n- zmiana opisu programu\n- dodano przycisk anuluj do ustawień\n- dodano opcję usuwania plusów\n- dodano opcję zmiany jednej nazwy pliku\n"
     "Wersja: 4.0 (19.07.2017)\n- dodanie nowych ustawień\n- przebudowa okna\n- usunięcie akcji z menu\n"
