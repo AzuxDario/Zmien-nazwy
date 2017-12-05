@@ -99,6 +99,7 @@ private:
 
     //----Zmienna przechowująca folder----//
     QString selectedDirectory;
+    QStringList selectedFiles;
 
     //----Rdzeń----//
     WidgetViewProvider *programCore;

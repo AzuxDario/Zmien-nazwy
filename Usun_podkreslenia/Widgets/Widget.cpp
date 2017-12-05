@@ -249,11 +249,17 @@ void Widget::selectFolder()
 void Widget::selectFile()
 {
     progressBar->reset();
-    selectedDirectory = programCore->selectFile(); //Otwiera okno wyboru pliku
-    if(selectedDirectory != "")
+    selectedFiles = programCore->selectFile(); //Otwiera okno wyboru pliku
+    if(!selectedFiles.empty())
     {
+        QString selection = "<br/>";
+        for(int i = 0; i < selectedFiles.length(); i++)
+        {
+            selection += selectedFiles[i];
+            selection += "<br/>";
+        }
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFile) + selectedDirectory + tr(Widgets::textFileNameWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFile) + selection + tr(Widgets::textFileNameWillBeChanged));
     }
     else
     {

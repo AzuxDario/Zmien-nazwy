@@ -47,7 +47,7 @@ public:
 
     void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw
-    QString selectFile(); //Wybiera plik do przeprowadzenia zmiany nazw
+    QStringList selectFile(); //Wybiera plik do przeprowadzenia zmiany nazw
     void showWidgetAbout(); //Pokazuje okienko z informacjami o programie
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okno ustawień
