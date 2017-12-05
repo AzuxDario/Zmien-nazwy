@@ -22,12 +22,12 @@ signals:
     void initializeProgressBar(int minValue, int maxValue);
     void changeProgressBar(int value);
     void resetProgressBar();
-    void doWorkChangeInFolder(NameChangeParameters, QString selectedFolder);
-    void doWorkChangeFile(NameChangeParameters, QString seledtedFile);
+    void doWorkChangeInFolder(NameChangeParameters, QStringList selectedFolder);
+    void doWorkChangeFile(NameChangeParameters, QStringList seledtedFile);
     void doneWork();
 
 public:
-    void initiateRenameFiles(NameChangeParameters nameChangeParameters, QString selectedDir, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
+    void initiateRenameFiles(NameChangeParameters nameChangeParameters, QStringList selectedDir, NameChangeParameters::DirType dirType); //Rozpoczyna procedurę zmiany nazw
 
 private slots:
     void initializeProgressBarSlot(int minValue, int maxValue) {emit initializeProgressBar(minValue, maxValue);}

@@ -25,7 +25,7 @@ private:
     WidgetAbout *widgetAbout;
     WidgetSettings *widgetSettings;
 
-    QString selectedDir;
+    QStringList selectedDir;
 
     RenamerController *renamerController;
 
@@ -42,8 +42,8 @@ signals:
     void doneWork();
 
 public:
-    void setSelectedDir(QString value) noexcept {selectedDir = value;}
-    QString getSelectedDir() noexcept {return selectedDir;}
+    void setSelectedDir(QStringList value) noexcept {selectedDir = value;}
+    QStringList getSelectedDir() noexcept {return selectedDir;}
 
     void changeName(NameChangeParameters nameChangeParameters); //Funkcja rozpoczyna procedurę zmiany nazw po wybraniu folderu
     QString selectFolder(); //Wybiera folder do przeprowadzenia zmiany nazw

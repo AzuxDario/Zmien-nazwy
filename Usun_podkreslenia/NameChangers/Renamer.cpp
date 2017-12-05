@@ -5,19 +5,24 @@ Renamer::Renamer()
 
 }
 
-void Renamer::initiateRenameFilesInFolder(NameChangeParameters nameChangeParameters, QString selectedFolder)
+void Renamer::initiateRenameFilesInFolder(NameChangeParameters nameChangeParameters, QStringList selectedFolder)
 {
     this->nameChangeParameters = nameChangeParameters;
-    this->selectedDir = selectedFolder;
+    this->selectedDir = selectedFolder[0];
     renameInFolders();
     emit doneWork();
 }
 
-void Renamer::initiateRenameFile(NameChangeParameters nameChangeParameters, QString selectedFolder)
+void Renamer::initiateRenameSelectedFiles(NameChangeParameters nameChangeParameters, QStringList selectedFiles)
 {
     this->nameChangeParameters = nameChangeParameters;
-    this->selectedDir = selectedFolder;
-    renameOneFile();
+    initiateProgressBar(selectedFiles.length());
+    for(int i = 0; i < selectedFiles.length(); i++)
+    {
+        this->selectedDir = selectedFiles[i];
+        renameOneFile();
+        changeProgressBar(i+1);
+    }
     emit doneWork();
 }
 

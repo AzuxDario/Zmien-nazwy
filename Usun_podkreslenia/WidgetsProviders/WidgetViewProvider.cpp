@@ -30,7 +30,8 @@ QString WidgetViewProvider::selectFolder()
 
     if(selectedFolder.isNull() == false)
     {
-        selectedDir = selectedFolder;
+        selectedDir.clear();
+        selectedDir.push_back(selectedFolder);
         dirType = NameChangeParameters::DirType::Folder;
         return selectedFolder;
     }
@@ -44,7 +45,8 @@ QString WidgetViewProvider::selectFile()
 
     if(selectedFile.isNull() == false)
     {
-        selectedDir = selectedFile;
+        selectedDir.clear();
+        selectedDir.push_back(selectedFile);
         dirType = NameChangeParameters::DirType::File;
         return selectedFile;
     }
