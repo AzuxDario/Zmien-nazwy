@@ -91,13 +91,16 @@ void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
             if(DirectoryIdentifier::isFile(currentFolder, currentFolder[static_cast<int>(i)]))
             {
                 QString fileName = currentFolder[static_cast<int>(i)];
-                QString newFileName = changeFileName(fileName);
-                if(isFileNameIdentical(fileName,newFileName))
-                    continue;
-                else
-                {
-                    QFile file(nextFolder + QDir::separator() + fileName);
-                    file.rename(nextFolder + QDir::separator() + newFileName);
+                if(isNameShouldBeChangeAccordingToExtensionFilter(fileName))
+                    {
+                    QString newFileName = changeFileName(fileName);
+                    if(isFileNameIdentical(fileName,newFileName))
+                        continue;
+                    else
+                    {
+                        QFile file(nextFolder + QDir::separator() + fileName);
+                        file.rename(nextFolder + QDir::separator() + newFileName);
+                    }
                 }
             }
         }
@@ -137,15 +140,9 @@ bool Renamer::isNameShouldBeChangeAccordingToExtensionFilter(QString fileName)
     switch(nameChangeParameters.getExtensionFilter())
     {
     case NameChangeParameters::ExtensionFilter::OnlyThis:
-        if(nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive))
-            return true;
-        else
-            return false;
+        return nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive);
     case NameChangeParameters::ExtensionFilter::AllExceptThis:
-        if(nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive))
-            return false;
-        else
-            return true;
+        return nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive);
     case NameChangeParameters::ExtensionFilter::DoNothing:
         return true;
     }
