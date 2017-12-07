@@ -130,3 +130,23 @@ QString Renamer::changeFileName(QString fileName)
     fileName = nameModifier.removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
     return fileName;
 }
+
+//----Sprawdza czy nazwa pliku powinna być zmieniona biorąc pod uwagę listę rozszerzeń oraz filtr z parametrów zmiany nazw----//
+bool Renamer::isNameShouldBeChangeAccordingToExtensionFilter(QString fileName)
+{
+    switch(nameChangeParameters.getExtensionFilter())
+    {
+    case NameChangeParameters::ExtensionFilter::OnlyThis:
+        if(nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive))
+            return true;
+        else
+            return false;
+    case NameChangeParameters::ExtensionFilter::AllExceptThis:
+        if(nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive))
+            return false;
+        else
+            return true;
+    case NameChangeParameters::ExtensionFilter::DoNothing:
+        return true;
+    }
+}

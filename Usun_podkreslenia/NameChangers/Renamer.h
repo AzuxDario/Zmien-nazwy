@@ -48,9 +48,10 @@ private:
     void renameFiles(QDir currentFolder, const QStringList& folderList); //Funkcja zmienia nazwy plików w folderach
     void showError(const char* string); //Funkcja pokazuje błąd
     QString changeFileName(QString fileName); //Wykonuje operacje zmiany nazwy pliku
+    bool isNameShouldBeChangeAccordingToExtensionFilter(QString fileName); //Sprawdza czy nazwa pliku powinna być zmieniona biorąc pod uwagę listę rozszerzeń oraz filtr z parametrów zmiany nazw
     bool isFileNameIdentical(QString oldName, QString newName) {return oldName == newName;} //Porównuje dwie nazwy plików jeśli są identyczne zwraca true
     void setBusyProgressBar() {emit initializeProgressBar(0,0);} //Ustawia pasek postępu w stan zajętości
-    void initiateProgressBar(int max) {emit initializeProgressBar(0, max); emit changeProgressBar(0);} //Inicjuje pasek postępu ustawiając jako wartość maksymalną ilość plików w folderze
+    void initiateProgressBar(int max) {emit initializeProgressBar(0, max); emit changeProgressBar(0);} //Inicjuje pasek postępu ustawiając jako wartość maksymalną ilość plików w folderze   
 
 };
 
