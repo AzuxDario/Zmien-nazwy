@@ -149,4 +149,5 @@ bool Renamer::isNameShouldBeChangeAccordingToExtensionFilter(QString fileName)
     case NameChangeParameters::ExtensionFilter::DoNothing:
         return true;
     }
+    return false;
 }
