@@ -88,7 +88,7 @@ void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
             if(DirectoryIdentifier::isFile(currentFolder, currentFolder[static_cast<int>(i)]))
             {
                 QString fileName = currentFolder[static_cast<int>(i)];
-                if(isNameShouldBeChangeAccordingToExtensionFilter(fileName))
+                if(isFileNameShouldBeChanged(fileName))
                     {
                     QString newFileName = changeFileName(fileName);
                     if(isFileNameIdentical(fileName,newFileName))
@@ -132,7 +132,7 @@ QString Renamer::changeFileName(QString fileName)
 }
 
 //----Sprawdza czy nazwa pliku powinna być zmieniona biorąc pod uwagę listę rozszerzeń oraz filtr z parametrów zmiany nazw----//
-bool Renamer::isNameShouldBeChangeAccordingToExtensionFilter(QString fileName)
+bool Renamer::isFileNameShouldBeChanged(QString fileName)
 {
     switch(nameChangeParameters.getExtensionFilter())
     {
