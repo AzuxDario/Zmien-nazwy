@@ -35,7 +35,7 @@ signals:
     void doneWork();
 
 public slots:
-    void initiateRenameFilesInFolder(NameChangeParameters nameChangeParameters, QStringList selectedFolder); //Rozpoczyna procedurę zmiany nazw
+    void initiateRenameFilesInSelectedFolder(NameChangeParameters nameChangeParameters, QStringList selectedFolder); //Rozpoczyna procedurę zmiany nazw
     void initiateRenameSelectedFiles(NameChangeParameters nameChangeParameters, QStringList selectedFiles); //Rozpoczyna procedurę zmiany nazw
 
 public:
