@@ -85,6 +85,10 @@ Widget::Widget(QWidget *parent) :
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToSmall));    
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
+    comboBoxChangeExtensionFilter = new QComboBox();
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionOnlyThis));
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionAlExceptThis));
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionDontUse));
 
     //--------Etykiety--------//
     labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
@@ -107,29 +111,34 @@ Widget::Widget(QWidget *parent) :
     windowVLayout = new QVBoxLayout(this);
     mainHLayout = new QHBoxLayout();
     leftVLayout = new QVBoxLayout();
+    centerVLayout = new QVBoxLayout();
     rightVLayout = new QVBoxLayout();
     windowVLayout->setMenuBar(menuBar);
     windowVLayout->addLayout(mainHLayout);
     mainHLayout->addLayout(leftVLayout);
+    mainHLayout->addLayout(centerVLayout);
     mainHLayout->addLayout(rightVLayout);
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
     buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
+    buttonGroupExtensionFilterLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
+    buttonGroupExtensionFilter = new QGroupBox(tr(Widgets::buttonGroupExtensionFilter));
     leftVLayout->addWidget(buttonGroupSubfolders);
     leftVLayout->addWidget(buttonGroupReplace);
     leftVLayout->addWidget(textBrowserAbout);
     leftVLayout->addWidget(progressBar);
-    rightVLayout->addWidget(buttonGroupSize);
-    rightVLayout->addWidget(buttonGroupSpace);
-    rightVLayout->addSpacing(70);
-    rightVLayout->addLayout(buttonHLayout);
+    centerVLayout->addWidget(buttonGroupSize);
+    centerVLayout->addWidget(buttonGroupSpace);
+    centerVLayout->addSpacing(70);
+    centerVLayout->addLayout(buttonHLayout);
+    rightVLayout->addWidget(buttonGroupExtensionFilter);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
@@ -145,11 +154,13 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(comboBoxChangeLettersSize);
     buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
+    buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
     buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
+    buttonGroupExtensionFilter->setLayout(buttonGroupExtensionFilterLayout);
 
     buttonHLayout->addWidget(buttonSelectFolder);
     buttonHLayout->addWidget(buttonSelectFile);
@@ -351,6 +362,20 @@ void Widget::setButtonSelection()
         break;
     }
 
+    auto selectionExtensionFilter = parameters.getExtensionFilter();
+    switch(selectionExtensionFilter)
+    {
+    case NameChangeParameters::ExtensionFilter::OnlyThis:
+        comboBoxChangeExtensionSize->setCurrentIndex(0);
+        break;
+    case NameChangeParameters::ExtensionFilter::AllExceptThis:
+        comboBoxChangeExtensionSize->setCurrentIndex(1);
+        break;
+    case NameChangeParameters::ExtensionFilter::DoNothing:
+        comboBoxChangeExtensionSize->setCurrentIndex(2);
+        break;
+    }
+
     if(parameters.getReplaceDots() == true)
     {
         checkBoxReplaceExtensionDot->setEnabled(true);
@@ -429,6 +454,19 @@ void Widget::setNameChangesParameters()
         break;
     case 3:
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::DoNothing);
+        break;
+    }
+
+    switch(comboBoxChangeExtensionFilter->currentIndex())
+    {
+    case 0:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::OnlyThis);
+        break;
+    case 1:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::AllExceptThis);
+        break;
+    case 2:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::DoNothing);
         break;
     }
 }

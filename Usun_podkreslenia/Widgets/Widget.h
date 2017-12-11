@@ -56,6 +56,7 @@ private:
     QVBoxLayout *windowVLayout;
     QHBoxLayout *mainHLayout;
     QVBoxLayout *leftVLayout;
+    QVBoxLayout *centerVLayout;
     QVBoxLayout *rightVLayout;
     QHBoxLayout *buttonHLayout;
 
@@ -63,10 +64,12 @@ private:
     QVBoxLayout *buttonGroupReplaceLayout;
     QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
+    QVBoxLayout *buttonGroupExtensionFilterLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
     QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
+    QGroupBox *buttonGroupExtensionFilter;
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;
@@ -84,8 +87,11 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
+
+    //----ComboBoxy----//
     QComboBox *comboBoxChangeLettersSize;
     QComboBox *comboBoxChangeExtensionSize;
+    QComboBox *comboBoxChangeExtensionFilter;
 
     //----Etykiety----//
     QLabel *labelChangeLettersSize;

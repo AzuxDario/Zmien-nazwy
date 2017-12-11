@@ -48,7 +48,7 @@ const char* Widgets::buttonGroupSubfolders = "Podfoldery (dotyczy zmiany w folde
 const char* Widgets::buttonGroupReplace = "Zastąp znaki";
 const char* Widgets::buttonGroupSize = "Zmień rozmiar";
 const char* Widgets::buttonGroupSpace = "Spacje";
-const char* Widgets::buttonGroupExtensionFilter = "Filtr rozszeżeń";
+const char* Widgets::buttonGroupExtensionFilter = "Filtr rozszerzeń";
 
 const char* Widgets::labelGroupLetterSize = "Zmień rozmiar liter w nazwie";
 const char* Widgets::labelGroupExtensionSize = "Zmień rozmiar liter w rozszerzeniu";
