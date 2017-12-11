@@ -47,11 +47,15 @@ public:
     const static char* radioButtonChangeExtensionToBig;
     const static char* radioButtonChangeExtensionToSmall;
     const static char* radioButtonChangeExtensionFirstLettersToBig;
+    const static char* optionExtensionOnlyThis;
+    const static char* optionExtensionAlExceptThis;
+    const static char* optionExtensionDontUse;
 
     const static char* buttonGroupSubfolders;
     const static char* buttonGroupReplace;
     const static char* buttonGroupSize;
     const static char* buttonGroupSpace;
+    const static char* buttonGroupExtensionFilter;
 
     const static char* labelGroupLetterSize;
     const static char* labelGroupExtensionSize;

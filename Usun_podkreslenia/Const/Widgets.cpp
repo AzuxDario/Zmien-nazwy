@@ -40,11 +40,15 @@ const char* Widgets::radioButtonDontChange = "Nic nie rób";
 const char* Widgets::radioButtonChangeExtensionToBig = "Zmień rozszerzenie na pisane dużymi literami";
 const char* Widgets::radioButtonChangeExtensionToSmall = "Zmień rozszerzenie na pisane małymi literami";
 const char* Widgets::radioButtonChangeExtensionFirstLettersToBig = "Zmień pierwszą literę rozszerzenia na dużą";
+const char* Widgets::optionExtensionOnlyThis = "Zmień pliki o podanych rozszerzeniach";
+const char* Widgets::optionExtensionAlExceptThis = "Zmień pliki o rozszerzeniach innych niż podane";
+const char* Widgets::optionExtensionDontUse = "Nie używaj filtru rozszerzeń";
 
 const char* Widgets::buttonGroupSubfolders = "Podfoldery (dotyczy zmiany w folderach)";
 const char* Widgets::buttonGroupReplace = "Zastąp znaki";
 const char* Widgets::buttonGroupSize = "Zmień rozmiar";
 const char* Widgets::buttonGroupSpace = "Spacje";
+const char* Widgets::buttonGroupExtensionFilter = "Filtr rozszeżeń";
 
 const char* Widgets::labelGroupLetterSize = "Zmień rozmiar liter w nazwie";
 const char* Widgets::labelGroupExtensionSize = "Zmień rozmiar liter w rozszerzeniu";
