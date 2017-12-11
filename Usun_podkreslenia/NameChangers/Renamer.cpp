@@ -141,7 +141,7 @@ bool Renamer::isFileNameShouldBeChanged(QString fileName)
         return nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive);
     case NameChangeParameters::ExtensionFilter::AllExceptThis:
         return nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive);
-    case NameChangeParameters::ExtensionFilter::DoNothing:
+    case NameChangeParameters::ExtensionFilter::DontUse:
         return true;
     }
     return false;

@@ -371,7 +371,7 @@ void Widget::setButtonSelection()
     case NameChangeParameters::ExtensionFilter::AllExceptThis:
         comboBoxChangeExtensionSize->setCurrentIndex(1);
         break;
-    case NameChangeParameters::ExtensionFilter::DoNothing:
+    case NameChangeParameters::ExtensionFilter::DontUse:
         comboBoxChangeExtensionSize->setCurrentIndex(2);
         break;
     }
@@ -466,7 +466,7 @@ void Widget::setNameChangesParameters()
         nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::AllExceptThis);
         break;
     case 2:
-        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::DoNothing);
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::DontUse);
         break;
     }
 }

@@ -14,5 +14,5 @@ NameChangeParameters::NameChangeParameters()
     removeSpacesAtEnd = false;
     changeLetters = Letters::DoNothing;
     changeExtension = Extensions::DoNothing;
-    extensionFilter = ExtensionFilter::DoNothing;
+    extensionFilter = ExtensionFilter::DontUse;
 }
