@@ -7,7 +7,7 @@ RenamerController::RenamerController(QObject *parent) : QObject(parent)
     worker->moveToThread(&workerThread);
 
     connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
-    connect(this, SIGNAL(doWorkChangeInFolder(NameChangeParameters, QStringList)), worker, SLOT(initiateRenameFilesInFolder(NameChangeParameters, QStringList)));
+    connect(this, SIGNAL(doWorkChangeInFolder(NameChangeParameters, QStringList)), worker, SLOT(initiateRenameFilesInSelectedFolder(NameChangeParameters, QStringList)));
     connect(this, SIGNAL(doWorkChangeFile(NameChangeParameters, QStringList)), worker, SLOT(initiateRenameSelectedFiles(NameChangeParameters, QStringList)));
     connect(worker,SIGNAL(doneWork()), this, SLOT(handleResults()));
     connect(worker,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBarSlot(int,int)));
