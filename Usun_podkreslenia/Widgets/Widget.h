@@ -19,6 +19,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QComboBox>
+#include <QListView>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
@@ -102,6 +103,8 @@ private:
 
     //----Pasek Postępu----//
     QProgressBar *progressBar;
+
+    QListView *extensionFilterList;
 
     //----Zmienna przechowująca folder----//
     QString selectedDirectory;

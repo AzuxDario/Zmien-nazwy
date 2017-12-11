@@ -106,6 +106,7 @@ Widget::Widget(QWidget *parent) :
     progressBar->setTextVisible(false);
     progressBar->setMinimumHeight(30);
 
+    extensionFilterList = new QListView();
 
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
@@ -155,6 +156,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
     buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
+    buttonGroupExtensionFilterLayout->addWidget(extensionFilterList);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
