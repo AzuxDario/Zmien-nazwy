@@ -101,6 +101,8 @@ Widget::Widget(QWidget *parent) :
     //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
     textBrowserAbout->setText(tr(Widgets::textToStartSelectFolderOrFile));
 
+    lineEditExtensionFilter = new QLineEdit();
+
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
     progressBar->setTextVisible(false);
@@ -157,6 +159,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
     buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
     buttonGroupExtensionFilterLayout->addWidget(extensionFilterList);
+    buttonGroupExtensionFilterLayout->addWidget(lineEditExtensionFilter);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);

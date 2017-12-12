@@ -20,6 +20,7 @@
 #include <QGroupBox>
 #include <QComboBox>
 #include <QListView>
+#include <QLineEdit>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
@@ -100,6 +101,8 @@ private:
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
+
+    QLineEdit *lineEditExtensionFilter;
 
     //----Pasek Postępu----//
     QProgressBar *progressBar;
