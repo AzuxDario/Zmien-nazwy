@@ -8,13 +8,18 @@ const char* Widgets::widgetAbout = "O programie";
 
 const char* Widgets::buttonOk = "Ok";
 const char* Widgets::buttonCancel = "Anuluj";
+const char* Widgets::buttonSelectFolder = "Wybierz folder";
+const char* Widgets::buttonSelectFiles = "Wybierz pliki";
+const char* Widgets::buttonStartChange = "Rozpocznij zmianę";
+const char* Widgets::buttonAddExtension = "Dodaj";
+const char* Widgets::buttonDeleteExtension = "Usuń";
 
 const char* Widgets::menuFile = "&Plik";
 const char* Widgets::menuSettings = "&Ustawienia";
 const char* Widgets::menuHelp = "P&omoc";
 
 const char* Widgets::actionSelectFolder = "Wybierz &folder";
-const char* Widgets::actionSelectFile = "Wybierz &pliki";
+const char* Widgets::actionSelectFiles = "Wybierz &pliki";
 const char* Widgets::actionStartChange = "&Rozpocznij zmianę";
 const char* Widgets::actionExit = "Wyjści&e";
 const char* Widgets::actionOptions = "&Opcje";

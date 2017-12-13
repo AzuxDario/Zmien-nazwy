@@ -20,7 +20,7 @@ Widget::Widget(QWidget *parent) :
 
     actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr(Widgets::actionSelectFolder),this);
     actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+F")));
-    actionSelectFile = new QAction(QIcon(":/pasek/plik"),tr(Widgets::actionSelectFile),this);
+    actionSelectFile = new QAction(QIcon(":/pasek/plik"),tr(Widgets::actionSelectFiles),this);
     actionSelectFile->setShortcut(QKeySequence(tr("Ctrl+P")));
     actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr(Widgets::actionStartChange),this);
     actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
@@ -50,7 +50,7 @@ Widget::Widget(QWidget *parent) :
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
-    buttonSelectFile = new QPushButton(tr(Widgets::actionSelectFile),this);
+    buttonSelectFile = new QPushButton(tr(Widgets::actionSelectFiles),this);
     buttonSelectFile->setStyleSheet("font-size:11px;");
     buttonSelectFile->setMinimumHeight(30);
     buttonSelectFile->setMaximumWidth(120);

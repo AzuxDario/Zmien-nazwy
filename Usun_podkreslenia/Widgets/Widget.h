@@ -77,6 +77,8 @@ private:
     QPushButton *buttonSelectFolder;
     QPushButton *buttonSelectFile;
     QPushButton *buttonStartNameChange;
+    QPushButton *buttonAddExtension;
+    QPushButton *buttonDeleteExtension;
 
     //----CheckBoxy----//
     QCheckBox *checkBoxReplaceInSubfolders;

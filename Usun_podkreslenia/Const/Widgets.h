@@ -15,13 +15,18 @@ public:
 
     const static char* buttonOk;
     const static char* buttonCancel;
+    const static char* buttonSelectFolder;
+    const static char* buttonSelectFiles;
+    const static char* buttonStartChange;
+    const static char* buttonAddExtension;
+    const static char* buttonDeleteExtension;
 
     const static char* menuFile;
     const static char* menuSettings;
     const static char* menuHelp;
 
     const static char* actionSelectFolder;
-    const static char* actionSelectFile;
+    const static char* actionSelectFiles;
     const static char* actionStartChange;
     const static char* actionExit;
     const static char* actionOptions;
