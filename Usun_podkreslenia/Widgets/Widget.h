@@ -60,7 +60,8 @@ private:
     QVBoxLayout *leftVLayout;
     QVBoxLayout *centerVLayout;
     QVBoxLayout *rightVLayout;
-    QHBoxLayout *buttonHLayout;
+    QHBoxLayout *mainButtonHLayout;
+    QHBoxLayout *extensionButtonHLayout;
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;

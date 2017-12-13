@@ -46,19 +46,27 @@ Widget::Widget(QWidget *parent) :
     actionStartNameChange->setDisabled(true);
 
     //--------Przyciski--------//
-    buttonSelectFolder = new QPushButton(tr(Widgets::actionSelectFolder),this);
+    buttonSelectFolder = new QPushButton(tr(Widgets::buttonSelectFolder),this);
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
-    buttonSelectFile = new QPushButton(tr(Widgets::actionSelectFiles),this);
+    buttonSelectFile = new QPushButton(tr(Widgets::buttonSelectFiles),this);
     buttonSelectFile->setStyleSheet("font-size:11px;");
     buttonSelectFile->setMinimumHeight(30);
     buttonSelectFile->setMaximumWidth(120);
-    buttonStartNameChange = new QPushButton(tr(Widgets::actionStartChange),this);
+    buttonStartNameChange = new QPushButton(tr(Widgets::buttonStartChange),this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
     buttonStartNameChange->setMaximumHeight(30);
     buttonStartNameChange->setMaximumWidth(120);
     buttonStartNameChange->setDisabled(true);
+    buttonAddExtension = new QPushButton(tr(Widgets::buttonAddExtension),this);
+    buttonAddExtension->setStyleSheet("font-size:11px;");
+    buttonAddExtension->setMinimumHeight(30);
+    buttonAddExtension->setMaximumWidth(60);
+    buttonDeleteExtension = new QPushButton(tr(Widgets::buttonDeleteExtension),this);
+    buttonDeleteExtension->setStyleSheet("font-size:11px;");
+    buttonDeleteExtension->setMinimumHeight(30);
+    buttonDeleteExtension->setMaximumWidth(60);
 
     //--------Check Boxy--------//
     checkBoxReplaceInSubfolders = new QCheckBox(tr(Widgets::checkBoxReplaceInSubfolders));
@@ -127,7 +135,8 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonGroupExtensionFilterLayout = new QVBoxLayout;
-    buttonHLayout = new QHBoxLayout;
+    mainButtonHLayout = new QHBoxLayout;
+    extensionButtonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
@@ -140,7 +149,7 @@ Widget::Widget(QWidget *parent) :
     centerVLayout->addWidget(buttonGroupSize);
     centerVLayout->addWidget(buttonGroupSpace);
     centerVLayout->addSpacing(70);
-    centerVLayout->addLayout(buttonHLayout);
+    centerVLayout->addLayout(mainButtonHLayout);
     rightVLayout->addWidget(buttonGroupExtensionFilter);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
@@ -160,6 +169,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
     buttonGroupExtensionFilterLayout->addWidget(listWidgetExtensionFilter);
     buttonGroupExtensionFilterLayout->addWidget(lineEditExtensionFilter);
+    buttonGroupExtensionFilterLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
@@ -167,9 +177,12 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
     buttonGroupExtensionFilter->setLayout(buttonGroupExtensionFilterLayout);
 
-    buttonHLayout->addWidget(buttonSelectFolder);
-    buttonHLayout->addWidget(buttonSelectFile);
-    buttonHLayout->addWidget(buttonStartNameChange);
+    mainButtonHLayout->addWidget(buttonSelectFolder);
+    mainButtonHLayout->addWidget(buttonSelectFile);
+    mainButtonHLayout->addWidget(buttonStartNameChange);
+
+    extensionButtonHLayout->addWidget(buttonAddExtension);
+    extensionButtonHLayout->addWidget(buttonDeleteExtension);
 
     //----Wskaźnik na rdzeń programu----//
     programCore = new WidgetViewProvider();
