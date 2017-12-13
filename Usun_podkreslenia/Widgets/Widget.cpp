@@ -423,10 +423,18 @@ void Widget::setButtonSelection()
 //----Dodaj rozszerzenie do listy----//
 void Widget::addExtension()
 {
-    if(lineEditExtensionFilter->text() != "")
+    QString extension = lineEditExtensionFilter->text();
+    lineEditExtensionFilter->setText("");
+    if(extension != "")
     {
-        listWidgetExtensionFilter->addItem(lineEditExtensionFilter->text());
-        lineEditExtensionFilter->setText("");
+        for(int i = 0; i < listWidgetExtensionFilter->count(); i++)
+        {
+            if(extension == listWidgetExtensionFilter->item(i)->text())
+            {
+                return;
+            }
+        }
+        listWidgetExtensionFilter->addItem(extension);
     }
 }
 
