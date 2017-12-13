@@ -108,7 +108,7 @@ Widget::Widget(QWidget *parent) :
     progressBar->setTextVisible(false);
     progressBar->setMinimumHeight(30);
 
-    extensionFilterList = new QListView();
+    listWidgetExtensionFilter = new QListWidget();
 
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
@@ -158,7 +158,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
     buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
-    buttonGroupExtensionFilterLayout->addWidget(extensionFilterList);
+    buttonGroupExtensionFilterLayout->addWidget(listWidgetExtensionFilter);
     buttonGroupExtensionFilterLayout->addWidget(lineEditExtensionFilter);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
@@ -398,6 +398,11 @@ void Widget::setButtonSelection()
         checkBoxDontReplaceDashesSurrondedBySpaces->setDisabled(true);
     }
 
+    QStringList list = nameChangeParameters.getExtensions();
+    for(int i = 0; i< list.count(); i++)
+    {
+        listWidgetExtensionFilter->addItem(list[i]);
+    }
 }
 
 //----Funkcje aktualizujace stany między check boxami a paskiem----//
@@ -474,6 +479,13 @@ void Widget::setNameChangesParameters()
         nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::DontUse);
         break;
     }
+
+    QStringList list;
+    for(int i = 0; i< listWidgetExtensionFilter->count(); i++)
+    {
+        list.append(listWidgetExtensionFilter->item(i)->text());
+    }
+    nameChangeParameters.setExtensions(list);
 }
 
 void Widget::initializeProgressBar(int minValue, int maxValue)
