@@ -137,6 +137,8 @@ private slots:
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okienko ustawienia
     void setButtonSelection(); //Ustawia zaznaczenia przycisków
+    void addExtension(); //Dodaj rozszerzenie do listy
+    void deleteExtension(); //Usuwa rozszerzenie z listy
 
     //----Funkcje aktualizujace stany między check boxami a paskiem
     void checkBoxDotsClicked();

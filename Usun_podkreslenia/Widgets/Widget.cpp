@@ -206,6 +206,8 @@ Widget::Widget(QWidget *parent) :
     connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
+    connect(buttonAddExtension,SIGNAL(clicked()),this,SLOT(addExtension()));
+    connect(buttonDeleteExtension,SIGNAL(clicked()),this,SLOT(deleteExtension()));
 
     connect(programCore,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBar(int,int)));
     connect(programCore,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBar(int)));
@@ -415,6 +417,25 @@ void Widget::setButtonSelection()
     for(int i = 0; i< list.count(); i++)
     {
         listWidgetExtensionFilter->addItem(list[i]);
+    }
+}
+
+//----Dodaj rozszerzenie do listy----//
+void Widget::addExtension()
+{
+    if(lineEditExtensionFilter->text() != "")
+    {
+        listWidgetExtensionFilter->addItem(lineEditExtensionFilter->text());
+        lineEditExtensionFilter->setText("");
+    }
+}
+
+//----Usuwa rozszerzenie z listy----//
+void Widget::deleteExtension()
+{
+    if(listWidgetExtensionFilter->currentRow() > -1)
+    {
+        delete listWidgetExtensionFilter->takeItem(listWidgetExtensionFilter->currentRow());
     }
 }
 
