@@ -108,7 +108,7 @@ private:
     QTextBrowser *textBrowserAbout;
 
     QRegExp regExp;
-    QRegExpValidator *regExpValidator;
+    QRegExpValidator regExpValidator;
 
     QLineEdit *lineEditExtensionFilter;
 

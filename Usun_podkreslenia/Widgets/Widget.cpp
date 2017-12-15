@@ -110,10 +110,10 @@ Widget::Widget(QWidget *parent) :
     textBrowserAbout->setText(tr(Widgets::textToStartSelectFolderOrFile));
 
     regExp.setPattern("^[a-zA-Z0-9]*$");
-    regExpValidator = new QRegExpValidator(regExp);
+    regExpValidator.setRegExp(regExp);
 
     lineEditExtensionFilter = new QLineEdit();
-    lineEditExtensionFilter->setValidator(regExpValidator);
+    lineEditExtensionFilter->setValidator(&regExpValidator);
 
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
