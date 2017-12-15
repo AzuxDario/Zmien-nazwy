@@ -21,6 +21,8 @@
 #include <QComboBox>
 #include <QListWidget>
 #include <QLineEdit>
+#include <QRegExp>
+#include <QRegExpValidator>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
@@ -104,6 +106,9 @@ private:
 
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
+
+    QRegExp regExp;
+    QRegExpValidator *regExpValidator;
 
     QLineEdit *lineEditExtensionFilter;
 
