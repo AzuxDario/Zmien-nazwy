@@ -90,7 +90,7 @@ void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
                 QString fileName = currentFolder[static_cast<int>(i)];
                 if(isFileNameShouldBeChanged(fileName))
                     {
-                    //TODO Sprawdzić czy nie zmienia ukrytych plików i folderów oraz plików systemowych
+                    //TODO Sprawdzić czy nie zmienia ukrytych plików i folderów oraz plików systemowych.
                     QString newFileName = changeFileName(fileName);
                     if(isFileNameIdentical(fileName,newFileName))
                         continue;
