@@ -145,7 +145,7 @@ private slots:
     void addExtension(); //Dodaj rozszerzenie do listy
     void deleteExtension(); //Usuwa rozszerzenie z listy
 
-    //----Funkcje aktualizujace stany między check boxami a paskiem
+    //----Funkcje aktualizujace stany między check boxami a paskiem----//
     void checkBoxDotsClicked();
     void checkBoxDashesClicked();
     void setNameChangesParameters();
