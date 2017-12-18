@@ -107,6 +107,7 @@ private:
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
 
+    //---Wyrażenia regularne i walidator---//
     QRegExp regExp;
     QRegExpValidator regExpValidator;
 
