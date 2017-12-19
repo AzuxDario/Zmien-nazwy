@@ -141,7 +141,7 @@ Widget::Widget(QWidget *parent) :
     buttonGroupExtensionFilterLayout = new QVBoxLayout;
     mainButtonHLayout = new QHBoxLayout;
     extensionButtonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
+    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupGeneral));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));

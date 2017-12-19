@@ -56,7 +56,7 @@ public:
     const static char* optionExtensionAlExceptThis;
     const static char* optionExtensionDontUse;
 
-    const static char* buttonGroupSubfolders;
+    const static char* buttonGroupGeneral;
     const static char* buttonGroupReplace;
     const static char* buttonGroupSize;
     const static char* buttonGroupSpace;
