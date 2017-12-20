@@ -294,7 +294,7 @@ void Widget::selectFile()
             selection += "<br/>";
         }
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFile) + selection + tr(Widgets::textFileNameWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFiles) + selection + tr(Widgets::textFileNameWillBeChanged));
     }
     else
     {

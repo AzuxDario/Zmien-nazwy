@@ -67,7 +67,7 @@ public:
 
     const static char* textToStartSelectFolderOrFile;
     const static char* textSelectedFolder;
-    const static char* textSelectedFile;
+    const static char* textSelectedFiles;
     const static char* textNamesWillBeChangedInFolder;
     const static char* textFileNameWillBeChanged;
     const static char* textFolderDoesntSelected;
