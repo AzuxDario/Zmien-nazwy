@@ -183,20 +183,20 @@ void WidgetSettings::checkBoxDashesClicked()
 //----Ustawia przyciski danymi z pliku----//
 void WidgetSettings::setCheckBoxes()
 {
-    NameChangeParameters parameters = settingsReader->getNameChangeParameters();
+    NameChangeParameters nameChangeParameters = settingsReader->getNameChangeParameters();
 
-    checkBoxReplaceInSubfolders->setChecked(parameters.getReplaceInSubfolders());
-    checkBoxReplaceUnderscores->setChecked(parameters.getReplaceUnderscores());
-    checkBoxReplaceDashes->setChecked(parameters.getReplaceDashes());
-    checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(parameters.getDontReplaceDashesSurrondedBySpaces());
-    checkBoxReplaceDots->setChecked(parameters.getReplaceDots());
-    checkBoxReplaceExtensionDot->setChecked(parameters.getReplaceExtensionDot());
-    checkBoxReplacePluses->setChecked(parameters.getReplacePluses());
-    checkBoxRemoveMultiplySpaces->setChecked(parameters.getRemoveMultiplySpaces());
-    checkBoxRemoveSpacesAtBegin->setChecked(parameters.getRemoveSpacesAtBegin());
-    checkBoxRemoveSpacesAtEnd->setChecked(parameters.getRemoveSpacesAtEnd());
+    checkBoxReplaceInSubfolders->setChecked(nameChangeParameters.getReplaceInSubfolders());
+    checkBoxReplaceUnderscores->setChecked(nameChangeParameters.getReplaceUnderscores());
+    checkBoxReplaceDashes->setChecked(nameChangeParameters.getReplaceDashes());
+    checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(nameChangeParameters.getDontReplaceDashesSurrondedBySpaces());
+    checkBoxReplaceDots->setChecked(nameChangeParameters.getReplaceDots());
+    checkBoxReplaceExtensionDot->setChecked(nameChangeParameters.getReplaceExtensionDot());
+    checkBoxReplacePluses->setChecked(nameChangeParameters.getReplacePluses());
+    checkBoxRemoveMultiplySpaces->setChecked(nameChangeParameters.getRemoveMultiplySpaces());
+    checkBoxRemoveSpacesAtBegin->setChecked(nameChangeParameters.getRemoveSpacesAtBegin());
+    checkBoxRemoveSpacesAtEnd->setChecked(nameChangeParameters.getRemoveSpacesAtEnd());
 
-    auto selectionLetters = parameters.getChangeLetters();
+    auto selectionLetters = nameChangeParameters.getChangeLetters();
     switch(selectionLetters)
     {
     case NameChangeParameters::Letters::FirstBig:
@@ -219,7 +219,7 @@ void WidgetSettings::setCheckBoxes()
         break;
     }
 
-    auto selectionExtensions = parameters.getChangeExtension();
+    auto selectionExtensions = nameChangeParameters.getChangeExtension();
     switch(selectionExtensions)
     {
     case NameChangeParameters::Extensions::FirstBig:
@@ -236,7 +236,7 @@ void WidgetSettings::setCheckBoxes()
         break;
     }
 
-    auto selectionExtensionFilter = parameters.getExtensionFilter();
+    auto selectionExtensionFilter = nameChangeParameters.getExtensionFilter();
     switch(selectionExtensionFilter)
     {
     case NameChangeParameters::ExtensionFilter::OnlyThis:
@@ -250,7 +250,7 @@ void WidgetSettings::setCheckBoxes()
         break;
     }
 
-    if(parameters.getReplaceDots() == true)
+    if(nameChangeParameters.getReplaceDots() == true)
     {
         checkBoxReplaceExtensionDot->setEnabled(true);
     }
@@ -258,7 +258,7 @@ void WidgetSettings::setCheckBoxes()
     {
         checkBoxReplaceExtensionDot->setDisabled(true);
     }
-    if(parameters.getReplaceDashes() == true)
+    if(nameChangeParameters.getReplaceDashes() == true)
     {
         checkBoxDontReplaceDashesSurrondedBySpaces->setEnabled(true);
     }
@@ -267,7 +267,7 @@ void WidgetSettings::setCheckBoxes()
         checkBoxDontReplaceDashesSurrondedBySpaces->setDisabled(true);
     }
 
-    QStringList list = parameters.getExtensions();
+    QStringList list = nameChangeParameters.getExtensions();
     for(int i = 0; i< list.count(); i++)
     {
         listWidgetExtensionFilter->addItem(list[i]);
