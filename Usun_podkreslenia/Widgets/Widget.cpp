@@ -390,13 +390,13 @@ void Widget::setButtonSelection()
     switch(selectionExtensionFilter)
     {
     case NameChangeParameters::ExtensionFilter::OnlyThis:
-        comboBoxChangeExtensionSize->setCurrentIndex(0);
+        comboBoxChangeExtensionFilter->setCurrentIndex(0);
         break;
     case NameChangeParameters::ExtensionFilter::AllExceptThis:
-        comboBoxChangeExtensionSize->setCurrentIndex(1);
+        comboBoxChangeExtensionFilter->setCurrentIndex(1);
         break;
     case NameChangeParameters::ExtensionFilter::DontUse:
-        comboBoxChangeExtensionSize->setCurrentIndex(2);
+        comboBoxChangeExtensionFilter->setCurrentIndex(2);
         break;
     }
 
