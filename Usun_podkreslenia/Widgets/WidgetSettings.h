@@ -11,6 +11,8 @@
 #include <QGroupBox>
 #include <QComboBox>
 #include <QDesktopWidget>
+#include <QLineEdit>
+#include <QListWidget>
 #include "Settings.h"
 #include "Widgets.h"
 
@@ -33,17 +35,26 @@ private:
     QVBoxLayout *windowVLayout;
     QHBoxLayout *mainHLayout;
     QVBoxLayout *leftVLayout;
+    QVBoxLayout *centerVLayout;
     QVBoxLayout *rightVLayout;
     QHBoxLayout *buttonHLayout;
+    QHBoxLayout *extensionButtonHLayout;
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
     QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
+    QVBoxLayout *buttonGroupExtensionFilterLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
     QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
+    QGroupBox *buttonGroupExtensionFilter;
+
+    //----Przyciski----//
+    QPushButton *buttonAddExtension;
+    QPushButton *buttonDeleteExtension;
+
 
     //----CheckBoxy----//
     QCheckBox *checkBoxReplaceInSubfolders;
@@ -56,8 +67,11 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
+
+    //----ComboBoxy----//
     QComboBox *comboBoxChangeLettersSize;
     QComboBox *comboBoxChangeExtensionSize;
+    QComboBox *comboBoxChangeExtensionFilter;
 
     //----Etykiety----//
     QLabel *labelDefaultSettings;
@@ -67,6 +81,15 @@ private:
     //----Przyciski----//
     QPushButton *buttonOK;
     QPushButton *buttonCancel;
+
+    //---Wyrażenia regularne i walidator---//
+    QRegExp regExp;
+    QRegExpValidator regExpValidator;
+
+    QLineEdit *lineEditExtensionFilter;
+
+
+    QListWidget *listWidgetExtensionFilter;
 
     //----Obiekt czytajacy ustawienia----//
     Settings *settingsReader;
@@ -78,6 +101,8 @@ private slots:
     void checkBoxDashesClicked();
     void setCheckBoxes(); //Ustawia przyciski danymi z pliku
     void setSettingsReader(); //Ustawia czytacz ustawień wartościami checkboxów
+    void addExtension(); //Dodaj rozszerzenie do listy
+    void deleteExtension(); //Usuwa rozszerzenie z listy
 
 public slots:
     void showWindow(); //Pokazuje już utworzone okno
