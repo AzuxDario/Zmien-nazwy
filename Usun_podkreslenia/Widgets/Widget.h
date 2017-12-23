@@ -26,6 +26,7 @@
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
+#include "Tags.h"
 
 
 namespace Ui {

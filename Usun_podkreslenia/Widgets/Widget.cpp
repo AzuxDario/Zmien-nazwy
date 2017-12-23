@@ -271,7 +271,7 @@ void Widget::selectFolder()
     if(selectedDirectory != "")
     {
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedDirectory + tr(Widgets::textNamesWillBeChangedInFolder));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFolder)+ Tags::bold + selectedDirectory + Tags::boldEnd + Tags::breakLine + tr(Widgets::textNamesWillBeChangedInFolder));
     }
     else
     {
@@ -294,7 +294,7 @@ void Widget::selectFile()
             selection += "<br/>";
         }
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFiles) + selection + tr(Widgets::textFileNameWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFiles) + Tags::bold + selection + Tags::boldEnd + Tags::breakLine + tr(Widgets::textFileNameWillBeChanged));
     }
     else
     {
@@ -552,5 +552,5 @@ void Widget::resetProgressBar()
 void Widget::handleResults()
 {
     enableButtonsSelect(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolderOrFile));
+    textBrowserAbout->setText(Tags::bold + tr(Widgets::textNamesChanged) + Tags::boldEnd + Tags::breakLine + tr(Widgets::textToStartSelectFolderOrFile));
 }
