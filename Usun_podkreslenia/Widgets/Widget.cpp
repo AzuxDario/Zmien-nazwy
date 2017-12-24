@@ -112,6 +112,7 @@ Widget::Widget(QWidget *parent) :
     regExp.setPattern("^[a-zA-Z0-9]*$");
     regExpValidator.setRegExp(regExp);
 
+    //----Pole edyscji----//
     lineEditExtensionFilter = new QLineEdit();
     lineEditExtensionFilter->setValidator(&regExpValidator);
 

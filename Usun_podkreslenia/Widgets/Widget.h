@@ -112,6 +112,7 @@ private:
     QRegExp regExp;
     QRegExpValidator regExpValidator;
 
+    //----Pole edyscji----//
     QLineEdit *lineEditExtensionFilter;
 
     //----Pasek Postępu----//
