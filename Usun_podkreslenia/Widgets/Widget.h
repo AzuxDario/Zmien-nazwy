@@ -23,6 +23,7 @@
 #include <QLineEdit>
 #include <QRegExp>
 #include <QRegExpValidator>
+#include <QTableWidget>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
