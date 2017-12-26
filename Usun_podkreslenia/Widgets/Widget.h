@@ -119,6 +119,7 @@ private:
     //----Pasek Postępu----//
     QProgressBar *progressBar;
 
+    //----Lista rozszerzeń----//
     QListWidget *listWidgetExtensionFilter;
 
     //----Zmienna przechowująca folder----//
