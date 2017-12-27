@@ -83,15 +83,15 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
-    leftVLayout = new QVBoxLayout();
-    centerVLayout = new QVBoxLayout();
-    rightVLayout = new QVBoxLayout();
+    mainTabVLayout = new QVBoxLayout();
+    sizeAndSpacesTabVLayout = new QVBoxLayout();
+    extensionFilterTabVLayout = new QVBoxLayout();
     windowVLayout->addWidget(labelDefaultSettings,0,Qt::AlignCenter);
     windowVLayout->addWidget(mainTabWidget);
 
-    mainTab->setLayout(leftVLayout);
-    sizeAndSpacesTab->setLayout(centerVLayout);
-    extensionFilterTab->setLayout(rightVLayout);
+    mainTab->setLayout(mainTabVLayout);
+    sizeAndSpacesTab->setLayout(sizeAndSpacesTabVLayout);
+    extensionFilterTab->setLayout(extensionFilterTabVLayout);
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
@@ -105,12 +105,12 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
     buttonGroupExtensionFilter = new QGroupBox(tr(Widgets::buttonGroupExtensionFilter));
-    leftVLayout->addWidget(buttonGroupSubfolders);
-    leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addSpacing(40);
-    centerVLayout->addWidget(buttonGroupSize);
-    centerVLayout->addWidget(buttonGroupSpace);
-    rightVLayout->addWidget(buttonGroupExtensionFilter);
+    mainTabVLayout->addWidget(buttonGroupSubfolders);
+    mainTabVLayout->addWidget(buttonGroupReplace);
+    mainTabVLayout->addSpacing(40);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSize);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSpace);
+    extensionFilterTabVLayout->addWidget(buttonGroupExtensionFilter);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);

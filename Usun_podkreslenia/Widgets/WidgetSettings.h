@@ -39,9 +39,9 @@ private:
 
     //----Layouty----//
     QVBoxLayout *windowVLayout;
-    QVBoxLayout *leftVLayout;
-    QVBoxLayout *centerVLayout;
-    QVBoxLayout *rightVLayout;
+    QVBoxLayout *mainTabVLayout;
+    QVBoxLayout *sizeAndSpacesTabVLayout;
+    QVBoxLayout *extensionFilterTabVLayout;
     QHBoxLayout *buttonHLayout;
     QHBoxLayout *extensionButtonHLayout;
 
