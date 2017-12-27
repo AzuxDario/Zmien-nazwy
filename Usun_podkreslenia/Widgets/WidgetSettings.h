@@ -13,6 +13,7 @@
 #include <QDesktopWidget>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QTabWidget>
 #include "Settings.h"
 #include "Widgets.h"
 
@@ -31,9 +32,13 @@ public:
 private:
     Ui::WidgetSettings *ui;
 
+    QTabWidget *mainTabWidget;
+    QWidget *mainTab;
+    QWidget *sizeAndSpacesTab;
+    QWidget *extensionFilterTab;
+
     //----Layouty----//
     QVBoxLayout *windowVLayout;
-    QHBoxLayout *mainHLayout;
     QVBoxLayout *leftVLayout;
     QVBoxLayout *centerVLayout;
     QVBoxLayout *rightVLayout;
