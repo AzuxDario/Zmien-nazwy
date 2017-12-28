@@ -6,7 +6,7 @@ const QString About::aboutApp ="Wersja programu: 4.3\nProgram oczyszcza nazwy pl
     "Aplikacja korzysta z bibliotek Qt.";
 
 const QString About::changeLog =
-    "Wersja: 4.3 (w trakcie)\n- zmiana wygląda programu (zakładki)\n- możliwość zmiany nazw więcej niż jednego pliku\n- możliwość zmiany nazw w plikach o konkretnych rozszerzeniach lub zmiany nazw plików o innych rozszerzeniach\n"
+    "Wersja: 4.3 (28.12.2017)\n- zmiana wygląda programu (zakładki)\n- możliwość zmiany nazw więcej niż jednego pliku\n- możliwość zmiany nazw w plikach o konkretnych rozszerzeniach lub zmiany nazw plików o innych rozszerzeniach\n"
     "Wersja: 4.2 (02.11.2017)\n- refaktoryzacja\n- wielowątkowość (przetwarzanie nazw na osobnym wątku)\n"
     "Wersja: 4.1 (30.10.2017)\n- refaktoryzacja\n- zmiana opisu programu\n- dodano przycisk anuluj do ustawień\n- dodano opcję usuwania plusów\n- dodano opcję zmiany jednej nazwy pliku\n"
     "Wersja: 4.0 (19.07.2017)\n- dodanie nowych ustawień\n- przebudowa okna\n- usunięcie akcji z menu\n"
