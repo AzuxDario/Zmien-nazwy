@@ -15,13 +15,18 @@ public:
 
     const static char* buttonOk;
     const static char* buttonCancel;
+    const static char* buttonSelectFolder;
+    const static char* buttonSelectFiles;
+    const static char* buttonStartChange;
+    const static char* buttonAddExtension;
+    const static char* buttonDeleteExtension;
 
     const static char* menuFile;
     const static char* menuSettings;
     const static char* menuHelp;
 
     const static char* actionSelectFolder;
-    const static char* actionSelectFile;
+    const static char* actionSelectFiles;
     const static char* actionStartChange;
     const static char* actionExit;
     const static char* actionOptions;
@@ -47,18 +52,26 @@ public:
     const static char* radioButtonChangeExtensionToBig;
     const static char* radioButtonChangeExtensionToSmall;
     const static char* radioButtonChangeExtensionFirstLettersToBig;
+    const static char* optionExtensionOnlyThis;
+    const static char* optionExtensionAlExceptThis;
+    const static char* optionExtensionDontUse;
 
-    const static char* buttonGroupSubfolders;
+    const static char* mainTab;
+    const static char* sizeAndSpacesTab;
+    const static char* extensionFilterTab;
+
+    const static char* buttonGroupGeneral;
     const static char* buttonGroupReplace;
     const static char* buttonGroupSize;
     const static char* buttonGroupSpace;
+    const static char* buttonGroupExtensionFilter;
 
     const static char* labelGroupLetterSize;
     const static char* labelGroupExtensionSize;
 
     const static char* textToStartSelectFolderOrFile;
     const static char* textSelectedFolder;
-    const static char* textSelectedFile;
+    const static char* textSelectedFiles;
     const static char* textNamesWillBeChangedInFolder;
     const static char* textFileNameWillBeChanged;
     const static char* textFolderDoesntSelected;

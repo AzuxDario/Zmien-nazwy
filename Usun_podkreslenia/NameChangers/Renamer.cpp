@@ -5,19 +5,24 @@ Renamer::Renamer()
 
 }
 
-void Renamer::initiateRenameFilesInFolder(NameChangeParameters nameChangeParameters, QString selectedFolder)
+void Renamer::initiateRenameFilesInSelectedFolder(NameChangeParameters nameChangeParameters, QStringList selectedFolder)
 {
     this->nameChangeParameters = nameChangeParameters;
-    this->selectedDir = selectedFolder;
+    this->selectedDir = selectedFolder[0];
     renameInFolders();
     emit doneWork();
 }
 
-void Renamer::initiateRenameFile(NameChangeParameters nameChangeParameters, QString selectedFolder)
+void Renamer::initiateRenameSelectedFiles(NameChangeParameters nameChangeParameters, QStringList selectedFiles)
 {
     this->nameChangeParameters = nameChangeParameters;
-    this->selectedDir = selectedFolder;
-    renameOneFile();
+    initiateProgressBar(selectedFiles.length());
+    for(int i = 0; i < selectedFiles.length(); i++)
+    {
+        this->selectedDir = selectedFiles[i];
+        renameOneFile();
+        changeProgressBar(i+1);
+    }
     emit doneWork();
 }
 
@@ -50,7 +55,6 @@ void Renamer::renameOneFile()
     path.truncate(posOfLastSlash + 1);
     if(currentFile.exists())
     {
-        initiateProgressBar(1);
         QString oldName = currentFile.fileName().split("/").last();
         QString newName = changeFileName(oldName);
         if(isFileNameIdentical(oldName, newName) == false)
@@ -58,8 +62,6 @@ void Renamer::renameOneFile()
             QString string = path + QDir::separator() + newName;
             currentFile.rename(path + newName);
         }
-        changeProgressBar(1);
-
     }
     else
     {
@@ -86,13 +88,16 @@ void Renamer::renameFiles(QDir currentFolder, const QStringList& folderList)
             if(DirectoryIdentifier::isFile(currentFolder, currentFolder[static_cast<int>(i)]))
             {
                 QString fileName = currentFolder[static_cast<int>(i)];
-                QString newFileName = changeFileName(fileName);
-                if(isFileNameIdentical(fileName,newFileName))
-                    continue;
-                else
-                {
-                    QFile file(nextFolder + QDir::separator() + fileName);
-                    file.rename(nextFolder + QDir::separator() + newFileName);
+                if(isFileNameShouldBeChanged(fileName))
+                    {
+                    QString newFileName = changeFileName(fileName);
+                    if(isFileNameIdentical(fileName,newFileName))
+                        continue;
+                    else
+                    {
+                        QFile file(nextFolder + QDir::separator() + fileName);
+                        file.rename(nextFolder + QDir::separator() + newFileName);
+                    }
                 }
             }
         }
@@ -124,4 +129,19 @@ QString Renamer::changeFileName(QString fileName)
     fileName = nameModifier.changeExtensionSize(fileName, nameChangeParameters.getChangeExtension());
     fileName = nameModifier.removeSpaces(fileName,nameChangeParameters.getRemoveMultiplySpaces(),nameChangeParameters.getRemoveSpacesAtBegin(),nameChangeParameters.getRemoveSpacesAtEnd());
     return fileName;
+}
+
+//----Sprawdza czy nazwa pliku powinna być zmieniona biorąc pod uwagę listę rozszerzeń oraz filtr z parametrów zmiany nazw----//
+bool Renamer::isFileNameShouldBeChanged(QString fileName)
+{
+    switch(nameChangeParameters.getExtensionFilter())
+    {
+    case NameChangeParameters::ExtensionFilter::OnlyThis:
+        return nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive);
+    case NameChangeParameters::ExtensionFilter::AllExceptThis:
+        return nameChangeParameters.getExtensions().contains(DirectoryIdentifier::getFileExtension(fileName),Qt::CaseInsensitive);
+    case NameChangeParameters::ExtensionFilter::DontUse:
+        return true;
+    }
+    return false;
 }

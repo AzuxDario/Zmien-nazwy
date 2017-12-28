@@ -12,21 +12,29 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     setWindowIcon(QIcon(":/ikona/ikona"));
     setWindowModality(Qt::ApplicationModal); //Sprawia że po aktywacji okna główne okno staje się nieklikalne
 
-    //--------Etykiety--------//
+    //----Etykiety----//
     labelDefaultSettings = new QLabel(tr(Widgets::textDefaultSettings),this);
     labelDefaultSettings->setStyleSheet("font-size:15px; margin-bottom:10px;");
     labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
     labelChangeExtensionSize = new QLabel(tr(Widgets::labelGroupExtensionSize));
 
-    //--------Przycisk--------//
+    //----Przycisk----//
     buttonOK = new QPushButton(tr(Widgets::buttonOk),this);
     buttonOK->setMinimumHeight(30);
     buttonOK->setMaximumWidth(120);
     buttonCancel = new QPushButton(tr(Widgets::buttonCancel),this);
     buttonCancel->setMinimumHeight(30);
     buttonCancel->setMaximumWidth(120);
+    buttonAddExtension = new QPushButton(tr(Widgets::buttonAddExtension),this);
+    buttonAddExtension->setStyleSheet("font-size:11px;");
+    buttonAddExtension->setMinimumHeight(30);
+    buttonAddExtension->setMaximumWidth(60);
+    buttonDeleteExtension = new QPushButton(tr(Widgets::buttonDeleteExtension),this);
+    buttonDeleteExtension->setStyleSheet("font-size:11px;");
+    buttonDeleteExtension->setMinimumHeight(30);
+    buttonDeleteExtension->setMaximumWidth(60);
 
-    //--------Check Boxy--------//
+    //--------CheckBoxy--------//
     checkBoxReplaceInSubfolders = new QCheckBox(tr(Widgets::checkBoxReplaceInSubfolders));
     checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
     checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
@@ -39,6 +47,8 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
     checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
+
+    //----ComboBoxy----//
     comboBoxChangeLettersSize = new QComboBox();
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBig));
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBigRestSmall));
@@ -51,31 +61,61 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToSmall));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
+    comboBoxChangeExtensionFilter = new QComboBox();
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionOnlyThis));
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionAlExceptThis));
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionDontUse));
+
+    regExp.setPattern("^[a-zA-Z0-9]*$");
+    regExpValidator.setRegExp(regExp);
+
+    lineEditExtensionFilter = new QLineEdit();
+    lineEditExtensionFilter->setValidator(&regExpValidator);
+
+    listWidgetExtensionFilter = new QListWidget();
+
+    mainTabWidget = new QTabWidget();
+    mainTab = new QWidget();
+    sizeAndSpacesTab = new QWidget();
+    extensionFilterTab = new QWidget();
+
+    mainTabWidget->addTab(mainTab,tr(Widgets::mainTab));
+    mainTabWidget->addTab(sizeAndSpacesTab,tr(Widgets::sizeAndSpacesTab));
+    mainTabWidget->addTab(extensionFilterTab,tr(Widgets::extensionFilterTab));
+
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
-    mainHLayout = new QHBoxLayout();
-    leftVLayout = new QVBoxLayout();
-    rightVLayout = new QVBoxLayout();
-    windowVLayout->addWidget(labelDefaultSettings,0,Qt::AlignCenter);
-    windowVLayout->addLayout(mainHLayout);
-    mainHLayout->addLayout(leftVLayout);
-    mainHLayout->addLayout(rightVLayout);
+    mainTabVLayout = new QVBoxLayout();
+    sizeAndSpacesTabVLayout = new QVBoxLayout();
+    extensionFilterTabVLayout = new QVBoxLayout();    
+    extensionButtonHLayout = new QHBoxLayout;
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
     buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
     buttonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
+    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupGeneral));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
-    leftVLayout->addWidget(buttonGroupSubfolders);
-    leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addSpacing(40);
-    rightVLayout->addWidget(buttonGroupSize);
-    rightVLayout->addWidget(buttonGroupSpace);
-    rightVLayout->addLayout(buttonHLayout);
+
+    windowVLayout->addWidget(labelDefaultSettings,0,Qt::AlignCenter);
+    windowVLayout->addWidget(mainTabWidget);
+
+    mainTab->setLayout(mainTabVLayout);
+    sizeAndSpacesTab->setLayout(sizeAndSpacesTabVLayout);
+    extensionFilterTab->setLayout(extensionFilterTabVLayout);
+
+    mainTabVLayout->addWidget(buttonGroupSubfolders);
+    mainTabVLayout->addWidget(buttonGroupReplace);
+    mainTabVLayout->addSpacing(40);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSize);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSpace);
+    extensionFilterTabVLayout->addWidget(comboBoxChangeExtensionFilter);
+    extensionFilterTabVLayout->addWidget(listWidgetExtensionFilter);
+    extensionFilterTabVLayout->addWidget(lineEditExtensionFilter);
+    extensionFilterTabVLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
@@ -91,20 +131,27 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(comboBoxChangeLettersSize);
     buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
+    buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
     buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
+    windowVLayout->addLayout(buttonHLayout);
 
     buttonHLayout->addWidget(buttonOK);
     buttonHLayout->addWidget(buttonCancel);
+
+    extensionButtonHLayout->addWidget(buttonAddExtension);
+    extensionButtonHLayout->addWidget(buttonDeleteExtension);
 
     //----Przypisanie przycisków do slotów----//
     connect(buttonOK,SIGNAL(clicked()),this,SLOT(saveSettings()));
     connect(buttonCancel,SIGNAL(clicked()),this,SLOT(closeWindow()));
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
+    connect(buttonAddExtension,SIGNAL(clicked()),this,SLOT(addExtension()));
+    connect(buttonDeleteExtension,SIGNAL(clicked()),this,SLOT(deleteExtension()));
 
     //--------Obiekt czytajacy ustawienia--------//
     settingsReader = new Settings;
@@ -145,20 +192,20 @@ void WidgetSettings::checkBoxDashesClicked()
 //----Ustawia przyciski danymi z pliku----//
 void WidgetSettings::setCheckBoxes()
 {
-    NameChangeParameters parameters = settingsReader->getNameChangeParameters();
+    NameChangeParameters nameChangeParameters = settingsReader->getNameChangeParameters();
 
-    checkBoxReplaceInSubfolders->setChecked(parameters.getReplaceInSubfolders());
-    checkBoxReplaceUnderscores->setChecked(parameters.getReplaceUnderscores());
-    checkBoxReplaceDashes->setChecked(parameters.getReplaceDashes());
-    checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(parameters.getDontReplaceDashesSurrondedBySpaces());
-    checkBoxReplaceDots->setChecked(parameters.getReplaceDots());
-    checkBoxReplaceExtensionDot->setChecked(parameters.getReplaceExtensionDot());
-    checkBoxReplacePluses->setChecked(parameters.getReplacePluses());
-    checkBoxRemoveMultiplySpaces->setChecked(parameters.getRemoveMultiplySpaces());
-    checkBoxRemoveSpacesAtBegin->setChecked(parameters.getRemoveSpacesAtBegin());
-    checkBoxRemoveSpacesAtEnd->setChecked(parameters.getRemoveSpacesAtEnd());
+    checkBoxReplaceInSubfolders->setChecked(nameChangeParameters.getReplaceInSubfolders());
+    checkBoxReplaceUnderscores->setChecked(nameChangeParameters.getReplaceUnderscores());
+    checkBoxReplaceDashes->setChecked(nameChangeParameters.getReplaceDashes());
+    checkBoxDontReplaceDashesSurrondedBySpaces->setChecked(nameChangeParameters.getDontReplaceDashesSurrondedBySpaces());
+    checkBoxReplaceDots->setChecked(nameChangeParameters.getReplaceDots());
+    checkBoxReplaceExtensionDot->setChecked(nameChangeParameters.getReplaceExtensionDot());
+    checkBoxReplacePluses->setChecked(nameChangeParameters.getReplacePluses());
+    checkBoxRemoveMultiplySpaces->setChecked(nameChangeParameters.getRemoveMultiplySpaces());
+    checkBoxRemoveSpacesAtBegin->setChecked(nameChangeParameters.getRemoveSpacesAtBegin());
+    checkBoxRemoveSpacesAtEnd->setChecked(nameChangeParameters.getRemoveSpacesAtEnd());
 
-    auto selectionLetters = parameters.getChangeLetters();
+    auto selectionLetters = nameChangeParameters.getChangeLetters();
     switch(selectionLetters)
     {
     case NameChangeParameters::Letters::FirstBig:
@@ -181,7 +228,7 @@ void WidgetSettings::setCheckBoxes()
         break;
     }
 
-    auto selectionExtensions = parameters.getChangeExtension();
+    auto selectionExtensions = nameChangeParameters.getChangeExtension();
     switch(selectionExtensions)
     {
     case NameChangeParameters::Extensions::FirstBig:
@@ -198,7 +245,21 @@ void WidgetSettings::setCheckBoxes()
         break;
     }
 
-    if(parameters.getReplaceDots() == true)
+    auto selectionExtensionFilter = nameChangeParameters.getExtensionFilter();
+    switch(selectionExtensionFilter)
+    {
+    case NameChangeParameters::ExtensionFilter::OnlyThis:
+        comboBoxChangeExtensionFilter->setCurrentIndex(0);
+        break;
+    case NameChangeParameters::ExtensionFilter::AllExceptThis:
+        comboBoxChangeExtensionFilter->setCurrentIndex(1);
+        break;
+    case NameChangeParameters::ExtensionFilter::DontUse:
+        comboBoxChangeExtensionFilter->setCurrentIndex(2);
+        break;
+    }
+
+    if(nameChangeParameters.getReplaceDots() == true)
     {
         checkBoxReplaceExtensionDot->setEnabled(true);
     }
@@ -206,13 +267,19 @@ void WidgetSettings::setCheckBoxes()
     {
         checkBoxReplaceExtensionDot->setDisabled(true);
     }
-    if(parameters.getReplaceDashes() == true)
+    if(nameChangeParameters.getReplaceDashes() == true)
     {
         checkBoxDontReplaceDashesSurrondedBySpaces->setEnabled(true);
     }
     else
     {
         checkBoxDontReplaceDashesSurrondedBySpaces->setDisabled(true);
+    }
+
+    QStringList list = nameChangeParameters.getExtensions();
+    for(int i = 0; i< list.count(); i++)
+    {
+        listWidgetExtensionFilter->addItem(list[i]);
     }
 
 }
@@ -269,7 +336,55 @@ void WidgetSettings::setSettingsReader()
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::DoNothing);
         break;
     }
+
+    switch(comboBoxChangeExtensionFilter->currentIndex())
+    {
+    case 0:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::OnlyThis);
+        break;
+    case 1:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::AllExceptThis);
+        break;
+    case 2:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::DontUse);
+        break;
+    }
+
+    QStringList list;
+    for(int i = 0; i< listWidgetExtensionFilter->count(); i++)
+    {
+        list.append(listWidgetExtensionFilter->item(i)->text());
+    }
+    nameChangeParameters.setExtensions(list);
+
     settingsReader->setNameChangeParameters(nameChangeParameters);
+}
+
+//----Dodaj rozszerzenie do listy----//
+void WidgetSettings::addExtension()
+{
+    QString extension = lineEditExtensionFilter->text();
+    lineEditExtensionFilter->setText("");
+    if(extension != "")
+    {
+        for(int i = 0; i < listWidgetExtensionFilter->count(); i++)
+        {
+            if(extension == listWidgetExtensionFilter->item(i)->text())
+            {
+                return;
+            }
+        }
+        listWidgetExtensionFilter->addItem(extension);
+    }
+}
+
+//----Usuwa rozszerzenie z listy----//
+void WidgetSettings::deleteExtension()
+{
+    if(listWidgetExtensionFilter->currentRow() > -1)
+    {
+        delete listWidgetExtensionFilter->takeItem(listWidgetExtensionFilter->currentRow());
+    }
 }
 
 //----Pokazuje już utworzone okno----//

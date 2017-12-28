@@ -11,6 +11,9 @@
 #include <QGroupBox>
 #include <QComboBox>
 #include <QDesktopWidget>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QTabWidget>
 #include "Settings.h"
 #include "Widgets.h"
 
@@ -29,12 +32,18 @@ public:
 private:
     Ui::WidgetSettings *ui;
 
+    QTabWidget *mainTabWidget;
+    QWidget *mainTab;
+    QWidget *sizeAndSpacesTab;
+    QWidget *extensionFilterTab;
+
     //----Layouty----//
     QVBoxLayout *windowVLayout;
-    QHBoxLayout *mainHLayout;
-    QVBoxLayout *leftVLayout;
-    QVBoxLayout *rightVLayout;
+    QVBoxLayout *mainTabVLayout;
+    QVBoxLayout *sizeAndSpacesTabVLayout;
+    QVBoxLayout *extensionFilterTabVLayout;
     QHBoxLayout *buttonHLayout;
+    QHBoxLayout *extensionButtonHLayout;
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
@@ -44,6 +53,10 @@ private:
     QGroupBox *buttonGroupReplace;
     QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
+
+    //----Przyciski----//
+    QPushButton *buttonAddExtension;
+    QPushButton *buttonDeleteExtension;
 
     //----CheckBoxy----//
     QCheckBox *checkBoxReplaceInSubfolders;
@@ -56,8 +69,11 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
+
+    //----ComboBoxy----//
     QComboBox *comboBoxChangeLettersSize;
     QComboBox *comboBoxChangeExtensionSize;
+    QComboBox *comboBoxChangeExtensionFilter;
 
     //----Etykiety----//
     QLabel *labelDefaultSettings;
@@ -67,6 +83,16 @@ private:
     //----Przyciski----//
     QPushButton *buttonOK;
     QPushButton *buttonCancel;
+
+    //---Wyrażenia regularne i walidator---//
+    QRegExp regExp;
+    QRegExpValidator regExpValidator;
+
+    //----Pole edycji----//
+    QLineEdit *lineEditExtensionFilter;
+
+    //----Lista rozszerzeń----//
+    QListWidget *listWidgetExtensionFilter;
 
     //----Obiekt czytajacy ustawienia----//
     Settings *settingsReader;
@@ -78,6 +104,8 @@ private slots:
     void checkBoxDashesClicked();
     void setCheckBoxes(); //Ustawia przyciski danymi z pliku
     void setSettingsReader(); //Ustawia czytacz ustawień wartościami checkboxów
+    void addExtension(); //Dodaj rozszerzenie do listy
+    void deleteExtension(); //Usuwa rozszerzenie z listy
 
 public slots:
     void showWindow(); //Pokazuje już utworzone okno

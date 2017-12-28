@@ -9,7 +9,7 @@ class NameChangeParameters
 public:
     enum class Letters {FirstBig, FirstBigRestSmall, AllBig, AllSmall, FirstInWordsBig, DoNothing};
     enum class Extensions {FirstBig, AllBig, AllSmall, DoNothing};
-    enum class ExtensionFilter {OnlyThis, AllExceptThis, DoNothing};
+    enum class ExtensionFilter {OnlyThis, AllExceptThis, DontUse};
     enum class DirType {Folder, File};
 
 private:

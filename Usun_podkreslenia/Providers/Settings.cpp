@@ -46,7 +46,14 @@ bool Settings::saveSettings()
         stream << "usunSpacjeNaPoczatku=" << nameChangeParameters.getRemoveSpacesAtBegin() << endl;
         stream << "usunSpacjeNaKoncu=" << nameChangeParameters.getRemoveSpacesAtEnd() << endl;
         stream << "rozmiarLiter=" << static_cast<int>(nameChangeParameters.getChangeLetters()) << endl;;
-        stream << "rozmiarRozszezenia=" << static_cast<int>(nameChangeParameters.getChangeExtension());
+        stream << "rozmiarRozszezenia=" << static_cast<int>(nameChangeParameters.getChangeExtension()) << endl;
+        stream << "filtrRozszerzen=" << static_cast<int>(nameChangeParameters.getExtensionFilter()) << endl;
+        stream << "rozszerzenia=";
+        for(int i = 0; i < nameChangeParameters.getExtensions().count() - 1; i++)
+        {
+            stream << nameChangeParameters.getExtensions()[i] << ",";
+        }
+        stream << nameChangeParameters.getExtensions().last();
 
         settingsFile.close();
         return true;
@@ -74,7 +81,9 @@ bool Settings::rebuildFile()
         stream << "usunSpacjeNaPoczatku=0" << endl;
         stream << "usunSpacjeNaKoncu=0" << endl;
         stream << "rozmiarLiter=" << static_cast<int>(NameChangeParameters::Letters::DoNothing) << endl;
-        stream << "rozmiarRozszezenia=" << static_cast<int>(NameChangeParameters::Extensions::DoNothing);
+        stream << "rozmiarRozszezenia=" << static_cast<int>(NameChangeParameters::Extensions::DoNothing) << endl;
+        stream << "filtrRozszerzen=" << static_cast<int>(NameChangeParameters::ExtensionFilter::DontUse) << endl;
+        stream << "rozszerzenia=";
         settingsFile.close();
         return true;
     }
@@ -113,5 +122,12 @@ void Settings::setSetting(QString line)
             nameChangeParameters.setChangeLetters(static_cast<NameChangeParameters::Letters>(value));
         else if(option == "rozmiarRozszezenia")
             nameChangeParameters.setChangeExtension(static_cast<NameChangeParameters::Extensions>(value));
+        else if(option == "filtrRozszerzen")
+            nameChangeParameters.setExtensionFilter(static_cast<NameChangeParameters::ExtensionFilter>(value));
+        else if(option == "rozszerzenia")
+        {
+            QStringList extensions = line.split("=")[1].split(",");
+            nameChangeParameters.setExtensions(extensions);
+        }
     }
 }

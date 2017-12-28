@@ -7,8 +7,8 @@ RenamerController::RenamerController(QObject *parent) : QObject(parent)
     worker->moveToThread(&workerThread);
 
     connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
-    connect(this, SIGNAL(doWorkChangeInFolder(NameChangeParameters, QString)), worker, SLOT(initiateRenameFilesInFolder(NameChangeParameters, QString)));
-    connect(this, SIGNAL(doWorkChangeFile(NameChangeParameters, QString)), worker, SLOT(initiateRenameFile(NameChangeParameters, QString)));
+    connect(this, SIGNAL(doWorkChangeInFolder(NameChangeParameters, QStringList)), worker, SLOT(initiateRenameFilesInSelectedFolder(NameChangeParameters, QStringList)));
+    connect(this, SIGNAL(doWorkChangeFile(NameChangeParameters, QStringList)), worker, SLOT(initiateRenameSelectedFiles(NameChangeParameters, QStringList)));
     connect(worker,SIGNAL(doneWork()), this, SLOT(handleResults()));
     connect(worker,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBarSlot(int,int)));
     connect(worker,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBarSlot(int)));
@@ -28,7 +28,7 @@ void RenamerController::handleResults()
     return;
 }
 
-void RenamerController::initiateRenameFiles(NameChangeParameters nameChangeParameters, QString selectedDir, NameChangeParameters::DirType dirType)
+void RenamerController::initiateRenameFiles(NameChangeParameters nameChangeParameters, QStringList selectedDir, NameChangeParameters::DirType dirType)
 {
     switch(dirType)
     {

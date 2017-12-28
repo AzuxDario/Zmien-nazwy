@@ -30,7 +30,8 @@ QString WidgetViewProvider::selectFolder()
 
     if(selectedFolder.isNull() == false)
     {
-        selectedDir = selectedFolder;
+        selectedDir.clear();
+        selectedDir.push_back(selectedFolder);
         dirType = NameChangeParameters::DirType::Folder;
         return selectedFolder;
     }
@@ -38,18 +39,17 @@ QString WidgetViewProvider::selectFolder()
         return "";
 }
 //----Wybiera plik do przeprowadzenia zmiany nazw----//
-QString WidgetViewProvider::selectFile()
+QStringList WidgetViewProvider::selectFile()
 {
-    QString selectedFile = QFileDialog::getOpenFileName(); //Pobiera adres folderu
+    QStringList selectedFile = QFileDialog::getOpenFileNames(); //Pobiera adres folderu
 
-    if(selectedFile.isNull() == false)
+    if(selectedFile.isEmpty() == false)
     {
+        selectedDir.clear();
         selectedDir = selectedFile;
         dirType = NameChangeParameters::DirType::File;
-        return selectedFile;
     }
-    else
-        return "";
+    return selectedFile;
 }
 
 //----Pokazuje okienko z informacjami o programie----//

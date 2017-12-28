@@ -19,9 +19,15 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QComboBox>
+#include <QListWidget>
+#include <QLineEdit>
+#include <QRegExp>
+#include <QRegExpValidator>
+#include <QTabWidget>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
+#include "Tags.h"
 
 
 namespace Ui {
@@ -52,12 +58,19 @@ private:
     QAction *actionAbout;
     QAction *actionChangeLog;
 
+    QTabWidget *mainTabWidget;
+    QWidget *mainTab;
+    QWidget *sizeAndSpacesTab;
+    QWidget *extensionFilterTab;
+
     //----Layouty----//
-    QVBoxLayout *windowVLayout;
-    QHBoxLayout *mainHLayout;
-    QVBoxLayout *leftVLayout;
-    QVBoxLayout *rightVLayout;
-    QHBoxLayout *buttonHLayout;
+    QGridLayout *windowGridLayout;
+    QVBoxLayout *rightLayout;
+    QVBoxLayout *mainTabVLayout;
+    QVBoxLayout *sizeAndSpacesTabVLayout;
+    QVBoxLayout *extensionFilterTabVLayout;
+    QHBoxLayout *mainButtonHLayout;
+    QHBoxLayout *extensionButtonHLayout;
 
     QVBoxLayout *buttonGroupSubfoldersLayout;
     QVBoxLayout *buttonGroupReplaceLayout;
@@ -72,6 +85,8 @@ private:
     QPushButton *buttonSelectFolder;
     QPushButton *buttonSelectFile;
     QPushButton *buttonStartNameChange;
+    QPushButton *buttonAddExtension;
+    QPushButton *buttonDeleteExtension;
 
     //----CheckBoxy----//
     QCheckBox *checkBoxReplaceInSubfolders;
@@ -84,8 +99,11 @@ private:
     QCheckBox *checkBoxRemoveMultiplySpaces;
     QCheckBox *checkBoxRemoveSpacesAtBegin;
     QCheckBox *checkBoxRemoveSpacesAtEnd;
+
+    //----ComboBoxy----//
     QComboBox *comboBoxChangeLettersSize;
     QComboBox *comboBoxChangeExtensionSize;
+    QComboBox *comboBoxChangeExtensionFilter;
 
     //----Etykiety----//
     QLabel *labelChangeLettersSize;
@@ -94,11 +112,22 @@ private:
     //----Okienko z tekstem----//
     QTextBrowser *textBrowserAbout;
 
+    //---Wyrażenia regularne i walidator---//
+    QRegExp regExp;
+    QRegExpValidator regExpValidator;
+
+    //----Pole edycji----//
+    QLineEdit *lineEditExtensionFilter;
+
     //----Pasek Postępu----//
     QProgressBar *progressBar;
 
+    //----Lista rozszerzeń----//
+    QListWidget *listWidgetExtensionFilter;
+
     //----Zmienna przechowująca folder----//
     QString selectedDirectory;
+    QStringList selectedFiles;
 
     //----Rdzeń----//
     WidgetViewProvider *programCore;
@@ -121,8 +150,10 @@ private slots:
     void showWidgetChangeLog(); //Wyświetla okienko z rejestrem zmian
     void showWidgetSettings(); //Wyświetla okienko ustawienia
     void setButtonSelection(); //Ustawia zaznaczenia przycisków
+    void addExtension(); //Dodaj rozszerzenie do listy
+    void deleteExtension(); //Usuwa rozszerzenie z listy
 
-    //----Funkcje aktualizujace stany między check boxami a paskiem
+    //----Funkcje aktualizujace stany między check boxami a paskiem----//
     void checkBoxDotsClicked();
     void checkBoxDashesClicked();
     void setNameChangesParameters();

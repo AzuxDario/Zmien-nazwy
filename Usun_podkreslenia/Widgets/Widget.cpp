@@ -20,7 +20,7 @@ Widget::Widget(QWidget *parent) :
 
     actionSelectFolder = new QAction(QIcon(":/pasek/wybierzFolder"),tr(Widgets::actionSelectFolder),this);
     actionSelectFolder->setShortcut(QKeySequence(tr("Ctrl+F")));
-    actionSelectFile = new QAction(QIcon(":/pasek/plik"),tr(Widgets::actionSelectFile),this);
+    actionSelectFile = new QAction(QIcon(":/pasek/plik"),tr(Widgets::actionSelectFiles),this);
     actionSelectFile->setShortcut(QKeySequence(tr("Ctrl+P")));
     actionStartNameChange = new QAction(QIcon(":/pasek/rozpocznijZmiane"),tr(Widgets::actionStartChange),this);
     actionStartNameChange->setShortcut(QKeySequence(tr("Ctrl+R")));
@@ -46,19 +46,27 @@ Widget::Widget(QWidget *parent) :
     actionStartNameChange->setDisabled(true);
 
     //--------Przyciski--------//
-    buttonSelectFolder = new QPushButton(tr(Widgets::actionSelectFolder),this);
+    buttonSelectFolder = new QPushButton(tr(Widgets::buttonSelectFolder),this);
     buttonSelectFolder->setStyleSheet("font-size:11px;");
     buttonSelectFolder->setMinimumHeight(30);
     buttonSelectFolder->setMaximumWidth(120);
-    buttonSelectFile = new QPushButton(tr(Widgets::actionSelectFile),this);
+    buttonSelectFile = new QPushButton(tr(Widgets::buttonSelectFiles),this);
     buttonSelectFile->setStyleSheet("font-size:11px;");
     buttonSelectFile->setMinimumHeight(30);
     buttonSelectFile->setMaximumWidth(120);
-    buttonStartNameChange = new QPushButton(tr(Widgets::actionStartChange),this);
+    buttonStartNameChange = new QPushButton(tr(Widgets::buttonStartChange),this);
     buttonStartNameChange->setStyleSheet("font-size:11px;");
     buttonStartNameChange->setMaximumHeight(30);
     buttonStartNameChange->setMaximumWidth(120);
     buttonStartNameChange->setDisabled(true);
+    buttonAddExtension = new QPushButton(tr(Widgets::buttonAddExtension),this);
+    buttonAddExtension->setStyleSheet("font-size:11px;");
+    buttonAddExtension->setMinimumHeight(30);
+    buttonAddExtension->setMaximumWidth(60);
+    buttonDeleteExtension = new QPushButton(tr(Widgets::buttonDeleteExtension),this);
+    buttonDeleteExtension->setStyleSheet("font-size:11px;");
+    buttonDeleteExtension->setMinimumHeight(30);
+    buttonDeleteExtension->setMaximumWidth(60);
 
     //--------Check Boxy--------//
     checkBoxReplaceInSubfolders = new QCheckBox(tr(Widgets::checkBoxReplaceInSubfolders));
@@ -85,6 +93,10 @@ Widget::Widget(QWidget *parent) :
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToBig));
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonChangeExtensionToSmall));    
     comboBoxChangeExtensionSize->addItem(tr(Widgets::radioButtonDontChange));
+    comboBoxChangeExtensionFilter = new QComboBox();
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionOnlyThis));
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionAlExceptThis));
+    comboBoxChangeExtensionFilter->addItem(tr(Widgets::optionExtensionDontUse));
 
     //--------Etykiety--------//
     labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
@@ -97,39 +109,68 @@ Widget::Widget(QWidget *parent) :
     //textBrowserAbout->setTextInteractionFlags(Qt::NoTextInteraction);
     textBrowserAbout->setText(tr(Widgets::textToStartSelectFolderOrFile));
 
+    regExp.setPattern("^[a-zA-Z0-9]*$");
+    regExpValidator.setRegExp(regExp);
+
+    //----Pole edyscji----//
+    lineEditExtensionFilter = new QLineEdit();
+    lineEditExtensionFilter->setValidator(&regExpValidator);
+
     //--------Pasek postępu--------//
     progressBar = new QProgressBar(this);
     progressBar->setTextVisible(false);
     progressBar->setMinimumHeight(30);
 
+    listWidgetExtensionFilter = new QListWidget();
+
+    mainTabWidget = new QTabWidget();
+    mainTab = new QWidget();
+    sizeAndSpacesTab = new QWidget();
+    extensionFilterTab = new QWidget();
+
+    mainTabWidget->addTab(mainTab,tr(Widgets::mainTab));
+    mainTabWidget->addTab(sizeAndSpacesTab,tr(Widgets::sizeAndSpacesTab));
+    mainTabWidget->addTab(extensionFilterTab,tr(Widgets::extensionFilterTab));
 
     //----Layouty----//
-    windowVLayout = new QVBoxLayout(this);
-    mainHLayout = new QHBoxLayout();
-    leftVLayout = new QVBoxLayout();
-    rightVLayout = new QVBoxLayout();
-    windowVLayout->setMenuBar(menuBar);
-    windowVLayout->addLayout(mainHLayout);
-    mainHLayout->addLayout(leftVLayout);
-    mainHLayout->addLayout(rightVLayout);
+    windowGridLayout = new QGridLayout(this);
+    rightLayout = new QVBoxLayout();
+
+    mainTabVLayout = new QVBoxLayout();
+    sizeAndSpacesTabVLayout = new QVBoxLayout();
+    extensionFilterTabVLayout = new QVBoxLayout();
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
     buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
-    buttonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupSubfolders));
+    mainButtonHLayout = new QHBoxLayout;
+    extensionButtonHLayout = new QHBoxLayout;
+    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupGeneral));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
-    leftVLayout->addWidget(buttonGroupSubfolders);
-    leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addWidget(textBrowserAbout);
-    leftVLayout->addWidget(progressBar);
-    rightVLayout->addWidget(buttonGroupSize);
-    rightVLayout->addWidget(buttonGroupSpace);
-    rightVLayout->addSpacing(70);
-    rightVLayout->addLayout(buttonHLayout);
+
+    windowGridLayout->setMenuBar(menuBar);
+    windowGridLayout->addWidget(mainTabWidget,0,0);
+    windowGridLayout->addLayout(rightLayout,0,1);
+
+    rightLayout->addWidget(textBrowserAbout);
+    rightLayout->addWidget(progressBar);
+    rightLayout->addLayout(mainButtonHLayout);
+
+    mainTab->setLayout(mainTabVLayout);
+    sizeAndSpacesTab->setLayout(sizeAndSpacesTabVLayout);
+    extensionFilterTab->setLayout(extensionFilterTabVLayout);
+
+    mainTabVLayout->addWidget(buttonGroupSubfolders);
+    mainTabVLayout->addWidget(buttonGroupReplace);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSize);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSpace);
+    extensionFilterTabVLayout->addWidget(comboBoxChangeExtensionFilter);
+    extensionFilterTabVLayout->addWidget(listWidgetExtensionFilter);
+    extensionFilterTabVLayout->addWidget(lineEditExtensionFilter);
+    extensionFilterTabVLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
@@ -151,9 +192,12 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
 
-    buttonHLayout->addWidget(buttonSelectFolder);
-    buttonHLayout->addWidget(buttonSelectFile);
-    buttonHLayout->addWidget(buttonStartNameChange);
+    mainButtonHLayout->addWidget(buttonSelectFolder);
+    mainButtonHLayout->addWidget(buttonSelectFile);
+    mainButtonHLayout->addWidget(buttonStartNameChange);
+
+    extensionButtonHLayout->addWidget(buttonAddExtension);
+    extensionButtonHLayout->addWidget(buttonDeleteExtension);
 
     //----Wskaźnik na rdzeń programu----//
     programCore = new WidgetViewProvider();
@@ -177,6 +221,8 @@ Widget::Widget(QWidget *parent) :
     connect(buttonStartNameChange,SIGNAL(clicked()),this,SLOT(startNameChange()));
     connect(checkBoxReplaceDashes,SIGNAL(clicked(bool)),this,SLOT(checkBoxDashesClicked()));
     connect(checkBoxReplaceDots,SIGNAL(clicked()),this,SLOT(checkBoxDotsClicked()));
+    connect(buttonAddExtension,SIGNAL(clicked()),this,SLOT(addExtension()));
+    connect(buttonDeleteExtension,SIGNAL(clicked()),this,SLOT(deleteExtension()));
 
     connect(programCore,SIGNAL(initializeProgressBar(int,int)), this, SLOT(initializeProgressBar(int,int)));
     connect(programCore,SIGNAL(changeProgressBar(int)), this, SLOT(changeProgressBar(int)));
@@ -236,7 +282,7 @@ void Widget::selectFolder()
     if(selectedDirectory != "")
     {
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFolder) + selectedDirectory + tr(Widgets::textNamesWillBeChangedInFolder));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFolder)+ Tags::bold + selectedDirectory + Tags::boldEnd + Tags::breakLine + tr(Widgets::textNamesWillBeChangedInFolder));
     }
     else
     {
@@ -249,11 +295,17 @@ void Widget::selectFolder()
 void Widget::selectFile()
 {
     progressBar->reset();
-    selectedDirectory = programCore->selectFile(); //Otwiera okno wyboru pliku
-    if(selectedDirectory != "")
+    selectedFiles = programCore->selectFile(); //Otwiera okno wyboru pliku
+    if(!selectedFiles.empty())
     {
+        QString selection = "<br/>";
+        for(int i = 0; i < selectedFiles.length(); i++)
+        {
+            selection += selectedFiles[i];
+            selection += "<br/>";
+        }
         enableButtonsStartNameChange();
-        textBrowserAbout->setText(tr(Widgets::textSelectedFile) + selectedDirectory + tr(Widgets::textFileNameWillBeChanged));
+        textBrowserAbout->setText(tr(Widgets::textSelectedFiles) + Tags::bold + selection + Tags::boldEnd + Tags::breakLine + tr(Widgets::textFileNameWillBeChanged));
     }
     else
     {
@@ -345,6 +397,20 @@ void Widget::setButtonSelection()
         break;
     }
 
+    auto selectionExtensionFilter = parameters.getExtensionFilter();
+    switch(selectionExtensionFilter)
+    {
+    case NameChangeParameters::ExtensionFilter::OnlyThis:
+        comboBoxChangeExtensionFilter->setCurrentIndex(0);
+        break;
+    case NameChangeParameters::ExtensionFilter::AllExceptThis:
+        comboBoxChangeExtensionFilter->setCurrentIndex(1);
+        break;
+    case NameChangeParameters::ExtensionFilter::DontUse:
+        comboBoxChangeExtensionFilter->setCurrentIndex(2);
+        break;
+    }
+
     if(parameters.getReplaceDots() == true)
     {
         checkBoxReplaceExtensionDot->setEnabled(true);
@@ -362,6 +428,38 @@ void Widget::setButtonSelection()
         checkBoxDontReplaceDashesSurrondedBySpaces->setDisabled(true);
     }
 
+    QStringList list = parameters.getExtensions();
+    for(int i = 0; i< list.count(); i++)
+    {
+        listWidgetExtensionFilter->addItem(list[i]);
+    }
+}
+
+//----Dodaj rozszerzenie do listy----//
+void Widget::addExtension()
+{
+    QString extension = lineEditExtensionFilter->text();
+    lineEditExtensionFilter->setText("");
+    if(extension != "")
+    {
+        for(int i = 0; i < listWidgetExtensionFilter->count(); i++)
+        {
+            if(extension == listWidgetExtensionFilter->item(i)->text())
+            {
+                return;
+            }
+        }
+        listWidgetExtensionFilter->addItem(extension);
+    }
+}
+
+//----Usuwa rozszerzenie z listy----//
+void Widget::deleteExtension()
+{
+    if(listWidgetExtensionFilter->currentRow() > -1)
+    {
+        delete listWidgetExtensionFilter->takeItem(listWidgetExtensionFilter->currentRow());
+    }
 }
 
 //----Funkcje aktualizujace stany między check boxami a paskiem----//
@@ -425,6 +523,26 @@ void Widget::setNameChangesParameters()
         nameChangeParameters.setChangeExtension(NameChangeParameters::Extensions::DoNothing);
         break;
     }
+
+    switch(comboBoxChangeExtensionFilter->currentIndex())
+    {
+    case 0:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::OnlyThis);
+        break;
+    case 1:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::AllExceptThis);
+        break;
+    case 2:
+        nameChangeParameters.setExtensionFilter(NameChangeParameters::ExtensionFilter::DontUse);
+        break;
+    }
+
+    QStringList list;
+    for(int i = 0; i< listWidgetExtensionFilter->count(); i++)
+    {
+        list.append(listWidgetExtensionFilter->item(i)->text());
+    }
+    nameChangeParameters.setExtensions(list);
 }
 
 void Widget::initializeProgressBar(int minValue, int maxValue)
@@ -445,5 +563,5 @@ void Widget::resetProgressBar()
 void Widget::handleResults()
 {
     enableButtonsSelect(); //Włączenie aktywności przycisku Wybór folderu po zmianie nazwy
-    textBrowserAbout->setText(tr(Widgets::textNamesChanged) + tr(Widgets::textToStartSelectFolderOrFile));
+    textBrowserAbout->setText(Tags::bold + tr(Widgets::textNamesChanged) + Tags::boldEnd + Tags::breakLine + tr(Widgets::textToStartSelectFolderOrFile));
 }
