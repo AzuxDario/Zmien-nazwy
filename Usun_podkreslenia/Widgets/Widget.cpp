@@ -428,7 +428,7 @@ void Widget::setButtonSelection()
         checkBoxDontReplaceDashesSurrondedBySpaces->setDisabled(true);
     }
 
-    QStringList list = nameChangeParameters.getExtensions();
+    QStringList list = parameters.getExtensions();
     for(int i = 0; i< list.count(); i++)
     {
         listWidgetExtensionFilter->addItem(list[i]);
