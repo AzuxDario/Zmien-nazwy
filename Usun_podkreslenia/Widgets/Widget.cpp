@@ -123,39 +123,54 @@ Widget::Widget(QWidget *parent) :
 
     listWidgetExtensionFilter = new QListWidget();
 
+    mainTabWidget = new QTabWidget();
+    mainTab = new QWidget();
+    sizeAndSpacesTab = new QWidget();
+    extensionFilterTab = new QWidget();
+
+    mainTabWidget->addTab(mainTab,tr(Widgets::mainTab));
+    mainTabWidget->addTab(sizeAndSpacesTab,tr(Widgets::sizeAndSpacesTab));
+    mainTabWidget->addTab(extensionFilterTab,tr(Widgets::extensionFilterTab));
+
     //----Layouty----//
-    windowVLayout = new QVBoxLayout(this);
-    mainHLayout = new QHBoxLayout();
-    leftVLayout = new QVBoxLayout();
-    centerVLayout = new QVBoxLayout();
-    rightVLayout = new QVBoxLayout();
-    windowVLayout->setMenuBar(menuBar);
-    windowVLayout->addLayout(mainHLayout);
-    mainHLayout->addLayout(leftVLayout);
-    mainHLayout->addLayout(centerVLayout);
-    mainHLayout->addLayout(rightVLayout);
+    windowGridLayout = new QGridLayout(this);
+    rightLayout = new QVBoxLayout();
+
+    mainTabVLayout = new QVBoxLayout();
+    sizeAndSpacesTabVLayout = new QVBoxLayout();
+    extensionFilterTabVLayout = new QVBoxLayout();
 
     buttonGroupSubfoldersLayout = new QVBoxLayout;
     buttonGroupReplaceLayout = new QVBoxLayout;
     buttonGroupSizeLayout = new QVBoxLayout;
     buttonGroupSpaceLayout = new QVBoxLayout;
-    buttonGroupExtensionFilterLayout = new QVBoxLayout;
     mainButtonHLayout = new QHBoxLayout;
     extensionButtonHLayout = new QHBoxLayout;
     buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupGeneral));
     buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
     buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
     buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
-    buttonGroupExtensionFilter = new QGroupBox(tr(Widgets::buttonGroupExtensionFilter));
-    leftVLayout->addWidget(buttonGroupSubfolders);
-    leftVLayout->addWidget(buttonGroupReplace);
-    leftVLayout->addWidget(textBrowserAbout);
-    leftVLayout->addWidget(progressBar);
-    centerVLayout->addWidget(buttonGroupSize);
-    centerVLayout->addWidget(buttonGroupSpace);
-    centerVLayout->addSpacing(70);
-    centerVLayout->addLayout(mainButtonHLayout);
-    rightVLayout->addWidget(buttonGroupExtensionFilter);
+
+    windowGridLayout->setMenuBar(menuBar);
+    windowGridLayout->addWidget(mainTabWidget,0,0);
+    windowGridLayout->addLayout(rightLayout,0,1);
+
+    rightLayout->addWidget(textBrowserAbout);
+    rightLayout->addWidget(progressBar);
+    rightLayout->addLayout(mainButtonHLayout);
+
+    mainTab->setLayout(mainTabVLayout);
+    sizeAndSpacesTab->setLayout(sizeAndSpacesTabVLayout);
+    extensionFilterTab->setLayout(extensionFilterTabVLayout);
+
+    mainTabVLayout->addWidget(buttonGroupSubfolders);
+    mainTabVLayout->addWidget(buttonGroupReplace);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSize);
+    sizeAndSpacesTabVLayout->addWidget(buttonGroupSpace);
+    extensionFilterTabVLayout->addWidget(comboBoxChangeExtensionFilter);
+    extensionFilterTabVLayout->addWidget(listWidgetExtensionFilter);
+    extensionFilterTabVLayout->addWidget(lineEditExtensionFilter);
+    extensionFilterTabVLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
@@ -171,16 +186,11 @@ Widget::Widget(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(comboBoxChangeLettersSize);
     buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
-    buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
-    buttonGroupExtensionFilterLayout->addWidget(listWidgetExtensionFilter);
-    buttonGroupExtensionFilterLayout->addWidget(lineEditExtensionFilter);
-    buttonGroupExtensionFilterLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
     buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
-    buttonGroupExtensionFilter->setLayout(buttonGroupExtensionFilterLayout);
 
     mainButtonHLayout->addWidget(buttonSelectFolder);
     mainButtonHLayout->addWidget(buttonSelectFile);

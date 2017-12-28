@@ -23,7 +23,7 @@
 #include <QLineEdit>
 #include <QRegExp>
 #include <QRegExpValidator>
-#include <QTableWidget>
+#include <QTabWidget>
 #include "Renamer.h"
 #include "WidgetViewProvider.h"
 #include "Widgets.h"
@@ -58,12 +58,17 @@ private:
     QAction *actionAbout;
     QAction *actionChangeLog;
 
+    QTabWidget *mainTabWidget;
+    QWidget *mainTab;
+    QWidget *sizeAndSpacesTab;
+    QWidget *extensionFilterTab;
+
     //----Layouty----//
-    QVBoxLayout *windowVLayout;
-    QHBoxLayout *mainHLayout;
-    QVBoxLayout *leftVLayout;
-    QVBoxLayout *centerVLayout;
-    QVBoxLayout *rightVLayout;
+    QGridLayout *windowGridLayout;
+    QVBoxLayout *rightLayout;
+    QVBoxLayout *mainTabVLayout;
+    QVBoxLayout *sizeAndSpacesTabVLayout;
+    QVBoxLayout *extensionFilterTabVLayout;
     QHBoxLayout *mainButtonHLayout;
     QHBoxLayout *extensionButtonHLayout;
 
@@ -71,12 +76,10 @@ private:
     QVBoxLayout *buttonGroupReplaceLayout;
     QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
-    QVBoxLayout *buttonGroupExtensionFilterLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
     QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
-    QGroupBox *buttonGroupExtensionFilter;
 
     //----Przyciski----//
     QPushButton *buttonSelectFolder;
