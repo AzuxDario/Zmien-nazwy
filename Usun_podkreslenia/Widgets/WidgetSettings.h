@@ -49,17 +49,14 @@ private:
     QVBoxLayout *buttonGroupReplaceLayout;
     QVBoxLayout *buttonGroupSizeLayout;
     QVBoxLayout *buttonGroupSpaceLayout;
-    QVBoxLayout *buttonGroupExtensionFilterLayout;
     QGroupBox *buttonGroupSubfolders;
     QGroupBox *buttonGroupReplace;
     QGroupBox *buttonGroupSize;
     QGroupBox *buttonGroupSpace;
-    QGroupBox *buttonGroupExtensionFilter;
 
     //----Przyciski----//
     QPushButton *buttonAddExtension;
     QPushButton *buttonDeleteExtension;
-
 
     //----CheckBoxy----//
     QCheckBox *checkBoxReplaceInSubfolders;
@@ -91,9 +88,10 @@ private:
     QRegExp regExp;
     QRegExpValidator regExpValidator;
 
+    //----Pole edycji----//
     QLineEdit *lineEditExtensionFilter;
 
-
+    //----Lista rozszerzeń----//
     QListWidget *listWidgetExtensionFilter;
 
     //----Obiekt czytajacy ustawienia----//

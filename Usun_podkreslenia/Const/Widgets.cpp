@@ -49,6 +49,10 @@ const char* Widgets::optionExtensionOnlyThis = "Zmień pliki o podanych rozszerz
 const char* Widgets::optionExtensionAlExceptThis = "Zmień pliki o rozszerzeniach innych niż podane";
 const char* Widgets::optionExtensionDontUse = "Nie używaj filtru rozszerzeń";
 
+const char* Widgets::mainTab = "Główne";
+const char* Widgets::sizeAndSpacesTab = "Rozmiar i spacje";
+const char* Widgets::extensionFilterTab = "Filtr rozszerzeń";
+
 const char* Widgets::buttonGroupGeneral = "Ogólne";
 const char* Widgets::buttonGroupReplace = "Zastąp znaki";
 const char* Widgets::buttonGroupSize = "Zmień rozmiar";

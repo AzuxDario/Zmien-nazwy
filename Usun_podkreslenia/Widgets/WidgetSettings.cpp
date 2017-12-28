@@ -12,13 +12,13 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     setWindowIcon(QIcon(":/ikona/ikona"));
     setWindowModality(Qt::ApplicationModal); //Sprawia że po aktywacji okna główne okno staje się nieklikalne
 
-    //--------Etykiety--------//
+    //----Etykiety----//
     labelDefaultSettings = new QLabel(tr(Widgets::textDefaultSettings),this);
     labelDefaultSettings->setStyleSheet("font-size:15px; margin-bottom:10px;");
     labelChangeLettersSize = new QLabel(tr(Widgets::labelGroupLetterSize));
     labelChangeExtensionSize = new QLabel(tr(Widgets::labelGroupExtensionSize));
 
-    //--------Przycisk--------//
+    //----Przycisk----//
     buttonOK = new QPushButton(tr(Widgets::buttonOk),this);
     buttonOK->setMinimumHeight(30);
     buttonOK->setMaximumWidth(120);
@@ -34,7 +34,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonDeleteExtension->setMinimumHeight(30);
     buttonDeleteExtension->setMaximumWidth(60);
 
-    //--------Check Boxy--------//
+    //--------CheckBoxy--------//
     checkBoxReplaceInSubfolders = new QCheckBox(tr(Widgets::checkBoxReplaceInSubfolders));
     checkBoxReplaceUnderscores = new QCheckBox(tr(Widgets::checkBoxReplaceUnderscores));
     checkBoxReplaceDashes = new QCheckBox(tr(Widgets::checkBoxReplaceDashes));
@@ -47,6 +47,8 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     checkBoxRemoveMultiplySpaces = new QCheckBox(tr(Widgets::checkBoxRemoveMultiplySpaces));
     checkBoxRemoveSpacesAtBegin = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtBegin));
     checkBoxRemoveSpacesAtEnd = new QCheckBox(tr(Widgets::checkBoxRemoveSpacesAtEnd));
+
+    //----ComboBoxy----//
     comboBoxChangeLettersSize = new QComboBox();
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBig));
     comboBoxChangeLettersSize->addItem(tr(Widgets::radioButtonChangeFirstLetterToBigRestSmall));
@@ -77,15 +79,27 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     sizeAndSpacesTab = new QWidget();
     extensionFilterTab = new QWidget();
 
-    mainTabWidget->addTab(mainTab,tr("Główne"));
-    mainTabWidget->addTab(sizeAndSpacesTab,tr("Rozmiar i spacje"));
-    mainTabWidget->addTab(extensionFilterTab,tr("Filtr rozszerzeń"));
+    mainTabWidget->addTab(mainTab,tr(Widgets::mainTab));
+    mainTabWidget->addTab(sizeAndSpacesTab,tr(Widgets::sizeAndSpacesTab));
+    mainTabWidget->addTab(extensionFilterTab,tr(Widgets::extensionFilterTab));
 
     //----Layouty----//
     windowVLayout = new QVBoxLayout(this);
     mainTabVLayout = new QVBoxLayout();
     sizeAndSpacesTabVLayout = new QVBoxLayout();
-    extensionFilterTabVLayout = new QVBoxLayout();
+    extensionFilterTabVLayout = new QVBoxLayout();    
+    extensionButtonHLayout = new QHBoxLayout;
+
+    buttonGroupSubfoldersLayout = new QVBoxLayout;
+    buttonGroupReplaceLayout = new QVBoxLayout;
+    buttonGroupSizeLayout = new QVBoxLayout;
+    buttonGroupSpaceLayout = new QVBoxLayout;
+    buttonHLayout = new QHBoxLayout;
+    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupGeneral));
+    buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
+    buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
+    buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
+
     windowVLayout->addWidget(labelDefaultSettings,0,Qt::AlignCenter);
     windowVLayout->addWidget(mainTabWidget);
 
@@ -93,24 +107,15 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     sizeAndSpacesTab->setLayout(sizeAndSpacesTabVLayout);
     extensionFilterTab->setLayout(extensionFilterTabVLayout);
 
-    buttonGroupSubfoldersLayout = new QVBoxLayout;
-    buttonGroupReplaceLayout = new QVBoxLayout;
-    buttonGroupSizeLayout = new QVBoxLayout;
-    buttonGroupSpaceLayout = new QVBoxLayout;
-    buttonGroupExtensionFilterLayout = new QVBoxLayout;
-    extensionButtonHLayout = new QHBoxLayout;
-    buttonHLayout = new QHBoxLayout;
-    buttonGroupSubfolders = new QGroupBox(tr(Widgets::buttonGroupGeneral));
-    buttonGroupReplace = new QGroupBox(tr(Widgets::buttonGroupReplace));
-    buttonGroupSize = new QGroupBox(tr(Widgets::buttonGroupSize));
-    buttonGroupSpace = new QGroupBox(tr(Widgets::buttonGroupSpace));
-    buttonGroupExtensionFilter = new QGroupBox(tr(Widgets::buttonGroupExtensionFilter));
     mainTabVLayout->addWidget(buttonGroupSubfolders);
     mainTabVLayout->addWidget(buttonGroupReplace);
     mainTabVLayout->addSpacing(40);
     sizeAndSpacesTabVLayout->addWidget(buttonGroupSize);
     sizeAndSpacesTabVLayout->addWidget(buttonGroupSpace);
-    extensionFilterTabVLayout->addWidget(buttonGroupExtensionFilter);
+    extensionFilterTabVLayout->addWidget(comboBoxChangeExtensionFilter);
+    extensionFilterTabVLayout->addWidget(listWidgetExtensionFilter);
+    extensionFilterTabVLayout->addWidget(lineEditExtensionFilter);
+    extensionFilterTabVLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfoldersLayout->addWidget(checkBoxReplaceInSubfolders);
     buttonGroupReplaceLayout->addWidget(checkBoxReplaceUnderscores);
@@ -127,16 +132,11 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     buttonGroupSizeLayout->addWidget(labelChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
     buttonGroupSizeLayout->addWidget(comboBoxChangeExtensionSize);
-    buttonGroupExtensionFilterLayout->addWidget(comboBoxChangeExtensionFilter);
-    buttonGroupExtensionFilterLayout->addWidget(listWidgetExtensionFilter);
-    buttonGroupExtensionFilterLayout->addWidget(lineEditExtensionFilter);
-    buttonGroupExtensionFilterLayout->addLayout(extensionButtonHLayout);
 
     buttonGroupSubfolders->setLayout(buttonGroupSubfoldersLayout);
     buttonGroupReplace->setLayout(buttonGroupReplaceLayout);
     buttonGroupSize->setLayout(buttonGroupSizeLayout);
     buttonGroupSpace->setLayout(buttonGroupSpaceLayout);
-    buttonGroupExtensionFilter->setLayout(buttonGroupExtensionFilterLayout);
     windowVLayout->addLayout(buttonHLayout);
 
     buttonHLayout->addWidget(buttonOK);

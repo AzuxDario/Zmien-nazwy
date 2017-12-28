@@ -56,6 +56,10 @@ public:
     const static char* optionExtensionAlExceptThis;
     const static char* optionExtensionDontUse;
 
+    const static char* mainTab;
+    const static char* sizeAndSpacesTab;
+    const static char* extensionFilterTab;
+
     const static char* buttonGroupGeneral;
     const static char* buttonGroupReplace;
     const static char* buttonGroupSize;
